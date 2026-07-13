@@ -439,7 +439,7 @@ runTest('Returns null when botUsername does not match mention', () => {
 });
 
 runTest('Case-insensitive botUsername matching', () => {
-  const result = extractCommandFromText('/solve@swarmmindbot args', 'AutoProgrammerBot');
+  const result = extractCommandFromText('/solve@autoprogrammerbot args', 'AutoProgrammerBot');
   return result !== null && result.command === 'solve';
 });
 
