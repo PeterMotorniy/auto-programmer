@@ -33,8 +33,8 @@ function runTest(name, testFn) {
 // Read CONFIGURATION.md and extract options from the solve section
 const configDoc = readFileSync(configDocPath, 'utf8');
 
-// Extract solve section (between "### solve Options" and "### hive Options")
-const solveSectionMatch = configDoc.match(/### solve Options[\s\S]*?(?=### hive Options)/);
+// Extract solve section (between "### Параметры solve" and "### Параметры hive")
+const solveSectionMatch = configDoc.match(/### Параметры solve[\s\S]*?(?=### Параметры hive)/);
 const solveSection = solveSectionMatch ? solveSectionMatch[0] : '';
 
 // Extract all option names from the solve section (backtick-wrapped --option-name)
