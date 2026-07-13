@@ -4,10 +4,10 @@
  * Regression test for issue #1910.
  *
  * use-m owns the non-writable npm global root fallback as of use-m@8.13.8, so
- * Hive Mind should not keep a project-local npm prefix preflight around its
+ * Auto Programmer should not keep a project-local npm prefix preflight around its
  * use-m bootstrap.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

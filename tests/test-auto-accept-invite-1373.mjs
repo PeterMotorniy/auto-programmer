@@ -10,7 +10,7 @@
  * - Handling missing invitations gracefully
  * - Case-insensitive matching
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1373
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1373
  */
 
 console.log('🧪 Running --auto-accept-invite unit tests (Issue #1373)...\n');

@@ -21,9 +21,9 @@
  *
  * Run with: node tests/test-no-ci-checks-timeout-1442.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1442
- * @see https://github.com/link-assistant/hive-mind/issues/1363 (related: false positive detection)
- * @see https://github.com/link-assistant/hive-mind/issues/1335 (related: workflow caching)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1442
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1363 (related: false positive detection)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1335 (related: workflow caching)
  */
 
 // ANSI color codes for terminal output

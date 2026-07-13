@@ -10,8 +10,8 @@
  *
  * Run with: node tests/limits-display.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1133
- * @see https://github.com/link-assistant/hive-mind/issues/1242
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1133
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1242
  */
 
 import assert from 'node:assert/strict';

@@ -84,19 +84,19 @@ export const autoContinue = {
 };
 
 // Auto-resume on limit reset configurations
-// See: https://github.com/link-assistant/hive-mind/issues/1152
-// See: https://github.com/link-assistant/hive-mind/issues/1236
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
 export const limitReset = {
   // Buffer time to wait after limit reset (in milliseconds)
   // Default: 10 minutes - accounts for server time differences and API propagation delays
   // Increased from 5 to 10 minutes to reduce risk of hitting limits again immediately
-  // See: https://github.com/link-assistant/hive-mind/issues/1236
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
   bufferMs: parseIntWithDefault('HIVE_MIND_LIMIT_RESET_BUFFER_MS', 10 * 60 * 1000),
   // Random jitter added to buffer to avoid thundering herd problem (in milliseconds)
   // When multiple instances wait for the same limit reset, jitter distributes their
   // resume times to reduce simultaneous API load
   // Default: 5 minutes (0 to 5 minutes random) - total wait after reset: 10-15 minutes
-  // See: https://github.com/link-assistant/hive-mind/issues/1236
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
   jitterMs: parseIntWithDefault('HIVE_MIND_LIMIT_RESET_JITTER_MS', 5 * 60 * 1000),
 };
 
@@ -174,7 +174,7 @@ export const criticalErrorRecovery = {
 };
 
 // Claude Code CLI configurations
-// See: https://github.com/link-assistant/hive-mind/issues/1076
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1076
 // Claude models support different max output tokens:
 // - Opus 4.6 (default 'opus' alias): 128K tokens (Issue #1221, Issue #1433)
 // - Sonnet 4.5, Opus 4.5, Haiku 4.5: 64K tokens
@@ -188,7 +188,7 @@ export const claudeCode = {
   // See: https://platform.claude.com/docs/en/about-claude/models/overview
   maxOutputTokensOpus46: parseIntWithDefault('CLAUDE_CODE_MAX_OUTPUT_TOKENS_OPUS_46', parseIntWithDefault('HIVE_MIND_CLAUDE_CODE_MAX_OUTPUT_TOKENS_OPUS_46', 128000)),
   // MCP (Model Context Protocol) timeout configurations
-  // See: https://github.com/link-assistant/hive-mind/issues/1066
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1066
   // See: https://code.claude.com/docs/en/settings#environment-variables
   // MCP_TIMEOUT: Timeout in milliseconds for MCP server startup
   // MCP_TOOL_TIMEOUT: Timeout in milliseconds for MCP tool execution
@@ -617,7 +617,7 @@ export const getClaudeEnv = (options = {}) => {
     ...process.env,
     CLAUDE_CODE_MAX_OUTPUT_TOKENS: String(maxOutputTokens),
     // MCP timeout configurations to prevent tool calls from hanging indefinitely
-    // See: https://github.com/link-assistant/hive-mind/issues/1066
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1066
     MCP_TIMEOUT: String(claudeCode.mcpTimeout),
     MCP_TOOL_TIMEOUT: String(claudeCode.mcpToolTimeout),
   });
@@ -726,8 +726,8 @@ export const getClaudeEnv = (options = {}) => {
 
 // Cache TTL configurations (in milliseconds)
 // The Usage API (Claude limits) has stricter rate limiting than regular APIs
-// See: https://github.com/link-assistant/hive-mind/issues/1074
-// See: https://github.com/link-assistant/hive-mind/issues/1798
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1074
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1798
 export const cacheTtl = {
   // General API cache TTL (GitHub API, etc.)
   api: parseIntWithDefault('HIVE_MIND_API_CACHE_TTL_MS', 3 * 60 * 1000), // 3 minutes
@@ -805,9 +805,9 @@ export const version = {
 };
 
 // Merge queue configurations
-// See: https://github.com/link-assistant/hive-mind/issues/1143
-// See: https://github.com/link-assistant/hive-mind/issues/1269
-// See: https://github.com/link-assistant/hive-mind/issues/1307
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1143
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1269
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1307
 export const mergeQueue = {
   // Maximum PRs to process in one merge session
   // Default: 10 PRs per session

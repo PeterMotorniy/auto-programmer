@@ -5,7 +5,7 @@
 set -e
 
 SESSION_NAME="test-405-integration-$$"
-TEST_REPO="https://github.com/link-assistant/hive-mind"
+TEST_REPO="https://github.com/PeterMotorniy/auto-programmer"
 
 echo "=== Integration Test for Issue #405 ==="
 echo "Testing start-screen.mjs with concurrent command execution"

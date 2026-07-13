@@ -37,13 +37,13 @@ export function buildPrePullRequestFailureActionSection(reason = '') {
     const upstream = details.expectedUpstream || 'the expected upstream repository';
 
     return `### What happened
-- Hive Mind found \`${repository}\` where it needed a GitHub fork of \`${upstream}\`.
+- Auto Programmer found \`${repository}\` where it needed a GitHub fork of \`${upstream}\`.
 - It could not prove whether the existing repository has unique commits, so it did not delete it automatically.
 
 ### What you can do
 - Recover the fork without deleting: if \`${repository}\` was a fork of \`${upstream}\` that GitHub detached (for example after a private/public visibility change), ask GitHub Support at ${GITHUB_FORK_SUPPORT_URL} ("Attach, detach or reroute forks") to re-attach it. Detachment from a visibility change is documented as permanent, so this is not guaranteed, and while detached the repository cannot open a cross-repository pull request to \`${upstream}\`.
 - Repository owner path: back up any needed work, then delete, rename, archive, or repair \`${repository}\` in GitHub and rerun the solver.
-- External-owner path: ask the repository owner or a Hive Mind administrator to clean it up and rerun the solver.
+- External-owner path: ask the repository owner or a Auto Programmer administrator to clean it up and rerun the solver.
 - Use \`--allow-force-non-fork-repository-deletion\` only after confirming that deleting \`${repository}\` is acceptable and any unique commits can be lost.`;
   }
 
@@ -68,13 +68,13 @@ export function buildPrePullRequestFailureActionSection(reason = '') {
   if (isForkOrRecoveryFailure) {
     return `### What you can do
 - Repository owner path: remove, rename, archive, initialize, or otherwise repair the affected fork or repository in GitHub, then rerun the solver.
-- External-owner path: ask a Hive Mind administrator to handle manual recreation or fix of the repository and rerun the solver.
-- Repository deletion can require a separate GitHub account or token with repository deletion permission; Hive Mind does not rely on that permission by default.`;
+- External-owner path: ask a Auto Programmer administrator to handle manual recreation or fix of the repository and rerun the solver.
+- Repository deletion can require a separate GitHub account or token with repository deletion permission; Auto Programmer does not rely on that permission by default.`;
   }
 
   return `### What you can do
 - Resolve the repository, account, permissions, or environment problem described above, then rerun the solver.
-- Repository owner or Hive Mind administrator path: handle manual recreation or fix of the repository when the required action is outside the requester access.`;
+- Repository owner or Auto Programmer administrator path: handle manual recreation or fix of the repository when the required action is outside the requester access.`;
 }
 
 export function shouldNotifyIssueAboutPrePullRequestFailure({ code, globalState }) {

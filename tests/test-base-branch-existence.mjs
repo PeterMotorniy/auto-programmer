@@ -12,7 +12,7 @@
  *      branch must NOT be reported as "the repository appears to be empty", while
  *      a genuinely empty repository (default branch) still is.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1959
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1959
  */
 
 import { levenshteinDistance, findClosestBranchName } from '../src/github-entity-validation.lib.mjs';

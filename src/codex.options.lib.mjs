@@ -4,7 +4,7 @@ import { codexModels } from './models/index.mjs';
 
 export const mapModelToId = model => codexModels[model] || model;
 
-// Issue #2027: Map the shared hive-mind --think levels to Codex `model_reasoning_effort`
+// Issue #2027: Map the shared auto-programmer --think levels to Codex `model_reasoning_effort`
 // values. GPT-5.6 Sol (the default Codex model) keeps the full ladder inherited from the
 // GPT-5.5/GPT-5.4 generation — low/medium/high/xhigh — and adds `max` *above* xhigh for the
 // deepest single-agent reasoning, plus a multi-agent `ultra` mode. Because every hive level

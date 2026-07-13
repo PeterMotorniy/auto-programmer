@@ -6,8 +6,8 @@
  * This test verifies the fix for the comment:
  * "Ensure hive command pass these options to solve, when set and executed."
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1199
- * @see https://github.com/link-assistant/hive-mind/pull/1200
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1199
+ * @see https://github.com/PeterMotorniy/auto-programmer/pull/1200
  */
 
 // Use use-m to load modules

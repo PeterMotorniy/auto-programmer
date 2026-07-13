@@ -14,7 +14,7 @@ const repoRoot = join(__dirname, '..');
 const startScreenPath = join(repoRoot, 'src', 'start-screen.mjs');
 
 const npmPath = execSync('command -v npm', { encoding: 'utf8' }).trim();
-const noScreenBinDir = mkdtempSync(join(tmpdir(), 'hive-mind-no-screen-bin-'));
+const noScreenBinDir = mkdtempSync(join(tmpdir(), 'auto-programmer-no-screen-bin-'));
 symlinkSync(npmPath, join(noScreenBinDir, 'npm'));
 
 const noScreenEnv = { PATH: `${dirname(process.execPath)}:${noScreenBinDir}` };
@@ -48,8 +48,8 @@ const testCases = [
   },
   {
     command: 'solve',
-    url: 'https://github.com/link-assistant/hive-mind/issues/333',
-    expectedName: 'solve-link-assistant-hive-mind-333',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/333',
+    expectedName: 'solve-PeterMotorniy-auto-programmer-333',
     description: 'solve command with another issue',
   },
   {
@@ -177,7 +177,7 @@ try {
 // Test --dry-run mode for solve command with issue URL
 console.log('Testing --dry-run mode for solve command...');
 {
-  const { output } = runStartScreen(['solve', 'https://github.com/link-assistant/hive-mind/issues/539', '--dry-run'], noScreenEnv);
+  const { output } = runStartScreen(['solve', 'https://github.com/PeterMotorniy/auto-programmer/issues/539', '--dry-run'], noScreenEnv);
 
   // Force screen unavailable so this default-suite test validates parsing
   // without creating a persistent legacy GNU screen session.
@@ -197,7 +197,7 @@ console.log('Testing --dry-run mode for solve command...');
 // Test --dry-run mode for hive command with user URL (the issue from #539)
 console.log('Testing --dry-run mode for hive command with user URL...');
 {
-  const { output } = runStartScreen(['hive', 'https://github.com/konard', '--dry-run', '--once', '--verbose'], noScreenEnv);
+  const { output } = runStartScreen(['hive', 'https://github.com/petermotorniy', '--dry-run', '--once', '--verbose'], noScreenEnv);
 
   if (output.includes('GNU Screen is not installed') || output.includes('Screen is not installed')) {
     console.log('  hive --dry-run user URL: ✓ PASSED (parse-only, screen disabled)\n');
@@ -215,7 +215,7 @@ console.log('Testing --dry-run mode for hive command with user URL...');
 // Test --dry-run mode for hive command with repo URL
 console.log('Testing --dry-run mode for hive command with repo URL...');
 {
-  const { output } = runStartScreen(['hive', 'https://github.com/link-assistant/hive-mind', '--dry-run', '--once'], noScreenEnv);
+  const { output } = runStartScreen(['hive', 'https://github.com/PeterMotorniy/auto-programmer', '--dry-run', '--once'], noScreenEnv);
 
   if (output.includes('GNU Screen is not installed') || output.includes('Screen is not installed')) {
     console.log('  hive --dry-run repo URL: ✓ PASSED (parse-only, screen disabled)\n');

@@ -30,7 +30,7 @@ function $(command, options = {}) {
 console.log('🔍 Debugging integration test behavior...\n');
 
 // Test with the test repository that was created
-const testPrUrl = 'https://github.com/konard/test-feedback-lines-c6f7a3d1/pull/2';
+const testPrUrl = 'https://github.com/petermotorniy/test-feedback-lines-c6f7a3d1/pull/2';
 console.log(`Testing with: ${testPrUrl}\n`);
 
 // Run solve.mjs with verbose and dry-run

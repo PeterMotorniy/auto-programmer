@@ -963,7 +963,7 @@ export const validateBidirectionalModeConfig = async (argv, log) => {
       await log(`🔁 --auto-input-until-mergeable: live streaming input is not available for --tool ${argv.tool}; using the restart/resume fallback.`, { level: 'info' });
       await log(`   ${capability.unsupportedReason}`, { level: 'info' });
       if (capability.futureProtocol) {
-        await log(`   Candidate live-streaming protocol: ${capability.futureProtocol} (tracked in link-assistant/agent).`, { level: 'info' });
+        await log(`   Candidate live-streaming protocol: ${capability.futureProtocol} (tracked in PeterMotorniy/agent).`, { level: 'info' });
       }
       if (argv.autoRestartUntilMergeable === false) {
         await log('   ⚠️ --no-auto-restart-until-mergeable disables the fallback, so no live input mechanism remains for this tool.', { level: 'warning' });

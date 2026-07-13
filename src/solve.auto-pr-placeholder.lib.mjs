@@ -171,7 +171,7 @@ export async function stagePlaceholderFileOrExplain(params) {
  * @param {object} [params.addResult] - result from addPlaceholderFileToGit (for the remove-failed reason).
  * @param {Function} params.log - async logger.
  * @param {Function} params.formatAligned - log line formatter.
- * @throws always — the thrown error carries `hiveMindUserFacingLogged = true`.
+ * @throws always — the thrown error carries `autoProgrammerUserFacingLogged = true`.
  */
 export async function reportIgnoredPlaceholderAndThrow({ fileName, issueUrl, addResult, log, formatAligned }) {
   const url = issueUrl || '<issue-url>';
@@ -203,7 +203,7 @@ export async function reportIgnoredPlaceholderAndThrow({ fileName, issueUrl, add
   await log('');
 
   const error = new Error(`Placeholder "${fileName}" is listed in .gitignore; use --remove-git-keep-from-git-ignore or --force-git-keep-commit, or remove it from .gitignore manually.`);
-  error.hiveMindUserFacingLogged = true;
+  error.autoProgrammerUserFacingLogged = true;
   throw error;
 }
 

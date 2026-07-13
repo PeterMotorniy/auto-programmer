@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
- * Issue #1943: a Hive Mind `solve` run aborted before creating a pull request
+ * Issue #1943: a Auto Programmer `solve` run aborted before creating a pull request
  * with `❌ Playwright MCP preflight failed for Claude Code`.
  *
  * Root cause: the local preflight ran `timeout 5 claude mcp list`. That command

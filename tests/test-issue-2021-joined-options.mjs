@@ -4,8 +4,8 @@
  * Regression tests for issue #2021: a GitHub URL immediately followed by an
  * option marker, usually after Telegram replaces "--" with an em dash.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/2021
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2021
  */
 
 import assert from 'node:assert/strict';

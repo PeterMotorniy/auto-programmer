@@ -15,8 +15,8 @@ import { exec as execCallback, spawn } from 'child_process';
 
 const exec = promisify(execCallback);
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 
 // Test: Try to merge an actual open PR with ready label
 // We'll use spawn with stdin closed to detect if it hangs

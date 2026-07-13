@@ -8,9 +8,9 @@
  *
  * Run with: node tests/queue-config.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1242
- * @see https://github.com/link-assistant/hive-mind/issues/1253
- * @see https://github.com/link-assistant/hive-mind/issues/1981
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1242
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1253
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1981
  */
 
 import assert from 'node:assert/strict';

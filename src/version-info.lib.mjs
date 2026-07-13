@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// Version information library for hive-mind project
+// Version information library for auto-programmer project
 // Provides comprehensive version information for bot, commands, and runtime
 //
 // Performance optimization (issue #1320):
@@ -785,7 +785,7 @@ export async function getVersionInfo(verbose = false, processVersion = null) {
       console.log('[VERBOSE] Gathering version information (parallel execution)...');
     }
 
-    // Get hive-mind package version
+    // Get auto-programmer package version
     const packageVersion = await getVersion();
     if (verbose) {
       console.log(`[VERBOSE] Package version: ${packageVersion}`);
@@ -826,7 +826,7 @@ export async function getVersionInfo(verbose = false, processVersion = null) {
       success: true,
       versions: {
         // Hive-mind package (single entry, not duplicated)
-        hiveMind: packageVersion,
+        autoProgrammer: packageVersion,
         processVersion: processVersion || packageVersion,
         needsRestart,
 
@@ -1023,10 +1023,10 @@ export function formatVersionMessage(versions, options = {}) {
   const vOptions = { locale };
   const lines = [];
 
-  // === Hive-Mind Package (single entry with restart warning) ===
-  lines.push('*🤖 Hive-Mind*');
-  if (versions.hiveMind) {
-    lines.push(`• ${vt('version', {}, vOptions)}: \`${versions.hiveMind}\``);
+  // === Auto-Programmer Package (single entry with restart warning) ===
+  lines.push('*🤖 Auto-Programmer*');
+  if (versions.autoProgrammer) {
+    lines.push(`• ${vt('version', {}, vOptions)}: \`${versions.autoProgrammer}\``);
     if (versions.needsRestart) {
       lines.push(`⚠️ _${vt('process_running_restart_needed', { processVersion: versions.processVersion }, vOptions)}_`);
     }

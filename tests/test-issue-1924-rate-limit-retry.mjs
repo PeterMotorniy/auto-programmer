@@ -24,7 +24,7 @@
 // tool (claude, codex, gemini, opencode, qwen, agent).
 //
 // Reference log (gist):
-//   https://gist.github.com/konard/936c8f264ecd7f9957642252cb76d268
+//   https://gist.github.com/petermotorniy/936c8f264ecd7f9957642252cb76d268
 
 import assert from 'assert';
 import { classifyRetryableError } from '../src/tool-retry.lib.mjs';

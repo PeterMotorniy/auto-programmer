@@ -7,7 +7,7 @@
  * repository produced repeated GitHub 404 / GraphQL repository errors, but the
  * watcher kept treating that as an unknown CI status and slept forever.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1931
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1931
  */
 
 import { readFileSync } from 'node:fs';

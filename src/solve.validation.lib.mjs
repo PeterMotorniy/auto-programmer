@@ -231,7 +231,7 @@ export const performSystemChecks = async (minDiskSpace = 10240, skipToolConnecti
 
   // Check git identity configuration before proceeding
   // This prevents the "fatal: empty ident name" error during commits
-  // See: https://github.com/link-assistant/hive-mind/issues/1131
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1131
   let gitIdentity = await checkGitIdentity();
   if (!gitIdentity.isValid) {
     // Check if auto-repair is enabled

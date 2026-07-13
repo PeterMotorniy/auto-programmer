@@ -29,7 +29,7 @@ function collectStringValues(value, result = []) {
 export class LinksNotationManager {
   constructor() {
     this.parser = new LinoParser();
-    this.cacheDir = path.join(os.homedir(), '.hive-mind');
+    this.cacheDir = path.join(os.homedir(), '.auto-programmer');
   }
 
   parse(input) {

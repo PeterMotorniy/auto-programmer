@@ -7,7 +7,7 @@
  *
  * Run with: node tests/test-merge-auto-resolve-1805.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1805
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1805
  */
 
 import assert from 'node:assert/strict';

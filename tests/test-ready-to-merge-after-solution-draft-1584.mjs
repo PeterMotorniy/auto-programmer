@@ -27,7 +27,7 @@
  *
  * Run with: node tests/test-ready-to-merge-after-solution-draft-1584.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1584
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1584
  * @see https://github.com/linksplatform/Numbers/pull/143
  */
 

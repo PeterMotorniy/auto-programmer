@@ -1,4 +1,4 @@
-// Sentry integration library for hive-mind
+// Sentry integration library for auto-programmer
 import { isSentryEnabled, captureException, captureMessage, startTransaction } from './instrument.mjs';
 
 // Lazy import of Sentry to handle cases where it's not installed
@@ -53,7 +53,7 @@ export const initializeSentry = async (options = {}) => {
         node_version: process.version,
         platform: process.platform,
         arch: process.arch,
-        hive_mind_version: options.version || process.env.npm_package_version || 'unknown',
+        auto_programmer_version: options.version || process.env.npm_package_version || 'unknown',
       });
 
       if (options.debug) {

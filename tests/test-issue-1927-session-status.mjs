@@ -8,7 +8,7 @@
  * (128 + SIGKILL); these tests pin down that 137/139 read as a *kill*, 143/130
  * read as an orderly *termination*, and the status Sets agree across layers.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import { normalizeExitCode, classifyExitStatus, describeExitSignal, isExecutingSessionStatus, isTerminalSessionStatus, isKilledSessionStatus, isFailureSessionStatus, RUNNING_SESSION_STATUSES, KILLED_SESSION_STATUSES, FAILURE_SESSION_STATUSES, TERMINAL_SESSION_STATUSES } from '../src/session-status.lib.mjs';

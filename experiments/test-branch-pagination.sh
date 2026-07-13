@@ -2,8 +2,8 @@
 
 # Test script to verify branch pagination issue
 
-OWNER="link-assistant"
-REPO="hive-mind"
+OWNER="PeterMotorniy"
+REPO="auto-programmer"
 
 echo "Testing branch pagination for $OWNER/$REPO..."
 echo ""

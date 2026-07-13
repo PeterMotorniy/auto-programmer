@@ -8,8 +8,8 @@ const { $ } = await use('command-stream');
 
 const log = async msg => console.log(msg);
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 const prNumber = 320;
 
 const argv = {

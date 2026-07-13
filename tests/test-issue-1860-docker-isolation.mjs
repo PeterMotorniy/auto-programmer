@@ -2,7 +2,7 @@
 /**
  * Regression test for issue #1860.
  *
- * Docker isolation must launch the Hive Mind image that actually carries the
+ * Docker isolation must launch the Auto Programmer image that actually carries the
  * solve/hive/task CLIs (not a bare OS image like ubuntu:latest) and must remount
  * only the credentials the selected tool needs. The original bug let a Codex
  * task start in the wrong image with the wrong credentials, so it exited before
@@ -13,9 +13,9 @@
  * rather than a hand-rolled `docker run` wrapped in a screen session, so the
  * assertions below check that native invocation shape.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1860
- * @see https://github.com/link-assistant/hive-mind/issues/1914
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1860
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1914
  */
 
 import { buildDockerIsolationStartArgs, buildStartCommandArgs, getDockerIsolationAuthMounts, getDockerIsolationImage, parseDockerContainerWritableLayerSizeOutput } from '../src/isolation-runner.lib.mjs';
@@ -67,9 +67,9 @@ const existsSync = path => existingPaths.has(path);
 
 console.log('\n--- Docker isolation image selection ---');
 
-assertEqual(getDockerIsolationImage({ env: { HIVE_MIND_IMAGE_VARIANT: 'dind' } }), 'konard/hive-mind-dind:latest', 'dind Hive Mind image spawns the dind Docker isolation image');
-assertEqual(getDockerIsolationImage({ env: { HIVE_MIND_IMAGE_VARIANT: 'regular' } }), 'konard/hive-mind:latest', 'regular Hive Mind image spawns the regular Docker isolation image');
-assertEqual(getDockerIsolationImage({ env: { HIVE_MIND_DOCKER_ISOLATION_IMAGE: 'local/hive-mind-test:dev', HIVE_MIND_IMAGE_VARIANT: 'dind' } }), 'local/hive-mind-test:dev', 'explicit Docker isolation image override wins');
+assertEqual(getDockerIsolationImage({ env: { HIVE_MIND_IMAGE_VARIANT: 'dind' } }), 'petermotorniy/auto-programmer-dind:latest', 'dind Auto Programmer image spawns the dind Docker isolation image');
+assertEqual(getDockerIsolationImage({ env: { HIVE_MIND_IMAGE_VARIANT: 'regular' } }), 'petermotorniy/auto-programmer:latest', 'regular Auto Programmer image spawns the regular Docker isolation image');
+assertEqual(getDockerIsolationImage({ env: { HIVE_MIND_DOCKER_ISOLATION_IMAGE: 'local/auto-programmer-test:dev', HIVE_MIND_IMAGE_VARIANT: 'dind' } }), 'local/auto-programmer-test:dev', 'explicit Docker isolation image override wins');
 
 console.log('\n--- Docker writable layer size parsing ---');
 
@@ -105,7 +105,7 @@ assertDeepEqual(mountPairs(envGhMounts), ['/run/gh-auth:/home/box/.config/gh', '
 
 console.log('\n--- start-command invocation shape ---');
 
-const dockerStartArgs = buildStartCommandArgs('solve', ['https://github.com/link-assistant/hive-mind/issues/1855', '--tool', 'codex'], {
+const dockerStartArgs = buildStartCommandArgs('solve', ['https://github.com/PeterMotorniy/auto-programmer/issues/1855', '--tool', 'codex'], {
   backend: 'docker',
   sessionId: '28b8eba8-14a6-4dd0-8782-a87db8809c11',
   tool: 'codex',
@@ -117,7 +117,7 @@ const dockerStartArgs = buildStartCommandArgs('solve', ['https://github.com/link
 const valueAfter = (arr, flag) => arr[arr.indexOf(flag) + 1];
 
 // Native shape: $ --isolated docker --image <img> [--privileged] --shell sh -e … --volume … --detached --session <uuid> -- '<command>'
-assertDeepEqual(dockerStartArgs.slice(0, 4), ['--isolated', 'docker', '--image', 'konard/hive-mind-dind:latest'], "Docker isolation runs natively on start-command's docker backend with the dind Hive Mind image");
+assertDeepEqual(dockerStartArgs.slice(0, 4), ['--isolated', 'docker', '--image', 'petermotorniy/auto-programmer-dind:latest'], "Docker isolation runs natively on start-command's docker backend with the dind Auto Programmer image");
 assertEqual(dockerStartArgs.includes('screen'), false, 'Docker isolation is no longer wrapped in a screen session (issue #1914)');
 assertNotIncludes(dockerStartArgs.join(' '), "'docker' 'run'", 'Docker isolation no longer shells out to a hand-rolled docker run');
 assertEqual(dockerStartArgs.includes('--privileged'), true, 'dind Docker isolation runs privileged');
@@ -130,11 +130,11 @@ assertEqual(dockerStartArgs.includes('/home/box/.config/gh:/home/box/.config/gh'
 assertEqual(dockerStartArgs.includes('/home/box/.codex:/home/box/.codex'), true, 'Docker isolation mounts Codex credentials');
 assertNotIncludes(dockerStartArgs.join(' '), '.claude', 'Docker isolation does not mount Claude credentials for a Codex task');
 assertEqual(dockerStartArgs[dockerStartArgs.length - 2], '--', 'start-command receives an explicit command separator before the task command');
-assertIncludes(dockerStartArgs[dockerStartArgs.length - 1], "gate='/tmp/hive-mind-disk-baseline-28b8eba8-14a6-4dd0-8782-a87db8809c11'", 'Docker isolation gates the task until the writable-layer baseline is captured');
-assertIncludes(dockerStartArgs[dockerStartArgs.length - 1], "exec 'solve' 'https://github.com/link-assistant/hive-mind/issues/1855' '--tool' 'codex'", 'the separated command preserves the solve arguments after releasing the disk baseline gate');
+assertIncludes(dockerStartArgs[dockerStartArgs.length - 1], "gate='/tmp/auto-programmer-disk-baseline-28b8eba8-14a6-4dd0-8782-a87db8809c11'", 'Docker isolation gates the task until the writable-layer baseline is captured');
+assertIncludes(dockerStartArgs[dockerStartArgs.length - 1], "exec 'solve' 'https://github.com/PeterMotorniy/auto-programmer/issues/1855' '--tool' 'codex'", 'the separated command preserves the solve arguments after releasing the disk baseline gate');
 
 // buildStartCommandArgs(backend:'docker') must delegate verbatim to the exported buildDockerIsolationStartArgs.
-const dockerStartArgsDirect = buildDockerIsolationStartArgs('solve', ['https://github.com/link-assistant/hive-mind/issues/1855', '--tool', 'codex'], {
+const dockerStartArgsDirect = buildDockerIsolationStartArgs('solve', ['https://github.com/PeterMotorniy/auto-programmer/issues/1855', '--tool', 'codex'], {
   sessionId: '28b8eba8-14a6-4dd0-8782-a87db8809c11',
   tool: 'codex',
   env: { HIVE_MIND_IMAGE_VARIANT: 'dind' },
@@ -143,11 +143,11 @@ const dockerStartArgsDirect = buildDockerIsolationStartArgs('solve', ['https://g
 });
 assertDeepEqual(dockerStartArgsDirect, dockerStartArgs, 'buildStartCommandArgs delegates the docker backend to buildDockerIsolationStartArgs');
 
-const screenStartArgs = buildStartCommandArgs('solve', ['https://github.com/link-assistant/hive-mind/issues/1855'], {
+const screenStartArgs = buildStartCommandArgs('solve', ['https://github.com/PeterMotorniy/auto-programmer/issues/1855'], {
   backend: 'screen',
   sessionId: 'a68dc7f8-900a-4f22-9940-b59f1e95b736',
 });
-assertDeepEqual(screenStartArgs, ['--isolated', 'screen', '--detached', '--session', 'a68dc7f8-900a-4f22-9940-b59f1e95b736', '--', "'solve' 'https://github.com/link-assistant/hive-mind/issues/1855'"], 'non-Docker isolation keeps the original backend and command shape');
+assertDeepEqual(screenStartArgs, ['--isolated', 'screen', '--detached', '--session', 'a68dc7f8-900a-4f22-9940-b59f1e95b736', '--', "'solve' 'https://github.com/PeterMotorniy/auto-programmer/issues/1855'"], 'non-Docker isolation keeps the original backend and command shape');
 
 console.log('\n--- Native docker log path ---');
 
@@ -228,7 +228,7 @@ await executeAndUpdateMessage(
   },
   { chat: { id: 101 }, message_id: 303 },
   'solve',
-  ['https://github.com/link-assistant/hive-mind/issues/1855', '--tool', 'codex'],
+  ['https://github.com/PeterMotorniy/auto-programmer/issues/1855', '--tool', 'codex'],
   'info',
   'docker',
   'codex'
@@ -262,9 +262,9 @@ const queueCallback = createIsolationAwareQueueCallback(
 const queueResult = await queueCallback({
   perCommandIsolation: 'docker',
   command: 'solve',
-  args: ['https://github.com/link-assistant/hive-mind/issues/1855', '--tool', 'codex'],
+  args: ['https://github.com/PeterMotorniy/auto-programmer/issues/1855', '--tool', 'codex'],
   tool: 'codex',
-  url: 'https://github.com/link-assistant/hive-mind/issues/1855',
+  url: 'https://github.com/PeterMotorniy/auto-programmer/issues/1855',
   ctx: { chat: { id: 404 } },
   messageInfo: { messageId: 505 },
 });

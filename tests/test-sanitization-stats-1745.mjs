@@ -9,7 +9,7 @@
  * --dangerously-skip-output-sanitization we can skip sanitization if it
  * blocks user workflow."
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { sanitizeOutput, sanitizeCommentBody, getSanitizationStats, resetSanitizationStats, formatSanitizationSummary, extractTokensFromUserContent } from '../src/token-sanitization.lib.mjs';

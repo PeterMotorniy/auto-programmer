@@ -4,8 +4,8 @@
  * Test suite for usage-limit.lib.mjs
  * Tests usage limit detection and formatting functionality
  * Related issues:
- *   - https://github.com/link-assistant/hive-mind/issues/942 (original)
- *   - https://github.com/link-assistant/hive-mind/issues/1122 (weekly limit date parsing)
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/942 (original)
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/1122 (weekly limit date parsing)
  */
 
 import dayjs from 'dayjs';

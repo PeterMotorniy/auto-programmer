@@ -6,11 +6,11 @@
  * Every `*.mjs` / `*.test.mjs` / `*.test.js` under tests/ runs in the default
  * suite unless the file declares one of the following markers:
  *
- *   @hive-mind-test-suite <name>   — opt the test into a named suite
+ *   @auto-programmer-test-suite <name>   — opt the test into a named suite
  *                                    (e.g. github-integration). When set to a
  *                                    value other than "default" the file is
  *                                    excluded from the default suite.
- *   @hive-mind-integration         — short-hand for an integration test that
+ *   @auto-programmer-integration         — short-hand for an integration test that
  *                                    is skipped by default. Run via
  *                                    `--suite integration` or by setting the
  *                                    HIVE_MIND_RUN_INTEGRATION=1 environment
@@ -20,7 +20,7 @@
  * a single source of truth (the test file itself) and avoids the "silent
  * orphan" mode where new tests had to be added to a hard-coded list.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1758
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1758
  */
 
 import { spawn } from 'node:child_process';
@@ -33,9 +33,9 @@ const INTEGRATION_SUITE = 'integration';
 // prefix, then the marker, then end-of-comment punctuation (newline, `*/`,
 // or backtick). This keeps prose about the markers (e.g. backtick-quoted
 // references in docstrings) from being treated as marker declarations.
-const SUITE_MARKER_PATTERN = /(?:^|\n)\s*(?:\*|\/\/)\s*@hive-mind-test-suite\s+([A-Za-z0-9][A-Za-z0-9_,-]*)\s*(?:\n|\*\/|$)/g;
-const INTEGRATION_MARKER_PATTERN = /(?:^|\n)\s*(?:\*|\/\/)\s*@hive-mind-integration\s*(?:\n|\*\/|$)/;
-const SKIP_MARKER_PATTERN = /(?:^|\n)\s*(?:\*|\/\/)\s*@hive-mind-test-skip\s*(?:\n|\*\/|$)/;
+const SUITE_MARKER_PATTERN = /(?:^|\n)\s*(?:\*|\/\/)\s*@auto-programmer-test-suite\s+([A-Za-z0-9][A-Za-z0-9_,-]*)\s*(?:\n|\*\/|$)/g;
+const INTEGRATION_MARKER_PATTERN = /(?:^|\n)\s*(?:\*|\/\/)\s*@auto-programmer-integration\s*(?:\n|\*\/|$)/;
+const SKIP_MARKER_PATTERN = /(?:^|\n)\s*(?:\*|\/\/)\s*@auto-programmer-test-skip\s*(?:\n|\*\/|$)/;
 const TEST_FILE_PATTERN = /\.(test\.mjs|test\.js|mjs)$/;
 
 function parseArgs(argv) {
@@ -87,18 +87,18 @@ Options:
   -h, --help              Show this help
 
 Markers (declared inside the test file):
-  @hive-mind-test-suite <name>   Opt into a named suite (e.g. github-integration).
+  @auto-programmer-test-suite <name>   Opt into a named suite (e.g. github-integration).
                                  Files marked with any non-default suite are
                                  excluded from the default suite.
-  @hive-mind-integration          Skip in the default suite. Run via
+  @auto-programmer-integration          Skip in the default suite. Run via
                                  \`--suite integration\` or
                                  \`HIVE_MIND_RUN_INTEGRATION=1\`.
-  @hive-mind-test-skip            Helper / fixture module — never run as a test.
+  @auto-programmer-test-skip            Helper / fixture module — never run as a test.
 
 Suites used today:
   default          Token-free / dry-run-safe tests run in CI and locally.
   github-integration  GitHub-API-touching tests run in their own CI step.
-  integration      Hand-rolled @hive-mind-integration files; opt-in only.
+  integration      Hand-rolled @auto-programmer-integration files; opt-in only.
   needs-triage     Pre-existing orphan tests parked while their failures are
                    investigated under the issue #1758 follow-up.
 

@@ -8,7 +8,7 @@
  * - Progress indicators during processing
  * - Final summary messages
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1148
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1148
  */
 
 /**
@@ -301,7 +301,7 @@ const sampleStates = [
     name: 'Completed with mixed items',
     state: {
       acceptedRepos: ['suenot/trading-terms', 'VogelOygen/Test_Canaan', 'goplay1937/main'],
-      acceptedOrgs: ['link-assistant', 'anthropic'],
+      acceptedOrgs: ['PeterMotorniy', 'anthropic'],
       errors: [],
       totalRepos: 3,
       totalOrgs: 2,

@@ -96,7 +96,7 @@ runTest('validateGitHubUrl with PR + hash fragment returns correct number', () =
 });
 
 runTest('validateGitHubUrl with issue + hash fragment returns correct number', () => {
-  const result = validateGitHubUrl('https://github.com/link-assistant/hive-mind/issues/991#issue-comment-test');
+  const result = validateGitHubUrl('https://github.com/PeterMotorniy/auto-programmer/issues/991#issue-comment-test');
   if (!result.isValid) return `Expected isValid true, got: ${JSON.stringify(result)}`;
   if (!result.isIssueUrl) return `Expected isIssueUrl true, got: ${result.isIssueUrl}`;
   if (result.number !== 991) return `Expected number 991, got: ${result.number}`;

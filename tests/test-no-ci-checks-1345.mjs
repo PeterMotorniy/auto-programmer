@@ -11,7 +11,7 @@
  *
  * Run with: node tests/test-no-ci-checks-1345.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1345
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1345
  */
 
 // ANSI color codes for terminal output
@@ -158,7 +158,7 @@ test('Auto-merged comment should mention CI when CI exists', () => {
   const noCiConfigured = false;
   const ciLine = noCiConfigured ? '- No CI/CD checks are configured for this repository' : '- All CI checks have passed';
 
-  const commentBody = `## 🎉 Auto-merged\n\nThis pull request has been automatically merged by hive-mind.\n${ciLine}\n\n---\n*Auto-merged by hive-mind with --auto-merge flag*`;
+  const commentBody = `## 🎉 Auto-merged\n\nThis pull request has been automatically merged by auto-programmer.\n${ciLine}\n\n---\n*Auto-merged by auto-programmer with --auto-merge flag*`;
 
   assert(commentBody.includes('All CI checks have passed'), 'Comment should mention CI passed');
   assert(!commentBody.includes('No CI/CD checks are configured'), 'Comment should not mention no CI');
@@ -168,7 +168,7 @@ test('Auto-merged comment should say no CI when no CI configured', () => {
   const noCiConfigured = true;
   const ciLine = noCiConfigured ? '- No CI/CD checks are configured for this repository' : '- All CI checks have passed';
 
-  const commentBody = `## 🎉 Auto-merged\n\nThis pull request has been automatically merged by hive-mind.\n${ciLine}\n\n---\n*Auto-merged by hive-mind with --auto-merge flag*`;
+  const commentBody = `## 🎉 Auto-merged\n\nThis pull request has been automatically merged by auto-programmer.\n${ciLine}\n\n---\n*Auto-merged by auto-programmer with --auto-merge flag*`;
 
   assert(commentBody.includes('No CI/CD checks are configured for this repository'), 'Comment should mention no CI configured');
   assert(!commentBody.includes('All CI checks have passed'), 'Comment should not say CI passed');

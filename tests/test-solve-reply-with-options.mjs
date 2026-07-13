@@ -8,7 +8,7 @@
  *
  * Run with: node tests/test-solve-reply-with-options.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1325
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1325
  */
 
 const { parseGitHubUrl } = await import('../src/github.lib.mjs');
@@ -141,8 +141,8 @@ runTest('Reply with /solve --model opus extracts URL and preserves options', () 
 });
 
 runTest('Reply with /solve —model opus (em-dash) extracts URL and preserves options', () => {
-  const r = simulateSolveReplyLogic('/solve —model opus', 'Here: https://github.com/link-assistant/hive-mind/issues/1324');
-  return r.success && r.extractedFromReply && r.args.length === 3 && r.args[0] === 'https://github.com/link-assistant/hive-mind/issues/1324' && r.args[1] === '--model' && r.args[2] === 'opus';
+  const r = simulateSolveReplyLogic('/solve —model opus', 'Here: https://github.com/PeterMotorniy/auto-programmer/issues/1324');
+  return r.success && r.extractedFromReply && r.args.length === 3 && r.args[0] === 'https://github.com/PeterMotorniy/auto-programmer/issues/1324' && r.args[1] === '--model' && r.args[2] === 'opus';
 });
 
 runTest('Reply with /solve --verbose --attach-logs extracts URL and preserves multiple options', () => {
@@ -196,8 +196,8 @@ runTest('Reply with /solve --model opus to message with multiple URLs returns er
 console.log('\n--- Exact scenario from Issue #1325 ---\n');
 
 runTest('Original bug scenario: /solve —model opus as reply to message with issue link', () => {
-  const r = simulateSolveReplyLogic('/solve —model opus', 'Завёл тут: https://github.com/link-assistant/hive-mind/issues/1324');
-  return r.success && r.extractedFromReply && r.args.length === 3 && r.args[0] === 'https://github.com/link-assistant/hive-mind/issues/1324' && r.args[1] === '--model' && r.args[2] === 'opus';
+  const r = simulateSolveReplyLogic('/solve —model opus', 'Завёл тут: https://github.com/PeterMotorniy/auto-programmer/issues/1324');
+  return r.success && r.extractedFromReply && r.args.length === 3 && r.args[0] === 'https://github.com/PeterMotorniy/auto-programmer/issues/1324' && r.args[1] === '--model' && r.args[2] === 'opus';
 });
 
 // ===========================================================================

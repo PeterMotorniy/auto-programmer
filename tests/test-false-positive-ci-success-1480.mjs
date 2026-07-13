@@ -23,9 +23,9 @@
  *
  * Run with: node tests/test-false-positive-ci-success-1480.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1480
- * @see https://github.com/link-assistant/hive-mind/issues/1442 (related: workflow runs API)
- * @see https://github.com/link-assistant/hive-mind/issues/1363 (related: false positive)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1480
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1442 (related: workflow runs API)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1363 (related: false positive)
  */
 
 // ANSI color codes for terminal output

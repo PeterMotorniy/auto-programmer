@@ -1,303 +1,303 @@
-# Hive Mind: Features # Hive Mind: Features & Benefits Benefits (languages: en • [zh](FEATURES.zh.md) • [hi](FEATURES.hi.md) • [ru](FEATURES.ru.md))
+# Auto Programmer: Возможности и преимущества
 
-This document describes key features and unique benefits of Hive Mind, explaining why it stands out as an AI-powered autonomous issue solver.
+Этот документ описывает ключевые возможности и уникальные преимущества Auto Programmer, объясняя, чем он выделяется как автономный AI-решатель задач.
 
-## Unique Selling Proposition (USP)
+## Уникальное торговое предложение (УТП)
 
-**Hive Mind is the most autonomous, cloud-ready AI issue solver that eliminates developer babysitting while maintaining human oversight on critical decisions.**
+**Auto Programmer — это наиболее автономный, облачно-ориентированный AI-решатель задач, который освобождает разработчиков от постоянного контроля, сохраняя при этом человеческий надзор за критически важными решениями.**
 
-Unlike other AI coding assistants that require constant permission granting or run on your local machine with security risks, Hive Mind runs in isolated cloud environments with full autonomy, complete internet access, and pre-installed toolchains - all while keeping humans in control of what gets merged.
+В отличие от других AI-ассистентов по написанию кода, требующих постоянного разрешения действий или работающих на вашей локальной машине с рисками безопасности, Auto Programmer работает в изолированных облачных средах с полной автономией, полным доступом к интернету и предустановленными инструментальными цепочками — при этом люди контролируют, что будет слито.
 
-### What Makes Hive Mind Unique
+### Что делает Auto Programmer уникальным
 
-Hive Mind is a **generalist AI** (mini-AGI) capable of working on a wide range of tasks - not just programming. Almost anything that can be done with files in a repository can be automated:
+Auto Programmer — это **универсальный AI** (мини-AGI), способный работать с широким спектром задач, не только программированием. Практически всё, что можно сделать с файлами в репозитории, можно автоматизировать:
 
-- Code implementation and bug fixes
-- Documentation writing and updates
-- Configuration changes
-- Test creation and maintenance
-- Refactoring and code improvements
-- And much more
+- Реализация кода и исправление ошибок
+- Написание и обновление документации
+- Изменение конфигурации
+- Создание и поддержка тестов
+- Рефакторинг и улучшение кода
+- И многое другое
 
-This generalist capability, combined with **maximum workflow efficiency**, gives users back as much free time as possible.
+Эта универсальная возможность в сочетании с **максимальной эффективностью рабочего процесса** возвращает пользователям как можно больше свободного времени.
 
-Hive Mind has high creativity indistinguishable from most (average) programmers. The more detailed the problem definition, the better the result - but like people, AI can ask questions if the problem is not defined enough. We also use a customized system message that improves quality of results by guiding AI to avoid common mistakes.
+Auto Programmer обладает высокой креативностью, неотличимой от большинства (средних) программистов. Чем подробнее описана задача, тем лучше результат — но, как и люди, AI может задавать вопросы, если задача недостаточно определена. Мы также используем настроенное системное сообщение, которое улучшает качество результатов, направляя AI на избегание распространённых ошибок.
 
-## Why Hive Mind?
+## Почему Auto Programmer?
 
-### 1. No Babysitting Required
+### 1. Не требует постоянного надзора
 
-**The Problem**: Most AI coding tools require you to approve every command, watch every action, and grant permissions constantly - turning you into an AI supervisor rather than focusing on your actual work.
+**Проблема**: Большинство AI-инструментов для написания кода требуют, чтобы вы одобряли каждую команду, наблюдали за каждым действием и постоянно выдавали разрешения — превращая вас в надзорщика AI вместо сосредоточения на реальной работе.
 
-**The Solution**: Hive Mind runs in **full autonomous mode** with no permission limitations. With sudo access to the virtual machine, AI has as much creative freedom as a real programmer. You create an issue, the AI works independently, and you review the finished pull request. No permission dialogs, no approval queues, no watching the AI work.
+**Решение**: Auto Programmer работает в **полностью автономном режиме** без ограничений по разрешениям. Имея доступ sudo к виртуальной машине, AI обладает такой же творческой свободой, как настоящий программист. Вы создаёте задачу, AI работает самостоятельно, а вы проверяете готовый pull request. Никаких диалогов с разрешениями, никаких очередей на одобрение, никакого наблюдения за работой AI.
 
-> _"It doesn't require running behind it like a nanny, approving every command."_ - User feedback
+> _«Не требует бегать за ним как за нянькой, одобряя каждую команду.»_ — Отзыв пользователя
 
-**Creative Freedom**: Unlike sandboxed AI tools, Hive Mind's AI can:
+**Творческая свобода**: В отличие от AI-инструментов в песочницах, AI Auto Programmer может:
 
-- Install any package or tool it needs
-- Modify system configurations
-- Run any command necessary for the task
-- Make architectural decisions within the scope of the issue
+- Устанавливать любые нужные пакеты или инструменты
+- Изменять системные конфигурации
+- Выполнять любые команды, необходимые для задачи
+- Принимать архитектурные решения в рамках задачи
 
-### 2. Cloud-Based Isolation
+### 2. Облачная изоляция
 
-**The Problem**: Running AI coding tools on your developer machine is unsafe. They can access your tokens, modify system files, or cause unexpected side effects.
+**Проблема**: Запуск AI-инструментов на вашей рабочей машине небезопасен. Они могут получить доступ к вашим токенам, изменить системные файлы или вызвать непредвиденные побочные эффекты.
 
-**The Solution**: Hive Mind **runs on dedicated VMs** or locally in isolated Docker containers. This means any unintended damage (which can also happen with any developer, as sometimes everyone makes mistakes) is limited to the container/VM with a temporary file system.
+**Решение**: Auto Programmer **работает на выделенных виртуальных машинах** или локально в изолированных Docker-контейнерах. Это означает, что любой непреднамеренный ущерб (который может случиться с любым разработчиком, так как иногда все совершают ошибки) ограничен контейнером/ВМ с временной файловой системой.
 
-**Deployment Options**:
+**Варианты развёртывания**:
 
-- **Remote dedicated VMs** - Full cloud isolation
-- **Local VMs** - Isolated but on your hardware
-- **Docker containers** - Lightweight local isolation
+- **Удалённые выделенные ВМ** — Полная облачная изоляция
+- **Локальные ВМ** — Изолированные, но на вашем оборудовании
+- **Docker-контейнеры** — Лёгкая локальная изоляция
 
-**Safety Benefits**:
+**Преимущества безопасности**:
 
-- Your developer machine stays completely untouched
-- Isolation is VM and/or Docker, easy to restore if broken
-- AI agent does not store any data or results in its execution environment - all results go to GitHub as Pull Request
-- No risk to your production tokens or local configurations
-- We recommend never running this software directly on a developer machine
-- We recommend using GitHub Actions CI/CD to access production, with no direct access from AI agent (to prevent accidental database deletion or production damage)
+- Ваша рабочая машина остаётся полностью нетронутой
+- Изоляция через ВМ и/или Docker, легко восстановить в случае поломки
+- AI-агент не хранит никаких данных или результатов в своей среде выполнения — все результаты передаются на GitHub в виде Pull Request
+- Никакого риска для ваших рабочих токенов или локальных конфигураций
+- Мы рекомендуем никогда не запускать это программное обеспечение непосредственно на рабочей машине разработчика
+- Мы рекомендуем использовать GitHub Actions CI/CD для доступа к production, без прямого доступа от AI-агента (для предотвращения случайного удаления базы данных или повреждения production)
 
-### 3. Full Internet Access & Sudo Privileges
+### 3. Полный доступ к интернету и привилегии sudo
 
-**The Problem**: Many AI tools operate in sandboxed environments without internet access, limiting their ability to install dependencies, fetch documentation, or access APIs.
+**Проблема**: Многие AI-инструменты работают в изолированных средах без доступа к интернету, что ограничивает их возможность устанавливать зависимости, получать документацию или обращаться к API.
 
-**The Solution**: Hive Mind has **unrestricted internet access** combined with **sudo access** to the virtual machine/Docker container. AI can install packages not only because of internet access, but also due to full system permissions.
+**Решение**: Auto Programmer имеет **неограниченный доступ к интернету** в сочетании с **доступом sudo** к виртуальной машине/Docker-контейнеру. AI может устанавливать пакеты не только благодаря доступу к интернету, но и из-за полных системных разрешений.
 
-**What This Enables**:
+**Что это даёт**:
 
-- Install any package or dependency needed (apt, npm, pip, cargo, etc.)
-- Fetch documentation and examples from the web
-- Access external APIs and services
-- Download and configure required tools automatically
-- Modify system settings when needed for the task
-- Full creative freedom to solve problems as a real developer would
+- Устанавливать любые нужные пакеты или зависимости (apt, npm, pip, cargo и др.)
+- Получать документацию и примеры из интернета
+- Обращаться к внешним API и сервисам
+- Автоматически загружать и настраивать необходимые инструменты
+- Изменять системные настройки при необходимости для задачи
+- Полная творческая свобода для решения проблем, как настоящий разработчик
 
-### 4. Pre-Installed Development Environment
+### 4. Предустановленная среда разработки
 
-**The Problem**: Setting up a complete development environment with all languages and tools takes hours and constant maintenance.
+**Проблема**: Настройка полноценной среды разработки со всеми языками и инструментами занимает часы и требует постоянного обслуживания.
 
-**The Solution**: Hive Mind comes with 25GB+ of pre-installed software including:
+**Решение**: Auto Programmer поставляется с более чем 25 ГБ предустановленного программного обеспечения, включая:
 
-- **10 programming language runtimes**: Node.js, Python, Go, Rust, Java, C#, PHP, Perl, Lean, Rocq (Coq)
-- **2 mathematical provers**: Lean4 and Rocq for formal verification
-- **Build tools**: CMake, Make, GCC, Clang/LLVM
-- **Package managers**: npm, pip, cargo, go modules, and more
-- **Browser automation**: Playwright with all browsers installed
+- **10 сред выполнения языков программирования**: Node.js, Python, Go, Rust, Java, C#, PHP, Perl, Lean, Rocq (Coq)
+- **2 математических доказателя**: Lean4 и Rocq для формальной верификации
+- **Инструменты сборки**: CMake, Make, GCC, Clang/LLVM
+- **Пакетные менеджеры**: npm, pip, cargo, go modules и другие
+- **Автоматизация браузера**: Playwright со всеми установленными браузерами
 
-All these are preinstalled, but Hive Mind can decide to install more if needed thanks to sudo access.
+Всё это предустановлено, но Auto Programmer может решить установить дополнительное, если необходимо, благодаря доступу sudo.
 
-### 5. Token-Efficient Architecture
+### 5. Токено-эффективная архитектура
 
-**The Problem**: AI tools waste tokens on repetitive tasks like creating PRs, managing branches, and handling git operations - leaving less context for actual problem solving.
+**Проблема**: AI-инструменты тратят токены на повторяющиеся задачи, такие как создание PR, управление ветками и выполнение git-операций — оставляя меньше контекста для реального решения проблем.
 
-**The Solution**: Hive Mind automates routine tasks in code, not through AI:
+**Решение**: Auto Programmer автоматизирует рутинные задачи в коде, а не через AI:
 
-- PR creation is handled by scripts
-- Branch management is automated
-- Git operations are pre-programmed
-- AI tokens focus entirely on creative problem-solving
+- Создание PR обрабатывается скриптами
+- Управление ветками автоматизировано
+- Git-операции предварительно запрограммированы
+- Токены AI полностью сосредоточены на творческом решении проблем
 
-> _"The tokens and context go exactly to creativity, not routine."_ - Developer insight
+> _«Токены и контекст идут именно на творчество, а не на рутину.»_ — Заметка разработчика
 
-### 6. Sudo Access for Full Control
+### 6. Доступ sudo для полного контроля
 
-**The Problem**: Limited permissions prevent AI from installing required dependencies or configuring the system as needed.
+**Проблема**: Ограниченные разрешения не позволяют AI устанавливать необходимые зависимости или настраивать систему по мере необходимости.
 
-**The Solution**: Hive Mind runs with full sudo access:
+**Решение**: Auto Programmer работает с полным доступом sudo:
 
-- Install any system package
-- Configure system settings
-- Modify environment as needed
-- No permission barriers to problem solving
+- Устанавливать любые системные пакеты
+- Настраивать системные параметры
+- Изменять среду по мере необходимости
+- Никаких барьеров прав доступа для решения задач
 
-### 7. Multi-Model & Multi-Tool Support
+### 7. Поддержка множества моделей и инструментов
 
-**The Problem**: Being locked into a single AI model limits flexibility and can be expensive.
+**Проблема**: Привязанность к одной AI-модели ограничивает гибкость и может быть дорогостоящей.
 
-**The Solution**: Hive Mind supports multiple AI backends:
+**Решение**: Auto Programmer поддерживает несколько AI-бэкендов:
 
-- **Claude** (Sonnet, Opus, Haiku) - Default and recommended
-- **OpenCode** (Grok) - Free Grok Code Fast model included
-- **Codex** (OpenAI) - For OpenAI API users
-- **Agent** - Custom AI agent framework
+- **Claude** (Sonnet, Opus, Haiku) — По умолчанию и рекомендуется
+- **OpenCode** (Grok) — Включена бесплатная модель Grok Code Fast
+- **Codex** (OpenAI) — Для пользователей OpenAI API
+- **Agent** — Фреймворк пользовательских AI-агентов
 
-### 8. Orchestration at Scale
+### 8. Оркестрация в масштабе
 
-**The Problem**: Manually assigning and tracking AI work on multiple issues is tedious.
+**Проблема**: Ручное назначение и отслеживание работы AI по нескольким задачам утомительно.
 
-**The Solution**: The `hive` command orchestrates multiple AI workers:
+**Решение**: Команда `hive` оркестрирует нескольких AI-воркеров:
 
-- Monitor entire organizations or users
-- Set concurrency limits (multiple parallel workers)
-- Filter by labels or process all issues
-- Auto-fork for repos without write access
-- Continuous monitoring with configurable intervals
+- Мониторинг целых организаций или пользователей
+- Установка лимитов параллелизма (несколько параллельных воркеров)
+- Фильтрация по меткам или обработка всех задач
+- Автоматическое создание форков для репозиториев без прав на запись
+- Непрерывный мониторинг с настраиваемыми интервалами
 
-### 9. Human Oversight Where It Matters
+### 9. Человеческий надзор там, где он важен
 
-**The Problem**: Full automation without human review leads to quality issues and merged mistakes.
+**Проблема**: Полная автоматизация без проверки человеком приводит к проблемам с качеством и ошибочным слияниям.
 
-**The Solution**: Hive Mind maintains human control at critical points:
+**Решение**: Auto Programmer сохраняет контроль человека в критических точках:
 
-- AI creates draft PRs - humans decide what to merge
-- Humans can request changes via PR comments
-- AI iterates based on feedback
-- Close PR to stop work immediately
-- Branch protections are respected
+- AI создаёт черновые PR — люди решают, что сливать
+- Люди могут запрашивать изменения через комментарии к PR
+- AI итерирует на основе обратной связи
+- Закройте PR, чтобы немедленно остановить работу
+- Защита веток соблюдается
 
-### 10. Telegram Integration - Program From Any Device
+### 10. Интеграция с Telegram — программируйте с любого устройства
 
-**The Problem**: Managing AI issue solving requires SSH access and command-line knowledge, tying you to a computer.
+**Проблема**: Управление AI-решением задач требует SSH-доступа и знания командной строки, привязывая вас к компьютеру.
 
-**The Solution**: **Manage AI workers from any device** with `/solve` and `/hive` commands. Both Telegram and GitHub are available on mobile devices - no tablet, notebook, or PC required. No IDE or vibe coding apps (like Cursor) or vibe coding websites needed. Mobile access is enough.
+**Решение**: **Управляйте AI-воркерами с любого устройства** с помощью команд `/solve` и `/hive`. Как Telegram, так и GitHub доступны на мобильных устройствах — планшет, ноутбук или ПК не нужны. Никаких IDE или приложений для vibe-кодинга (например, Cursor) или сайтов для vibe-кодинга не требуется. Мобильного доступа достаточно.
 
-**Commands available**:
+**Доступные команды**:
 
-- `/solve` - Solve specific issues from your phone
-- `/merge` - Merge ready PRs, issue-linked PRs, or a replied issue/PR link
-- `/hive` - Start orchestration runs
-- `/limits` - Check usage and resources
-- Group chat support for team collaboration
+- `/solve` — Решать конкретные задачи с телефона
+- `/merge` — Сливать готовые PR, PR, связанные с issue, или issue/PR-ссылку из ответа
+- `/hive` — Запускать оркестрационные процессы
+- `/limits` — Проверять использование и ресурсы
+- Поддержка группового чата для командного взаимодействия
 
-**True Mobile Development**: Create issues, trigger AI solvers, review PRs - all from your smartphone, tablet, or any device.
+**Настоящая мобильная разработка**: Создавайте задачи, запускайте AI-решатели, проверяйте PR — всё со смартфона, планшета или любого устройства.
 
-### 11. Deployment Flexibility
+### 11. Гибкость развёртывания
 
-**The Problem**: Complex installation and deployment requirements.
+**Проблема**: Сложные требования к установке и развёртыванию.
 
-**The Solution**: Multiple deployment options:
+**Решение**: Несколько вариантов развёртывания:
 
-- **Docker**: Pre-configured containers with all tools
-- **Helm/Kubernetes**: Production-ready scaling
-- **Ubuntu script**: One-command server setup
-- **Gitpod/Codespaces**: Cloud development environments
+- **Docker**: Предварительно настроенные контейнеры со всеми инструментами
+- **Helm/Kubernetes**: Масштабирование для production
+- **Скрипт Ubuntu**: Настройка сервера одной командой
+- **Gitpod/Codespaces**: Облачные среды разработки
 
-### 12. Robust Error Handling
+### 12. Надёжная обработка ошибок
 
-**The Problem**: AI tools crash on edge cases and don't recover gracefully.
+**Проблема**: AI-инструменты падают на граничных случаях и не восстанавливаются корректно.
 
-**The Solution**: Built-in resilience:
+**Решение**: Встроенная устойчивость:
 
-- Session resumption after rate limits
-- Auto-continue when limits reset
-- Detailed logging with `--attach-logs`
-- Solution summary attachment with `--attach-solution-summary` or `--auto-attach-solution-summary`
-- Sentry integration for error tracking
-- Memory and resource monitoring
+- Возобновление сессии после лимитов использования
+- Автоматическое продолжение после сброса лимитов
+- Подробное ведение журналов с `--attach-logs`
+- Прикрепление сводки решения с `--attach-solution-summary` или `--auto-attach-solution-summary`
+- Интеграция с Sentry для отслеживания ошибок
+- Мониторинг памяти и ресурсов
 
-## Time Freedom: The Core Benefit
+## Свобода времени: ключевое преимущество
 
-The most significant advantage of Hive Mind is **freeing your time**. When AI solver works, it typically takes:
+Наиболее значимое преимущество Auto Programmer — **освобождение вашего времени**. Когда AI-решатель работает, это обычно занимает:
 
-- **10-15 minutes** on Sonnet 4.5
-- **15-25 minutes** on Opus 4.6 (default `opus` alias)
+- **10-15 минут** на Sonnet 4.5
+- **15-25 минут** на Opus 4.6 (псевдоним `opus` по умолчанию)
 
-And usually not more than 4-5 working iterations per one issue in Pull Request continue mode.
+И обычно не более 4-5 рабочих итераций на одну задачу в режиме продолжения Pull Request.
 
-### What This Means in Practice
+### Что это означает на практике
 
-**What human developer does in 2-8 hours can be done in 10-15 minutes.**
+**То, что разработчик-человек делает за 2-8 часов, можно сделать за 10-15 минут.**
 
-While the AI solver works, you are free to:
+Пока AI-решатель работает, вы свободны:
 
-- Work on other issues in parallel
-- Attend meetings
-- Take a break
-- Review other pull requests
-- Do other tasks - or even sleep
+- Работать над другими задачами параллельно
+- Посещать встречи
+- Отдохнуть
+- Проверять другие pull requests
+- Выполнять другие задачи — или даже спать
 
-> **"The code is written while you sleep."**
+> **«Код пишется пока вы спите.»**
 >
-> It's actually possible to produce drafts for all your tasks/issues backlog while you sleep - hundreds of tasks per night.
+> Это действительно возможно — создавать черновики для всего вашего бэклога задач пока вы спите — сотни задач за ночь.
 
-### The "Team of Developers" Effect
+### Эффект «команды разработчиков»
 
-With massively parallelizable issue execution, Hive Mind feels like having a team of hired developers:
+С массово параллелизируемым выполнением задач Auto Programmer ощущается как наличие команды нанятых разработчиков:
 
-- Run multiple AI workers simultaneously
-- Each handles a separate issue independently
-- Scale up during crunch time
-- No coordination overhead
-- Consistent output quality
+- Запускайте несколько AI-воркеров одновременно
+- Каждый обрабатывает отдельную задачу независимо
+- Увеличивайте масштаб в критические периоды
+- Никаких накладных расходов на координацию
+- Стабильное качество результатов
 
-All for the cost of a **Claude MAX subscription (~$200/month)**.
+Всё это за стоимость **подписки Claude MAX (~$200/месяц)**.
 
-### Best Value on the Market
+### Лучшее соотношение цены и качества на рынке
 
-The Claude MAX $200 subscription is currently at 50% discount, providing **$400 value for $200**. This is why Hive Mind, specifically designed for optimal use of this subscription, beats almost all other solutions on the market for value/quality balance.
+Подписка Claude MAX за $200 в настоящее время предоставляется со скидкой 50%, обеспечивая **ценность $400 за $200**. Вот почему Auto Programmer, специально разработанный для оптимального использования этой подписки, превосходит почти все другие решения на рынке по соотношению ценности и качества.
 
-**Note**: Claude MAX provides "almost unlimited" usage - it takes tens of users to actually use 100% of the subscription limit.
+**Примечание**: Claude MAX предоставляет «почти неограниченное» использование — десятки пользователей нужны, чтобы фактически использовать 100% лимита подписки.
 
-## Key Features Summary
+## Сводка ключевых возможностей
 
-| Feature                 | Benefit                                         |
-| ----------------------- | ----------------------------------------------- |
-| Full Autonomy           | No babysitting, no permission dialogs           |
-| Cloud Isolation         | Safe execution, easy to restore if broken       |
-| Internet + Sudo Access  | Install anything, full creative freedom         |
-| Pre-installed Toolchain | Ready to work in any language, can install more |
-| Token Efficiency        | More context for problem-solving                |
-| Time Freedom            | 10-15 min vs 2-8 hours of human work            |
-| Multi-Model Support     | Flexibility and cost optimization               |
-| Scale Orchestration     | Handle many issues simultaneously               |
-| Human Oversight         | Quality control where it matters                |
-| Device Control          | Program from any device via Telegram            |
-| Multiple Deployments    | Run on our or your infrastructure               |
-| Generalist AI           | Not just coding - any file-based task           |
-| High Creativity         | Indistinguishable from average programmers      |
-| 100% Open Source        | Unlicense (public domain), full transparency    |
+| Возможность                  | Преимущество                                            |
+| ---------------------------- | ------------------------------------------------------- |
+| Полная автономия             | Не требует надзора, никаких диалогов разрешений         |
+| Облачная изоляция            | Безопасное выполнение, легко восстановить               |
+| Интернет + доступ sudo       | Устанавливай всё, полная творческая свобода             |
+| Предустановленный тулчейн    | Готов к работе на любом языке, можно установить ещё     |
+| Токенная эффективность       | Больше контекста для решения задач                      |
+| Свобода времени              | 10-15 мин против 2-8 часов работы человека              |
+| Поддержка нескольких моделей | Гибкость и оптимизация стоимости                        |
+| Масштабная оркестрация       | Обработка множества задач одновременно                  |
+| Человеческий надзор          | Контроль качества там, где это важно                    |
+| Управление с устройств       | Программируй с любого устройства через Telegram         |
+| Несколько развёртываний      | Работает на нашей или вашей инфраструктуре              |
+| Универсальный AI             | Не только кодирование — любая задача с файлами          |
+| Высокая креативность         | Неотличима от среднего программиста                     |
+| 100% открытый исходный код   | Unlicense (общественное достояние), полная прозрачность |
 
-## User Problems Solved
+## Решаемые проблемы пользователей
 
-### For Individual Developers
+### Для индивидуальных разработчиков
 
-- **Time Savings**: AI handles routine issues while you focus on architecture
-- **No Setup Overhead**: Pre-configured environment is ready immediately
-- **Safe Experimentation**: Isolated VM means no risk to your machine
-- **Mobile Management**: Control via Telegram from anywhere
+- **Экономия времени**: AI решает рутинные задачи, пока вы сосредоточены на архитектуре
+- **Никаких накладных расходов на настройку**: Предварительно настроенная среда готова немедленно
+- **Безопасное экспериментирование**: Изолированная ВМ не рискует вашей машиной
+- **Мобильное управление**: Управление через Telegram откуда угодно
 
-### For Teams
+### Для команд
 
-- **Scalable Automation**: Process entire issue backlogs automatically
-- **Consistent Quality**: AI follows the same patterns every time
-- **Human Review**: Pull request workflow ensures quality gates
-- **Multi-Account**: Docker containers can use different GitHub accounts
+- **Масштабируемая автоматизация**: Автоматическая обработка целых бэклогов задач
+- **Стабильное качество**: AI следует одним и тем же паттернам каждый раз
+- **Проверка человеком**: Рабочий процесс pull request обеспечивает контроль качества
+- **Множество аккаунтов**: Docker-контейнеры могут использовать разные аккаунты GitHub
 
-### For Organizations
+### Для организаций
 
-- **Cost Control**: Use appropriate AI models for different task complexity
-- **Kubernetes Ready**: Deploy in production with Helm charts
-- **Monitoring**: Sentry integration for observability
-- **Self-Hosted**: Run on your own infrastructure
+- **Контроль затрат**: Используйте подходящие AI-модели для разных уровней сложности задач
+- **Готовность к Kubernetes**: Развёртывание в production с Helm-чартами
+- **Мониторинг**: Интеграция с Sentry для наблюдаемости
+- **Self-Hosted**: Работает на вашей собственной инфраструктуре
 
-## Comparison with Alternatives
+## Сравнение с альтернативами
 
-| Feature               | Hive Mind                      | Other AI Assistants                        |
-| --------------------- | ------------------------------ | ------------------------------------------ |
-| Autonomous Mode       | Full autonomy                  | Requires approval for each action          |
-| Execution Environment | Cloud VM or Docker             | Local machine (risky) or restrictive cloud |
-| Internet Access       | Unlimited                      | Often sandboxed                            |
-| Sudo Access           | Full access                    | Limited or none                            |
-| Pre-installed Tools   | 25GB+ ready, can install more  | Manual installation, restrictive ENVs      |
-| GitHub Access         | Full gh CLI access             | Often limited (can't create issues, etc.)  |
-| Token Efficiency      | Optimized                      | Wastes on routine tasks                    |
-| Time Required         | 10-15 min                      | 2-8 hours human work                       |
-| Orchestration         | Multi-issue                    | Single issue                               |
-| Human Oversight       | At merge time                  | At every step                              |
-| Device Control        | Any device via Telegram        | Computer required                          |
-| Open Source           | 100% open (Unlicense)          | Usually closed or restrictive              |
-| Price (Claude MAX)    | ~$200/month (almost unlimited) | Similar or higher                          |
+| Возможность                   | Auto Programmer                     | Другие AI-ассистенты                                  |
+| ----------------------------- | ----------------------------------- | ----------------------------------------------------- |
+| Автономный режим              | Полная автономия                    | Требует одобрения каждого действия                    |
+| Среда выполнения              | Облачная ВМ или Docker              | Локальная машина (рискованно) или ограниченное облако |
+| Доступ к интернету            | Неограниченный                      | Часто в песочнице                                     |
+| Доступ sudo                   | Полный доступ                       | Ограниченный или отсутствует                          |
+| Предустановленные инструменты | 25+ ГБ готово, можно установить ещё | Ручная установка, ограниченные ENV                    |
+| Доступ к GitHub               | Полный доступ через gh CLI          | Часто ограничен (нельзя создавать задачи и др.)       |
+| Токенная эффективность        | Оптимизирована                      | Тратит на рутинные задачи                             |
+| Требуемое время               | 10-15 мин                           | 2-8 часов работы человека                             |
+| Оркестрация                   | Несколько задач                     | Одна задача                                           |
+| Человеческий надзор           | Во время слияния                    | На каждом шаге                                        |
+| Управление с устройств        | Любое устройство через Telegram     | Требуется компьютер                                   |
+| Открытый исходный код         | 100% открытый (Unlicense)           | Обычно закрытый или ограниченный                      |
+| Цена (Claude MAX)             | ~$200/месяц (почти неограниченно)   | Аналогичная или выше                                  |
 
-> _"Compared to Codex for $200, this solution is fire."_ - User feedback
+> _«По сравнению с Codex за $200, это решение — огонь.»_ — Отзыв пользователя
 
-For a comprehensive comparison with hiring developers, traditional IDEs, AI-assisted IDEs, vibe coding websites, and other AI agents, see [COMPARISON.md](./COMPARISON.md).
+Для исчерпывающего сравнения с наймом разработчиков, традиционными IDE, AI-assisted IDE, сайтами для vibe-кодинга и другими AI-агентами смотрите [COMPARISON.md](./COMPARISON.md).
 
-## Getting Started
+## Начало работы
 
-Ready to let AI handle your issues? See the [README](../README.md) for installation instructions and quick start guide.
+Готовы позволить AI решать ваши задачи? Смотрите [README](../README.md) для инструкций по установке и краткого руководства.
 
-For best results, ensure your repositories have strong CI/CD pipelines - see [BEST-PRACTICES.md](./BEST-PRACTICES.md) for recommendations.
+Для лучших результатов убедитесь, что ваши репозитории имеют надёжные CI/CD-пайплайны — смотрите [BEST-PRACTICES.md](./BEST-PRACTICES.md) для рекомендаций.

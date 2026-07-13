@@ -1,7 +1,7 @@
 import { parseGitHubUrl } from './github.lib.mjs';
 
-export const TASK_SPLIT_MARKER_START = '<!-- hive-mind-task-split:start -->';
-export const TASK_SPLIT_MARKER_END = '<!-- hive-mind-task-split:end -->';
+export const TASK_SPLIT_MARKER_START = '<!-- auto-programmer-task-split:start -->';
+export const TASK_SPLIT_MARKER_END = '<!-- auto-programmer-task-split:end -->';
 export const GITHUB_SUB_ISSUES_API_VERSION = '2026-03-10';
 
 export function parseTaskIssueUrl(url) {

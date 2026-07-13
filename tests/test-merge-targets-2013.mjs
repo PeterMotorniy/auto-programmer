@@ -8,8 +8,8 @@
  *
  * Run with: node tests/test-merge-targets-2013.mjs
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/2013
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2013
  */
 
 import assert from 'node:assert/strict';
@@ -69,31 +69,31 @@ function makeStubItem(overrides = {}) {
 console.log('\n📋 Issue #2013: /merge issue and PR targets\n');
 
 test('Issue #2013: parseMergeTargetUrl accepts issue URLs', () => {
-  const result = parseMergeTargetUrl('https://github.com/link-assistant/formal-ai/issues/621');
+  const result = parseMergeTargetUrl('https://github.com/PeterMotorniy/formal-ai/issues/621');
 
   assert.equal(result.valid, true);
   assert.equal(result.mode, 'issue');
-  assert.equal(result.owner, 'link-assistant');
+  assert.equal(result.owner, 'PeterMotorniy');
   assert.equal(result.repo, 'formal-ai');
   assert.equal(result.issueNumber, 621);
 });
 
 test('Issue #2013: parseMergeTargetUrl accepts pull request URLs', () => {
-  const result = parseMergeTargetUrl('https://github.com/link-assistant/formal-ai/pull/622');
+  const result = parseMergeTargetUrl('https://github.com/PeterMotorniy/formal-ai/pull/622');
 
   assert.equal(result.valid, true);
   assert.equal(result.mode, 'pull');
-  assert.equal(result.owner, 'link-assistant');
+  assert.equal(result.owner, 'PeterMotorniy');
   assert.equal(result.repo, 'formal-ai');
   assert.equal(result.prNumber, 622);
 });
 
 test('Issue #2013: reply extraction finds one issue link in a /codex message', () => {
-  const text = '/codex https://github.com/link-assistant/formal-ai/issues/621 --think max';
+  const text = '/codex https://github.com/PeterMotorniy/formal-ai/issues/621 --think max';
   const result = extractMergeTargetUrlFromText(text);
 
   assert.equal(result.valid, true);
-  assert.equal(result.url, 'https://github.com/link-assistant/formal-ai/issues/621');
+  assert.equal(result.url, 'https://github.com/PeterMotorniy/formal-ai/issues/621');
   assert.equal(result.target.mode, 'issue');
   assert.equal(result.target.issueNumber, 621);
 });

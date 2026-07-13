@@ -10,7 +10,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  *
  * Functions extracted to reduce duplication and ensure consistent behavior.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1190
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1190
  */
 
 // Check if use is already defined globally (when imported from solve.mjs)

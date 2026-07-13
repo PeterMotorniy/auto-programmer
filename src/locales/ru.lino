@@ -507,7 +507,7 @@ ru
         options
           label "🔒 Заблокированные опции"
     help
-      title "🤖 *Справка SwarmMindBot*"
+      title "🤖 *Справка AutoProgrammerBot*"
       status
         stopped "🛑 *Статус бота: ОСТАНОВЛЕН*"
       reason "Причина: {{reason}}"

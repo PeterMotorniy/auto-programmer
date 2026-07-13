@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression coverage for issue #1974. The captured Claude run emitted nested
  * assistant/user events, ended after a failed tool_result, and never emitted a

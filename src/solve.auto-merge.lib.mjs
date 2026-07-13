@@ -7,7 +7,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  *
  * Uses shared utilities from solve.restart-shared.lib.mjs for common functions.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1190
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1190
  */
 
 // Check if use is already defined globally (when imported from solve.mjs)
@@ -350,7 +350,7 @@ export const watchUntilMergeable = async params => {
             try {
               // Issue #1345: Differentiate message when no CI is configured
               const ciLine = noCiConfigured ? '- No CI/CD checks are configured for this repository' : noCiTriggered ? (workflowRunConclusions ? `- CI workflows completed without executing (${workflowRunConclusions})` : '- CI workflows exist but were not triggered for this commit') : '- All CI checks have passed';
-              const commentBody = `## 🎉 ${AUTO_MERGED_MARKER}\n\nThis pull request has been automatically merged by hive-mind.\n${ciLine}\n\n---\n*Auto-merged by hive-mind with --auto-merge flag*`;
+              const commentBody = `## 🎉 ${AUTO_MERGED_MARKER}\n\nThis pull request has been automatically merged by auto-programmer.\n${ciLine}\n\n---\n*Auto-merged by auto-programmer with --auto-merge flag*`;
               await postTrackedComment({ $, owner, repo, targetNumber: prNumber, body: commentBody });
             } catch {
               // Don't fail if comment posting fails
@@ -401,7 +401,7 @@ export const watchUntilMergeable = async params => {
               } else {
                 // Issue #1345: Differentiate message when no CI is configured
                 const ciLine = noCiConfigured ? '- No CI/CD checks are configured for this repository' : noCiTriggered ? (workflowRunConclusions ? `- CI workflows completed without executing (${workflowRunConclusions})` : '- CI workflows exist but were not triggered for this commit') : '- All CI checks have passed';
-                const commentBody = `## ✅ ${READY_TO_MERGE_MARKER}\n\nThis pull request is now ready to be merged:\n${ciLine}\n- No merge conflicts\n- No pending changes\n\n---\n*Monitored by hive-mind with --auto-restart-until-mergeable flag*`;
+                const commentBody = `## ✅ ${READY_TO_MERGE_MARKER}\n\nThis pull request is now ready to be merged:\n${ciLine}\n- No merge conflicts\n- No pending changes\n\n---\n*Monitored by auto-programmer with --auto-restart-until-mergeable flag*`;
                 // Issue #1625: Track this comment ID so it can't falsely count as an AI-authored comment
                 await postTrackedComment({ $, owner, repo, targetNumber: prNumber, body: commentBody });
                 readyToMergeCommentPosted = true;
@@ -488,7 +488,7 @@ Please check the 'Billing & plans' section in your GitHub settings and either:
 Once the billing issue is resolved, you can re-run the CI checks or push a new commit to trigger a new run.
 
 ---
-*Detected by hive-mind with --auto-restart-until-mergeable flag. This is NOT a code issue - human intervention is required.*`;
+*Detected by auto-programmer with --auto-restart-until-mergeable flag. This is NOT a code issue - human intervention is required.*`;
             await postTrackedComment({ $, owner, repo, targetNumber: prNumber, body: commentBody });
             await log(formatAligned('', '💬 Posted billing limit notification to PR', '', 2));
           } catch (commentError) {
@@ -701,7 +701,7 @@ Once the billing issue is resolved, you can re-run the CI checks or push a new c
           try {
             const limitComment = `## ⚠️ Auto-restart limit reached
 
-Hive Mind stopped auto-restart-until-mergeable after ${restartCount} restart iteration${restartCount !== 1 ? 's' : ''}.
+Auto Programmer stopped auto-restart-until-mergeable after ${restartCount} restart iteration${restartCount !== 1 ? 's' : ''}.
 
 **Configured limit:** ${formatAutoIterationLimit(maxAutoRestartIterations)}
 **Remaining reason:** ${restartReason}
@@ -1338,7 +1338,7 @@ export const attemptAutoMerge = async params => {
 
     // Post success comment
     try {
-      const commentBody = `## 🎉 ${AUTO_MERGED_MARKER}\n\nThis pull request has been automatically merged by hive-mind after all CI checks passed and the PR became mergeable.\n\n---\n*Auto-merged by hive-mind with --auto-merge flag*`;
+      const commentBody = `## 🎉 ${AUTO_MERGED_MARKER}\n\nThis pull request has been automatically merged by auto-programmer after all CI checks passed and the PR became mergeable.\n\n---\n*Auto-merged by auto-programmer with --auto-merge flag*`;
       await postTrackedComment({ $, owner, repo, targetNumber: prNumber, body: commentBody });
     } catch {
       // Don't fail if comment posting fails
@@ -1407,7 +1407,7 @@ export const startAutoRestartUntilMergeable = async params => {
       const readyToMergeSignature = `## ✅ ${READY_TO_MERGE_MARKER}`;
       const hasExistingComment = await checkForExistingComment(owner, repo, prNumber, readyToMergeSignature, argv.verbose);
       if (!hasExistingComment) {
-        const commentBody = `## ✅ ${READY_TO_MERGE_MARKER}\n\nThis pull request is ready to be merged. Auto-merge was requested (\`--auto-merge\`) but cannot be performed because this PR was created from a fork (no write access to the target repository).\n\nPlease merge manually.\n\n---\n*hive-mind with --auto-merge flag (fork mode)*`;
+        const commentBody = `## ✅ ${READY_TO_MERGE_MARKER}\n\nThis pull request is ready to be merged. Auto-merge was requested (\`--auto-merge\`) but cannot be performed because this PR was created from a fork (no write access to the target repository).\n\nPlease merge manually.\n\n---\n*auto-programmer with --auto-merge flag (fork mode)*`;
         // Issue #1625: Track so this doesn't falsely count as AI-authored.
         await postTrackedComment({ $, owner, repo, targetNumber: prNumber, body: commentBody });
         await log(formatAligned('', '💬 Posted merge readiness notification to PR', '', 2));
@@ -1437,7 +1437,7 @@ export const startAutoRestartUntilMergeable = async params => {
         const readyToMergeSignature = `## ✅ ${READY_TO_MERGE_MARKER}`;
         const hasExistingComment = await checkForExistingComment(owner, repo, prNumber, readyToMergeSignature, argv.verbose);
         if (!hasExistingComment) {
-          const commentBody = `## ✅ ${READY_TO_MERGE_MARKER}\n\nThis pull request is ready to be merged. Auto-merge was requested (\`--auto-merge\`) but cannot be performed because the authenticated user lacks write access to \`${owner}/${repo}\` (current permission: \`${permission || 'unknown'}\`).\n\nPlease merge manually.\n\n---\n*hive-mind with --auto-merge flag*`;
+          const commentBody = `## ✅ ${READY_TO_MERGE_MARKER}\n\nThis pull request is ready to be merged. Auto-merge was requested (\`--auto-merge\`) but cannot be performed because the authenticated user lacks write access to \`${owner}/${repo}\` (current permission: \`${permission || 'unknown'}\`).\n\nPlease merge manually.\n\n---\n*auto-programmer with --auto-merge flag*`;
           // Issue #1625: Track so this doesn't falsely count as AI-authored.
           await postTrackedComment({ $, owner, repo, targetNumber: prNumber, body: commentBody });
           await log(formatAligned('', '💬 Posted merge readiness notification to PR', '', 2));

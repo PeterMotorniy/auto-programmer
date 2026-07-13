@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #1851: process debugging must connect live/orphaned agent PIDs back to
  * the hive/start-command task session that launched them.
@@ -25,7 +25,7 @@ function test(name, fn) {
   }
 }
 
-const issueUrl = 'https://github.com/link-assistant/hive-mind/issues/1851';
+const issueUrl = 'https://github.com/PeterMotorniy/auto-programmer/issues/1851';
 const sessionId = '578ec383-9ef3-43af-b8f5-f0f91f9366bf';
 const workspace = '/tmp/gh-issue-solver-1780580701084';
 const logPath = `/tmp/start-command/logs/isolation/screen/${sessionId}.log`;

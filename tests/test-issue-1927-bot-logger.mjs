@@ -12,7 +12,7 @@
  * against real temp dirs for the rotation behaviour and an injected fs for the
  * filesystem-failure path.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import os from 'node:os';
@@ -52,7 +52,7 @@ function listBackups(dir, baseName = 'telegram-bot') {
 
 // --- resolveBotLogDir ---------------------------------------------------------
 assert(resolveBotLogDir({ HIVE_MIND_LOG_DIR: '/custom/logs' }) === '/custom/logs', 'resolveBotLogDir honors HIVE_MIND_LOG_DIR');
-assert(resolveBotLogDir({}, () => '/home/bob') === path.join('/home/bob', '.hive-mind', 'logs'), 'resolveBotLogDir falls back to <home>/.hive-mind/logs');
+assert(resolveBotLogDir({}, () => '/home/bob') === path.join('/home/bob', '.auto-programmer', 'logs'), 'resolveBotLogDir falls back to <home>/.auto-programmer/logs');
 
 // --- formatLogTimestamp / formatLogLine (req #3: timestamps) ------------------
 const D = new Date('2026-06-14T19:10:49.822Z');

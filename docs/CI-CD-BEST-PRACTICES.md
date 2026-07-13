@@ -1,23 +1,23 @@
-# CI/CD Best Practices for AI-Driven Development (languages: en • [zh](CI-CD-BEST-PRACTICES.zh.md) • [hi](CI-CD-BEST-PRACTICES.hi.md) • [ru](CI-CD-BEST-PRACTICES.ru.md))
+# Лучшие практики CI/CD для разработки с использованием AI
 
-This document describes CI/CD best practices that significantly improve the quality and reliability of AI-driven development workflows. When properly configured, Hive Mind AI solvers are forced to iterate with CI/CD checks until all tests pass, ensuring code quality meets the highest standards.
+Этот документ описывает лучшие практики CI/CD, которые существенно повышают качество и надёжность рабочих процессов разработки с использованием AI. При правильной настройке AI-решатели Auto Programmer вынуждены итерировать с проверками CI/CD до тех пор, пока все тесты не пройдут успешно, гарантируя соответствие кода высочайшим стандартам качества.
 
-## Why CI/CD Matters for AI Development
+## Почему CI/CD важен для разработки с AI
 
-Hive Mind's AI issue solver is instructed to pay attention to CI/CD checks in each pull request. This creates a powerful feedback loop:
+AI-решатель задач Auto Programmer инструктирован обращать внимание на проверки CI/CD в каждом pull request. Это создаёт мощную обратную связь:
 
-1. **AI creates a solution** - The solver generates code based on issue requirements
-2. **CI/CD validates the solution** - Automated checks verify code quality
-3. **AI iterates until passing** - The solver fixes issues until all checks pass
-4. **Quality is guaranteed** - No code merges without passing all gates
+1. **AI создаёт решение** — решатель генерирует код на основе требований задачи
+2. **CI/CD проверяет решение** — автоматические проверки верифицируют качество кода
+3. **AI итерирует до прохождения** — решатель исправляет проблемы до тех пор, пока все проверки не пройдут
+4. **Качество гарантировано** — ни один код не вливается без прохождения всех шлюзов
 
-This approach ensures consistent quality regardless of whether the team consists of humans, AIs, or both.
+Такой подход обеспечивает стабильное качество вне зависимости от того, состоит ли команда из людей, AI-систем или тех и других.
 
-## Recommended CI/CD Templates
+## Рекомендуемые шаблоны CI/CD
 
-We provide ready-to-use templates for multiple languages with all best practices pre-configured:
+Мы предоставляем готовые к использованию шаблоны для нескольких языков со всеми предварительно настроенными лучшими практиками:
 
-| Language              | Template Repository                                                                                                                 |
+| Язык                  | Репозиторий шаблона                                                                                                                 |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | JavaScript/TypeScript | [js-ai-driven-development-pipeline-template](https://github.com/link-foundation/js-ai-driven-development-pipeline-template)         |
 | Rust                  | [rust-ai-driven-development-pipeline-template](https://github.com/link-foundation/rust-ai-driven-development-pipeline-template)     |
@@ -26,13 +26,13 @@ We provide ready-to-use templates for multiple languages with all best practices
 | C#                    | [csharp-ai-driven-development-pipeline-template](https://github.com/link-foundation/csharp-ai-driven-development-pipeline-template) |
 | Java                  | [java-ai-driven-development-pipeline-template](https://github.com/link-foundation/java-ai-driven-development-pipeline-template)     |
 
-## Key CI/CD Principles
+## Ключевые принципы CI/CD
 
-### 1. Run Checks Only on Relevant File Changes
+### 1. Запускать проверки только при изменениях релевантных файлов
 
-**Only trigger checks when relevant files change.** This dramatically reduces CI costs and run times.
+**Запускайте проверки только при изменении релевантных файлов.** Это существенно снижает расходы на CI и время выполнения.
 
-Use a `detect-changes` job at the start of your workflow to determine which file categories changed:
+Используйте задание `detect-changes` в начале рабочего процесса для определения изменённых категорий файлов:
 
 ```yaml
 jobs:
@@ -52,7 +52,7 @@ jobs:
         run: node scripts/detect-code-changes.mjs
 ```
 
-Then gate each job on the relevant output:
+Затем добавьте зависимость каждого задания от соответствующего вывода:
 
 ```yaml
 test-suites:
@@ -71,31 +71,31 @@ docker-pr-check:
   # ...
 ```
 
-**What to exclude from "code changes" detection:**
+**Что исключить из обнаружения "изменений кода":**
 
-- Markdown files (`*.md`) — documentation-only changes don't need changeset files
-- `.changeset/` folder — changeset metadata isn't code
-- `data/` and `experiments/` folders — non-production content
-- `.gitkeep` files — placeholder files with no functional impact
+- Markdown-файлы (`*.md`) — изменения только документации не требуют файлов changeset
+- Папка `.changeset/` — метаданные changeset не являются кодом
+- Папки `data/` и `experiments/` — непродакшн-контент
+- Файлы `.gitkeep` — файлы-заглушки без функционального воздействия
 
-**What always triggers checks when changed:**
+**Что всегда запускает проверки при изменении:**
 
-- Source code files (`.mjs`, `.ts`, `.py`, `.rs`, `.go`, etc.)
-- `package.json` / dependency manifests
-- CI/CD workflow files (`.github/workflows/*.yml`)
-- `Dockerfile` and related infrastructure files
+- Файлы исходного кода (`.mjs`, `.ts`, `.py`, `.rs`, `.go` и т.д.)
+- `package.json` / манифесты зависимостей
+- Файлы рабочих процессов CI/CD (`.github/workflows/*.yml`)
+- `Dockerfile` и связанные файлы инфраструктуры
 
-### 2. File Size Limits
+### 2. Ограничение размера файлов
 
-**Enforce a maximum of 1000-1500 lines per code file.**
+**Устанавливайте максимум в 1000–1500 строк на файл кода.**
 
-This constraint benefits both AI and human developers:
+Это ограничение приносит пользу как AI-разработчикам, так и людям:
 
-- AI models can read and understand entire files within context windows
-- Humans can navigate and comprehend files without cognitive overload
-- Forces modular, well-organized code architecture
+- AI-модели могут читать и понимать целые файлы в пределах контекстных окон
+- Люди могут навигировать по файлам и понимать их без когнитивной перегрузки
+- Стимулирует модульную, хорошо организованную архитектуру кода
 
-Example enforcement in CI (bash):
+Пример проверки в CI (bash):
 
 ```bash
 find src/ -name "*.mjs" -type f | while read -r file; do
@@ -108,7 +108,7 @@ find src/ -name "*.mjs" -type f | while read -r file; do
 done
 ```
 
-**Synchronize the file-size ESLint rule with the CI check** to catch violations locally before CI:
+**Синхронизируйте правило ESLint для размера файла с проверкой CI**, чтобы выявлять нарушения локально до CI:
 
 ```js
 // eslint.config.mjs
@@ -119,11 +119,11 @@ done
 }
 ```
 
-### 3. Automated Code Formatting
+### 3. Автоматическое форматирование кода
 
-Consistent formatting eliminates style debates and reduces diff noise:
+Единообразное форматирование устраняет споры о стиле и снижает шум в diff:
 
-| Language              | Tool                          |
+| Язык                  | Инструмент                    |
 | --------------------- | ----------------------------- |
 | JavaScript/TypeScript | ESLint + Prettier             |
 | Rust                  | rustfmt                       |
@@ -132,34 +132,34 @@ Consistent formatting eliminates style debates and reduces diff noise:
 | C#                    | dotnet format                 |
 | Java                  | Spotless (Google Java Format) |
 
-All templates include pre-commit hooks that run formatters automatically before each commit.
+Все шаблоны включают pre-commit хуки, автоматически запускающие форматтеры перед каждым коммитом.
 
-### 4. Static Analysis & Linting
+### 4. Статический анализ и линтинг
 
-Catch bugs and enforce patterns before code reaches review:
+Выявляйте ошибки и применяйте паттерны до прохождения кода через ревью:
 
-| Language              | Tools                               |
-| --------------------- | ----------------------------------- |
-| JavaScript/TypeScript | ESLint with strict rules            |
-| Rust                  | Clippy (pedantic + nursery)         |
-| Python                | Ruff + mypy                         |
-| Go                    | go vet + staticcheck                |
-| C#                    | .NET analyzers (warnings as errors) |
-| Java                  | SpotBugs (maximum effort)           |
+| Язык                  | Инструменты                                |
+| --------------------- | ------------------------------------------ |
+| JavaScript/TypeScript | ESLint со строгими правилами               |
+| Rust                  | Clippy (pedantic + nursery)                |
+| Python                | Ruff + mypy                                |
+| Go                    | go vet + staticcheck                       |
+| C#                    | .NET analyzers (предупреждения как ошибки) |
+| Java                  | SpotBugs (максимальные усилия)             |
 
-### 5. Fast-Fail Job Ordering
+### 5. Порядок быстрого обнаружения ошибок
 
-**Run fast checks before slow checks** to give the fastest possible feedback:
+**Запускайте быстрые проверки перед медленными** для получения обратной связи как можно быстрее:
 
 ```
-Fast checks (~7-30s each):     Slow checks (~1-10 min each):
-├── test-compilation            ├── test-suites (unit tests)
-├── lint (format + ESLint)      ├── test-execution (integration)
-└── check-file-line-limits      ├── docker-pr-check
-                                └── helm-pr-check
+Быстрые проверки (~7-30 сек каждая):   Медленные проверки (~1-10 мин каждая):
+├── test-compilation                     ├── test-suites (модульные тесты)
+├── lint (format + ESLint)               ├── test-execution (интеграционные)
+└── check-file-line-limits               ├── docker-pr-check
+                                         └── helm-pr-check
 ```
 
-Gate slow checks on fast checks:
+Поставьте медленные проверки в зависимость от быстрых:
 
 ```yaml
 test-suites:
@@ -173,23 +173,23 @@ test-suites:
     needs.check-file-line-limits.result == 'success'
 ```
 
-### 6. Changeset-Based Versioning
+### 6. Управление версиями на основе changeset
 
-All templates use a changeset system that:
+Все шаблоны используют систему changeset, которая:
 
-- **Eliminates merge conflicts** - Each PR creates an independent changeset file
-- **Automates version bumps** - Highest bump type wins when merging
-- **Generates changelogs** - Release notes are compiled automatically
-- **Supports semantic versioning** - patch/minor/major bumps are explicit
+- **Устраняет конфликты слияния** — каждый PR создаёт независимый файл changeset
+- **Автоматизирует обновления версий** — при слиянии побеждает наивысший тип обновления
+- **Генерирует журналы изменений** — заметки о релизе компилируются автоматически
+- **Поддерживает семантическое версионирование** — обновления patch/minor/major явно указаны
 
-| Language              | Tool                         |
-| --------------------- | ---------------------------- |
-| JavaScript/TypeScript | @changesets/cli              |
-| Rust                  | changelog.d + custom scripts |
-| Python                | Scriv                        |
-| Go, C#, Java          | Custom changeset workflows   |
+| Язык                  | Инструмент                           |
+| --------------------- | ------------------------------------ |
+| JavaScript/TypeScript | @changesets/cli                      |
+| Rust                  | changelog.d + кастомные скрипты      |
+| Python                | Scriv                                |
+| Go, C#, Java          | Кастомные рабочие процессы changeset |
 
-**Exempt docs-only PRs from changeset requirements:**
+**Освобождайте PR только с документацией от требования changeset:**
 
 ```yaml
 changeset-check:
@@ -197,13 +197,13 @@ changeset-check:
   if: github.event_name == 'pull_request' && needs.detect-changes.outputs.any-code-changed == 'true'
 ```
 
-Documentation-only changes (updating `.md` files) should not require a version bump.
+Изменения только в документации (обновление `.md`-файлов) не должны требовать обновления версии.
 
-### 7. Validate the Actual Merge Result
+### 7. Проверять фактический результат слияния
 
-**CI must test what will actually be merged, not a stale PR snapshot.**
+**CI должен тестировать то, что фактически будет слито, а не устаревший снимок PR.**
 
-When a PR is opened against a base branch that later receives new commits, the GitHub merge preview can become stale. Simulate a fresh merge before running checks:
+Когда PR открыт против базовой ветки, которая впоследствии получает новые коммиты, предварительный просмотр слияния GitHub может устареть. Имитируйте свежее слияние перед запуском проверок:
 
 ```yaml
 - name: Simulate fresh merge with base branch (PR only)
@@ -221,30 +221,30 @@ When a PR is opened against a base branch that later receives new commits, the G
     fi
 ```
 
-This ensures lint, file-size, and other checks validate the final merged state.
+Это гарантирует, что проверки линтинга, размера файлов и другие проверяют финальное состояние после слияния.
 
-### 8. Pre-commit Hooks
+### 8. Pre-commit хуки
 
-Local quality gates prevent broken commits from reaching CI:
+Локальные шлюзы качества предотвращают попадание некорректных коммитов в CI:
 
-1. Format check and auto-fix
-2. Lint and static analysis
-3. Type checking (where applicable)
-4. File size validation
-5. Secrets detection
+1. Проверка формата и автоисправление
+2. Линтинг и статический анализ
+3. Проверка типов (где применимо)
+4. Проверка размера файла
+5. Обнаружение секретов
 
-This "shift left" approach catches issues immediately rather than waiting for CI.
+Такой подход "смещения влево" выявляет проблемы немедленно, не дожидаясь CI.
 
-### 9. Release Automation
+### 9. Автоматизация релизов
 
-Automated release workflows ensure:
+Автоматизированные рабочие процессы релизов обеспечивают:
 
-- **No manual version management** - Versions update automatically
-- **OIDC trusted publishing** - No API tokens needed in CI (npm, PyPI, crates.io)
-- **Validated releases only** - All checks must pass before publishing
-- **Dual trigger modes** - Both automatic (on merge) and manual (workflow dispatch)
+- **Отсутствие ручного управления версиями** — версии обновляются автоматически
+- **Доверенная публикация OIDC** — не требуются API-токены в CI (npm, PyPI, crates.io)
+- **Только проверенные релизы** — все проверки должны пройти перед публикацией
+- **Два режима запуска** — автоматический (при слиянии) и ручной (workflow dispatch)
 
-**Prohibit manual version changes** in PRs — all version bumps should be managed by the CI release workflow:
+**Запрещайте ручные изменения версий** в PR — все обновления версий должны управляться рабочим процессом релиза CI:
 
 ```yaml
 version-check:
@@ -254,34 +254,34 @@ version-check:
       run: node scripts/check-version.mjs
 ```
 
-### 10. Concurrency Control
+### 10. Управление конкурентностью
 
-**Prevent multiple workflow runs from conflicting:**
+**Предотвращайте конфликты нескольких запусков рабочего процесса:**
 
 ```yaml
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  # Cancel older runs on main to always release the latest version
+  # Отменять старые запуски на main для всегда актуального релиза последней версии
   cancel-in-progress: ${{ github.ref == 'refs/heads/main' }}
 ```
 
-Use `!cancelled()` instead of `always()` in job conditions so cancellation propagates correctly through the job graph.
+Используйте `!cancelled()` вместо `always()` в условиях заданий, чтобы отмена корректно распространялась по графу заданий.
 
-### 11. Secrets Detection
+### 11. Обнаружение секретов
 
-Prevent accidental credential leaks in CI:
+Предотвращайте случайные утечки учётных данных в CI:
 
-- Include a secrets scan step using tools like `secretlint` or `truffleHog`
-- Fail CI immediately if secrets are detected
-- Never log environment variables or token values
+- Включите шаг сканирования секретов с использованием таких инструментов, как `secretlint` или `truffleHog`
+- Немедленно останавливайте CI при обнаружении секретов
+- Никогда не записывайте в журнал переменные окружения или значения токенов
 
-### 12. Documentation Validation
+### 12. Валидация документации
 
-**Validate documentation files in CI just like code:**
+**Проверяйте файлы документации в CI так же, как код:**
 
-- Check file size limits (e.g., max 2500 lines for docs)
-- Verify required sections exist in key documents
-- Check for broken links using tools like `lychee`
+- Проверяйте ограничения размера файла (например, максимум 2500 строк для документов)
+- Проверяйте наличие обязательных разделов в ключевых документах
+- Проверяйте битые ссылки с помощью таких инструментов, как `lychee`
 
 ```yaml
 validate-docs:
@@ -291,16 +291,16 @@ validate-docs:
     - run: node tests/docs-validation.mjs
 ```
 
-## Quality Enforcement Strategy
+## Стратегия обеспечения качества
 
-The templates implement a defense-in-depth approach:
+Шаблоны реализуют многоуровневый подход к защите:
 
 ```
-Developer Machine    →    CI/CD Pipeline    →    Release
-├── Pre-commit hooks      ├── detect-changes      ├── All checks pass
-├── Local tests           ├── version-check       ├── Version bump
-└── IDE integration       ├── changeset-check     ├── Changelog update
-                          ├── test-compilation    └── Publish package
+Машина разработчика  →    Конвейер CI/CD      →    Релиз
+├── Pre-commit хуки       ├── detect-changes       ├── Все проверки пройдены
+├── Локальные тесты       ├── version-check        ├── Обновление версии
+└── Интеграция с IDE      ├── changeset-check      ├── Обновление журнала изменений
+                          ├── test-compilation     └── Публикация пакета
                           ├── lint (format+ESLint)
                           ├── check-file-line-limits
                           ├── test-suites
@@ -309,18 +309,18 @@ Developer Machine    →    CI/CD Pipeline    →    Release
                           └── docker-pr-check
 ```
 
-Each layer catches different issues, ensuring no problematic code reaches production.
+Каждый уровень выявляет разные проблемы, гарантируя, что некорректный код не попадёт в продакшн.
 
-## Getting Started
+## Начало работы
 
-1. **Choose a template** from the table above matching your language
-2. **Use it as a GitHub template** to create your new repository
-3. **Configure secrets** if needed for publishing (OIDC preferred)
-4. **Start developing** with all best practices pre-configured
+1. **Выберите шаблон** из таблицы выше, соответствующий вашему языку
+2. **Используйте его как шаблон GitHub** для создания нового репозитория
+3. **Настройте секреты** при необходимости для публикации (предпочтительно OIDC)
+4. **Начинайте разработку** со всеми предварительно настроенными лучшими практиками
 
-The AI solvers will automatically respect and iterate with all configured checks, producing higher quality output than repositories without CI/CD enforcement.
+AI-решатели автоматически будут учитывать и итерировать со всеми настроенными проверками, производя более качественный результат по сравнению с репозиториями без принуждения CI/CD.
 
-## References
+## Ссылки
 
 - [Code Architecture Principles](https://github.com/link-foundation/code-architecture-principles)
 - [Contributing Guidelines](./CONTRIBUTING.md)

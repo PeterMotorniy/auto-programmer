@@ -5,7 +5,7 @@
  * that resolves immediately on SIGINT, so the process exit handler chain
  * is not blocked by a lingering timer.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1574
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1574
  */
 
 /**

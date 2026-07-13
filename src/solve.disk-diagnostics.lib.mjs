@@ -24,7 +24,7 @@
  *     emit JSON because the existing log is human-tailing-friendly and a
  *     stray closing brace from another logger could confuse JSON.parse.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1945
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1945
  */
 
 import { execFileSync } from 'node:child_process';

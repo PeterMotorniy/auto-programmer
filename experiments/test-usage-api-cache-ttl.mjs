@@ -6,8 +6,8 @@
  * (default 13 minutes, raised from 10 in issue #1798) to avoid the
  * "Resets in 3m Xs" rate-limit response that users still hit with the old TTL.
  *
- * See: https://github.com/link-assistant/hive-mind/issues/1074
- * See: https://github.com/link-assistant/hive-mind/issues/1798
+ * See: https://github.com/PeterMotorniy/auto-programmer/issues/1074
+ * See: https://github.com/PeterMotorniy/auto-programmer/issues/1798
  */
 
 import { CACHE_TTL, getCachedClaudeLimits, getLimitCache, resetLimitCache } from '../src/limits.lib.mjs';
@@ -21,7 +21,7 @@ function formatMs(ms) {
 
 async function main() {
   console.log('=== Testing Usage API Cache TTL Configuration ===\n');
-  console.log('Issue: https://github.com/link-assistant/hive-mind/issues/1074\n');
+  console.log('Issue: https://github.com/PeterMotorniy/auto-programmer/issues/1074\n');
 
   // Test 1: Verify CACHE_TTL.USAGE_API is at least 13 minutes (issue #1798)
   // The "Resets in 3m Xs" rate-limit window observed in issue #1798 means the

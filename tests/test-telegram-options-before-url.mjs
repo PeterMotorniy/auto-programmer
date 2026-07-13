@@ -3,7 +3,7 @@
 /**
  * Regression tests for Telegram commands that put options before the URL.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1662
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1662
  */
 
 import assert from 'assert/strict';
@@ -17,8 +17,8 @@ const use = await ensureUseM();
 const yargsModule = await use('yargs@17.7.2');
 const yargs = resolveYargsFactory(yargsModule);
 
-const issueUrl = 'https://github.com/konard/p-vs-np/issues/476';
-const repoUrl = 'https://github.com/link-assistant/hive-mind';
+const issueUrl = 'https://github.com/petermotorniy/p-vs-np/issues/476';
+const repoUrl = 'https://github.com/PeterMotorniy/auto-programmer';
 
 let passed = 0;
 let failed = 0;

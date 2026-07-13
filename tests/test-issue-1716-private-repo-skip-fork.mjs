@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite default
+// @auto-programmer-test-suite default
 
 /**
  * Test suite for Issue #1716 fix: Skip fork when upstream repository is private

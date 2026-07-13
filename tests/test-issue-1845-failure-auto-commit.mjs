@@ -13,7 +13,7 @@
 // or network) and assert the commit happens exactly when it should — and never throws.
 //
 // Run with: node tests/test-issue-1845-failure-auto-commit.mjs
-// @see https://github.com/link-assistant/hive-mind/issues/1845
+// @see https://github.com/PeterMotorniy/auto-programmer/issues/1845
 
 import assert from 'assert';
 

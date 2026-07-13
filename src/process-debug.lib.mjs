@@ -340,7 +340,7 @@ export function formatProcessDebugReport(report = {}) {
   const lines = ['Process debug report', '====================', `Matched processes: ${items.length}`, `Orphaned terminal-session agents: ${orphans.length}`];
 
   if (items.length === 0) {
-    lines.push('', 'No claude/codex/gemini/qwen/opencode processes were linked to hive-mind tasks.');
+    lines.push('', 'No claude/codex/gemini/qwen/opencode processes were linked to auto-programmer tasks.');
     return lines.join('\n');
   }
 

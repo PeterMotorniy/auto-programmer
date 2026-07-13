@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  hive-mind:
+  auto-programmer:
     build:
       context: .
       dockerfile: coolify/Dockerfile
-    image: hive-mind:production
-    container_name: hive-mind-prod
+    image: auto-programmer:production
+    container_name: auto-programmer-prod
 
     # Environment variables for the application
     environment:

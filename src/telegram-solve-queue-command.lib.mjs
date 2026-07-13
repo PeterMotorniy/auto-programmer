@@ -10,7 +10,7 @@
  * - Lists currently processing and waiting items
  * - Running Claude process count
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1232
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1232
  */
 
 import { t } from './i18n.lib.mjs';
@@ -88,7 +88,7 @@ export function registerSolveQueueCommand(bot, options) {
     // Use the queue's built-in detailed status formatter
     // Shows per-queue breakdown with first 5 items per queue and human-readable times
     // Processing counts are actual running system processes (via pgrep)
-    // See: https://github.com/link-assistant/hive-mind/issues/1267
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1267
     const message = await solveQueue.formatDetailedStatus({ locale });
 
     await replyWithFallback(message, {

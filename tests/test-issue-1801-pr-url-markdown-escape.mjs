@@ -18,7 +18,7 @@
  *   Compare against the recorded production payload in
  *   `docs/case-studies/issue-1801/hive-telegram-bot.log` line 100236.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1801
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1801
  */
 
 import { appendPullRequestLine, formatSessionCompletionMessage } from '../src/work-session-formatting.lib.mjs';

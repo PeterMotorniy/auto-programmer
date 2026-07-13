@@ -9,7 +9,7 @@
  * i18n key `telegram.work_session_killed`, so this test keeps the locale path in
  * the repro.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/2015
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2015
  */
 
 import { parseSessionStatusOutput } from '../src/isolation-runner.lib.mjs';

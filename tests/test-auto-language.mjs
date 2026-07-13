@@ -86,23 +86,23 @@ await test('applyAutoLanguageToArgv preserves explicit work language', async () 
 });
 
 await test('parseArguments accepts --auto-language', async () => {
-  const argv = await parseSolveArgs(['https://github.com/link-assistant/hive-mind/issues/675', '--auto-language']);
+  const argv = await parseSolveArgs(['https://github.com/PeterMotorniy/auto-programmer/issues/675', '--auto-language']);
   assert.strictEqual(argv.autoLanguage, true);
 });
 
 await test('parseArguments leaves --auto-language disabled by default', async () => {
-  const argv = await parseSolveArgs(['https://github.com/link-assistant/hive-mind/issues/675']);
+  const argv = await parseSolveArgs(['https://github.com/PeterMotorniy/auto-programmer/issues/675']);
   assert.strictEqual(argv.autoLanguage, false);
 });
 
 await test('parseArguments maps hidden --prompt-language to workLanguage', async () => {
-  const argv = await parseSolveArgs(['https://github.com/link-assistant/hive-mind/issues/675', '--prompt-language', 'ru']);
+  const argv = await parseSolveArgs(['https://github.com/PeterMotorniy/auto-programmer/issues/675', '--prompt-language', 'ru']);
   assert.strictEqual(argv.workLanguage, 'ru');
   assert.strictEqual(argv._workLanguageExplicit, true);
 });
 
 await test('parseArguments lets --work-language override --prompt-language', async () => {
-  const argv = await parseSolveArgs(['https://github.com/link-assistant/hive-mind/issues/675', '--prompt-language', 'ru', '--work-language', 'en']);
+  const argv = await parseSolveArgs(['https://github.com/PeterMotorniy/auto-programmer/issues/675', '--prompt-language', 'ru', '--work-language', 'en']);
   assert.strictEqual(argv.workLanguage, 'en');
   assert.strictEqual(argv._workLanguageExplicit, true);
 });

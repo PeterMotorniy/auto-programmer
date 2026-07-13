@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -178,10 +178,10 @@ const promptModule = {
 const result = await executeWithAgentCommander({
   agentCommanderModule: executionModule,
   promptModule,
-  issueUrl: 'https://github.com/link-assistant/hive-mind/issues/1043',
+  issueUrl: 'https://github.com/PeterMotorniy/auto-programmer/issues/1043',
   issueNumber: 1043,
   prNumber: 1044,
-  prUrl: 'https://github.com/link-assistant/hive-mind/pull/1044',
+  prUrl: 'https://github.com/PeterMotorniy/auto-programmer/pull/1044',
   branchName: 'issue-1043-824a8917a5fe',
   tempDir: '/tmp/repo',
   workspaceTmpDir: '/tmp/repo/tmp',
@@ -190,8 +190,8 @@ const result = await executeWithAgentCommander({
   forkedRepo: null,
   feedbackLines: [],
   forkActionsUrl: null,
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
   argv: {
     tool: 'codex',
     model: 'gpt-5.5',

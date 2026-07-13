@@ -12,7 +12,7 @@
  *      selected for resume — never the first.
  *   2. Auto-resume is bounded so a reliably-crashing job cannot storm.
  *
- * @see https://github.com/link-assistant/hive-mind/pull/1928#issuecomment-4726972047
+ * @see https://github.com/PeterMotorniy/auto-programmer/pull/1928#issuecomment-4726972047
  */
 
 import os from 'node:os';

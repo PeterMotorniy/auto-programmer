@@ -9,7 +9,7 @@
  *
  * Run with: node tests/interruptible-sleep.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1574
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1574
  */
 
 import assert from 'node:assert/strict';

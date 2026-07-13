@@ -6,7 +6,7 @@
  *   lines when the agent created a PR for an issue-driven /solve.
  * - Subscribers receive the completion message in their private chat with the bot.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1688
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1688
  */
 
 import { addSubscriber, removeSubscriber, isSubscribed, getSubscriberCount, notifySubscribers, resetSubscribersForTests } from '../src/telegram-subscribers.lib.mjs';
@@ -232,7 +232,7 @@ console.log('\n  monitorSessions recovers Pull request line from completed solve
 resetSubscribersForTests();
 resetSessionMonitorForTests();
 
-const issue1905TempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'hive-mind-issue-1905-'));
+const issue1905TempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'auto-programmer-issue-1905-'));
 try {
   const issue1905LogPath = path.join(issue1905TempDir, 'session.log');
   await fs.writeFile(issue1905LogPath, ['Some solve output before verification', '🎉 SUCCESS: A solution draft has been prepared as a pull request', '📍 URL: https://github.com/o/r/pull/77', 'More solve output after verification'].join('\n'), 'utf8');

@@ -12,7 +12,7 @@
  * Concrete scenario from the failing log
  * (https://github.com/labtgbot/telegram-claude-agent/pull/4#issuecomment-4463389730):
  *   upstream:        labtgbot/telegram-claude-agent
- *   PR head repo:    konard/labtgbot-telegram-claude-agent
+ *   PR head repo:    petermotorniy/labtgbot-telegram-claude-agent
  *   forkRepoName:    labtgbot-telegram-claude-agent  (from headRepository.name)
  *   prefix flag:     true (default)
  *
@@ -20,7 +20,7 @@
  *   headRepoName     = forkRepoName || repo
  *                    = "labtgbot-telegram-claude-agent"
  *   prefixedForkName = `${forkOwner}/${owner}-${headRepoName}`
- *                    = "konard/labtgbot-labtgbot-telegram-claude-agent"  <- BUG
+ *                    = "petermotorniy/labtgbot-labtgbot-telegram-claude-agent"  <- BUG
  *
  * Expected behavior: when forkRepoName is known from PR data, that IS the
  * authoritative fork name; the prefix option is for fork *creation*, not
@@ -49,7 +49,7 @@ function fixedComputeForkName({ owner, repo, forkOwner, forkRepoName, prefixFork
 const scenario = {
   owner: 'labtgbot',
   repo: 'telegram-claude-agent',
-  forkOwner: 'konard',
+  forkOwner: 'petermotorniy',
   forkRepoName: 'labtgbot-telegram-claude-agent',
   prefixForkNameWithOwnerName: true,
 };
@@ -58,8 +58,8 @@ console.log('Scenario:', scenario);
 console.log('  buggy result:', buggyComputeForkName(scenario));
 console.log('  fixed result:', fixedComputeForkName(scenario));
 
-assert.strictEqual(buggyComputeForkName(scenario), 'konard/labtgbot-labtgbot-telegram-claude-agent', 'reproducing the documented bug: double prefix');
-assert.strictEqual(fixedComputeForkName(scenario), 'konard/labtgbot-telegram-claude-agent', 'fixed: trust forkRepoName from PR head data');
+assert.strictEqual(buggyComputeForkName(scenario), 'petermotorniy/labtgbot-labtgbot-telegram-claude-agent', 'reproducing the documented bug: double prefix');
+assert.strictEqual(fixedComputeForkName(scenario), 'petermotorniy/labtgbot-telegram-claude-agent', 'fixed: trust forkRepoName from PR head data');
 
 // Sanity checks for unrelated scenarios
 const guessScenario = {

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #2048: The --development-log commit must be pushed BEFORE any pull
  * request readiness is signalled (working-session summary, verifyResults log

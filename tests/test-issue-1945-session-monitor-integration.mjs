@@ -13,8 +13,8 @@
  *
  * Run with: node tests/test-issue-1945-session-monitor-integration.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1945
- * @see https://github.com/link-assistant/hive-mind/issues/1988
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1945
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1988
  */
 
 import assert from 'node:assert/strict';

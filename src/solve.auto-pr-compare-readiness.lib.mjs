@@ -21,7 +21,7 @@
  * Extracted from solve.auto-pr.lib.mjs to keep that file under the 1500-line
  * CI cap.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1829
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1829
  */
 
 import { isTransientCompareApiError } from './github-rate-limit.lib.mjs'; // Issue #1829: lets the compare-API readiness gate degrade gracefully on transient diff-render failures.

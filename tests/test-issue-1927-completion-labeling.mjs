@@ -9,7 +9,7 @@
  * signal reason — never the green success message — while a synthesized status-
  * only kill (exit code unknown) does not show a misleading "(exit code: 1)".
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import { classifySessionOutcome, getSessionCompletionExitCode, formatSessionCompletionMessage } from '../src/work-session-formatting.lib.mjs';

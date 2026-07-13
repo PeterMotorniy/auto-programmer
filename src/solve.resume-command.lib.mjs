@@ -2,7 +2,7 @@
 
 /**
  * Build a solve.mjs resume command for tools that do not have a first-party interactive
- * resume CLI flow like Claude Code. This keeps the invocation within hive-mind so the
+ * resume CLI flow like Claude Code. This keeps the invocation within auto-programmer so the
  * original tool selection and working directory can be preserved.
  *
  * Lives in its own module (not solve.results.lib.mjs) so it can be imported from

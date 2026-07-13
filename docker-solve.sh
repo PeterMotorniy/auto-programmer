@@ -26,9 +26,9 @@ fi
 mkdir -p ./output
 
 # Build the Docker image if it doesn't exist or if --build is passed
-if [[ "$1" == "--build" ]] || [[ "$(docker images -q hive-mind-solver 2> /dev/null)" == "" ]]; then
+if [[ "$1" == "--build" ]] || [[ "$(docker images -q auto-programmer-solver 2> /dev/null)" == "" ]]; then
     echo "🔨 Building Docker image..."
-    docker build -t hive-mind-solver .
+    docker build -t auto-programmer-solver .
     if [[ "$1" == "--build" ]]; then
         shift # Remove --build from arguments
     fi
@@ -46,7 +46,7 @@ docker run --rm -it \
     -v "$(pwd)/output:/home/box/output" \
     -e GITHUB_TOKEN="${GITHUB_TOKEN:-}" \
     -e CLAUDE_API_KEY="${CLAUDE_API_KEY:-}" \
-    hive-mind-solver \
+    auto-programmer-solver \
     bash -c "
         # Restore credentials first
         ./docker-restore-auth.sh

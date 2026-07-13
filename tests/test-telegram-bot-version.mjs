@@ -6,7 +6,7 @@
  *
  * Run with: node tests/test-telegram-bot-version.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1318
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1318
  */
 
 import { execSync } from 'child_process';

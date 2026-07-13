@@ -55,7 +55,7 @@ const resolveTaskRequester = async ({ $, owner, repo, argv }) => {
 const logForkDivergenceDetails = async ({ snapshot, currentUser, taskRequester, solveCommand, includeAction = true }) => {
   await log('');
   await log('  🔍 What happened:');
-  await log(`     Git rejected updating ${snapshot.forkedRepo}:${snapshot.branchName} after Hive Mind synced the local branch to ${snapshot.upstreamRepo}:${snapshot.branchName}.`);
+  await log(`     Git rejected updating ${snapshot.forkedRepo}:${snapshot.branchName} after Auto Programmer synced the local branch to ${snapshot.upstreamRepo}:${snapshot.branchName}.`);
   await log('');
   await log('  📦 Current state:');
   await log(`     Fork: ${snapshot.forkedRepo}`);
@@ -69,7 +69,7 @@ const logForkDivergenceDetails = async ({ snapshot, currentUser, taskRequester, 
     await log('');
     await log('  ⚠️  Safety check incomplete:');
     await log(`     ${snapshot.fetchError || snapshot.inspectError}`);
-    await log('     Hive Mind cannot prove whether force-with-lease would overwrite fork-only commits.');
+    await log('     Auto Programmer cannot prove whether force-with-lease would overwrite fork-only commits.');
   } else {
     await log(`     Fork-only commits: ${snapshot.forkUniqueCount ?? 'unknown'}`);
     await log(`     Upstream-only commits missing from fork: ${snapshot.upstreamUniqueCount ?? 'unknown'}`);

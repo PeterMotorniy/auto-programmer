@@ -7,7 +7,7 @@
  * listed in TELEGRAM_ALLOWED_CHATS. Unlike /tokens, an empty allowlist disables
  * /auth entirely.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1858
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1858
  */
 
 import assert from 'assert/strict';
@@ -83,7 +83,7 @@ test('parseAuthRequest accepts --status provider', () => {
 });
 
 test('parseAuthRequest accepts --login provider and bot mention', () => {
-  assert.deepEqual(parseAuthRequest('/auth@SwarmMindBot --login codex'), { action: 'login', provider: 'codex', error: null });
+  assert.deepEqual(parseAuthRequest('/auth@AutoProgrammerBot --login codex'), { action: 'login', provider: 'codex', error: null });
 });
 
 test('parseAuthRequest rejects missing provider', () => {

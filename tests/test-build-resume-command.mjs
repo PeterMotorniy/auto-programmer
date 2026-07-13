@@ -9,7 +9,7 @@
  * - Interactive resume: Short command that opens Claude Code in interactive mode
  * - Autonomous resume: Full command with all flags to run autonomously
  *
- * Related issue: https://github.com/link-assistant/hive-mind/issues/942
+ * Related issue: https://github.com/PeterMotorniy/auto-programmer/issues/942
  *
  * Note: These command builders are specifically designed for Claude CLI (--tool claude)
  * and are placed in the claude.command-builder.lib.mjs file as per user requirements.

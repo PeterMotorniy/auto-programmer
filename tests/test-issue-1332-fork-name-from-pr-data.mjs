@@ -169,7 +169,7 @@ runTest('improved error suggestion mentions repo name mismatch', () => {
 // Test 13: Reproduce the exact issue #1332 scenario in code structure
 runTest('issue #1332 scenario: forkRepoName prevents wrong name construction', () => {
   // Simulate the scenario:
-  // owner = 'konard', repo = 'MILANA808-Milana-backend' (base, which is a fork itself)
+  // owner = 'petermotorniy', repo = 'MILANA808-Milana-backend' (base, which is a fork itself)
   // forkOwner = 'MILANA808', forkRepoName = 'Milana-backend' (from headRepository.name)
   //
   // Old behavior (broken):
@@ -179,7 +179,7 @@ runTest('issue #1332 scenario: forkRepoName prevents wrong name construction', (
   //   headRepoName = forkRepoName || repo = 'Milana-backend'
   //   standardForkName = MILANA808/Milana-backend  ← CORRECT
 
-  const owner = 'konard';
+  const owner = 'petermotorniy';
   const repo = 'MILANA808-Milana-backend';
   const forkOwner = 'MILANA808';
   const forkRepoName = 'Milana-backend'; // from headRepository.name
@@ -193,8 +193,8 @@ runTest('issue #1332 scenario: forkRepoName prevents wrong name construction', (
     throw new Error(`Expected MILANA808/Milana-backend, got ${standardForkName}`);
   }
 
-  if (prefixedForkName !== 'MILANA808/konard-Milana-backend') {
-    throw new Error(`Expected MILANA808/konard-Milana-backend, got ${prefixedForkName}`);
+  if (prefixedForkName !== 'MILANA808/petermotorniy-Milana-backend') {
+    throw new Error(`Expected MILANA808/petermotorniy-Milana-backend, got ${prefixedForkName}`);
   }
 
   // Verify old behavior would have been wrong

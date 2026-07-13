@@ -9,7 +9,7 @@
  * console, timer) is injected, so production wiring stays identical while the
  * behaviour is exercised directly by tests.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import { RESOURCE_PHASE_BOT_HEARTBEAT, captureResourceSnapshot, summarizeResourceSnapshot } from './solve.resource-diagnostics.lib.mjs';

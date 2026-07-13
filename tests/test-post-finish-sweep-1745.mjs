@@ -7,7 +7,7 @@
  * should by default go and mask the token by editing comments, pull
  * requests".
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { sweepPrConversationComments, sweepPrDescription } from '../src/post-finish-sanitization-sweep.lib.mjs';

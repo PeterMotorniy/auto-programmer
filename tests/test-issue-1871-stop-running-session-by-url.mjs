@@ -23,7 +23,7 @@
  *
  * Run with: node tests/test-issue-1871-stop-running-session-by-url.mjs
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { registerStartStopCommands } from '../src/telegram-start-stop-command.lib.mjs';

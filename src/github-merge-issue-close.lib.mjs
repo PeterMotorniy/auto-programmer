@@ -11,7 +11,7 @@
  * Extracted from github-merge.lib.mjs to keep that file under the 1500-line
  * limit (same rationale as the Issue #1413 ready-sync split).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1895
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1895
  */
 
 import { promisify } from 'util';
@@ -76,7 +76,7 @@ export async function closeLinkedIssueIfNotAutoClosed(owner, repo, prNumber, ver
       // If state lookup fails, fall through and attempt the close.
     }
 
-    const comment = `Closed by #${prNumber}, which targeted the non-default branch \`${baseBranch}\` (repository default: \`${defaultBranch}\`).\n\nGitHub only auto-closes linked issues for pull requests merged into the default branch, so hive-mind closed this issue explicitly after the merge.\n\n_Automated by hive-mind ([#1895](https://github.com/link-assistant/hive-mind/issues/1895))._`;
+    const comment = `Closed by #${prNumber}, which targeted the non-default branch \`${baseBranch}\` (repository default: \`${defaultBranch}\`).\n\nGitHub only auto-closes linked issues for pull requests merged into the default branch, so auto-programmer closed this issue explicitly after the merge.\n\n_Automated by auto-programmer ([#1895](https://github.com/PeterMotorniy/auto-programmer/issues/1895))._`;
     await exec(`gh issue close ${issueNumber} --repo ${owner}/${repo} --reason completed --comment ${JSON.stringify(comment)}`);
     if (verbose) console.log(`[VERBOSE] /merge: Closed issue #${issueNumber} explicitly (PR #${prNumber} merged into non-default branch '${baseBranch}')`);
     return { closed: true, skipped: false, reason: 'closed-explicitly', issueNumber: Number(issueNumber) };

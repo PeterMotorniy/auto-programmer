@@ -1,119 +1,108 @@
-[![npm](https://img.shields.io/npm/v/@link-assistant/hive-mind.svg)](https://npmjs.com/@link-assistant/hive-mind)
-[![License](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://github.com/link-assistant/hive-mind/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/link-assistant/hive-mind?style=social)](https://github.com/link-assistant/hive-mind/stargazers)
+# Auto Programmer 🧠
 
-[![Open in Gitpod](https://img.shields.io/badge/Gitpod-ready--to--code-f29718?logo=gitpod)](https://gitpod.io/#https://github.com/link-assistant/hive-mind)
-[![Open in GitHub Codespaces](https://img.shields.io/badge/GitHub%20Codespaces-Open-181717?logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=link-assistant/hive-mind)
+**Главный ИИ, управляющий другими ИИ.** Оркестрирующий ИИ, который автоматизирует автоматизацию.
 
-# Hive Mind 🧠 (languages: en • [zh](README.zh.md) • [hi](README.hi.md) • [ru](README.ru.md))
+Также возможно подключить этот ИИ к коллективному человеческому интеллекту — система умеет общаться с людьми для уточнения требований, получения экспертных знаний и обратной связи.
 
-**The master mind AI that controls hive of AI.** The orchestrator AI that controls AIs. The HIVE MIND. The SWARM MIND.
+## Зачем нужен Auto Programmer?
 
-It is also possible to connect this AI to collective human intelligence, meaning this system can communicate with humans for requirements, expertise, feedback.
+**Auto Programmer — наиболее автономный, облачно-ориентированный ИИ-решатель задач, который устраняет необходимость постоянного контроля со стороны разработчика, сохраняя при этом человеческий надзор над критически важными решениями.**
 
-[![Universal Problem Solving Algorithm](https://github.com/user-attachments/assets/1d91e911-9ba4-456e-a00a-14cdd60d9a0a)](https://github.com/konard/problem-solving)
+Auto Programmer — это **универсальный ИИ** (мини-AGI), способный работать над широким спектром задач, а не только над программированием. Практически всё, что можно сделать с файлами в репозитории, поддаётся автоматизации.
 
-Inspired by [konard/problem-solving](https://github.com/konard/problem-solving)
+| Возможность                              | Что это означает для вас                                                                                                                                               |
+| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Без постоянного контроля**             | Полный автономный режим с правами sudo. ИИ обладает творческой свободой, как настоящий программист.                                                                    |
+| **Изоляция в облаке**                    | Работает на выделенных виртуальных машинах или в Docker. Легко восстановить в случае поломки.                                                                          |
+| **Полный доступ к интернету + Sudo**     | ИИ может устанавливать пакеты, получать документацию и настраивать систему по мере необходимости.                                                                      |
+| **Предустановленный инструментарий**     | Более 25 ГБ готово к работе: 10 языковых сред выполнения, 2 средства доказательства теорем, инструменты сборки. Можно установить дополнительные.                       |
+| **Эффективность токенов**                | Рутинные задачи автоматизированы в коде, поэтому токены ИИ сосредоточены на творческом решении проблем.                                                                |
+| **Свобода времени**                      | То, что занимает у людей 2–8 часов, ИИ выполняет за 10–25 минут за рабочую сессию. Возможно массовое выполнение задач в репозитории. «Код пишется, пока вы спите».     |
+| **Масштабирование с оркестрацией**       | Параллельные воркеры ощущаются как команда разработчиков. Свяжите Claude MAX и ChatGPT Pro (по $200 каждый), чтобы получить два независимых почти безлимитных бюджета. |
+| **Контроль со стороны человека**         | ИИ создаёт черновые PR — вы решаете, что вливать. Контроль качества там, где это важно.                                                                                |
+| **Программирование с любого устройства** | Управляйте ИИ с любого устройства через `/solve` и `/hive` посредством Telegram-бота. ПК, IDE или ноутбук не нужны.                                                    |
+| **100% открытый исходный код**           | Лицензия Unlicense (общественное достояние). Полная прозрачность, без привязки к поставщику.                                                                           |
 
-## Why Hive Mind?
+**Стоимость**: Auto Programmer поддерживает две подписки по $200 в месяц как полнофункциональные почти «безлимитные» варианты:
 
-**Hive Mind is the most autonomous, cloud-ready AI issue solver that eliminates developer babysitting while maintaining human oversight on critical decisions.**
+| Подписка                                                          | Используется с `--tool` | Модель по умолчанию | Лучше всего подходит для                                   |
+| ----------------------------------------------------------------- | ----------------------- | ------------------- | ---------------------------------------------------------- |
+| **Anthropic Claude MAX** (~$200 в месяц, часто скидка 50% = $400) | `claude` (по умолчанию) | Opus                | Максимальная креативность и сильное общее кодовое мышление |
+| **OpenAI ChatGPT Pro** ($200 в месяц, включает Codex)             | `codex`                 | `gpt-5.6-sol`       | Надёжные детерминированные рефакторинги и быстрые итерации |
 
-Hive Mind is a **generalist AI** (mini-AGI) capable of working on a wide range of tasks - not just programming. Almost anything that can be done with files in a repository can be automated.
+Оба инструмента можно сочетать в одном hive. Воркеры могут параллельно запускать разные инструменты, а `/codex` или `/solve --tool codex` направляет задачи в ChatGPT Pro, тогда как маршрут по умолчанию идёт в Claude MAX. Выбирать только один вариант не требуется: любой одной подписки достаточно для работы, а использование обеих открывает режим параллелизма по инструментам/моделям (#1474).
 
-| Feature                      | What It Means For You                                                                                                                                                      |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **No Babysitting**           | Full autonomous mode with sudo access. AI has creative freedom like a real programmer.                                                                                     |
-| **Cloud Isolation**          | Runs on dedicated VMs or Docker. Easy to restore if broken.                                                                                                                |
-| **Full Internet + Sudo**     | AI can install packages, fetch docs, and configure the system as needed.                                                                                                   |
-| **Pre-installed Toolchain**  | 25GB+ ready: 10 language runtimes, 2 theorem provers, build tools. Can install more.                                                                                       |
-| **Token Efficiency**         | Routine tasks automated in code, so AI tokens focus on creative problem-solving.                                                                                           |
-| **Time Freedom**             | What takes humans 2-8 hours, AI completes each working session in 10-25 minutes. Mass execution of tasks in repository is possible. "The code is written while you sleep." |
-| **Scale with Orchestration** | Parallel workers feel like a team of developers. Pair Claude MAX and ChatGPT Pro ($200 each) for two independent unlimited budgets.                                        |
-| **Human Control**            | AI creates draft PRs - you decide what merges. Quality gates where they matter.                                                                                            |
-| **Any Device Programming**   | Manage AI from any device with `/solve` and `/hive` via Telegram bot. No PC, IDE, or laptop required.                                                                      |
-| **100% Open Source**         | Unlicense (public domain). Full transparency, no vendor lock-in.                                                                                                           |
+Auto Programmer обладает высоким уровнем творчества, неотличимым от среднего программиста. Он задаёт вопросы, если требования неясны, и вы можете уточнять их на ходу через комментарии к PR.
 
-**Cost**: Hive Mind supports two $200/month subscriptions as full-featured "unlimited" options:
+Видение проекта и примеры пользовательских сценариев см. в [docs/VISION.md](./docs/VISION.md). Подробные возможности и сравнения см. в [docs/FEATURES.md](./docs/FEATURES.md) и [docs/COMPARISON.md](./docs/COMPARISON.md).
 
-| Subscription                                                       | Pairs with `--tool` | Default model | Best for                                                |
-| ------------------------------------------------------------------ | ------------------- | ------------- | ------------------------------------------------------- |
-| **Anthropic Claude MAX** (~$200/month, often 50% off = $400 value) | `claude` (default)  | Opus          | Highest creativity, strongest general code reasoning    |
-| **OpenAI ChatGPT Pro** ($200/month, includes Codex)                | `codex`             | `gpt-5.6-sol` | Strong deterministic refactors and fast iteration loops |
+## ⚠️ ПРЕДУПРЕЖДЕНИЕ
 
-Both tools can be combined in the same hive. Workers can run different tools in parallel, and `/codex` or `/solve --tool codex` routes tasks to ChatGPT Pro while the default routes to Claude MAX. There is no requirement to pick one: either single subscription is enough to operate, and using both unlocks per-tool/model concurrency mode (#1474).
+Запускать это программное обеспечение на вашей рабочей машине НЕБЕЗОПАСНО.
 
-Hive Mind has high creativity indistinguishable from average programmers. It asks questions if requirements are unclear, and you can clarify on the go via PR comments.
+Рекомендуется использовать Docker для установки (как локально, так и на серверах). Смотрите раздел [Установка через Docker](#использование-docker) ниже.
 
-For the project's vision and example user journeys, see [docs/VISION.md](./docs/VISION.md). For detailed features and comparisons, see [docs/FEATURES.md](./docs/FEATURES.md) and [docs/COMPARISON.md](./docs/COMPARISON.md).
+Это программное обеспечение запускает поддерживаемые ИИ-инструменты, такие как Claude Code и Codex, в полностью автономном режиме, а значит, они могут выполнять любые команды по своему усмотрению.
 
-## ⚠️ WARNING
+Это может привести к непредвиденным побочным эффектам.
 
-It is UNSAFE to run this software on your developer machine.
+Также существует известная проблема утечки дискового пространства. Убедитесь, что вы в состоянии переустановить виртуальную машину для освобождения места и/или устранения любых повреждений.
 
-It is recommended to use Docker for installation (both locally and on servers). See the [Docker installation](#using-docker) section below.
+### ⚠️ КРИТИЧЕСКИ ВАЖНО: Безопасность токенов и конфиденциальных данных
 
-This software runs supported AI tools such as Claude Code and Codex in full autonomous mode, which means they are free to execute any commands they see fit.
+**ЭТО ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ НЕ МОЖЕТ ГАРАНТИРОВАТЬ БЕЗОПАСНОСТЬ ВАШИХ ТОКЕНОВ ИЛИ ДРУГИХ КОНФИДЕНЦИАЛЬНЫХ ДАННЫХ НА ВИРТУАЛЬНОЙ МАШИНЕ.**
 
-That means it can lead to unexpected side effects.
+Существует бесконечное множество способов извлечь токены с виртуальной машины, подключённой к интернету. Это включает, но не ограничивается:
 
-There is also a known issue of space leakage. So you need to make sure you are able to reinstall your virtual machine to clear space and/or any damage to the virtual machine.
+- **Токены Claude MAX** и/или **токены ChatGPT Pro (Codex)** — необходимы для работы ИИ; можно запускать с любым из них или с обоими
+- **Токены GitHub** — необходимы для доступа к репозиториям
+- **API-ключи и учётные данные** — любые конфиденциальные данные в системе
 
-### ⚠️ CRITICAL: Token and Sensitive Data Security
+**ВАЖНЫЕ СООБРАЖЕНИЯ ПО БЕЗОПАСНОСТИ:**
 
-**THIS SOFTWARE CANNOT GUARANTEE ANY SAFETY FOR YOUR TOKENS OR OTHER SENSITIVE DATA ON THE VIRTUAL MACHINE.**
+- Запуск на рабочей машине разработчика **АБСОЛЮТНО НЕБЕЗОПАСЕН**
+- Запуск на виртуальной машине **МЕНЕЕ НЕБЕЗОПАСЕН**, но всё ещё несёт риски
+- Даже если данные вашей рабочей машины не подвергаются прямому воздействию, виртуальная машина всё равно содержит конфиденциальные токены
+- Любой токен, хранящийся в системе, подключённой к интернету, потенциально может быть скомпрометирован
 
-There are infinite ways to extract tokens from a virtual machine connected to the internet. This includes but is not limited to:
+**ИСПОЛЬЗУЙТЕ ЭТО ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ИСКЛЮЧИТЕЛЬНО НА СВОЙ СТРАХ И РИСК.**
 
-- **Claude MAX tokens** and/or **ChatGPT Pro (Codex) tokens** - Required for AI operations; you can run with either or both
-- **GitHub tokens** - Required for repository access
-- **API keys and credentials** - Any sensitive data on the system
+Мы настоятельно рекомендуем:
 
-**IMPORTANT SECURITY CONSIDERATIONS:**
+- Использовать выделенные изолированные виртуальные машины
+- Регулярно ротировать токены
+- Отслеживать использование токенов на предмет подозрительной активности
+- Никогда не использовать производственные токены или учётные данные
+- Быть готовыми отозвать и заменить все токены, используемые в этой системе
 
-- Running on a developer machine is **ABSOLUTELY UNSAFE**
-- Running on a virtual machine is **LESS UNSAFE** but still has risks
-- Even though your developer machine data isn't directly exposed, the VM still contains sensitive tokens
-- Any token stored on an internet-connected system can potentially be compromised
-
-**USE THIS SOFTWARE ENTIRELY AT YOUR OWN RISK AND RESPONSIBILITY.**
-
-We strongly recommend:
-
-- Using dedicated, isolated virtual machines
-- Rotating tokens regularly
-- Monitoring token usage for suspicious activity
-- Never using production tokens or credentials
-- Being prepared to revoke and replace all tokens used with this system
-
-Minimum system requirements to run `hive.mjs`:
+Минимальные системные требования для запуска `hive.mjs`:
 
 ```
-1 CPU Core
-1 GB RAM
-> 4 GB SWAP
-50 GB disk space
+1 ядро CPU
+1 ГБ ОЗУ
+> 4 ГБ SWAP
+50 ГБ дискового пространства
 ```
 
-## 🚀 Quick Start
+## 🚀 Быстрый старт
 
-### Global Installation
+### Глобальная установка
 
-#### Using Bun (Recommended)
+#### С помощью Bun (рекомендуется)
 
 ```bash
-bun install -g @link-assistant/hive-mind
+bun install -g auto-programmer
 ```
 
-#### Using Node.js
+#### С помощью Node.js
 
 ```bash
-npm install -g @link-assistant/hive-mind
+npm install -g auto-programmer
 ```
 
-### Installing Docker
+### Установка Docker
 
-If you don't have Docker installed yet, follow these steps to install Docker Engine on Ubuntu:
+Если у вас ещё не установлен Docker, выполните следующие шаги для установки Docker Engine на Ubuntu:
 
 ```bash
 # Install prerequisites
@@ -142,26 +131,26 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 sudo docker run hello-world
 ```
 
-**For other operating systems** or detailed instructions, see the [official Docker documentation](https://docs.docker.com/engine/install/).
+**Для других операционных систем** или подробных инструкций см. [официальную документацию Docker](https://docs.docker.com/engine/install/).
 
-### Using Docker
+### Использование Docker
 
-Run the Hive Mind using Docker for safer local installation - no manual setup required:
+Запустите Auto Programmer с помощью Docker для более безопасной локальной установки — ручная настройка не требуется:
 
-**Note:** Docker is much safer for local installation and can be used to install multiple isolated instances on a server or Kubernetes cluster. For Kubernetes deployments, see the [Helm chart installation](#helm-installation-kubernetes-experimental) section below.
+**Примечание:** Docker значительно безопаснее для локальной установки и позволяет запускать несколько изолированных экземпляров на сервере или в кластере Kubernetes. Для развёртывания в Kubernetes см. раздел [Установка через Helm](#установка-через-helm-kubernetes-экспериментально) ниже.
 
 ```bash
 # Pull the latest image from Docker Hub
-docker pull konard/hive-mind:latest
+docker pull petermotorniy/auto-programmer:latest
 
-# Start hive-mind container
-docker run -dit --name hive-mind konard/hive-mind:latest
+# Start auto-programmer container
+docker run -dit --name auto-programmer petermotorniy/auto-programmer:latest
 
 # Verify container started
 docker ps -a
 
 # Enter additional terminal process to do installation
-docker exec -it hive-mind /bin/bash
+docker exec -it auto-programmer /bin/bash
 
 # Inside the container, authenticate with GitHub
 gh-setup-git-identity
@@ -173,6 +162,7 @@ claude
 # Use /config command and set:
 # Reduce motion                             true # Will save your ssh trafic, and make Claude Code more responsive (less latency)
 # Thinking mode                             false # Anthropic models perform better and cheaper without thinking
+# Если `--think` не указан, Auto Programmer трактует это как `--think off`.
 # Model                                     haiku # chepear for connection testing manually
 # Claude in Chrome enabled by default       false # No need for Chrome support on server
 
@@ -187,12 +177,8 @@ codex login --device-auth
 # It prints the refusal to STDOUT but still exits 0, so do not skip the flag.
 codex exec --skip-git-repo-check --model gpt-5.4-mini "reply with only OK"
 
-# Verify Playwright MCP is registered for both CLIs in this container image
-claude mcp list | grep playwright
-codex mcp list | grep playwright
-
-# You might need to update hive-mind and agent to latest versions:
-bun install -g @link-assistant/hive-mind
+# You might need to update auto-programmer and agent to latest versions:
+bun install -g auto-programmer
 bun install -g @link-assistant/agent
 
 # Now you can use hive and solve commands
@@ -204,7 +190,7 @@ solve https://github.com/owner/repo/issues/123
 exit
 
 # Attach to main bash process
-docker attach hive-mind
+docker attach auto-programmer
 
 # Run bot here
 
@@ -212,47 +198,42 @@ docker attach hive-mind
 
 # --- Persisting auth data across restarts ---
 
-# On the host, create the directories used by the current Docker workflow:
-mkdir -p /root/.hive-mind/claude /root/.hive-mind/codex /root/.hive-mind/gh
-touch -a /root/.hive-mind/claude.json
+# Extract auth data from a running (or stopped) container to the host:
+mkdir -p ~/.auto-programmer
+docker cp auto-programmer:/home/box/.claude ~/.auto-programmer/claude
+docker cp auto-programmer:/home/box/.claude.json ~/.auto-programmer/claude.json
+docker cp auto-programmer:/home/box/.config/gh ~/.auto-programmer/gh
 
-# In our Docker images HOME=/home/box, so Codex stores its data in /home/box/.codex.
-# Mount the full Codex directory so auth.json, config.toml, and sessions survive restarts.
-docker run -dit --user box --name hive-mind --restart unless-stopped \
-  -v /root/.hive-mind/claude:/home/box/.claude \
-  -v /root/.hive-mind/codex:/home/box/.codex \
-  -v /root/.hive-mind/claude.json:/home/box/.claude.json \
-  -v /root/.hive-mind/gh:/home/box/.config/gh \
-  konard/hive-mind:latest bash -l -c 'bash /home/box/start-bot.sh'
+# Fix ownership to match the box user inside the container:
+BOX_UID=$(docker exec auto-programmer id -u box)
+chown -R $BOX_UID:$BOX_UID ~/.auto-programmer/claude ~/.auto-programmer/gh
+chown $BOX_UID:$BOX_UID ~/.auto-programmer/claude.json
 
-# After the first start, fix ownership to match the box user inside the container:
-BOX_UID=$(docker exec hive-mind id -u box)
-chown -R $BOX_UID:$BOX_UID /root/.hive-mind/claude /root/.hive-mind/codex /root/.hive-mind/gh
-chown $BOX_UID:$BOX_UID /root/.hive-mind/claude.json
-
-# Important: mounted ~/.codex data overrides the image-baked Codex config.
-# If the host directory was created before Playwright MCP was added to the image,
-# re-register it once inside the running container:
-docker exec -it hive-mind bash -lc 'codex mcp list && codex mcp add playwright -- npx -y @playwright/mcp@latest --isolated --headless --no-sandbox --timeout-action=600000 --viewport-size 1920x1080'
+# On subsequent runs, mount the auth data to keep it between restarts:
+docker run -dit \
+  --name auto-programmer \
+  --restart unless-stopped \
+  -v /root/.auto-programmer/claude:/home/box/.claude \
+  -v /root/.auto-programmer/claude.json:/home/box/.claude.json \
+  -v /root/.auto-programmer/gh:/home/box/.config/gh \
+  petermotorniy/auto-programmer:latest
 ```
 
-**Benefits of Docker:**
+**Преимущества Docker:**
 
-- ✅ Pre-configured Ubuntu 24.04 environment
-- ✅ All dependencies pre-installed
-- ✅ Isolated from your host system
-- ✅ Easy to run multiple instances with different GitHub accounts
-- ✅ Consistent environment across different machines
+- ✅ Предварительно настроенная среда Ubuntu 24.04
+- ✅ Все зависимости предустановлены
+- ✅ Изолирован от хост-системы
+- ✅ Легко запускать несколько экземпляров с разными аккаунтами GitHub
+- ✅ Единообразная среда на разных машинах
 
-The Docker image itself now registers Playwright MCP for both Claude and Codex during build, and CI verifies those registrations in the built container. If `codex mcp list` is still empty in a running container, the usual cause is not the published image itself but a mounted `/home/box/.codex` directory from the host that replaces the image's default Codex configuration.
+См. [docs/DOCKER.md](./docs/DOCKER.md) для расширенного использования Docker.
 
-See [docs/DOCKER.md](./docs/DOCKER.md) for advanced Docker usage.
-
-#### Stoping and removing docker container
+#### Остановка и удаление контейнера Docker
 
 ```
 # Attach to main docker process to stop the container
-docker attach hive-mind
+docker attach auto-programmer
 
 ^C # stop the telegram bot
 
@@ -260,7 +241,7 @@ exit # exit/stop the container
 
 docker ps -a # show list of docker containers
 # CONTAINER ID   IMAGE                     COMMAND       CREATED      STATUS                        PORTS     NAMES
-# fd0fd4470ec3   konard/hive-mind:latest   "/bin/bash"   5 days ago   Exited (130) 16 seconds ago             hive-mind
+# fd0fd4470ec3   petermotorniy/auto-programmer:latest   "/bin/bash"   5 days ago   Exited (130) 16 seconds ago             auto-programmer
 
 
 df -h # check disk space
@@ -273,7 +254,7 @@ df -h # check disk space
 # /dev/sda15      105M  6.2M   99M   6% /boot/efi
 # tmpfs           1.2G   12K  1.2G   1% /run/user/0
 
-docker rm hive-mind # remove docker container frees space used by the container, does not delete image
+docker rm auto-programmer # remove docker container frees space used by the container, does not delete image
 
 df -h # check disk space (to confirm space is freed)
 # Filesystem      Size  Used Avail Use% Mounted on
@@ -286,27 +267,27 @@ df -h # check disk space (to confirm space is freed)
 # tmpfs           1.2G   12K  1.2G   1% /run/user/0
 ```
 
-### Helm Installation (Kubernetes) (Experimental)
+### Установка через Helm (Kubernetes) (Экспериментально)
 
-> ⚠️ **EXPERIMENTAL:** The Helm/Kubernetes installation method is experimental and may not be fully stable.
+> ⚠️ **ЭКСПЕРИМЕНТАЛЬНО:** Метод установки через Helm/Kubernetes является экспериментальным и может быть нестабильным.
 >
-> For a more reliable installation, we recommend using [Docker](#using-docker) instead.
+> Для более надёжной установки рекомендуем использовать [Docker](#использование-docker).
 >
-> See [docs/HELM.md](./docs/HELM.md) for the full Helm installation instructions and configuration options.
+> См. [docs/HELM.md](./docs/HELM.md) для полных инструкций по установке через Helm и параметров конфигурации.
 
-### Installation on Ubuntu 24.04 server (Deprecated)
+### Установка на сервер Ubuntu 24.04 (Устарело)
 
-> ⚠️ **DEPRECATED:** This installation method is no longer recommended.
+> ⚠️ **УСТАРЕЛО:** Данный метод установки больше не рекомендуется.
 >
-> **We now recommend using Docker for all installations**, both on developer machines and servers.
-> Docker provides better isolation, easier management, and consistent environments.
+> **Теперь мы рекомендуем использовать Docker для всех установок** — как на машинах разработчиков, так и на серверах.
+> Docker обеспечивает лучшую изоляцию, более простое управление и единообразные среды.
 >
-> Please use the [Docker installation method](#using-docker) above.
-> For Kubernetes deployments, see the [Helm installation](#helm-installation-kubernetes-experimental) section.
+> Пожалуйста, используйте [метод установки через Docker](#использование-docker) выше.
+> Для развёртывания в Kubernetes см. раздел [Установка через Helm](#установка-через-helm-kubernetes-экспериментально).
 >
-> The legacy bare-metal installation instructions have been moved to [docs/UBUNTU-SERVER.md](./docs/UBUNTU-SERVER.md) for reference.
+> Устаревшие инструкции по установке на «голое железо» перенесены в [docs/UBUNTU-SERVER.md](./docs/UBUNTU-SERVER.md) для справки.
 
-### Core Operations
+### Основные операции
 
 ```bash
 # Solve using maximum power
@@ -337,88 +318,82 @@ review --repo owner/repo --pr 456
 ./reviewers-hive.mjs --agents 3 --consensus-threshold 0.8
 ```
 
-## 📋 Core Components
+## 📋 Основные компоненты
 
-| Script                                      | Purpose                       | Key Features                                                             |
-| ------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------ |
-| `solve.mjs` (stable)                        | GitHub issue solver           | Auto fork, branch creation, PR generation, resume sessions, fork support |
-| `hive.mjs` (stable)                         | AI orchestration & monitoring | Multi-repo monitoring, concurrent workers, issue queue management        |
-| `review.mjs` (alpha)                        | Code review automation        | Collaborative AI reviews, automated feedback                             |
-| `reviewers-hive.mjs` (alpha / experimental) | Review team management        | Multi-agent consensus, reviewer assignment                               |
-| `telegram-bot.mjs` (stable)                 | Telegram bot interface        | Remote command execution, group chat support, diagnostic tools           |
+| Скрипт                                     | Назначение                      | Ключевые возможности                                                                |
+| ------------------------------------------ | ------------------------------- | ----------------------------------------------------------------------------------- |
+| `solve.mjs` (стабильный)                   | Решатель задач GitHub           | Автофорк, создание веток, генерация PR, возобновление сессий, поддержка форков      |
+| `hive.mjs` (стабильный)                    | Оркестрация и мониторинг ИИ     | Мониторинг нескольких репозиториев, параллельные воркеры, управление очередью задач |
+| `review.mjs` (альфа)                       | Автоматизация проверки кода     | Совместные проверки ИИ, автоматизированная обратная связь                           |
+| `reviewers-hive.mjs` (альфа / эксперимент) | Управление командой проверяющих | Консенсус мультиагентов, назначение проверяющих                                     |
+| `telegram-bot.mjs` (стабильный)            | Интерфейс Telegram-бота         | Удалённое выполнение команд, поддержка групповых чатов, диагностические инструменты |
 
-## 🔧 solve Options
+## 🔧 Параметры solve
 
 ```bash
 solve <issue-url> [options]
 ```
 
-**Most frequently used options:**
+**Наиболее часто используемые параметры:**
 
-| Option          | Alias | Description                             | Default   |
-| --------------- | ----- | --------------------------------------- | --------- |
-| `--model`       | `-m`  | AI model to use (sonnet, opus, haiku)   | opus      |
-| `--think`       |       | Thinking level (low, medium, high, max) | -         |
-| `--base-branch` | `-b`  | Target branch for PR                    | (default) |
+| Параметр        | Сокр. | Описание                                                     | По умолчанию   |
+| --------------- | ----- | ------------------------------------------------------------ | -------------- |
+| `--model`       | `-m`  | Используемая модель ИИ (sonnet, opus, haiku)                 | opus           |
+| `--think`       |       | Уровень мышления (off, low, medium, high, xhigh, ultra, max) | off            |
+| `--base-branch` | `-b`  | Целевая ветка для PR                                         | (по умолчанию) |
 
-**Other useful options:**
+**Другие полезные параметры:**
 
-| Option                   | Alias | Description                                            | Default |
-| ------------------------ | ----- | ------------------------------------------------------ | ------- |
-| `--tool`                 |       | AI tool (claude, opencode, codex, agent, qwen, gemini) | claude  |
-| `--verbose`              | `-v`  | Enable verbose logging                                 | false   |
-| `--attach-logs`          |       | Attach logs to PR (⚠️ may expose sensitive data)       | false   |
-| `--auto-init-repository` |       | Auto-initialize empty repos (creates README.md)        | false   |
-| `--help`                 | `-h`  | Show all available options                             | -       |
+| Параметр                 | Сокр. | Описание                                                              | По умолчанию |
+| ------------------------ | ----- | --------------------------------------------------------------------- | ------------ |
+| `--tool`                 |       | Инструмент ИИ (claude, opencode, codex, agent, qwen, gemini)          | claude       |
+| `--verbose`              | `-v`  | Включить подробное логирование                                        | false        |
+| `--attach-logs`          |       | Прикрепить логи к PR (⚠️ может раскрыть конфиденциальные данные)      | false        |
+| `--auto-init-repository` |       | Автоматически инициализировать пустые репозитории (создаёт README.md) | false        |
+| `--help`                 | `-h`  | Показать все доступные параметры                                      | -            |
 
-> **📖 Full options list**: See [docs/CONFIGURATION.md](./docs/CONFIGURATION.md#solve-options) for all available options including forking, auto-continue, watch mode, and experimental features.
+> **📖 Полный список параметров**: см. [docs/CONFIGURATION.md](./docs/CONFIGURATION.md#solve-options), включая форкинг, автопродолжение, режим наблюдения и экспериментальные функции.
 
-## 🔧 hive Options
+## 🔧 Параметры hive
 
 ```bash
 hive <github-url> [options]
 ```
 
-**Most frequently used options:**
+**Наиболее часто используемые параметры:**
 
-| Option         | Alias | Description                             | Default |
-| -------------- | ----- | --------------------------------------- | ------- |
-| `--model`      | `-m`  | AI model to use (sonnet, opus, haiku)   | opus    |
-| `--think`      |       | Thinking level (low, medium, high, max) | -       |
-| `--all-issues` | `-a`  | Monitor all issues (ignore labels)      | false   |
-| `--once`       |       | Single run (don't monitor continuously) | false   |
+| Параметр       | Сокр. | Описание                                                     | По умолчанию |
+| -------------- | ----- | ------------------------------------------------------------ | ------------ |
+| `--model`      | `-m`  | Используемая модель ИИ (sonnet, opus, haiku)                 | opus         |
+| `--think`      |       | Уровень мышления (off, low, medium, high, xhigh, ultra, max) | off          |
+| `--all-issues` | `-a`  | Мониторинг всех задач (игнорировать метки)                   | false        |
+| `--once`       |       | Одиночный запуск (без непрерывного мониторинга)              | false        |
 
-**Other useful options:**
+**Другие полезные параметры:**
 
-| Option                   | Alias | Description                                            | Default |
-| ------------------------ | ----- | ------------------------------------------------------ | ------- |
-| `--tool`                 |       | AI tool (claude, opencode, codex, agent, qwen, gemini) | claude  |
-| `--concurrency`          | `-c`  | Number of parallel workers                             | 2       |
-| `--skip-issues-with-prs` | `-s`  | Skip issues with existing PRs                          | false   |
-| `--verbose`              | `-v`  | Enable verbose logging                                 | false   |
-| `--attach-logs`          |       | Attach logs to PRs (⚠️ may expose sensitive data)      | false   |
-| `--help`                 | `-h`  | Show all available options                             | -       |
+| Параметр                 | Сокр. | Описание                                                          | По умолчанию |
+| ------------------------ | ----- | ----------------------------------------------------------------- | ------------ |
+| `--tool`                 |       | Инструмент ИИ (claude, opencode, codex, agent, qwen, gemini)      | claude       |
+| `--concurrency`          | `-c`  | Количество параллельных воркеров                                  | 2            |
+| `--skip-issues-with-prs` | `-s`  | Пропускать задачи с существующими PR                              | false        |
+| `--verbose`              | `-v`  | Включить подробное логирование                                    | false        |
+| `--attach-logs`          |       | Прикреплять логи к PR (⚠️ может раскрыть конфиденциальные данные) | false        |
+| `--help`                 | `-h`  | Показать все доступные параметры                                  | -            |
 
-> **📖 Full options list**: See [docs/CONFIGURATION.md](./docs/CONFIGURATION.md#hive-options) for all available options including project monitoring, YouTrack integration, and experimental features.
+> **📖 Полный список параметров**: см. [docs/CONFIGURATION.md](./docs/CONFIGURATION.md#hive-options), включая мониторинг проектов, интеграцию с YouTrack и экспериментальные функции.
 
-## 🤖 Telegram Bot
+## 🤖 Telegram-бот
 
-The Hive Mind includes a Telegram bot interface (SwarmMindBot) for remote command execution.
+Auto Programmer включает интерфейс Telegram-бота (AutoProgrammerBot) для удалённого выполнения команд.
 
-### 🚀 Test Drive
+### Настройка
 
-Want to see the Hive Mind in action? Request a free demo or get faster support by messaging the developer directly on Telegram:
+1. **Получить токен бота**
+   - Напишите [@BotFather](https://t.me/BotFather) в Telegram
+   - Создайте нового бота и получите токен
+   - Добавьте бота в групповой чат и назначьте его администратором
 
-**[Message @drakonard on Telegram](https://t.me/drakonard)**
-
-### Setup
-
-1. **Get Bot Token**
-   - Talk to [@BotFather](https://t.me/BotFather) on Telegram
-   - Create a new bot and get your token
-   - Add the bot to your group chat and make it an admin
-
-2. **Configure Environment**
+2. **Настроить окружение**
 
    ```bash
    # Copy the example configuration
@@ -432,42 +407,45 @@ Want to see the Hive Mind in action? Request a free demo or get faster support b
    echo "TELEGRAM_ALLOWED_CHATS=123456789,987654321" >> .env
    ```
 
-3. **Start the Bot**
+3. **Запустить бота**
 
    ```bash
    hive-telegram-bot
    ```
 
-   **Recommended: Capture logs with tee**
+   **Рекомендуется: захват логов с помощью tee**
 
-   When running the bot for extended periods, it's recommended to capture logs to a file using `tee`. This ensures you can review logs later even if the terminal buffer overflows:
+   При длительной работе бота рекомендуется сохранять логи в файл с помощью `tee`. Это позволит просмотреть логи позже, даже если буфер терминала переполнится:
 
    ```bash
    hive-telegram-bot 2>&1 | tee -a logs/bot-$(date +%Y%m%d).log
    ```
 
-   Or create a logs directory and start with automatic log rotation:
+   Или создайте директорию для логов и запустите с автоматической ротацией:
 
    ```bash
    mkdir -p logs
    hive-telegram-bot 2>&1 | tee -a "logs/bot-$(date +%Y%m%d-%H%M%S).log"
    ```
 
-   **Experimental: live terminal watch**
+   **Экспериментально: live terminal watch**
 
    ```bash
    hive-telegram-bot --auto-start-screen-watch-message
    ```
 
-   This opt-in flag starts a separate live terminal message for public `/solve`
-   sessions. Private or unknown-visibility repositories never auto-start a
-   watch message.
+   Этот opt-in флаг запускает отдельное live terminal сообщение для публичных
+   сессий `/solve`. Для приватных репозиториев или репозиториев с неизвестной
+   видимостью watch-сообщение автоматически не запускается.
 
-### Bot Commands
+### Команды бота
 
-Most operational commands work in **group chats only** (not in private messages with the bot). Commands that intentionally deliver private updates, such as `/terminal_watch`, may also be used in direct messages:
+Большинство операционных команд работают **только в групповых чатах** (не в
+личных сообщениях боту). Команды, которые намеренно доставляют приватные
+обновления, например `/terminal_watch`, также можно использовать в личных
+сообщениях:
 
-#### `/solve` - Solve GitHub Issues
+#### `/solve` — Решение задач GitHub
 
 ```
 /solve <github-url> [options]
@@ -477,13 +455,13 @@ Examples:
 /solve https://github.com/owner/repo/issues/123 --model opus --think max
 
 Aliases:
-/do and /continue are equivalent to /solve
-/claude is equivalent to /solve --tool claude
-/codex is equivalent to /solve --tool codex
-/opencode is equivalent to /solve --tool opencode
-/agent is equivalent to /solve --tool agent
-/qwen is equivalent to /solve --tool qwen
-/gemini is equivalent to /solve --tool gemini
+/do и /continue эквивалентны /solve
+/claude эквивалентна /solve --tool claude
+/codex эквивалентна /solve --tool codex
+/opencode эквивалентна /solve --tool opencode
+/agent эквивалентна /solve --tool agent
+/qwen эквивалентна /solve --tool qwen
+/gemini эквивалентна /solve --tool gemini
 
 Tool alias examples:
 /codex https://github.com/owner/repo/issues/123 --model gpt-5.5
@@ -505,23 +483,9 @@ Free Models via Kilo Gateway (with --tool agent):
 /solve https://github.com/owner/repo/issues/123 --tool agent --model kilo/deepseek-r1-free
 ```
 
-Current tool defaults in Hive Mind:
+> **📖 Руководство по бесплатным моделям**: см. [docs/FREE_MODELS.md](./docs/FREE_MODELS.md) для получения полной информации обо всех бесплатных моделях, включая провайдеры OpenCode Zen и Kilo Gateway.
 
-| Tool       | Default model                                                               | Default reasoning behavior                                                         |
-| ---------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `claude`   | `opus`                                                                      | Defaults to `--think off`: zero budget when supported, otherwise the lowest effort |
-| `codex`    | `gpt-5.6-sol` preferred, with runtime fallback to local catalog (`gpt-5.5`) | Defaults to `--think off`, mapped to `reasoning_effort=none`                       |
-| `opencode` | `grok-code-fast-1`                                                          | Defaults to `--think off`; no positive thinking prompt is added                    |
-| `agent`    | `nemotron-3-super-free`                                                     | Defaults to `--think off`; no positive thinking prompt is added                    |
-| `gemini`   | `flash`                                                                     | Defaults to `--think off`; no positive thinking prompt is added                    |
-| `qwen`     | `qwen3-coder-plus`                                                          | Defaults to `--think off`; no positive thinking prompt is added                    |
-| `gemini`   | `gemini-2.5-flash`                                                          | Defaults to `--think off`; no positive thinking prompt is added                    |
-
-See [docs/CONFIGURATION.md](./docs/CONFIGURATION.md) for the full per-tool defaults and reasoning mappings.
-
-> **📖 Free Models Guide**: See [docs/FREE_MODELS.md](./docs/FREE_MODELS.md) for comprehensive information about all free models including OpenCode Zen and Kilo Gateway providers.
-
-#### `/hive` - Run Hive Orchestration
+#### `/hive` — Запуск оркестрации Hive
 
 ```
 /hive <github-url> [options]
@@ -532,7 +496,7 @@ Examples:
 /hive https://github.com/microsoft --all-issues --concurrency 3
 ```
 
-#### `/merge` - Merge Ready Pull Requests
+#### `/merge` — Слияние готовых Pull Request
 
 ```
 /merge <repository-url|issue-url|pull-request-url> [--auto-resolve]
@@ -543,15 +507,16 @@ Examples:
 /merge https://github.com/owner/repo/pull/456
 ```
 
-Repository targets process PRs with the `ready` label sequentially. Issue and
-pull request targets process only the linked or selected PR. You can also reply
-with `/merge` to a message containing one GitHub repository, issue, or pull
-request link, such as a previous `/codex ...issues/123` command.
+Цель-репозиторий обрабатывает PR с меткой `ready` последовательно. Цели issue и
+pull request обрабатывают только связанный или выбранный PR. Также можно ответить
+командой `/merge` на сообщение с одной ссылкой на GitHub repository, issue или
+pull request, например на предыдущую команду `/codex ...issues/123`.
 
-If a target PR is not finished yet, `/merge` waits for it to become mergeable
-before merging. Merge-conflict skips still work with `--auto-resolve`.
+Если целевой PR ещё не завершён, `/merge` ждёт, пока он станет mergeable, и затем
+выполняет слияние. Пропуск конфликтов слияния по-прежнему работает с
+`--auto-resolve`.
 
-#### `/limits` - Show Usage Limits
+#### `/limits` — Показать лимиты использования
 
 ```
 /limits
@@ -566,7 +531,7 @@ Shows:
 - Solve queue status
 ```
 
-#### `/terminal_watch` - Live Session Log
+#### `/terminal_watch` — Live Session Log
 
 ```
 /terminal_watch <uuid> [--size 120x25]
@@ -576,13 +541,14 @@ Examples:
 /terminal_watch 4d934f71-4cdb-4b8c-b474-582116d12c12 --width 100 --height 20
 ```
 
-You can also reply to a bot session message with `/terminal_watch`. The command
-updates a separate Telegram message with the latest lines from the session log
-reported by `$ --status <uuid>` and attaches the full log file when the session
-finishes. Public repository logs can be watched in the chat; private or
-unknown-visibility repository logs are delivered by direct message only.
+Также можно ответить на сообщение сессии бота командой `/terminal_watch`. Команда
+обновляет отдельное сообщение Telegram последними строками лога сессии,
+полученного через `$ --status <uuid>`, и прикрепляет полный файл лога после
+завершения сессии. Логи публичных репозиториев можно смотреть в чате; логи
+приватных репозиториев или репозиториев с неизвестной видимостью доставляются
+только личным сообщением.
 
-#### `/help` - Get Help and Diagnostic Info
+#### `/help` — Получить справку и диагностическую информацию
 
 ```
 /help
@@ -594,139 +560,140 @@ Shows:
 - Usage examples
 ```
 
-### Features
+### Возможности
 
-- ✅ **Group Chat Execution**: `/solve` and `/hive` workflows run from authorized group chats
-- ✅ **Full Options Support**: All command-line options work in Telegram
-- ✅ **Screen Sessions**: Commands run in detached screen sessions
-- ✅ **Live Terminal Watch**: `/terminal_watch` and opt-in auto-start show live session logs
-- ✅ **Chat Restrictions**: Optional whitelist of allowed chat IDs
-- ✅ **Private Auth Check**: Experimental `/auth --status <gh|claude|codex>` and `/auth --login <gh|claude|codex>` for owners of allowlisted chats
-- ✅ **Diagnostic Tools**: Get chat ID and configuration info
+- ✅ **Запуск из групповых чатов**: workflows `/solve` и `/hive` запускаются из авторизованных групповых чатов
+- ✅ **Полная поддержка параметров**: все параметры командной строки работают в Telegram
+- ✅ **Screen-сессии**: команды запускаются в отсоединённых screen-сессиях
+- ✅ **Live Terminal Watch**: `/terminal_watch` и opt-in auto-start показывают live session logs
+- ✅ **Ограничения по чатам**: опциональный белый список разрешённых ID чатов
+- ✅ **Приватная проверка auth**: экспериментальные `/auth --status <gh|claude|codex>` и `/auth --login <gh|claude|codex>` для владельцев разрешённых чатов
+- ✅ **Диагностические инструменты**: получение ID чата и информации о конфигурации
 
 #### Live Terminal Watch
 
-When enabled with `--auto-start-screen-watch-message`, the bot automatically starts a separate live terminal watch message for public `/solve` sessions:
+Если включить `--auto-start-screen-watch-message`, бот автоматически запускает
+отдельное live terminal watch сообщение для публичных сессий `/solve`:
 
-- **Manual Watch**: `/terminal_watch <uuid>` or reply with `/terminal_watch`
-- **Real-time Updates**: See live session log output as commands execute
-- **Auto-freeze**: Message freezes when command completes
-- **Log Attachment**: Full logs attached automatically when session ends
-- **Security**: Auto-start is disabled for private or unknown-visibility repositories
-- **Smart Updates**: Only updates when actual changes detected (rate-limited to avoid API limits)
+- **Manual Watch**: `/terminal_watch <uuid>` или ответ командой `/terminal_watch`
+- **Real-time Updates**: смотрите live session log output во время выполнения команд
+- **Auto-freeze**: сообщение замораживается после завершения команды
+- **Log Attachment**: полные логи автоматически прикрепляются после завершения сессии
+- **Security**: auto-start отключён для приватных репозиториев и репозиториев с неизвестной видимостью
+- **Smart Updates**: обновляет сообщение только при реальных изменениях (rate-limited для защиты от API limits)
 
-### Security Notes
+### Замечания по безопасности
 
-- Only works in group chats where the bot is admin
-- Optional chat ID restrictions via `TELEGRAM_ALLOWED_CHATS`
-- Private `/auth` is disabled unless `TELEGRAM_ALLOWED_CHATS` is set and only
-  owners of listed chats can use it
-- Commands run as the system user running the bot
-- Ensure proper authentication (`gh auth login`, `claude-profiles`)
+- Работает только в групповых чатах, где бот является администратором
+- Опциональное ограничение по ID чата через `TELEGRAM_ALLOWED_CHATS`
+- Приватная `/auth` отключена, если `TELEGRAM_ALLOWED_CHATS` не задан, и
+  доступна только владельцам перечисленных чатов
+- Команды выполняются от имени системного пользователя, запустившего бота
+- Убедитесь в наличии надлежащей аутентификации (`gh auth login`, `claude-profiles`)
 
-## 🏆 Best Practices
+## 🏆 Лучшие практики
 
-Hive Mind works even better when repositories have strong CI/CD pipelines and clear issue requirements. See:
+Auto Programmer работает ещё лучше, когда в репозиториях есть надёжные CI/CD-пайплайны и чётко сформулированные требования к задачам. Смотрите:
 
-- [BEST-PRACTICES.md](./docs/BEST-PRACTICES.md) — Universal prompts, issue writing guidelines, architecture improvement, and subagent patterns
-- [CI-CD-BEST-PRACTICES.md](./docs/CI-CD-BEST-PRACTICES.md) — CI/CD pipeline setup, recommended templates, and enforcement strategies
+- [BEST-PRACTICES.md](./docs/BEST-PRACTICES.md) — универсальные промпты, рекомендации по написанию задач, улучшение архитектуры и паттерны субагентов
+- [CI-CD-BEST-PRACTICES.md](./docs/CI-CD-BEST-PRACTICES.md) — настройка CI/CD-пайплайнов, рекомендуемые шаблоны и стратегии применения
 
-Key benefits of proper CI/CD:
+Ключевые преимущества правильного CI/CD:
 
-- AI solvers iterate until all checks pass
-- Consistent quality regardless of human/AI team composition
-- File size limits ensure code is readable by both AI and humans
+- Решатели ИИ итерируют до тех пор, пока все проверки не пройдут
+- Стабильное качество вне зависимости от состава команды (люди и/или ИИ)
+- Ограничения на размер файлов обеспечивают читаемость кода как для ИИ, так и для людей
 
-Ready-to-use templates are available for JavaScript, Rust, Python, Go, C#, and Java.
+Готовые к использованию шаблоны доступны для JavaScript, Rust, Python, Go, C# и Java.
 
-## 🏗️ Architecture
+## 🏗️ Архитектура
 
-The Hive Mind operates on three layers:
+Auto Programmer работает на трёх уровнях:
 
-1. **Orchestration Layer** (`hive.mjs`) - Coordinates multiple AI agents
-2. **Execution Layer** (`solve.mjs`, `review.mjs`) - Performs specific tasks
-3. **Human Interface Layer** - Enables human-AI collaboration
+1. **Уровень оркестрации** (`hive.mjs`) — координирует несколько агентов ИИ
+2. **Уровень выполнения** (`solve.mjs`, `review.mjs`) — выполняет конкретные задачи
+3. **Уровень взаимодействия с людьми** — обеспечивает сотрудничество между людьми и ИИ
 
-### Data Flow
+### Потоки данных
 
-#### Mode 1: Issue → Pull Request Flow
-
-```mermaid
-sequenceDiagram
-    participant H as Human
-    participant GH as GitHub
-    participant AI as AI Agent
-    participant HM as Hive Mind
-
-    H->>GH: Creates Issue
-    Note over H,GH: Primary human input
-
-    GH->>HM: Issue Available
-    HM->>AI: Assigns Issue
-    AI->>GH: Analyzes Issue
-    AI->>AI: Develops Solution
-    AI->>GH: Creates Draft PR
-
-    Note over H,GH: Human decision point
-    GH->>H: Notifies PR Created
-    H->>GH: Reviews PR
-
-    alt Approve & Merge
-        H->>GH: Merges PR
-        GH->>HM: PR Merged
-    else Request Changes
-        H->>GH: Adds Comments
-        Note over H,GH: Secondary human input
-        GH->>HM: Comments Added
-        HM->>AI: Process Feedback
-        AI->>GH: Updates PR
-    else Close PR
-        H->>GH: Closes PR
-        GH->>HM: PR Closed
-    end
-```
-
-#### Mode 2: Pull Request → Comments Flow
+#### Режим 1: Задача → Pull Request
 
 ```mermaid
 sequenceDiagram
-    participant H as Human
+    participant H as Человек
     participant GH as GitHub
-    participant AI as AI Agent
-    participant HM as Hive Mind
+    participant AI as Агент ИИ
+    participant HM as Auto Programmer
 
-    Note over GH: Existing PR
-    H->>GH: Adds Comment
-    Note over H,GH: Primary human input
+    H->>GH: Создаёт задачу
+    Note over H,GH: Основной ввод от человека
 
-    GH->>HM: New Comment Available
-    HM->>AI: Processes Comment
-    AI->>GH: Analyzes Feedback
-    AI->>AI: Updates Solution
-    AI->>GH: Pushes Changes
+    GH->>HM: Задача доступна
+    HM->>AI: Назначает задачу
+    AI->>GH: Анализирует задачу
+    AI->>AI: Разрабатывает решение
+    AI->>GH: Создаёт черновой PR
 
-    Note over H,GH: Human decision point
-    GH->>H: Notifies Changes
-    H->>GH: Reviews Updates
+    Note over H,GH: Точка принятия решения человеком
+    GH->>H: Уведомляет о создании PR
+    H->>GH: Проверяет PR
 
-    alt Approve & Merge
-        H->>GH: Merges PR
-        GH->>HM: PR Merged
-    else More Changes Needed
-        H->>GH: Adds More Comments
-        Note over H,GH: Continued human input
-        GH->>HM: Comments Added
-    else Close PR
-        H->>GH: Closes PR
-        GH->>HM: PR Closed
+    alt Одобрить и влить
+        H->>GH: Вливает PR
+        GH->>HM: PR влит
+    else Запросить изменения
+        H->>GH: Добавляет комментарии
+        Note over H,GH: Дополнительный ввод от человека
+        GH->>HM: Комментарии добавлены
+        HM->>AI: Обрабатывает обратную связь
+        AI->>GH: Обновляет PR
+    else Закрыть PR
+        H->>GH: Закрывает PR
+        GH->>HM: PR закрыт
     end
 ```
 
-📖 **For comprehensive data flow documentation including human feedback integration points, see [docs/flow.md](./docs/flow.md)**
+#### Режим 2: Pull Request → Комментарии
 
-## 📊 Usage Examples
+```mermaid
+sequenceDiagram
+    participant H as Человек
+    participant GH as GitHub
+    participant AI as Агент ИИ
+    participant HM as Auto Programmer
 
-### Automated Issue Resolution
+    Note over GH: Существующий PR
+    H->>GH: Добавляет комментарий
+    Note over H,GH: Основной ввод от человека
+
+    GH->>HM: Новый комментарий доступен
+    HM->>AI: Обрабатывает комментарий
+    AI->>GH: Анализирует обратную связь
+    AI->>AI: Обновляет решение
+    AI->>GH: Отправляет изменения
+
+    Note over H,GH: Точка принятия решения человеком
+    GH->>H: Уведомляет об изменениях
+    H->>GH: Проверяет обновления
+
+    alt Одобрить и влить
+        H->>GH: Вливает PR
+        GH->>HM: PR влит
+    else Нужно больше изменений
+        H->>GH: Добавляет ещё комментарии
+        Note over H,GH: Продолжение ввода от человека
+        GH->>HM: Комментарии добавлены
+    else Закрыть PR
+        H->>GH: Закрывает PR
+        GH->>HM: PR закрыт
+    end
+```
+
+📖 **Исчерпывающую документацию по потокам данных, включая точки интеграции обратной связи от людей, см. в [docs/flow.md](./docs/flow.md)**
+
+## 📊 Примеры использования
+
+### Автоматическое решение задач
 
 ```bash
 # Solve issue (automatically forks if no write access)
@@ -745,7 +712,7 @@ solve https://github.com/owner/repo/issues/123 --verbose --attach-logs
 solve https://github.com/owner/repo/issues/123 --dry-run
 ```
 
-### Multi-Repository Orchestration
+### Оркестрация нескольких репозиториев
 
 ```bash
 # Monitor single repository with specific label
@@ -764,7 +731,7 @@ hive https://github.com/org/repo --skip-issues-with-prs --verbose
 hive https://github.com/org/repo --auto-cleanup --concurrency 5
 ```
 
-### Session Management
+### Управление сессиями
 
 ```bash
 # Resume when Claude hits limit
@@ -774,124 +741,124 @@ solve https://github.com/owner/repo/issues/123 --resume 657e6db1-6eb3-4a8d
 (cd /tmp/gh-issue-solver-123456789 && claude --resume session-id)
 ```
 
-### Disk Cleanup
+### Очистка диска
 
-`hive-cleanup` frees disk space by removing stale hive-mind temporary
-directories/files (per-task clones like `/tmp/gh-issue-solver-*`, MCP config
-files, log download dirs, …) while **keeping folders that belong to
-currently-running tasks**, protected system paths, and any clone with
-uncommitted or unpushed work. It detects active tasks from running processes and
-live isolation sessions and matches clones to tasks by branch name using the
-same logic as `solve` (issue → `issue-{n}-{hex}`; PR → its resolved head
-branch).
+`hive-cleanup` освобождает место на диске, удаляя устаревшие временные каталоги/файлы
+auto-programmer (клоны для каждой задачи вида `/tmp/gh-issue-solver-*`, файлы
+конфигурации MCP, каталоги загрузки логов и т. д.), при этом **сохраняя папки,
+относящиеся к выполняющимся в данный момент задачам**, защищённые системные пути и
+любой клон с незакоммиченными или неотправленными изменениями. Он обнаруживает
+активные задачи по запущенным процессам и активным сессиям изоляции и сопоставляет
+клоны с задачами по имени ветки, используя ту же логику, что и `solve`
+(issue → `issue-{n}-{hex}`; PR → его разрешённая head-ветка).
 
 ```bash
-# Preview: list kept folders and folders that would be deleted (deletes nothing)
+# Предпросмотр: список сохраняемых и удаляемых папок (ничего не удаляет)
 hive-cleanup --dry-run
 
-# Actually delete stale temp artifacts (asks for confirmation first)
+# Реально удалить устаревшие временные файлы (сначала запросит подтверждение)
 hive-cleanup
 
-# Delete without the confirmation prompt
+# Удалить без запроса подтверждения
 hive-cleanup --force
 
-# Also consider non-hive-mind temp entries (more aggressive)
+# Учитывать также не-auto-programmer временные записи (более агрессивно)
 hive-cleanup --all --dry-run
 
-# Allow deleting /tmp/start-command (kept by default; holds isolation logs)
+# Разрешить удаление /tmp/start-command (по умолчанию сохраняется; хранит логи изоляции)
 hive-cleanup --force-start-command
 
-# Ubuntu / system cleanup (apt caches, journald logs, npm cache)
+# Очистка Ubuntu / системы (кэши apt, логи journald, кэш npm)
 hive-cleanup --system --sudo
 
-# Map live/stuck agent PIDs back to hive/start-command task sessions
+# Сопоставить живые/зависшие agent PID с задачами hive/start-command
 hive-cleanup --processes
 
-# Trace a specific non-agent PID, for example a browser child or shell
+# Отследить конкретный не-agent PID, например дочерний процесс браузера или shell
 hive-cleanup --pid 94445
 
-# Preview orphaned terminal-session agents that can be stopped
+# Предпросмотр orphaned agents, которые можно остановить
 hive-cleanup --kill-orphaned-agents --dry-run
 
-# Stop orphaned agent process trees after reviewing the preview
+# Остановить деревья orphaned agent процессов после просмотра предпросмотра
 hive-cleanup --kill-orphaned-agents --force
 
-# Disable active-task detection (only protected paths are kept)
+# Отключить обнаружение активных задач (сохраняются только защищённые пути)
 hive-cleanup --no-keep-active-tasks-folders --dry-run
 ```
 
-Run `hive-cleanup --help` for the full list of options. The command is dry-run
-friendly and writes a timestamped `cleanup-*.log` for every run. Process
-diagnostic output redacts common token shapes before printing command lines.
+Запустите `hive-cleanup --help`, чтобы увидеть полный список опций. Команда удобна для
+режима dry-run и записывает лог `cleanup-*.log` с меткой времени при каждом запуске.
+Диагностический вывод процессов скрывает распространённые формы token перед печатью
+командных строк.
 
-## 🔍 Monitoring & Logging
+## 🔍 Мониторинг и логирование
 
-Find resume commands in logs:
+Найдите команды возобновления в логах:
 
 ```bash
 grep -E '\(cd /tmp/gh-issue-solver-[0-9]+ && claude --resume [0-9a-f-]{36}\)' hive-*.log
 ```
 
-## 🔧 Configuration
+## 🔧 Конфигурация
 
-**Authentication:**
+**Аутентификация:**
 
-- `gh auth login` - GitHub CLI authentication
-- `claude-profiles` - Claude authentication profile migration to server
+- `gh auth login` — аутентификация через GitHub CLI
+- `claude-profiles` — миграция профиля аутентификации Claude на сервер
 
-**OpenRouter Integration:**
+**Интеграция с OpenRouter:**
 
-Use OpenRouter to access 500+ AI models from 60+ providers with a single API key. See [docs/OPENROUTER.md](./docs/OPENROUTER.md) for setup instructions covering both Claude Code CLI and @link-assistant/agent.
+Используйте OpenRouter для доступа к 500+ моделям ИИ от 60+ провайдеров с одним API-ключом. См. [docs/OPENROUTER.md](./docs/OPENROUTER.md) для инструкций по настройке как для Claude Code CLI, так и для @link-assistant/agent.
 
-**Environment Variables & Advanced Options:**
+**Переменные окружения и дополнительные параметры:**
 
-For comprehensive configuration including environment variables, timeouts, retry limits, Telegram bot settings, YouTrack integration, and all CLI options, see [docs/CONFIGURATION.md](./docs/CONFIGURATION.md).
+Для исчерпывающей конфигурации, включая переменные окружения, тайм-ауты, лимиты повторных попыток, настройки Telegram-бота, интеграцию с YouTrack и все параметры CLI, см. [docs/CONFIGURATION.md](./docs/CONFIGURATION.md).
 
-## 🐛 Reporting Issues
+## 🐛 Сообщение об ошибках
 
-### Hive Mind Issues
+### Ошибки Auto Programmer
 
-If you encounter issues with **Hive Mind** (this project), please report them on our GitHub Issues page:
+Если вы столкнулись с проблемами в **Auto Programmer** (этом проекте), пожалуйста, сообщите о них на странице GitHub Issues:
 
-- **Repository**: https://github.com/link-assistant/hive-mind
-- **Issues**: https://github.com/link-assistant/hive-mind/issues
+- **Репозиторий**: https://github.com/PeterMotorniy/auto-programmer
+- **Задачи**: https://github.com/PeterMotorniy/auto-programmer/issues
 
-### Claude Code CLI Issues
+### Ошибки Claude Code CLI
 
-If you encounter issues with the **Claude Code CLI** itself (e.g., `claude` command errors, installation problems, or CLI bugs), please report them to the official Claude Code repository:
+Если вы столкнулись с проблемами в самом **Claude Code CLI** (например, ошибки команды `claude`, проблемы установки или ошибки CLI), пожалуйста, сообщите о них в официальный репозиторий Claude Code:
 
-- **Repository**: https://github.com/anthropics/claude-code
-- **Issues**: https://github.com/anthropics/claude-code/issues
+- **Репозиторий**: https://github.com/anthropics/claude-code
+- **Задачи**: https://github.com/anthropics/claude-code/issues
 
-## 🛡️ File Size Enforcement
+## 🛡️ Контроль размера файлов
 
-All documentation files are automatically checked:
+Все файлы документации автоматически проверяются:
 
 ```bash
 find docs/ -name "*.md" -exec wc -l {} + | awk '$1 > 1000 {print "ERROR: " $2 " has " $1 " lines (max 1000)"}'
 ```
 
-## Server diagnostics
+## Диагностика сервера
 
-Prefer the built-in process diagnostic command when connecting a busy
-`claude`, `codex`, `gemini`, `qwen`, or `opencode` PID back to the hive task
-that launched it:
+Чтобы связать загруженный `claude`, `codex`, `gemini`, `qwen` или `opencode` PID с
+запустившей его задачей hive, сначала используйте встроенную диагностику процессов:
 
 ```bash
-# Show agent PIDs, start-command session IDs, GitHub task URLs, workspaces,
-# match reasons, and possible orphaned terminal-session agents.
+# Показать agent PID, start-command session ID, GitHub task URL, workspace,
+# причины совпадения и возможные orphaned agents.
 hive-cleanup --processes
 
-# Include an arbitrary PID in the same report.
+# Включить произвольный PID в тот же отчёт.
 hive-cleanup --pid 62220
 
-# Kill only agents whose matched start-command task is already terminal.
+# Остановить только orphaned agents, чья задача уже завершена.
 hive-cleanup --kill-orphaned-agents --dry-run
 hive-cleanup --kill-orphaned-agents --force
 ```
 
-Manual fallback: identify screens that are parents of processes that are eating
-the resources.
+Ручной fallback: определите screen-сессии, являющиеся родительскими для процессов,
+потребляющих ресурсы.
 
 ```bash
 TARGETS="62220 65988 63094 66606 1028071 4127023"
@@ -913,7 +880,7 @@ for p in $TARGETS; do
 done
 ```
 
-Show details about the proccess
+Показать подробную информацию о процессе
 
 ```bash
 procinfo() {
@@ -964,64 +931,29 @@ procinfo() {
 procinfo 62220
 ```
 
-## Maintenance
+## Обслуживание
 
-### Enter latest screen
+### Войти в последнюю screen-сессию
 
 ```bash
 s=$(screen -ls | awk '/Detached/ {print $1; exit}'); echo "Entering $s"; screen -r "$s"; echo "Left $s";
 ```
 
-### Enter oldest screen
+### Войти в старейшую screen-сессию
 
 ```bash
 s=$(screen -ls | awk '/Detached/ {last=$1} END{print last}'); echo "Entering $s"; screen -r "$s"; echo "Left $s";
 ```
 
-### Script for managing screens
-
-The legacy `hive-screens.sh` script has been promoted to a first-class command:
-`hive-screens`. It ships with `@link-assistant/hive-mind`, so once the package is
-installed (globally, through `npx`, or in a project) it is available on `PATH`.
-
-It scans detached GNU screen sessions, looks for solve runs that are done and
-mergeable (scrollback contains both `process completed` and `PR is mergeable!`
-or `PR merged!`), and then either lists, enters, or closes them. `--list`,
-`--enter`, and `--close` share the **same matching predicate**, so anything
-you see under `--list` is guaranteed to be the same set `--close` will act on
-— use `--list` first to debug, then rerun with `--close`.
-
-```bash
-# Safe preview — show every finished, mergeable solve session.
-hive-screens --list
-
-# Close the oldest finished session (same as the legacy script's default).
-hive-screens --close
-
-# Attach to the newest finished session.
-hive-screens --enter --newest
-
-# Close every finished session.
-hive-screens --close --all
-
-# Print diagnostic output while scanning (useful when matching fails).
-hive-screens --list --verbose
-```
-
-`--list` defaults to `--all` so a bare `hive-screens --list` shows every match.
-`--enter` and `--close` default to `--oldest` because they are destructive.
-Supply `--oldest`, `--newest`, or `--all` to override. Run
-`hive-screens --help` for the full option list.
-
-### Reboot server.
+### Перезагрузить сервер.
 
 ```bash
 sudo reboot
 ```
 
-That will remove all dangling unused proccesses and screens, which will in turn free the RAM and reduce CPU load. Also reboot may clear all temporary files, so next step can do nothing if reboot was done.
+Это удалит все зависшие неиспользуемые процессы и screen-сессии, что освободит ОЗУ и снизит нагрузку на CPU. Перезагрузка также может очистить все временные файлы, поэтому следующий шаг может не дать результата, если перезагрузка уже была выполнена.
 
-### Cleanup disk space.
+### Очистить дисковое пространство.
 
 ```bash
 df -h
@@ -1031,7 +963,7 @@ rm -rf /tmp
 df -h
 ```
 
-These commands should be executed under `hive` user. If you have accidentally removed the `/tmp` folder itself under `root` user, you will need to restore it like this:
+Эти команды следует выполнять от имени пользователя `hive`. Если вы случайно удалили папку `/tmp` под пользователем `root`, восстановите её следующим образом:
 
 ```bash
 sudo mkdir -p /tmp
@@ -1039,7 +971,7 @@ sudo chown root:root /tmp
 sudo chmod 1777 /tmp
 ```
 
-### Close all screens to free up RAM
+### Закрыть все screen-сессии для освобождения ОЗУ
 
 ```bash
 # close all (Attached or Detached) sessions
@@ -1053,48 +985,42 @@ screen -wipe
 screen -ls
 ```
 
-### Top with full arguments of each command
+### Top с полными аргументами каждой команды
 
 ```bash
 top -c
 ```
 
-### See the full tree of processes
+### Показать полное дерево процессов
 
 ```bash
 ps -eo pid,ppid,user,args --forest
 ```
 
-or
+или
 
 ```bash
 ps axjf
 ```
 
-### Kill process and its children
-
-```bash
-pkill -P 476729
-```
-
-### Kill all commands spawned by specific task
+### Завершить все команды, порождённые конкретной задачей
 
 ```bash
 pkill -f gh-issue-solver-1773073065743
 ```
 
-### Kill all headless browsers spawned by ms-playwright
+### Завершить все headless-браузеры, порождённые ms-playwright
 
 ```bash
 pkill -f ms-playwright/chromium_headless_shell-1200
 ```
 
-That can be done, but not recommended as reboot have better effect.
+Это можно сделать, но не рекомендуется, так как перезагрузка даёт лучший эффект.
 
-## 📄 License
+## 📄 Лицензия
 
-Unlicense License - see [LICENSE](./LICENSE)
+Лицензия Unlicense — см. [LICENSE](./LICENSE)
 
-## 🤖 Contributing
+## 🤖 Участие в разработке
 
-This project uses AI-driven development. See [CONTRIBUTING.md](./docs/CONTRIBUTING.md) for human-AI collaboration guidelines.
+Этот проект использует разработку на основе ИИ. См. [CONTRIBUTING.md](./docs/CONTRIBUTING.md) для руководства по сотрудничеству людей и ИИ.

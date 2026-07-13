@@ -1289,7 +1289,7 @@ ${prBody}`,
       operation: 'handle_auto_pr',
     });
 
-    if (prError?.hiveMindUserFacingLogged) {
+    if (prError?.autoProgrammerUserFacingLogged) {
       throw prError;
     }
 

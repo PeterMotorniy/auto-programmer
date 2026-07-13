@@ -1,2 +1,0 @@
- M logs.status.txt
-?? logs.git-push.txt

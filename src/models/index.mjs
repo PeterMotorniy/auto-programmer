@@ -2,7 +2,7 @@
 import { ensureUseM } from '../use-m-bootstrap.lib.mjs';
 
 /**
- * Unified models module for hive-mind
+ * Unified models module for auto-programmer
  * Single source of truth for all model data, mapping, validation, and info.
  *
  * Consolidates the former:
@@ -10,7 +10,7 @@ import { ensureUseM } from '../use-m-bootstrap.lib.mjs';
  * - model-validation.lib.mjs (validation, fuzzy matching, 1M context)
  * - model-info.lib.mjs (display names, models.dev API, PR comment helpers)
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1473
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1473
  */
 
 import { execFile } from 'node:child_process';

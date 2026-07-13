@@ -8,7 +8,7 @@ const { $ } = await use('command-stream');
 
 // import { $ } from "bun";
 
-const claude = process.env.CLAUDE_PATH || '/Users/konard/.claude/local/claude';
+const claude = process.env.CLAUDE_PATH || '/Users/petermotorniy/.claude/local/claude';
 
 console.log('=== Claude Pipe to jq Test ===\n');
 

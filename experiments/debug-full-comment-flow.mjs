@@ -32,14 +32,14 @@ async function debugFullCommentFlow() {
     console.log(`🌿 Branch name: ${branchName}`);
 
     // Extract PR number from URL (like solve.mjs does)
-    const prUrl = 'https://github.com/link-assistant/hive-mind/pull/169';
+    const prUrl = 'https://github.com/PeterMotorniy/auto-programmer/pull/169';
     const prMatch = prUrl.match(/\/pull\/(\d+)/);
     const prNumber = prMatch ? parseInt(prMatch[1]) : null;
     console.log(`🔗 PR number: ${prNumber}`);
 
     // Extract owner and repo
-    const owner = 'link-assistant';
-    const repo = 'hive-mind';
+    const owner = 'PeterMotorniy';
+    const repo = 'auto-programmer';
     console.log(`📦 Owner/Repo: ${owner}/${repo}`);
 
     // Check the conditions that determine if comment counting runs

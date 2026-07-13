@@ -1,72 +1,72 @@
-# OpenRouter Setup Guide (languages: en • [zh](OPENROUTER.zh.md) • [hi](OPENROUTER.hi.md) • [ru](OPENROUTER.ru.md))
+# Руководство по настройке OpenRouter
 
-This guide explains how to configure OpenRouter for both Claude Code CLI and @link-assistant/agent, enabling you to use 500+ AI models from 60+ providers through a unified API.
+Это руководство объясняет, как настроить OpenRouter для Claude Code CLI и @link-assistant/agent, что позволяет использовать 500+ AI-моделей от 60+ провайдеров через единый API.
 
-## Table of Contents
+## Содержание
 
-- [Overview](#overview)
-- [Prerequisites](#prerequisites)
-- [Claude Code CLI with OpenRouter](#claude-code-cli-with-openrouter)
-- [Agent CLI with OpenRouter](#agent-cli-with-openrouter)
-- [Model Selection](#model-selection)
-- [Verification](#verification)
-- [Troubleshooting](#troubleshooting)
+- [Обзор](#обзор)
+- [Предварительные требования](#предварительные-требования)
+- [Claude Code CLI с OpenRouter](#claude-code-cli-с-openrouter)
+- [Agent CLI с OpenRouter](#agent-cli-с-openrouter)
+- [Выбор модели](#выбор-модели)
+- [Проверка](#проверка)
+- [Устранение неполадок](#устранение-неполадок)
 
-## Overview
+## Обзор
 
-OpenRouter provides a unified API gateway that allows you to access various AI models without requiring individual subscriptions. Benefits include:
+OpenRouter предоставляет единый API-шлюз, позволяющий получить доступ к различным AI-моделям без необходимости оформления отдельных подписок. Преимущества:
 
-- **500+ Models**: Access to models from OpenAI, Anthropic, Google, Meta, and 60+ providers
-- **Pay-as-you-go**: No monthly subscriptions required
-- **Unified API**: Single API key works across all providers
-- **Fallback Support**: Automatic failover between providers
+- **500+ моделей**: Доступ к моделям от OpenAI, Anthropic, Google, Meta и 60+ провайдеров
+- **Оплата по факту**: Месячные подписки не требуются
+- **Единый API**: Один API-ключ работает со всеми провайдерами
+- **Поддержка резервного переключения**: Автоматический переход между провайдерами
 
-## Prerequisites
+## Предварительные требования
 
-1. **OpenRouter Account**: Sign up at [openrouter.ai](https://openrouter.ai/)
-2. **API Key**: Get your API key from [OpenRouter Keys](https://openrouter.ai/keys)
-3. **Claude Code CLI** and/or **@link-assistant/agent** installed
+1. **Аккаунт OpenRouter**: Зарегистрируйтесь на [openrouter.ai](https://openrouter.ai/)
+2. **API-ключ**: Получите API-ключ на странице [OpenRouter Keys](https://openrouter.ai/keys)
+3. Установленный **Claude Code CLI** и/или **@link-assistant/agent**
 
-## Claude Code CLI with OpenRouter
+## Claude Code CLI с OpenRouter
 
-Claude Code CLI can connect to OpenRouter using Anthropic's native protocol.
+Claude Code CLI может подключаться к OpenRouter с использованием нативного протокола Anthropic.
 
-### Step 1: Set Environment Variables
+### Шаг 1: Установка переменных окружения
 
-Add these to your shell profile (`~/.bashrc`, `~/.zshrc`, or `~/.config/fish/config.fish`):
+Добавьте это в профиль оболочки (`~/.bashrc`, `~/.zshrc` или `~/.config/fish/config.fish`):
 
 ```bash
-# Required: Point Claude Code to OpenRouter
+# Обязательно: направить Claude Code на OpenRouter
 export ANTHROPIC_BASE_URL="https://openrouter.ai/api"
 
-# Required: Your OpenRouter API key
+# Обязательно: ваш API-ключ OpenRouter
 export ANTHROPIC_AUTH_TOKEN="sk-or-v1-your-api-key-here"
 
-# Required: Must be explicitly blank to prevent conflicts
+# Обязательно: должно быть явно пустым для предотвращения конфликтов
 export ANTHROPIC_API_KEY=""
 ```
 
-### Step 2: Model Configuration (Optional)
+### Шаг 2: Настройка модели (необязательно)
 
-Override default models with OpenRouter-compatible alternatives:
+Переопределите модели по умолчанию на совместимые с OpenRouter альтернативы:
 
 ```bash
-# Use specific models from OpenRouter
+# Использовать конкретные модели из OpenRouter
 export ANTHROPIC_DEFAULT_SONNET_MODEL="anthropic/claude-sonnet-4"
 export ANTHROPIC_DEFAULT_OPUS_MODEL="anthropic/claude-opus-4"
 export ANTHROPIC_SMALL_FAST_MODEL="anthropic/claude-haiku"
 ```
 
-### Step 3: Apply Configuration
+### Шаг 3: Применение конфигурации
 
 ```bash
-# Reload shell profile
-source ~/.bashrc  # or ~/.zshrc
+# Перезагрузить профиль оболочки
+source ~/.bashrc  # или ~/.zshrc
 ```
 
-### Alternative: Project-Level Configuration
+### Альтернатива: Конфигурация на уровне проекта
 
-Create `.claude/settings.local.json` in your project root:
+Создайте `.claude/settings.local.json` в корне проекта:
 
 ```json
 {
@@ -78,99 +78,99 @@ Create `.claude/settings.local.json` in your project root:
 }
 ```
 
-**Note**: Add `.claude/settings.local.json` to `.gitignore` to protect your API key.
+**Примечание**: Добавьте `.claude/settings.local.json` в `.gitignore` для защиты API-ключа.
 
-### Step 4: Launch Claude Code
+### Шаг 4: Запуск Claude Code
 
 ```bash
 cd /path/to/your/project
 claude
 ```
 
-## Agent CLI with OpenRouter
+## Agent CLI с OpenRouter
 
-@link-assistant/agent supports OpenRouter through the `agent auth login` command or environment variables.
+@link-assistant/agent поддерживает OpenRouter через команду `agent auth login` или переменные окружения.
 
-### Method 1: Interactive Authentication
+### Метод 1: Интерактивная аутентификация
 
 ```bash
-# Start interactive login
+# Начать интерактивный вход
 agent auth login
 
-# Select "openrouter" from the provider list
-# Enter your OpenRouter API key when prompted
+# Выбрать "openrouter" из списка провайдеров
+# Ввести API-ключ OpenRouter при запросе
 ```
 
-### Method 2: Environment Variable
+### Метод 2: Переменная окружения
 
 ```bash
 export OPENROUTER_API_KEY="sk-or-v1-your-api-key-here"
 ```
 
-### Method 3: Direct Model Usage
+### Метод 3: Прямое использование модели
 
 ```bash
-# Use any OpenRouter model with the openrouter/ prefix
+# Использовать любую модель OpenRouter с префиксом openrouter/
 echo "hello" | agent --model openrouter/anthropic/claude-sonnet-4
 
-# Or use OpenCode Zen models (default)
+# Или использовать модели OpenCode Zen (по умолчанию)
 echo "hello" | agent --model opencode/grok-code
 ```
 
-### Check Authentication Status
+### Проверка статуса аутентификации
 
 ```bash
-# List configured credentials
+# Вывести список настроенных учётных данных
 agent auth list
 
-# Should show:
+# Должно отображаться:
 # ◆ openrouter api-key
 ```
 
-## Model Selection
+## Выбор модели
 
-### Claude Code CLI Models via OpenRouter
+### Модели Claude Code CLI через OpenRouter
 
-| Use Case         | Environment Variable             | Example Value               |
-| ---------------- | -------------------------------- | --------------------------- |
-| Main model       | `ANTHROPIC_DEFAULT_SONNET_MODEL` | `anthropic/claude-sonnet-4` |
-| Powerful model   | `ANTHROPIC_DEFAULT_OPUS_MODEL`   | `anthropic/claude-opus-4`   |
-| Fast/cheap model | `ANTHROPIC_SMALL_FAST_MODEL`     | `anthropic/claude-haiku`    |
+| Сценарий использования | Переменная окружения             | Пример значения             |
+| ---------------------- | -------------------------------- | --------------------------- |
+| Основная модель        | `ANTHROPIC_DEFAULT_SONNET_MODEL` | `anthropic/claude-sonnet-4` |
+| Мощная модель          | `ANTHROPIC_DEFAULT_OPUS_MODEL`   | `anthropic/claude-opus-4`   |
+| Быстрая/дешёвая модель | `ANTHROPIC_SMALL_FAST_MODEL`     | `anthropic/claude-haiku`    |
 
-### Agent CLI Models via OpenRouter
+### Модели Agent CLI через OpenRouter
 
-Use the `openrouter/` prefix followed by the provider and model:
+Используйте префикс `openrouter/`, за которым следуют провайдер и модель:
 
 ```bash
-# Anthropic models
+# Модели Anthropic
 agent --model openrouter/anthropic/claude-sonnet-4
 
-# OpenAI models
+# Модели OpenAI
 agent --model openrouter/openai/gpt-4o
 
-# Google models
+# Модели Google
 agent --model openrouter/google/gemini-2.0-flash
 
-# Meta models
+# Модели Meta
 agent --model openrouter/meta-llama/llama-3.1-405b-instruct
 ```
 
-### Important: Tool Use Support
+### Важно: Поддержка использования инструментов
 
-When selecting alternative models, ensure they support **tool use** capabilities. Claude Code and agent rely on tools to:
+При выборе альтернативных моделей убедитесь, что они поддерживают возможность **использования инструментов**. Claude Code и agent опираются на инструменты для:
 
-- Read and write files
-- Execute terminal commands
-- Search codebases
-- Perform web searches
+- Чтения и записи файлов
+- Выполнения команд терминала
+- Поиска по кодовой базе
+- Выполнения веб-поиска
 
-Models without tool use support will not function properly.
+Модели без поддержки использования инструментов не будут работать корректно.
 
-## Verification
+## Проверка
 
 ### Claude Code CLI
 
-Run `/status` within Claude Code to verify the connection:
+Запустите `/status` в Claude Code для проверки соединения:
 
 ```
 Claude Code v1.x.x
@@ -178,74 +178,74 @@ Connected to: openrouter.ai
 Model: anthropic/claude-sonnet-4
 ```
 
-Also check the [OpenRouter Activity Dashboard](https://openrouter.ai/activity) for real-time request logs.
+Также проверьте [Дашборд активности OpenRouter](https://openrouter.ai/activity) для просмотра журналов запросов в реальном времени.
 
 ### Agent CLI
 
 ```bash
-# Simple test
+# Простой тест
 echo "What is 2+2?" | agent --model openrouter/anthropic/claude-sonnet-4
 
-# Check configured credentials
+# Проверить настроенные учётные данные
 agent auth list
 ```
 
-## Troubleshooting
+## Устранение неполадок
 
-### "Authentication failed" Error
+### Ошибка "Authentication failed"
 
-1. Verify your API key is correct at [openrouter.ai/keys](https://openrouter.ai/keys)
-2. Ensure `ANTHROPIC_API_KEY=""` is explicitly set (blank) for Claude Code
-3. Check for typos in the `ANTHROPIC_AUTH_TOKEN` value
+1. Убедитесь в корректности API-ключа на [openrouter.ai/keys](https://openrouter.ai/keys)
+2. Убедитесь, что `ANTHROPIC_API_KEY=""` явно установлена (пустая) для Claude Code
+3. Проверьте опечатки в значении `ANTHROPIC_AUTH_TOKEN`
 
-### "Model not found" Error
+### Ошибка "Model not found"
 
-1. Verify the model ID at [openrouter.ai/models](https://openrouter.ai/models)
-2. Use the full model path: `provider/model-name`
-3. Check if the model is available in your region
+1. Проверьте идентификатор модели на [openrouter.ai/models](https://openrouter.ai/models)
+2. Используйте полный путь модели: `provider/model-name`
+3. Убедитесь, что модель доступна в вашем регионе
 
-### "Insufficient credits" Error
+### Ошибка "Insufficient credits"
 
-1. Add credits at [openrouter.ai/credits](https://openrouter.ai/credits)
-2. Check your usage at [openrouter.ai/activity](https://openrouter.ai/activity)
+1. Пополните счёт на [openrouter.ai/credits](https://openrouter.ai/credits)
+2. Проверьте использование на [openrouter.ai/activity](https://openrouter.ai/activity)
 
-### Claude Code Not Using OpenRouter
+### Claude Code не использует OpenRouter
 
-Verify environment variables are set:
+Проверьте установку переменных окружения:
 
 ```bash
 echo $ANTHROPIC_BASE_URL
-# Should output: https://openrouter.ai/api
+# Должно выводить: https://openrouter.ai/api
 
 echo $ANTHROPIC_AUTH_TOKEN
-# Should output: sk-or-v1-...
+# Должно выводить: sk-or-v1-...
 
 echo $ANTHROPIC_API_KEY
-# Should be empty
+# Должно быть пустым
 ```
 
-### Agent CLI Auth Issues
+### Проблемы с аутентификацией Agent CLI
 
 ```bash
-# Remove existing credentials
+# Удалить существующие учётные данные
 agent auth logout
-# Select "openrouter"
+# Выбрать "openrouter"
 
-# Re-authenticate
+# Повторно пройти аутентификацию
 agent auth login
-# Select "openrouter" and enter your API key
+# Выбрать "openrouter" и ввести API-ключ
 ```
 
-## Security Best Practices
+## Рекомендации по безопасности
 
-1. **Never commit API keys**: Add configuration files to `.gitignore`
-2. **Use environment variables**: Prefer shell profile over project files
-3. **Rotate keys regularly**: Generate new keys at [openrouter.ai/keys](https://openrouter.ai/keys)
-4. **Monitor usage**: Check [activity dashboard](https://openrouter.ai/activity) for suspicious requests
+1. **Никогда не коммитьте API-ключи**: Добавляйте файлы конфигурации в `.gitignore`
+2. **Используйте переменные окружения**: Предпочтительнее профиль оболочки, чем файлы проекта
+3. **Регулярно ротируйте ключи**: Генерируйте новые ключи на [openrouter.ai/keys](https://openrouter.ai/keys)
+4. **Следите за использованием**: Проверяйте [дашборд активности](https://openrouter.ai/activity) на предмет подозрительных запросов
 
-## References
+## Ссылки
 
-- [OpenRouter Documentation](https://openrouter.ai/docs)
-- [OpenRouter Models](https://openrouter.ai/models)
+- [Документация OpenRouter](https://openrouter.ai/docs)
+- [Модели OpenRouter](https://openrouter.ai/models)
 - [Claude Code CLI](https://claude.ai/code)
-- [@link-assistant/agent](https://github.com/link-assistant/agent)
+- [@link-assistant/agent](https://github.com/PeterMotorniy/agent)

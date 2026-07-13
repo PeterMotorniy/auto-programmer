@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression tests for issue #2043: generation-relative Codex aliases and
  * OpenAI provider-prefix normalization.

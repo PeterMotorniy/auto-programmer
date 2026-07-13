@@ -7,7 +7,7 @@
  * bot-lifecycle.lib.mjs lets us assert the behaviour directly with injected
  * logger / process / console / timer doubles, with zero production change.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import { createHeartbeat, resumeSessionsOnLaunch, createShutdownHandler } from '../src/bot-lifecycle.lib.mjs';

@@ -7,7 +7,7 @@
  *
  * Usage: node experiments/test-start-stop-command.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1081
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1081
  */
 
 import { isChatStopped, getChatStopInfo, setChatStopped, getStoppedChats, getStoppedChatRejectMessage, DEFAULT_STOP_REASON } from '../src/telegram-start-stop-command.lib.mjs';

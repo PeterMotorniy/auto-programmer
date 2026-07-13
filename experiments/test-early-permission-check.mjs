@@ -63,13 +63,13 @@ const skippedMessage = logs.find(l => l.message.includes('Skipped') && l.message
 console.log(`   Permission check skipped: ${skippedMessage ? 'YES ✅' : 'NO ❌'}`);
 
 // Test 3: Repository with write access (this repo)
-console.log('\n📋 Test 3: Repository with write access (hive-mind)');
+console.log('\n📋 Test 3: Repository with write access (auto-programmer)');
 console.log('   Expected: Should pass with confirmation message\n');
 
 logs.length = 0;
-const test3Result = await checkRepositoryWritePermission('link-assistant', 'hive-mind', {
+const test3Result = await checkRepositoryWritePermission('PeterMotorniy', 'auto-programmer', {
   useFork: false,
-  issueUrl: 'https://github.com/link-assistant/hive-mind/issues/439',
+  issueUrl: 'https://github.com/PeterMotorniy/auto-programmer/issues/439',
 });
 
 console.log(`\n   Result: ${test3Result ? 'PASSED ✅ (expected)' : 'FAILED ❌'}`);

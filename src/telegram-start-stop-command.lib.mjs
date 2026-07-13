@@ -21,10 +21,10 @@
  *   immediately (queue empty) and was therefore never left in the queue's
  *   `processing` Map — the case shown in issue #1871's screenshots.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1081
- * @see https://github.com/link-assistant/hive-mind/issues/524
- * @see https://github.com/link-assistant/hive-mind/issues/1780
- * @see https://github.com/link-assistant/hive-mind/issues/1871
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1081
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/524
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1780
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1871
  * @see https://github.com/link-foundation/start/issues/112
  */
 
@@ -169,7 +169,7 @@ function findFirstIssueOrPullUrl(text) {
  * @param {string} text - Raw `/stop ...` command text
  * @param {Object|null|undefined} repliedTo - Telegram message object being replied to
  * @returns {{ kind: 'uuid'|'url'|null, value: string|null, source: 'argument'|'reply'|null }}
- * @see https://github.com/link-assistant/hive-mind/issues/1780
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1780
  */
 export function extractStopTarget(text, repliedTo) {
   const argText = String(text || '').replace(/^\/stop(?:@\w+)?\s*/i, '');
@@ -201,7 +201,7 @@ export function extractStopTarget(text, repliedTo) {
  * @param {string|null} tool - Per-tool queue name (claude/agent/codex/...)
  * @param {string} stopperName - Display name of the user who ran /stop
  * @returns {Promise<boolean>} true when the card was edited
- * @see https://github.com/link-assistant/hive-mind/issues/1783
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1783
  */
 export async function updateQueueCardForCancellation(item, url, tool, stopperName) {
   if (!item || !item.messageInfo || !item.ctx) return false;
@@ -234,7 +234,7 @@ export async function updateQueueCardForCancellation(item, url, tool, stopperNam
  * @param {Object|null} [args.queueItem] - matched SolveQueueItem, if any
  * @param {Object|null} [args.sessionInfo] - tracked session info, if any
  * @returns {boolean}
- * @see https://github.com/link-assistant/hive-mind/issues/1783
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1783
  */
 export function isStopTargetRequester({ userId, queueItem = null, sessionInfo = null } = {}) {
   if (userId === null || userId === undefined) return false;
@@ -261,13 +261,13 @@ export function isStopTargetRequester({ userId, queueItem = null, sessionInfo = 
  * @param {Function} [options.getSolveQueue] - Returns the in-memory SolveQueue (for `/stop <url>`).
  *   When omitted, the URL flow degrades gracefully to a "no queue available"
  *   message so unit tests for non-URL paths don't need to construct a queue.
- *   See https://github.com/link-assistant/hive-mind/issues/1780.
+ *   See https://github.com/PeterMotorniy/auto-programmer/issues/1780.
  * @param {Function} [options.findRunningSessionByUrl] - Override for tests; looks
  *   the URL up in the session-monitor registry of running detached sessions so
  *   `/stop <url>` can interrupt tasks that started immediately (queue empty) and
  *   were therefore never left in the queue's `processing` Map. When omitted, the
  *   real `findStoppableSessionByUrl` from session-monitor is lazy-imported.
- *   See https://github.com/link-assistant/hive-mind/issues/1871.
+ *   See https://github.com/PeterMotorniy/auto-programmer/issues/1871.
  */
 export function registerStartStopCommands(bot, options) {
   const { VERBOSE = false, isOldMessage, isForwarded, isForwardedOrReply, isGroupChat, isChatAuthorized, isTopicAuthorized, buildAuthErrorMessage, getSolveQueue } = options;
@@ -380,7 +380,7 @@ export function registerStartStopCommands(bot, options) {
    *
    * This mirrors /terminal_watch and /watch (PR #1779) which already let the
    * task requester act on their own session without requiring chat-owner
-   * privileges. See https://github.com/link-assistant/hive-mind/issues/1783.
+   * privileges. See https://github.com/PeterMotorniy/auto-programmer/issues/1783.
    *
    * @param {Object} ctx - Telegraf context
    * @param {string} label - Short human-readable label for the variant ('UUID', 'URL')
@@ -755,7 +755,7 @@ export function registerStartStopCommands(bot, options) {
       // In private chats, show a welcome message instead
       if (check.isPrivate) {
         VERBOSE && console.log('[VERBOSE] /start in private chat: showing welcome');
-        await ctx.reply('👋 *Welcome to SwarmMindBot!*\n\n' + 'This bot helps solve GitHub issues using AI.\n\n' + 'To use this bot:\n' + '1. Add me to a group chat\n' + '2. Make me an admin\n' + '3. Use /solve to solve GitHub issues\n\n' + 'Use /help in a group chat for more information.', { parse_mode: 'Markdown' });
+        await ctx.reply('👋 *Welcome to AutoProgrammerBot!*\n\n' + 'This bot helps solve GitHub issues using AI.\n\n' + 'To use this bot:\n' + '1. Add me to a group chat\n' + '2. Make me an admin\n' + '3. Use /solve to solve GitHub issues\n\n' + 'Use /help in a group chat for more information.', { parse_mode: 'Markdown' });
       }
       return;
     }

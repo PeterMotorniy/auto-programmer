@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 
-// Log upload module for hive-mind
+// Log upload module for auto-programmer
 // Uses gh-upload-log for uploading log files to GitHub
 
 // Use use-m to dynamically import modules for cross-runtime compatibility

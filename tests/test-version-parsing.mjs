@@ -15,8 +15,8 @@
  *
  * Run with: node tests/test-version-parsing.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1514
- * @see https://github.com/link-assistant/hive-mind/issues/1524
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1514
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1524
  */
 
 import assert from 'node:assert/strict';

@@ -8,7 +8,7 @@
  * 3. Legacy call signatures are preserved
  * 4. trackSession works with isolation backend info
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1545
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1545
  */
 
 import { checkScreenSessionRunning, isSessionRunning } from '../src/isolation-runner.lib.mjs';

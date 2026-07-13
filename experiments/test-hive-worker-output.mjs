@@ -10,7 +10,7 @@ console.log('🧪 Testing hive.mjs worker output with new prefixes...\n');
 
 // Test with dry-run to avoid actually processing issues
 const testCommand = './hive.mjs';
-const testArgs = ['https://github.com/link-assistant/hive-mind/issues/171', '--dry-run', '--concurrency', '2', '--verbose'];
+const testArgs = ['https://github.com/PeterMotorniy/auto-programmer/issues/171', '--dry-run', '--concurrency', '2', '--verbose'];
 
 console.log(`📋 Running: ${testCommand} ${testArgs.join(' ')}`);
 console.log('🔍 Looking for worker prefix patterns...\n');

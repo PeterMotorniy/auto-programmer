@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -7,8 +7,8 @@
  * Comprehensive tests for Issue #1600: Calculation bugs and format unification
  * Tests based on real PR log data from three referenced PRs:
  * 1. linksplatform/doublets-rs PR#48 — 3 Opus sessions, 2 Haiku sub-agent calls, 1 Sonnet
- * 2. link-assistant/web-capture PR#55 — 1 Opus, 1 Sonnet, 1 Haiku single sessions
- * 3. link-assistant/hive-mind PR#1621 — 1 Opus, 1 Haiku, cost comparison precision
+ * 2. PeterMotorniy/web-capture PR#55 — 1 Opus, 1 Sonnet, 1 Haiku single sessions
+ * 3. PeterMotorniy/auto-programmer PR#1621 — 1 Opus, 1 Haiku, cost comparison precision
  */
 
 import assert from 'node:assert/strict';
@@ -96,8 +96,8 @@ const webCapturePR55 = {
   totalCost: 3.587614,
 };
 
-// PR#1621 hive-mind: cost comparison precision test
-const hiveMindPR1621 = {
+// PR#1621 auto-programmer: cost comparison precision test
+const autoProgrammerPR1621 = {
   publicCost: 4.145262,
   anthropicCost: 4.145261,
   opus: {
@@ -182,13 +182,13 @@ test('PR#55 Haiku cost matches $0.030241', () => {
 });
 
 test('PR#1621 Opus cost matches $3.907074', () => {
-  const result = calculateModelCost(hiveMindPR1621.opus, { cost: opusPricing }, true);
+  const result = calculateModelCost(autoProgrammerPR1621.opus, { cost: opusPricing }, true);
   const expected = new Decimal(105300).mul(15).div(1000000).plus(new Decimal(5200000).mul(1.5).div(1000000)).plus(new Decimal(26700).mul(75).div(1000000));
   assert.strictEqual(new Decimal(result.total).toFixed(6), expected.toFixed(6));
 });
 
 test('PR#1621 Haiku cost matches $0.238188', () => {
-  const result = calculateModelCost(hiveMindPR1621.haiku, { cost: haikuPricing }, true);
+  const result = calculateModelCost(autoProgrammerPR1621.haiku, { cost: haikuPricing }, true);
   const expected = new Decimal(108000).mul(0.8).div(1000000).plus(new Decimal(790100).mul(0.08).div(1000000)).plus(new Decimal(5600).mul(4).div(1000000));
   assert.strictEqual(new Decimal(result.total).toFixed(6), expected.toFixed(6));
 });
@@ -305,13 +305,13 @@ test('PR#1621 format: Opus single session, Haiku single session', () => {
   const tokenUsage = {
     modelUsage: {
       'claude-opus-4-6': {
-        ...hiveMindPR1621.opus,
+        ...autoProgrammerPR1621.opus,
         modelName: 'Claude Opus 4.6',
         modelInfo: { limit: { context: 1000000, output: 128000 } },
         peakContextUsage: 101900,
       },
       'claude-haiku-4-5-20251001': {
-        ...hiveMindPR1621.haiku,
+        ...autoProgrammerPR1621.haiku,
         modelName: 'Claude Haiku 4.5',
         modelInfo: { limit: { context: 200000, output: 64000 } },
         peakContextUsage: 0,

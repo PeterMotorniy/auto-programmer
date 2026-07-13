@@ -9,9 +9,9 @@
  *
  * Run with: node tests/test-telegram-message-filters.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1207
- * @see https://github.com/link-assistant/hive-mind/pull/493
- * @see https://github.com/link-assistant/hive-mind/pull/496
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1207
+ * @see https://github.com/PeterMotorniy/auto-programmer/pull/493
+ * @see https://github.com/PeterMotorniy/auto-programmer/pull/496
  */
 
 import { isOldMessage, isGroupChat, isChatAuthorized, isForwarded, isForwardedOrReply, extractCommandFromText } from '../src/telegram-message-filters.lib.mjs';
@@ -417,8 +417,8 @@ runTest('Extracts /help command', () => {
 });
 
 runTest('Extracts command with @botname mention', () => {
-  const result = extractCommandFromText('/solve@SwarmMindBot https://github.com/owner/repo/issues/1');
-  return result !== null && result.command === 'solve' && result.botMention === 'SwarmMindBot';
+  const result = extractCommandFromText('/solve@AutoProgrammerBot https://github.com/owner/repo/issues/1');
+  return result !== null && result.command === 'solve' && result.botMention === 'AutoProgrammerBot';
 });
 
 runTest('Case-insensitive command extraction (lowercase)', () => {
@@ -429,22 +429,22 @@ runTest('Case-insensitive command extraction (lowercase)', () => {
 console.log('\n  Bot username validation:\n');
 
 runTest('Returns result when botUsername matches mention', () => {
-  const result = extractCommandFromText('/solve@SwarmMindBot args', 'SwarmMindBot');
+  const result = extractCommandFromText('/solve@AutoProgrammerBot args', 'AutoProgrammerBot');
   return result !== null && result.command === 'solve';
 });
 
 runTest('Returns null when botUsername does not match mention', () => {
-  const result = extractCommandFromText('/solve@OtherBot args', 'SwarmMindBot');
+  const result = extractCommandFromText('/solve@OtherBot args', 'AutoProgrammerBot');
   return result === null;
 });
 
 runTest('Case-insensitive botUsername matching', () => {
-  const result = extractCommandFromText('/solve@swarmmindbot args', 'SwarmMindBot');
+  const result = extractCommandFromText('/solve@swarmmindbot args', 'AutoProgrammerBot');
   return result !== null && result.command === 'solve';
 });
 
 runTest('Returns result when no mention and botUsername provided', () => {
-  const result = extractCommandFromText('/solve args', 'SwarmMindBot');
+  const result = extractCommandFromText('/solve args', 'AutoProgrammerBot');
   return result !== null && result.command === 'solve' && result.botMention === null;
 });
 

@@ -198,7 +198,7 @@ console.log('Forks created with custom names maintain their fork relationships.\
 console.log('The original error in Issue #906:');
 console.log('  "REPOSITORY MISMATCH: Fork is from different repository tree"');
 console.log('\nWas caused by:');
-console.log('  - Repository konard/VisageDvachevsky-VEIL was NOT a GitHub fork');
+console.log('  - Repository petermotorniy/VisageDvachevsky-VEIL was NOT a GitHub fork');
 console.log('  - It had fork=false, parent=null (not created via Fork button/API)');
 console.log('  - It was likely created by clone+push (orphaned repository)');
 console.log('  - This is UNRELATED to --prefix-fork-name-with-owner-name\n');

@@ -10,7 +10,7 @@
  *
  * Run with: node tests/test-issue-1608-claude-prompt-png.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1608
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1608
  */
 
 import assert from 'node:assert/strict';
@@ -18,8 +18,8 @@ import { test, printSummary, getFailCount } from './test-helpers.mjs';
 import { buildSystemPrompt } from '../src/claude.prompts.lib.mjs';
 
 const params = {
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
   issueNumber: 1608,
   prNumber: 1609,
   branchName: 'issue-1608-93b943606ff3',

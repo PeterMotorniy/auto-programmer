@@ -89,7 +89,7 @@ const createSecretGist = async (logContent, filename) => {
     const tempFile = `/tmp/${filename}`;
     await fs.writeFile(tempFile, logContent);
 
-    const result = await $`gh gist create ${tempFile} --secret --desc "Error log for hive-mind"`;
+    const result = await $`gh gist create ${tempFile} --secret --desc "Error log for auto-programmer"`;
     if (result.exitCode === 0) {
       const gistUrl = result.stdout.toString().trim();
       await fs.unlink(tempFile).catch(() => {});
@@ -127,7 +127,7 @@ export const formatLogForIssue = async (logContent, logFilePath) => {
     };
   }
 
-  const gistUrl = await createSecretGist(logContent, `hive-mind-error-${Date.now()}.log`);
+  const gistUrl = await createSecretGist(logContent, `auto-programmer-error-${Date.now()}.log`);
   if (gistUrl) {
     return {
       method: 'gist',
@@ -183,7 +183,7 @@ export const createIssueForError = async options => {
 
     await log('\n🔄 Creating GitHub issue...');
 
-    const issueTitle = error.message || errorMessage || `${errorType} in hive-mind`;
+    const issueTitle = error.message || errorMessage || `${errorType} in auto-programmer`;
 
     let issueBody = '## Error Details\n\n';
     issueBody += `**Type**: ${errorType}\n`;
@@ -229,12 +229,12 @@ export const createIssueForError = async options => {
     }
 
     issueBody += '---\n';
-    issueBody += `*This issue was automatically created by @${currentUser} using hive-mind error reporting*\n`;
+    issueBody += `*This issue was automatically created by @${currentUser} using auto-programmer error reporting*\n`;
 
-    const tempBodyFile = `/tmp/hive-mind-issue-body-${Date.now()}.md`;
+    const tempBodyFile = `/tmp/auto-programmer-issue-body-${Date.now()}.md`;
     await fs.writeFile(tempBodyFile, issueBody);
 
-    const result = await $`gh issue create --repo link-assistant/hive-mind --title ${issueTitle} --body-file ${tempBodyFile} --label bug`;
+    const result = await $`gh issue create --repo PeterMotorniy/auto-programmer --title ${issueTitle} --body-file ${tempBodyFile} --label bug`;
 
     await fs.unlink(tempBodyFile).catch(() => {});
 

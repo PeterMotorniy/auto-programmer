@@ -10,7 +10,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  * following the same pattern as claude.lib.mjs, agent.lib.mjs, etc.
  *
  * @see https://github.com/link-foundation/start
- * @see https://github.com/link-assistant/hive-mind/issues/380
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/380
  */
 
 import crypto from 'crypto';
@@ -49,8 +49,8 @@ export { isExecutingSessionStatus, isTerminalSessionStatus, isKilledSessionStatu
 
 // Valid isolation backends
 const VALID_ISOLATION_BACKENDS = ['screen', 'tmux', 'docker'];
-const HIVE_MIND_IMAGE_REPO = 'konard/hive-mind';
-const HIVE_MIND_DIND_IMAGE_REPO = 'konard/hive-mind-dind';
+const HIVE_MIND_IMAGE_REPO = 'petermotorniy/auto-programmer';
+const HIVE_MIND_DIND_IMAGE_REPO = 'petermotorniy/auto-programmer-dind';
 const DEFAULT_HIVE_MIND_IMAGE_TAG = 'latest';
 const DOCKER_CONTAINER_HOME = '/home/box';
 // Default path where the host Docker socket is bind-mounted inside a DinD
@@ -68,7 +68,7 @@ const DEFAULT_HOST_DOCKER_SOCK = '/var/run/host-docker.sock';
 // check whether bash exists. See issue #1914.
 const DOCKER_ISOLATION_SHELL = 'sh';
 // Free-space floor (GiB) below which the preflight warns that an impending
-// isolation-image pull may fail with `no space left on device`. The Hive Mind
+// isolation-image pull may fail with `no space left on device`. The Auto Programmer
 // isolation images are well over 30 GB extracted, so a host/nested daemon with
 // less headroom than this cannot safely pull one. Diagnostic only — never
 // blocks startup. See issue #1914.
@@ -83,7 +83,7 @@ const DOCKER_START_GATE_WAIT_TENTHS = 300;
 // ambiguous — the container may still be running — so we cross-check it against
 // a live `docker inspect` before concluding the session finished. See #1939.
 // The upstream emission of this premature sentinel was fixed in
-// start-command 0.29.1 (link-foundation/start#136), which the Hive Mind images
+// start-command 0.29.1 (link-foundation/start#136), which the Auto Programmer images
 // now pin; this cross-check is retained as defense-in-depth so an older `$` on
 // an operator's PATH cannot resurrect the bug.
 const DOCKER_UNKNOWN_EXIT_CODE = -1;
@@ -115,7 +115,7 @@ function buildShellCommand(command, args = []) {
 }
 
 function buildDockerStartGatePath(sessionId) {
-  return sessionId ? `/tmp/hive-mind-disk-baseline-${sessionId}` : null;
+  return sessionId ? `/tmp/auto-programmer-disk-baseline-${sessionId}` : null;
 }
 
 function buildDockerStartGatedCommand(taskCommand, sessionId) {
@@ -125,7 +125,7 @@ function buildDockerStartGatedCommand(taskCommand, sessionId) {
 }
 
 function shouldRunPrivilegedDockerIsolation(image, env = process.env) {
-  return String(env.HIVE_MIND_IMAGE_VARIANT || '').toLowerCase() === 'dind' || String(image || '').includes('hive-mind-dind');
+  return String(env.HIVE_MIND_IMAGE_VARIANT || '').toLowerCase() === 'dind' || String(image || '').includes('auto-programmer-dind');
 }
 
 function maybeAddMount(mounts, source, target, existsSync) {
@@ -153,7 +153,7 @@ export function resolveDockerIsolationImageTag({ env = process.env } = {}) {
 /**
  * Pick the Docker image used for `--isolation docker`.
  *
- * start-command defaults its Docker backend to a base OS image. Hive Mind needs
+ * start-command defaults its Docker backend to a base OS image. Auto Programmer needs
  * an image with the same CLI/tooling baseline as the parent process instead.
  *
  * `HIVE_MIND_DOCKER_ISOLATION_IMAGE` is a full override (repo:tag). Otherwise
@@ -216,11 +216,11 @@ export function getDockerIsolationAuthMounts({ tool = 'claude', env = process.en
 
 /**
  * Resolve the image-variant marker recorded inside the isolated container.
- * A `hive-mind-dind` image is always the dind variant; otherwise fall back to
+ * A `auto-programmer-dind` image is always the dind variant; otherwise fall back to
  * the parent's `HIVE_MIND_IMAGE_VARIANT` (or `regular`).
  */
 function resolveImageVariant(image, env = process.env) {
-  return image.includes('hive-mind-dind') ? 'dind' : env.HIVE_MIND_IMAGE_VARIANT || 'regular';
+  return image.includes('auto-programmer-dind') ? 'dind' : env.HIVE_MIND_IMAGE_VARIANT || 'regular';
 }
 
 /**
@@ -231,7 +231,7 @@ function resolveImageVariant(image, env = process.env) {
  * `screen` session (`$ --isolated screen -- docker run …`). That was *screen*
  * isolation merely shelling out to Docker — not Docker isolation. We now hand
  * the container lifecycle to start-command itself and only contribute the
- * pieces Hive Mind must control: which image to run, privileged mode for the
+ * pieces Auto Programmer must control: which image to run, privileged mode for the
  * dind variant, the environment markers, and the credential mounts scoped to
  * the selected tool.
  *
@@ -355,7 +355,7 @@ export function parseSessionStatusOutput(output) {
     // `options.isolated` in both JSON and links-notation output. Older
     // hypothetical layouts used `options.isolation` or a top-level `isolation`
     // field — keep accepting all three so we are tolerant of future renames.
-    // See https://github.com/link-assistant/hive-mind/issues/1700.
+    // See https://github.com/PeterMotorniy/auto-programmer/issues/1700.
     const isolationCandidate = (typeof data?.isolation === 'string' && data.isolation) || (typeof data?.options?.isolated === 'string' && data.options.isolated) || (typeof data?.options?.isolation === 'string' && data.options.isolation) || null;
     const topPid = Number(data?.pid);
     const processIds = normalizeProcessIds(data?.processIds);
@@ -465,7 +465,7 @@ export function shouldFallbackToScreenStatus(statusResult) {
  * `executed/137` record back to `executing` (nulling the exit code) when a
  * lingering shell keeps the screen session alive — so `$ --status` reports
  * `executing` forever and the bot never notices the kill. Reading this footer
- * lets hive-mind detect the real terminal exit regardless of that flip.
+ * lets auto-programmer detect the real terminal exit regardless of that flip.
  *
  * @param {string} text - Log text (typically the tail of the log file)
  * @returns {{finished: boolean, exitCode: number|null, endTime: string|null}}
@@ -842,7 +842,7 @@ export async function stopIsolatedSession(sessionId, verbose = false) {
  * @param {string} sessionName - Name of the screen session to check
  * @param {boolean} [verbose] - Enable verbose logging
  * @returns {Promise<boolean>} True if screen session exists
- * @see https://github.com/link-assistant/hive-mind/issues/1545
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1545
  */
 export async function checkScreenSessionRunning(sessionName, verbose = false) {
   try {
@@ -1074,7 +1074,7 @@ export async function checkDockerImagePresent(image, verbose = false) {
  * Report the storage driver the (nested) Docker daemon is using.
  *
  * `vfs` performs NO copy-on-write — it stores a full copy of every image layer
- * — so the multi-gigabyte Hive Mind images consume many times their real size
+ * — so the multi-gigabyte Auto Programmer images consume many times their real size
  * on disk and the first isolated `docker run`/pull dies with
  * `failed to register layer: no space left on device` (issue #1914 reopen).
  * The preflight uses this to warn loudly when the daemon is on `vfs` instead of
@@ -1102,7 +1102,7 @@ export async function checkDockerStorageDriver(verbose = false) {
 /**
  * Report the free space (in GiB) on the Docker daemon's data root.
  *
- * The Hive Mind isolation images are multiple gigabytes; when the nested daemon
+ * The Auto Programmer isolation images are multiple gigabytes; when the nested daemon
  * has to pull one, it needs room for the extracted layers. This lets the
  * preflight predict a `no space left on device` failure (issue #1914) instead
  * of discovering it mid-pull. Resolves the daemon's real data root via
@@ -1153,7 +1153,7 @@ export async function checkDockerDiskSpace(verbose = false) {
  * The bot usually runs inside a Docker-in-Docker container whose NESTED daemon
  * starts with an empty image store. If the isolation image is not already in
  * that nested daemon, the first isolated task makes `docker run` pull a fresh
- * copy — which for the Hive Mind images is multiple gigabytes (issues #1914,
+ * copy — which for the Auto Programmer images is multiple gigabytes (issues #1914,
  * #1879). box can seed the nested daemon automatically (host-image passthrough)
  * but only when the host Docker socket is bind-mounted into the container; if it
  * is not mounted, passthrough is a SILENT no-op and the re-download is the first
@@ -1212,7 +1212,7 @@ export async function preflightDockerIsolation(options = {}) {
   // commits or pulls more layers still overflows — so we warn independent of
   // image presence.
   if (storageDriver === 'vfs') {
-    result.warnings.push(`The Docker daemon backing '--isolation docker' is using the 'vfs' storage driver, which performs NO copy-on-write: ` + `it stores a full copy of every image layer, so the multi-GB Hive Mind images consume many times their size on disk and isolated tasks can fail with 'failed to register layer: no space left on device' (issue #1914). ` + `Switch to a copy-on-write driver: rebuild/redeploy with the current Dockerfile.dind (it defaults to 'fuse-overlayfs'), or for an already-running container add '-e DIND_STORAGE_DRIVER=fuse-overlayfs' to the bot container's 'docker run' and recreate it.`);
+    result.warnings.push(`The Docker daemon backing '--isolation docker' is using the 'vfs' storage driver, which performs NO copy-on-write: ` + `it stores a full copy of every image layer, so the multi-GB Auto Programmer images consume many times their size on disk and isolated tasks can fail with 'failed to register layer: no space left on device' (issue #1914). ` + `Switch to a copy-on-write driver: rebuild/redeploy with the current Dockerfile.dind (it defaults to 'fuse-overlayfs'), or for an already-running container add '-e DIND_STORAGE_DRIVER=fuse-overlayfs' to the bot container's 'docker run' and recreate it.`);
   }
 
   if (!imagePresent) {
@@ -1220,7 +1220,7 @@ export async function preflightDockerIsolation(options = {}) {
     // the most likely cause and the exact fix instead of letting the operator
     // first discover it as a surprise multi-gigabyte download mid-task.
     if (isDind && !socketMounted) {
-      result.warnings.push(`Docker isolation image '${image}' is NOT in the nested Docker daemon and the host Docker socket is not mounted at ${sock}. ` + `box host-image passthrough cannot seed the nested daemon, so the FIRST isolated task will pull the full image (the Hive Mind images are multiple GB). ` + `Fix the deployment: add '-v /var/run/docker.sock:${sock}:ro' and '-e DIND_HOST_PASSTHROUGH_IMAGES="konard/hive-mind konard/hive-mind-dind"' to the bot container's 'docker run', or seed it now with: ${preload}`);
+      result.warnings.push(`Docker isolation image '${image}' is NOT in the nested Docker daemon and the host Docker socket is not mounted at ${sock}. ` + `box host-image passthrough cannot seed the nested daemon, so the FIRST isolated task will pull the full image (the Auto Programmer images are multiple GB). ` + `Fix the deployment: add '-v /var/run/docker.sock:${sock}:ro' and '-e DIND_HOST_PASSTHROUGH_IMAGES="petermotorniy/auto-programmer petermotorniy/auto-programmer-dind"' to the bot container's 'docker run', or seed it now with: ${preload}`);
     } else if (isDind && socketMounted) {
       result.warnings.push(`Docker isolation image '${image}' is NOT in the nested Docker daemon even though the host Docker socket is mounted at ${sock}. ` + `box host-image passthrough may have skipped it (check DIND_HOST_PASSTHROUGH mode, the DIND_HOST_PASSTHROUGH_IMAGES allowlist, and that the host actually has '${image}' with a registry digest). ` + `The first isolated task will pull the full image. Seed it now with: ${preload}`);
     } else {
@@ -1232,7 +1232,7 @@ export async function preflightDockerIsolation(options = {}) {
     // failure here rather than hitting it mid-pull.
     if (diskAvailableGiB != null && diskAvailableGiB < DOCKER_ISOLATION_LOW_DISK_GIB) {
       const root = disk?.dataRoot || 'the Docker data root';
-      result.warnings.push(`Only ~${diskAvailableGiB.toFixed(0)} GiB free on ${root} and the isolation image '${image}' is not present yet. ` + `The Hive Mind isolation image is well over 30 GB extracted, so the first isolated task's pull may fail with 'no space left on device' (issue #1914). ` + `Seed it via host passthrough (mount the host docker socket) or with '${preload}', and free space on the Docker data root.`);
+      result.warnings.push(`Only ~${diskAvailableGiB.toFixed(0)} GiB free on ${root} and the isolation image '${image}' is not present yet. ` + `The Auto Programmer isolation image is well over 30 GB extracted, so the first isolated task's pull may fail with 'no space left on device' (issue #1914). ` + `Seed it via host passthrough (mount the host docker socket) or with '${preload}', and free space on the Docker data root.`);
     }
   }
 
@@ -1271,7 +1271,7 @@ export function hostHasMountableGitIdentity({ env = process.env, homeDir = os.ho
  * authenticated — the exact failure in issue #1939.
  *
  * This makes the deployment self-healing: when the host has no mountable git
- * identity but `gh-setup-git-identity` is installed (the Hive Mind images bake
+ * identity but `gh-setup-git-identity` is installed (the Auto Programmer images bake
  * it in) and gh is authenticated, it derives an identity from the gh account so
  * the mount has something to propagate. The repair is idempotent — it runs only
  * when no identity exists, so it never overwrites a configured one — and

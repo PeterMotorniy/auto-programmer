@@ -20,10 +20,10 @@ export function buildForkReplacementSafetyCheckDescription({ aheadBy = null, com
   }
 
   if (compareFailureOutput) {
-    return `GitHub compare returned ${summarizeGitHubCompareFailure(compareFailureOutput)}, so Hive Mind could not prove the repository has no unique commits.`;
+    return `GitHub compare returned ${summarizeGitHubCompareFailure(compareFailureOutput)}, so Auto Programmer could not prove the repository has no unique commits.`;
   }
 
-  return 'Hive Mind could not prove the repository has no unique commits.';
+  return 'Auto Programmer could not prove the repository has no unique commits.';
 }
 
 // GitHub Support's self-service fork request workflow. See
@@ -60,12 +60,12 @@ What happened:
 - Safety check: ${safetyCheck}
 
 Why it stopped:
-Hive Mind did not delete ${repository} because the repository may contain commits that would be lost.
+Auto Programmer did not delete ${repository} because the repository may contain commits that would be lost.
 
 Options:
 1. ${buildDetachedForkRecoveryGuidance({ existingRepository: repository, expectedUpstream: upstream })}
 2. Back up any needed work in ${repository}, then delete, rename, archive, or repair that repository in GitHub and rerun the solver.
-3. If you do not control ${repository}, ask the repository owner or a Hive Mind administrator to clean it up and rerun the solver.
+3. If you do not control ${repository}, ask the repository owner or a Auto Programmer administrator to clean it up and rerun the solver.
 4. Rerun with --allow-force-non-fork-repository-deletion only after confirming that deleting ${repository} is acceptable.`;
 }
 

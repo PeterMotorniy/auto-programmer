@@ -3,7 +3,7 @@
 /**
  * Regression tests for issue #1791.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

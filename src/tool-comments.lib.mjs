@@ -75,7 +75,7 @@ export const WORKING_SESSION_SUMMARY_MARKER = 'Working session summary';
 // that Codex can write in its own PR comment. Do not treat the heading alone as
 // a tool-generated marker. New automated summaries include this hidden marker;
 // legacy automated summaries are still recognized by the footer text below.
-export const WORKING_SESSION_SUMMARY_AUTOMATION_MARKER = '<!-- hive-mind:working-session-summary -->';
+export const WORKING_SESSION_SUMMARY_AUTOMATION_MARKER = '<!-- auto-programmer:working-session-summary -->';
 export const WORKING_SESSION_SUMMARY_AUTOMATED_FOOTER = 'This summary was automatically extracted from the AI working session output.';
 
 // github.lib.mjs — fork contributor "Allow edits by maintainers" request

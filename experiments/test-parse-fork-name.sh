@@ -3,8 +3,8 @@
 # Test parsing fork name from gh repo fork output
 #
 # When gh repo fork outputs messages like:
-# - "konard/netkeep80-jsonRVM already exists"
-# - "✓ Created fork konard/netkeep80-jsonRVM"
+# - "petermotorniy/netkeep80-jsonRVM already exists"
+# - "✓ Created fork petermotorniy/netkeep80-jsonRVM"
 # - Just the fork name on a line
 #
 # We need to extract the actual fork name
@@ -16,11 +16,11 @@ echo
 
 # Test cases - various outputs from gh repo fork
 TEST_CASES=(
-    "konard/netkeep80-jsonRVM already exists"
-    "✓ Created fork konard/netkeep80-jsonRVM"
-    "konard/jsonRVM"
-    "Creating fork konard/netkeep80-jsonRVM..."
-    "konard/some-repo"
+    "petermotorniy/netkeep80-jsonRVM already exists"
+    "✓ Created fork petermotorniy/netkeep80-jsonRVM"
+    "petermotorniy/jsonRVM"
+    "Creating fork petermotorniy/netkeep80-jsonRVM..."
+    "petermotorniy/some-repo"
 )
 
 echo "Test cases for fork name extraction:"

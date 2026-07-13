@@ -1,61 +1,61 @@
-# Contributing to Hive Mind (languages: en • [zh](CONTRIBUTING.zh.md) • [hi](CONTRIBUTING.hi.md) • [ru](CONTRIBUTING.ru.md))
+# Участие в разработке Auto Programmer
 
-## Human-AI Collaboration Guidelines
+## Руководство по совместной работе человека и AI
 
-This project leverages AI-driven development with human oversight. Follow these practices:
+Этот проект использует AI-разработку под контролем человека. Следуйте этим практикам:
 
-### Development Workflow
+### Рабочий процесс разработки
 
-1. **Issue Creation** - Humans create issues with clear requirements
-2. **AI Processing** - Hive Mind analyzes and proposes solutions
-3. **Human Review** - Code review and architectural decisions
-4. **Iterative Refinement** - Collaborative improvement cycles
+1. **Создание задач** — Люди создают задачи с чёткими требованиями
+2. **Обработка AI** — Auto Programmer анализирует задачи и предлагает решения
+3. **Ревью человеком** — Проверка кода и принятие архитектурных решений
+4. **Итеративное улучшение** — Циклы совместного совершенствования
 
-### Code Standards
+### Стандарты кода
 
-- **TypeScript/JavaScript**: Strict typing required
-- **File Size**: Maximum 1000 lines per file
-- **Testing**: 100% test coverage for critical paths
-- **Documentation**: Machine-readable, token-efficient
+- **TypeScript/JavaScript**: Требуется строгая типизация
+- **Размер файлов**: Максимум 1000 строк на файл
+- **Тестирование**: 100% покрытие тестами для критических путей
+- **Документация**: Машиночитаемая, токено-эффективная
 
-### Version Management with Changesets
+### Управление версиями с помощью Changesets
 
-This project uses [Changesets](https://github.com/changesets/changesets) to manage versions and changelogs. This eliminates merge conflicts that occur when multiple PRs bump the version in package.json.
+Этот проект использует [Changesets](https://github.com/changesets/changesets) для управления версиями и журналами изменений. Это устраняет конфликты слияния, возникающие когда несколько PR одновременно обновляют версию в package.json.
 
-#### Adding a Changeset
+#### Добавление Changeset
 
-When you make changes that affect users, add a changeset:
+Когда вы вносите изменения, влияющие на пользователей, добавьте changeset:
 
 ```bash
 npm run changeset
 ```
 
-This will prompt you to:
+Это предложит вам:
 
-1. Select the type of change (patch/minor/major)
-2. Provide a summary of the changes
+1. Выбрать тип изменения (patch/minor/major)
+2. Предоставить краткое описание изменений
 
-The changeset will be saved as a markdown file in `.changeset/` and should be committed with your PR.
+Changeset будет сохранён как markdown-файл в `.changeset/` и должен быть зафиксирован вместе с вашим PR.
 
-#### Changeset Guidelines
+#### Руководство по Changeset
 
-- **Patch**: Bug fixes, documentation updates, internal refactoring
-- **Minor**: New features, non-breaking enhancements
-- **Major**: Breaking changes that affect the public API
+- **Patch**: Исправление ошибок, обновление документации, внутренний рефакторинг
+- **Minor**: Новые возможности, несовместимые улучшения
+- **Major**: Критические изменения, влияющие на публичный API
 
-Example changeset summary:
+Пример описания changeset:
 
 ```markdown
 Add support for automatic fork creation with --auto-fork flag
 ```
 
-#### Release Process
+#### Процесс выпуска релиза
 
-1. When PRs with changesets are merged to main, the Release workflow automatically creates a "Version Packages" PR
-2. The Version Packages PR updates package.json versions and CHANGELOG.md
-3. When the Version Packages PR is merged, the package is automatically published to NPM
+1. Когда PR с changesets сливаются в main, рабочий процесс Release автоматически создаёт PR «Version Packages»
+2. PR «Version Packages» обновляет версии package.json и CHANGELOG.md
+3. Когда PR «Version Packages» сливается, пакет автоматически публикуется в NPM
 
-### AI Agent Configuration
+### Конфигурация AI-агентов
 
 ```typescript
 interface AgentConfig {
@@ -71,48 +71,50 @@ export const defaultConfig: AgentConfig = {
 };
 ```
 
-### Quality Gates
+### Условия контроля качества
 
-Before merging, ensure:
+Перед слиянием убедитесь, что:
 
-- [ ] All tests pass
-- [ ] File size limits enforced
-- [ ] Type checking passes
-- [ ] Human review completed
-- [ ] AI consensus achieved (if multi-agent)
+- [ ] Все тесты проходят
+- [ ] Ограничения по размеру файлов соблюдены
+- [ ] Проверка типов проходит
+- [ ] Ревью человеком завершено
+- [ ] Достигнут консенсус AI (при мульти-агентном режиме)
 
-### Test Suite Entrypoints
+### Точки входа тестовых наборов
 
-Use `npm test` for the default local suite. New tests that should run in the
-default suite must mark the test file itself:
+Используйте `npm test` для локального набора по умолчанию. Новые тесты,
+которые должны запускаться в наборе по умолчанию, должны помечать сам файл
+теста:
 
 ```javascript
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 ```
 
-Use a dedicated suite marker, such as `github-integration`, for tests that need
-external services or mutate real repositories. Do not append individual
-`node tests/...` commands to `package.json` or the main CI test-suite job.
+Для тестов, которым нужны внешние сервисы или которые изменяют реальные
+репозитории, используйте отдельный маркер набора, например
+`github-integration`. Не добавляйте отдельные команды `node tests/...` в
+`package.json` или основной CI job test-suite.
 
-### Communication Protocols
+### Протоколы взаимодействия
 
-#### Human → AI
+#### Человек → AI
 
 ```bash
-# Clear, specific instructions
+# Чёткие, конкретные инструкции
 ./solve.mjs https://github.com/owner/repo/issues/123 --requirements "Security focus, maintain backward compatibility"
 ```
 
-#### AI → Human
+#### AI → Человек
 
 ```bash
-# Status reports with actionable items
+# Отчёты о состоянии с действенными пунктами
 echo "🤖 Analysis complete. Requires human decision on breaking changes."
 ```
 
-## Testing AI Agents
+## Тестирование AI-агентов
 
 ```typescript
 import { testAgent } from './tests/agent-testing.ts';
@@ -125,17 +127,17 @@ await testAgent({
 });
 ```
 
-## Code Review Process
+## Процесс ревью кода
 
-1. **Automated Review** - AI agents perform initial analysis
-2. **Cross-Agent Validation** - Multiple agents verify solutions
-3. **Human Oversight** - Final architectural and security review
-4. **Consensus Building** - Resolve conflicts through discussion
+1. **Автоматизированное ревью** — AI-агенты выполняют первоначальный анализ
+2. **Перекрёстная проверка агентами** — Несколько агентов верифицируют решения
+3. **Контроль человека** — Финальное архитектурное и безопасностное ревью
+4. **Достижение консенсуса** — Разрешение конфликтов через обсуждение
 
-### Review Checklist
+### Чеклист ревью
 
-- [ ] Algorithm correctness verified
-- [ ] Security vulnerabilities assessed
-- [ ] Performance implications considered
-- [ ] Documentation completeness
-- [ ] Integration test coverage
+- [ ] Корректность алгоритмов проверена
+- [ ] Уязвимости безопасности оценены
+- [ ] Влияние на производительность рассмотрено
+- [ ] Полнота документации
+- [ ] Покрытие интеграционными тестами

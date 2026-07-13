@@ -21,9 +21,9 @@
  *
  * Run with: node tests/test-ready-to-merge-cross-session-1389.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1389
- * @see https://github.com/link-assistant/hive-mind/issues/1371 (same root cause, different scenario)
- * @see https://github.com/link-assistant/hive-mind/issues/1323 (introduced the deduplication)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1389
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1371 (same root cause, different scenario)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1323 (introduced the deduplication)
  */
 
 // ANSI color codes for terminal output

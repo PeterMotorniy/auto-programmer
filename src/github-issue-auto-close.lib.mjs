@@ -21,7 +21,7 @@
  *   - an action helper that explicitly closes the linked issue after a merge
  *     into a non-default branch, where GitHub would not do it for us.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1895
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1895
  * @see https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue
  */
 
@@ -117,7 +117,7 @@ export function classifyIssueLinkStatus({ prBody = '', prTitle = '', issueNumber
  * @returns {string[]}
  */
 export function buildNonDefaultBranchExplanation({ issueNumber, baseBranch, defaultBranch, issueRef = `#${issueNumber}` }) {
-  return [`The PR closing keyword for ${issueRef} is present, but the PR targets the`, `non-default branch '${baseBranch}' (the repository default is '${defaultBranch}').`, 'GitHub only registers closing references and auto-closes linked issues for', 'pull requests merged into the default branch, so:', `  • the automatic link to issue ${issueRef} will not appear, and`, `  • issue ${issueRef} will NOT be closed automatically when this PR merges.`, 'hive-mind will close the linked issue explicitly after the merge instead.'];
+  return [`The PR closing keyword for ${issueRef} is present, but the PR targets the`, `non-default branch '${baseBranch}' (the repository default is '${defaultBranch}').`, 'GitHub only registers closing references and auto-closes linked issues for', 'pull requests merged into the default branch, so:', `  • the automatic link to issue ${issueRef} will not appear, and`, `  • issue ${issueRef} will NOT be closed automatically when this PR merges.`, 'auto-programmer will close the linked issue explicitly after the merge instead.'];
 }
 
 /**
@@ -216,7 +216,7 @@ export async function ensureLinkedIssueClosedAfterMerge({ $: rawDollar, log = nu
     }
 
     // Close the issue explicitly, leaving an explanatory trail.
-    const comment = [`Closed by #${prNumber}, which targeted the non-default branch \`${baseBranch}\` (repository default: \`${defaultBranch}\`).`, '', 'GitHub only auto-closes linked issues for pull requests merged into the default branch,', 'so hive-mind closed this issue explicitly after the merge.', '', '_Automated by hive-mind ([#1895](https://github.com/link-assistant/hive-mind/issues/1895))._'].join('\n');
+    const comment = [`Closed by #${prNumber}, which targeted the non-default branch \`${baseBranch}\` (repository default: \`${defaultBranch}\`).`, '', 'GitHub only auto-closes linked issues for pull requests merged into the default branch,', 'so auto-programmer closed this issue explicitly after the merge.', '', '_Automated by auto-programmer ([#1895](https://github.com/PeterMotorniy/auto-programmer/issues/1895))._'].join('\n');
 
     const closeResult = await $`gh issue close ${issueNumber} --repo ${owner}/${repo} --reason completed --comment ${comment}`;
     if (closeResult.code === 0) {

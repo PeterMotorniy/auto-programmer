@@ -13,8 +13,8 @@
  *
  * Run with: node tests/test-npm-install-with-retry-1903.mjs
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1903
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1903
  */
 
 import assert from 'node:assert/strict';

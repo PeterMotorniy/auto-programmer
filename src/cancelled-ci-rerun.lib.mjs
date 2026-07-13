@@ -5,10 +5,10 @@
  *
  * GitHub can expose several operational cases as a cancelled/stale status:
  * manual cancellation, concurrency cancellation, queue/run limits, or a
- * workflow/job timeout. If hive-mind cannot re-trigger the run, a human has to
+ * workflow/job timeout. If auto-programmer cannot re-trigger the run, a human has to
  * inspect the logs because polling the same conclusion will not make progress.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1769
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1769
  */
 
 import { CANCELLED_CI_REVIEW_MARKER } from './tool-comments.lib.mjs';
@@ -31,7 +31,7 @@ const CANCELLED_OR_STALE_CONCLUSIONS = new Set(['cancelled', 'stale']);
  * AI should fix / auto-restart) instead of a re-triggerable cancellation that stops for human
  * review.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1952
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1952
  */
 const FAILURE_LIKE_WORKFLOW_RUN_CONCLUSIONS = new Set(['failure', 'timed_out', 'startup_failure']);
 
@@ -134,7 +134,7 @@ export const buildCancelledCIReviewComment = ({ blocker, runs = [], rerunFailure
 
   return `## ${CANCELLED_CI_REVIEW_MARKER}
 
-Hive Mind detected cancelled or stale CI/CD checks and cannot get them running automatically.${shaLine}
+Auto Programmer detected cancelled or stale CI/CD checks and cannot get them running automatically.${shaLine}
 
 **Cancelled checks**
 ${formatMarkdownList(cancelledDetails, 'No cancelled check details were available.')}
@@ -154,5 +154,5 @@ ${formatMarkdownList(rerunFailures.map(formatRerunFailure), 'No successful autom
 If workflow/job \`timeout-minutes\` or a runner execution limit caused the cancellation, treat it as a CI failure and fix the timeout, test, or infrastructure before merging.
 
 ---
-Hive Mind is stopping because continuing to poll the same cancelled/stale check would not change the mergeability result.`;
+Auto Programmer is stopping because continuing to poll the same cancelled/stale check would not change the mergeability result.`;
 };

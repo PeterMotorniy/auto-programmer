@@ -34,11 +34,11 @@ async function testDishkaRepo() {
   console.log(section);
 }
 
-async function testHiveMindRepo() {
+async function testAutoProgrammerRepo() {
   console.log('\n\n=================================\n');
-  console.log('Testing link-assistant/hive-mind repository...');
+  console.log('Testing PeterMotorniy/auto-programmer repository...');
 
-  const guidelines = await detectContributingGuidelines('link-assistant', 'hive-mind');
+  const guidelines = await detectContributingGuidelines('PeterMotorniy', 'auto-programmer');
 
   console.log('\nResults:');
   console.log('  Found:', guidelines.found);
@@ -57,14 +57,14 @@ async function testHiveMindRepo() {
   }
 
   console.log('\n--- Contributing Section for Prompt ---');
-  const section = await buildContributingSection('link-assistant', 'hive-mind');
+  const section = await buildContributingSection('PeterMotorniy', 'auto-programmer');
   console.log(section);
 }
 
 // Run tests
 try {
   await testDishkaRepo();
-  await testHiveMindRepo();
+  await testAutoProgrammerRepo();
   console.log('\n\n✅ Tests completed successfully!');
 } catch (err) {
   console.error('\n❌ Test failed:', err);

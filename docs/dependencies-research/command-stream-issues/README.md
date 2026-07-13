@@ -40,7 +40,7 @@ This directory contains reproducible test cases for issues encountered with the 
 
 ⚠️ **Issue #18 - Auto-Quoting Control**: command-stream lacks the ability to turn off auto-quoting, which causes full command strings to be misinterpreted as quoted commands. This breaks telegram bot command execution and similar use cases where pre-constructed command strings need to be executed. Always use `child_process.spawn()` or `execSync()` for commands requiring precise argument control.
 
-⚠️ **Issue #19 - stderr: 'ignore' Option Doesn't Work**: The `$({ stderr: 'ignore' })` and `$({ silent: true, stderr: 'ignore' })` options don't actually suppress stderr output. This causes non-blocking error messages to pollute logs in worker processes and background tasks, making successful execution look broken. In hive-mind issue #583, this caused "fatal: not a git repository" and "YError: Not enough arguments" to appear with ERROR labels even though execution was proceeding normally. Workarounds: (1) Use shell-level redirection `2>/dev/null`, or (2) Use `execSync` with `stdio: [..., 'ignore']` for precise control.
+⚠️ **Issue #19 - stderr: 'ignore' Option Doesn't Work**: The `$({ stderr: 'ignore' })` and `$({ silent: true, stderr: 'ignore' })` options don't actually suppress stderr output. This causes non-blocking error messages to pollute logs in worker processes and background tasks, making successful execution look broken. In auto-programmer issue #583, this caused "fatal: not a git repository" and "YError: Not enough arguments" to appear with ERROR labels even though execution was proceeding normally. Workarounds: (1) Use shell-level redirection `2>/dev/null`, or (2) Use `execSync` with `stdio: [..., 'ignore']` for precise control.
 
 ## Running the Tests
 

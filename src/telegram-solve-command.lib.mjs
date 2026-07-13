@@ -4,8 +4,8 @@
  * Keeps /solve aliases and argument normalization testable without loading the
  * full Telegram bot entry point.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/525
- * @see https://github.com/link-assistant/hive-mind/issues/1618
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/525
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1618
  */
 
 import { normalizeCliArgs } from './argument-normalization.lib.mjs';

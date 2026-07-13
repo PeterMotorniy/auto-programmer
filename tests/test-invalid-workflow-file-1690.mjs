@@ -24,9 +24,9 @@
  *
  * Run with: node tests/test-invalid-workflow-file-1690.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1690
- * @see https://github.com/link-assistant/hive-mind/issues/1466 (related, action_required)
- * @see https://github.com/link-assistant/hive-mind/issues/1442 (related, no workflow runs)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1690
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1466 (related, action_required)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1442 (related, no workflow runs)
  */
 
 const GREEN = '\x1b[32m';

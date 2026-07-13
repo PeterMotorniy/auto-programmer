@@ -189,7 +189,7 @@ runTest('Version is properly configured', () => {
   const instrumentPath = join(projectRoot, 'src', 'instrument.mjs');
   const content = fs.readFileSync(instrumentPath, 'utf8');
 
-  return content.includes('release:') && content.includes('hive-mind@');
+  return content.includes('release:') && content.includes('auto-programmer@');
 });
 
 // Summary

@@ -42,13 +42,13 @@ async function testGraphQLPagination() {
   console.log('🧪 Starting GraphQL Pagination Test\n');
 
   // Test 1: Test with a user/org that likely has many repositories
-  // We'll use 'konard' as mentioned in the issue
-  console.log('Test 1: Fetching repositories for user "konard"');
+  // We'll use 'petermotorniy' as mentioned in the issue
+  console.log('Test 1: Fetching repositories for user "petermotorniy"');
   console.log('Expected: Should fetch all repositories with pagination\n');
 
   try {
     const result = await tryFetchIssuesWithGraphQL(
-      'konard',
+      'petermotorniy',
       'user',
       log,
       cleanErrorMessage,

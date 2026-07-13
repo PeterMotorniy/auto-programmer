@@ -6,8 +6,8 @@ if (typeof globalThis.use === 'undefined') {
 const use = globalThis.use;
 const { $ } = await use('command-stream');
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 const number = 320;
 
 console.log(`\nTesting PR vs Issue detection for #${number} in ${owner}/${repo}\n`);

@@ -1,6 +1,6 @@
-# Hive-Mind Coolify Deployment Guide
+# Auto-Programmer Coolify Deployment Guide
 
-This guide explains how to deploy the Hive-Mind application to Coolify, a self-hosted PaaS platform.
+This guide explains how to deploy the Auto-Programmer application to Coolify, a self-hosted PaaS platform.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ This guide explains how to deploy the Hive-Mind application to Coolify, a self-h
 
 2. **Configure Source**:
    - Source: "GitHub Repository"
-   - Repository: `https://github.com/your-fork/hive-mind`
+   - Repository: `https://github.com/your-fork/auto-programmer`
    - Branch: `main`
    - Build Path: `/coolify`
    - Docker Compose File: `docker-compose.yml`
@@ -45,14 +45,14 @@ This guide explains how to deploy the Hive-Mind application to Coolify, a self-h
 1. **Build and Push Image** (on your local machine):
 
    ```bash
-   cd hive-mind/coolify
-   docker build -t your-registry/hive-mind:latest -f Dockerfile ..
-   docker push your-registry/hive-mind:latest
+   cd auto-programmer/coolify
+   docker build -t your-registry/auto-programmer:latest -f Dockerfile ..
+   docker push your-registry/auto-programmer:latest
    ```
 
 2. **In Coolify**:
    - New Resource → Docker Image
-   - Image: `your-registry/hive-mind:latest`
+   - Image: `your-registry/auto-programmer:latest`
    - Add environment variables (see below)
 
 ### Method 3: Docker Compose with Raw Configuration
@@ -209,7 +209,7 @@ codex exec --model gpt-5.4-mini "hi"
 
 1. Go to your application in Coolify
 2. Click "Logs" tab
-3. You'll see real-time logs from the hive-mind process
+3. You'll see real-time logs from the auto-programmer process
 
 ### Health Checks
 
@@ -326,7 +326,7 @@ To update to the latest version:
 
 ## Support
 
-- **Hive-Mind Issues**: https://github.com/link-assistant/hive-mind/issues
+- **Auto-Programmer Issues**: https://github.com/PeterMotorniy/auto-programmer/issues
 - **Coolify Documentation**: https://coolify.io/docs
 - **Coolify Discord**: https://discord.gg/coolify
 

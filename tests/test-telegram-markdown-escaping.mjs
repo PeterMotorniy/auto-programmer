@@ -133,7 +133,7 @@ console.log('Integration Test: Message Construction (Real-world scenario)');
 console.log('='.repeat(80));
 console.log();
 
-const testUsername = 'drakonard';
+const testUsername = 'PeterMotorniy';
 const testUrl = 'https://github.com/andchir/llm_game/issues/1';
 const testOptions = '--auto-fork --auto-continue --attach-logs --verbose --no-tool-check';
 const solveOverrides = ['--auto-fork', '--auto-continue', '--attach-logs', '--verbose', '--no-tool-check'];

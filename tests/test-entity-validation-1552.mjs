@@ -12,7 +12,7 @@
  * - Successful validation when all entities exist
  * - Graceful handling of network/auth errors (don't block)
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1552
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1552
  */
 
 console.log('🧪 Running GitHub entity validation unit tests (Issue #1552)...\n');
@@ -48,7 +48,7 @@ async function validateGitHubEntityExistenceWithMocks({ owner, repo, number, typ
     if (repoResponse?.error?.includes('404') || repoResponse?.error?.includes('Not Found')) {
       const bullets = ['• Repository may be private — ensure the bot has been granted access', '• The repository name is spelled correctly', '• The repository has not been deleted, transferred, or never existed'];
       if (!autoAcceptInvite) {
-        bullets.push('• If Hive Mind bot was recently invited, try using --auto-accept-invite to accept pending invitations');
+        bullets.push('• If Auto Programmer bot was recently invited, try using --auto-accept-invite to accept pending invitations');
       }
       return {
         valid: false,
@@ -238,7 +238,7 @@ const testCases = [
       repoCheck: () => ({ code: 1, error: '404 Not Found' }),
     },
     expected: { valid: false, level: 'repo' },
-    errorContains: 'If Hive Mind bot was recently invited, try using --auto-accept-invite to accept pending invitations',
+    errorContains: 'If Auto Programmer bot was recently invited, try using --auto-accept-invite to accept pending invitations',
   },
   {
     name: 'Repo 404 message OMITS --auto-accept-invite hint when flag IS already set (issue #1692)',

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'assert/strict';
@@ -23,11 +23,11 @@ async function test(name, fn) {
   }
 }
 
-const issueUrl = 'https://github.com/link-assistant/hive-mind/issues/501';
+const issueUrl = 'https://github.com/PeterMotorniy/auto-programmer/issues/501';
 
 await test('/task command is recognized', () => {
   assert.equal(getTaskCommandNameFromText(`/task ${issueUrl}`), 'task');
-  assert.equal(getTaskCommandNameFromText(`/split@SwarmMindBot ${issueUrl}`), 'split');
+  assert.equal(getTaskCommandNameFromText(`/split@AutoProgrammerBot ${issueUrl}`), 'split');
   assert.equal(getTaskCommandNameFromText(`/solve ${issueUrl}`), null);
 });
 
@@ -55,7 +55,7 @@ await test('explicit --split is not duplicated', () => {
 });
 
 await test('pull request URLs are not accepted as task issue URL', () => {
-  assert.equal(findTaskIssueUrl(['https://github.com/link-assistant/hive-mind/pull/553']), null);
+  assert.equal(findTaskIssueUrl(['https://github.com/PeterMotorniy/auto-programmer/pull/553']), null);
 });
 
 await test('tool can be parsed from task command arguments', () => {
@@ -64,7 +64,7 @@ await test('tool can be parsed from task command arguments', () => {
   assert.equal(getTaskToolFromArgs([issueUrl]), 'claude');
 });
 
-const repoUrl = 'https://github.com/link-assistant/hive-mind';
+const repoUrl = 'https://github.com/PeterMotorniy/auto-programmer';
 const issueText = 'Make task issue creation work\n\nPreserve the full body.';
 
 for (const [name, input] of [
@@ -77,9 +77,9 @@ for (const [name, input] of [
     const parsed = parseTaskIssueCreationInput(input);
     assert.equal(parsed.valid, true);
     assert.deepEqual(parsed.repository, {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
-      fullName: 'link-assistant/hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
+      fullName: 'PeterMotorniy/auto-programmer',
       url: repoUrl,
     });
     assert.equal(parsed.issueText, issueText);
@@ -97,7 +97,7 @@ await test('reply issue creation combines inline repo with replied issue text', 
   });
   const parsed = parseTaskIssueCreationInput(input);
   assert.equal(parsed.valid, true);
-  assert.equal(parsed.repository.fullName, 'link-assistant/hive-mind');
+  assert.equal(parsed.repository.fullName, 'PeterMotorniy/auto-programmer');
   assert.equal(parsed.issueText, issueText);
 });
 
@@ -108,7 +108,7 @@ await test('reply issue creation combines inline issue text with replied repo', 
   });
   const parsed = parseTaskIssueCreationInput(input);
   assert.equal(parsed.valid, true);
-  assert.equal(parsed.repository.fullName, 'link-assistant/hive-mind');
+  assert.equal(parsed.repository.fullName, 'PeterMotorniy/auto-programmer');
   assert.equal(parsed.issueText, issueText);
 });
 
@@ -119,7 +119,7 @@ await test('reply with bare /task uses repo and issue text from replied message'
   });
   const parsed = parseTaskIssueCreationInput(input);
   assert.equal(parsed.valid, true);
-  assert.equal(parsed.repository.fullName, 'link-assistant/hive-mind');
+  assert.equal(parsed.repository.fullName, 'PeterMotorniy/auto-programmer');
   assert.equal(parsed.issueText, issueText);
 });
 
@@ -130,14 +130,14 @@ await test('reply issue creation tolerates the same repo inline and in reply', (
   });
   const parsed = parseTaskIssueCreationInput(input);
   assert.equal(parsed.valid, true);
-  assert.equal(parsed.repository.fullName, 'link-assistant/hive-mind');
+  assert.equal(parsed.repository.fullName, 'PeterMotorniy/auto-programmer');
   assert.equal(parsed.issueText, issueText);
 });
 
 await test('combining two different repositories still reports a conflict', () => {
   const input = resolveTaskIssueCreationInput({
     commandText: `/task ${repoUrl}`,
-    replyText: `https://github.com/link-assistant/formal-ai\n${issueText}`,
+    replyText: `https://github.com/PeterMotorniy/formal-ai\n${issueText}`,
   });
   const parsed = parseTaskIssueCreationInput(input);
   assert.equal(parsed.valid, false);
@@ -180,7 +180,7 @@ await test('task issue creation replies with the created issue URL', async () =>
     },
     createTaskIssue: async issue => {
       createdIssues.push(issue);
-      return { url: 'https://github.com/link-assistant/hive-mind/issues/1734' };
+      return { url: 'https://github.com/PeterMotorniy/auto-programmer/issues/1734' };
     },
   });
 
@@ -204,9 +204,9 @@ await test('task issue creation replies with the created issue URL', async () =>
   assert.deepEqual(createdIssues, [
     {
       repository: {
-        owner: 'link-assistant',
-        repo: 'hive-mind',
-        fullName: 'link-assistant/hive-mind',
+        owner: 'PeterMotorniy',
+        repo: 'auto-programmer',
+        fullName: 'PeterMotorniy/auto-programmer',
         url: repoUrl,
       },
       title: 'Make task issue creation work',
@@ -218,7 +218,7 @@ await test('task issue creation replies with the created issue URL', async () =>
   assert.equal(edits.length, 1);
   assert.equal(edits[0].chatId, 100);
   assert.equal(edits[0].messageId, 301);
-  assert.match(edits[0].text, /https:\/\/github\.com\/link-assistant\/hive-mind\/issues\/1734/);
+  assert.match(edits[0].text, /https:\/\/github\.com\/PeterMotorniy\/auto-programmer\/issues\/1734/);
   assert.match(edits[0].text, /Reply to this message with \/solve/);
 });
 
@@ -246,7 +246,7 @@ await test('handleTaskCommand creates issue when replying with repo and issue te
     },
     createTaskIssue: async issue => {
       createdIssues.push(issue);
-      return { url: 'https://github.com/link-assistant/hive-mind/issues/1916' };
+      return { url: 'https://github.com/PeterMotorniy/auto-programmer/issues/1916' };
     },
   });
 
@@ -269,7 +269,7 @@ await test('handleTaskCommand creates issue when replying with repo and issue te
   await handleTaskCommand(ctx);
 
   assert.equal(createdIssues.length, 1);
-  assert.equal(createdIssues[0].repository.fullName, 'link-assistant/hive-mind');
+  assert.equal(createdIssues[0].repository.fullName, 'PeterMotorniy/auto-programmer');
   assert.equal(createdIssues[0].body, issueText);
   assert.equal(edits.length, 1);
   assert.match(edits[0].text, /issues\/1916/);
@@ -300,7 +300,7 @@ function buildTaskHarness(overrides = {}) {
     },
     createTaskIssue: async issue => {
       calls.createdIssues.push(issue);
-      return { url: 'https://github.com/link-assistant/hive-mind/issues/9999' };
+      return { url: 'https://github.com/PeterMotorniy/auto-programmer/issues/9999' };
     },
     ...overrides,
   });

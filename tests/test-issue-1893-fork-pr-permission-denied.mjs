@@ -4,7 +4,7 @@
  * Regression tests for Issue #1893.
  *
  * Scenario: a maintainer with write access to the upstream repository continues
- * a fork PR opened by another contributor (e.g. link-assistant/formal-ai#405,
+ * a fork PR opened by another contributor (e.g. PeterMotorniy/formal-ai#405,
  * head = skulidropek/formal-ai:issue-404, "Allow edits by maintainers" = true).
  *
  * The solver clones the contributor's fork as `origin`, syncs the local default
@@ -72,7 +72,7 @@ test('classifyPushRejection still reports remote-rejected for the same output (u
 
 test('shouldPushDefaultBranchToFork skips the push when the user does not own the fork', () => {
   const decision = shouldPushDefaultBranchToFork({
-    currentUser: 'konard',
+    currentUser: 'petermotorniy',
     forkedRepo: 'skulidropek/formal-ai',
   });
   assert.equal(decision.shouldPush, false);
@@ -109,7 +109,7 @@ test('shouldPushDefaultBranchToFork falls back to pushing when user is unknown',
 
 test('shouldPushDefaultBranchToFork falls back to pushing when fork owner cannot be parsed', () => {
   const decision = shouldPushDefaultBranchToFork({
-    currentUser: 'konard',
+    currentUser: 'petermotorniy',
     forkedRepo: 'not-a-slug',
   });
   assert.equal(decision.shouldPush, true);

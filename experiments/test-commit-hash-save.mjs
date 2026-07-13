@@ -44,7 +44,7 @@ This content must be preserved!`;
     console.log('✅ Created existing CLAUDE.md');
 
     // Simulate adding task info (what auto-pr creation does)
-    const taskInfo = `Issue to solve: https://github.com/link-assistant/hive-mind/issues/468
+    const taskInfo = `Issue to solve: https://github.com/PeterMotorniy/auto-programmer/issues/468
 Your prepared branch: test-branch
 Your prepared working directory: ${testDir}
 

@@ -5,13 +5,13 @@
  * Verifies that scripts/run-tests.mjs:
  *   1. Picks up an arbitrary new *.mjs file under tests/ in the default suite
  *      without requiring an allow-list update.
- *   2. Excludes files marked with `@hive-mind-test-suite <other>`.
- *   3. Excludes files marked with `@hive-mind-integration` from the default
+ *   2. Excludes files marked with `@auto-programmer-test-suite <other>`.
+ *   3. Excludes files marked with `@auto-programmer-integration` from the default
  *      suite, and includes them under `--suite integration`.
- *   4. Excludes files marked with `@hive-mind-test-skip` from every suite.
+ *   4. Excludes files marked with `@auto-programmer-test-skip` from every suite.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1758
- * @hive-mind-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1758
+ * @auto-programmer-test-suite default
  */
 
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -66,12 +66,12 @@ function listTests(workDir, suite) {
 // Marker strings are assembled at runtime so this test file itself is not
 // classified by the runner as anything other than default.
 const AT = '@';
-const SUITE_MARKER = `${AT}hive-mind-test-suite`;
-const INTEGRATION_MARKER = `${AT}hive-mind-integration`;
-const SKIP_MARKER = `${AT}hive-mind-test-skip`;
+const SUITE_MARKER = `${AT}auto-programmer-test-suite`;
+const INTEGRATION_MARKER = `${AT}auto-programmer-integration`;
+const SKIP_MARKER = `${AT}auto-programmer-test-skip`;
 
 function setupSyntheticRepo() {
-  const dir = mkdtempSync(join(tmpdir(), 'hive-mind-runner-test-'));
+  const dir = mkdtempSync(join(tmpdir(), 'auto-programmer-runner-test-'));
   mkdirSync(join(dir, 'scripts'), { recursive: true });
   cpSync(runnerPath, join(dir, 'scripts', 'run-tests.mjs'));
   mkdirSync(join(dir, 'tests'));

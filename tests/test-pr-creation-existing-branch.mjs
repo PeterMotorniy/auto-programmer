@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // in CI because it relies on temp git repos and assertions about commit-behind
 // counts that don't hold in the GitHub Actions sandbox. Tracked under issue

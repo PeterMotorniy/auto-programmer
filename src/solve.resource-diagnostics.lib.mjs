@@ -106,7 +106,7 @@ export function detectExecutionContext(options = {}) {
 
   const envObj = env && typeof env === 'object' ? env : {};
   if (envObj.HIVE_MIND_ISOLATION || envObj.HIVE_MIND_CONTAINER) {
-    indicators.push('env:hive-mind-isolation');
+    indicators.push('env:auto-programmer-isolation');
     runtime = runtime || 'container';
   }
   if (envObj.KUBERNETES_SERVICE_HOST) {

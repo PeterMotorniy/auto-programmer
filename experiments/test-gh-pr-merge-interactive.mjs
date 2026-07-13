@@ -15,8 +15,8 @@ import { exec as execCallback, spawn } from 'child_process';
 
 const exec = promisify(execCallback);
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 
 // Test 1: Try gh pr merge --help to verify cli is available
 async function testCliAvailable() {

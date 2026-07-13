@@ -255,20 +255,20 @@ async function main() {
   console.log('='.repeat(80));
 
   try {
-    // Test 1: Fetch issues from konard user (all issues)
-    console.log('\n📋 Test 1: Fetch all open issues from user konard');
+    // Test 1: Fetch issues from petermotorniy user (all issues)
+    console.log('\n📋 Test 1: Fetch all open issues from user petermotorniy');
     console.log('-'.repeat(80));
-    await testUserIssuesWithGraphQL('konard', null, 20);
+    await testUserIssuesWithGraphQL('petermotorniy', null, 20);
 
-    // Test 2: Fetch issues from link-assistant organization
-    console.log('\n📋 Test 2: Fetch all open issues from org link-assistant');
+    // Test 2: Fetch issues from PeterMotorniy organization
+    console.log('\n📋 Test 2: Fetch all open issues from org PeterMotorniy');
     console.log('-'.repeat(80));
-    await testOrgIssuesWithGraphQL('link-assistant', null, 20);
+    await testOrgIssuesWithGraphQL('PeterMotorniy', null, 20);
 
-    // Test 3: Fetch repos with issues from konard (alternative approach)
-    console.log('\n📋 Test 3: Fetch repos with their issues from user konard');
+    // Test 3: Fetch repos with issues from petermotorniy (alternative approach)
+    console.log('\n📋 Test 3: Fetch repos with their issues from user petermotorniy');
     console.log('-'.repeat(80));
-    await testReposWithIssuesGraphQL('konard', false, 10);
+    await testReposWithIssuesGraphQL('petermotorniy', false, 10);
 
     console.log('\n' + '='.repeat(80));
     console.log('✅ All tests completed!\n');

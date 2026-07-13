@@ -8,7 +8,7 @@
  * - CI/CD status monitoring
  * - Sequential merge execution
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1143
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1143
  */
 
 import { promisify } from 'util';
@@ -738,7 +738,7 @@ const ACTIVE_RUN_STATUSES = ['in_progress', 'queued', 'waiting', 'requested', 'p
  * Issue #1307: Used to check if there are any in-progress or queued runs on the target branch
  * Issue #1722: Filter on the server side per status, otherwise the unfiltered
  * `--paginate --slurp` response can overflow exec maxBuffer on busy repos
- * (observed 12.7 MB on link-assistant/hive-mind main). Also: errors are now
+ * (observed 12.7 MB on PeterMotorniy/auto-programmer main). Also: errors are now
  * surfaced rather than swallowed as `hasActiveRuns: false`, which previously
  * caused /merge to merge on top of a still-running CI run.
  * @param {string} owner - Repository owner

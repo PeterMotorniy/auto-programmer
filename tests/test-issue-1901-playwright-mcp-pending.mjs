@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #1901: a Claude Code system.init event can report Playwright MCP as
  * "pending" while no mcp__playwright__* tools are exposed.
@@ -129,8 +129,8 @@ await asyncTest('Issue #1901: system.init comment shows pending Playwright as co
     return { stdout: JSON.stringify({ id: 1901, html_url: 'https://github.example/comment/1901' }) };
   };
   const handler = createInteractiveHandler({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     prNumber: 1907,
     log: async () => {},
     execFile,
@@ -157,8 +157,8 @@ await asyncTest('Issue #1901: system.init comment warns when Playwright MCP fail
     return { stdout: JSON.stringify({ id: 1901, html_url: 'https://github.example/comment/1901' }) };
   };
   const handler = createInteractiveHandler({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     prNumber: 1907,
     log: async () => {},
     execFile,

@@ -5,7 +5,7 @@
  * Usage:
  *   import { test, asyncTest, printSummary, getFailCount } from './test-helpers.mjs';
  *
- * @hive-mind-test-skip
+ * @auto-programmer-test-skip
  */
 
 let testsPassed = 0;

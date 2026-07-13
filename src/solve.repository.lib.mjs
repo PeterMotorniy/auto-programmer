@@ -159,7 +159,7 @@ export const validateForkParent = async (forkRepo, expectedUpstream) => {
 
 /**
  * Build workspace directory name according to the specification:
- * /tmp/hive-mind-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}
+ * /tmp/auto-programmer-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}
  *
  * @param {string} owner - Repository owner
  * @param {string} repo - Repository name
@@ -168,8 +168,8 @@ export const validateForkParent = async (forkRepo, expectedUpstream) => {
  * @returns {string} The workspace directory path
  */
 export const buildWorkspacePath = (owner, repo, issueNumber, timestamp) => {
-  // Format: /tmp/hive-mind-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}
-  const baseDir = path.join(os.tmpdir(), `hive-mind-solve-gh-${owner}`);
+  // Format: /tmp/auto-programmer-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}
+  const baseDir = path.join(os.tmpdir(), `auto-programmer-solve-gh-${owner}`);
   const workspaceDir = path.join(baseDir, `${repo}-issue-${issueNumber}-workspace-${timestamp}`);
   return workspaceDir;
 };
@@ -615,9 +615,9 @@ export const setupRepository = async (argv, owner, repo, forkOwner = null, issue
         if (deleteResult.code !== 0) {
           const delOut = (deleteResult.stderr?.toString() || '') + (deleteResult.stdout?.toString() || '');
           await log(`${formatAligned('❌', 'Delete failed:', delOut.split('\n')[0])}`, { level: 'error' });
-          await log(/delete_repo/i.test(delOut) || (/HTTP 403/.test(delOut) && /admin rights/i.test(delOut)) ? `  💡 Token missing "delete_repo" scope. Hive Mind does not request it by default. Admin fix: gh auth refresh -h github.com -s delete_repo\n  🔧 Or no-scope alternative: gh repo rename ${existingForkName} ${existingForkName.split('/')[1]}-old (or gh repo archive ${existingForkName} --yes), then re-run with --prefix-fork-name-with-owner-name` : `  💡 Manual fix: gh repo delete ${existingForkName} --yes, then re-run`); // Issue #1651
+          await log(/delete_repo/i.test(delOut) || (/HTTP 403/.test(delOut) && /admin rights/i.test(delOut)) ? `  💡 Token missing "delete_repo" scope. Auto Programmer does not request it by default. Admin fix: gh auth refresh -h github.com -s delete_repo\n  🔧 Or no-scope alternative: gh repo rename ${existingForkName} ${existingForkName.split('/')[1]}-old (or gh repo archive ${existingForkName} --yes), then re-run with --prefix-fork-name-with-owner-name` : `  💡 Manual fix: gh repo delete ${existingForkName} --yes, then re-run`); // Issue #1651
           if (argv.verbose) await log(`${formatAligned('🔧', 'Full delete output:', delOut.trim())}`);
-          await safeExit(1, `Auto-recovery failed - ask the fork owner or Hive Mind administrator to delete, rename, or archive ${existingForkName}`);
+          await safeExit(1, `Auto-recovery failed - ask the fork owner or Auto Programmer administrator to delete, rename, or archive ${existingForkName}`);
         }
         await log(`${formatAligned('✅', 'Deleted:', existingForkName)}`);
         existingForkName = null; // Fall through to fork creation below
@@ -650,7 +650,7 @@ export const setupRepository = async (argv, owner, repo, forkOwner = null, issue
         // Always capture output to parse actual fork name
         const forkOutput = (forkResult.stderr ? forkResult.stderr.toString() : '') + (forkResult.stdout ? forkResult.stdout.toString() : '');
         if (argv.verbose) await log(`${formatAligned('🔧', 'Fork output:', forkOutput.split('\n')[0] || '(empty)')}`); // Issue #1518
-        // Parse actual fork name from output (e.g., "konard/netkeep80-jsonRVM already exists")
+        // Parse actual fork name from output (e.g., "petermotorniy/netkeep80-jsonRVM already exists")
         // Issue #1819: repository names can contain dots, such as "*.github.io".
         const parsedForkName = parseForkFullNameFromGhOutput(forkOutput);
         if (parsedForkName) {
@@ -1136,7 +1136,7 @@ export const cloneRepository = async (repoToClone, tempDir, argv, owner, repo) =
         if (errorClassification.type === 'NETWORK') {
           await log('     5. Check your network connection / VPN / proxy, then re-run the command');
           await log('     6. On slow or unstable links, a shallower history transfers faster and is less');
-          await log('        likely to be interrupted; ask a Hive Mind administrator if clone tuning is available');
+          await log('        likely to be interrupted; ask a Auto Programmer administrator if clone tuning is available');
         }
         await log('');
       }

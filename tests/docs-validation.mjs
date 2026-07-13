@@ -14,7 +14,7 @@ const { $ } = await use('command-stream');
 
 // Configuration
 const MAX_LINES = 2500;
-const REQUIRED_SECTIONS = ['Quick Start', 'Architecture', 'Configuration'];
+const REQUIRED_SECTIONS = ['Быстрый старт', 'Архитектура', 'Конфигурация'];
 
 let errorsFound = 0;
 

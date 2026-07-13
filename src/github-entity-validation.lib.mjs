@@ -2,7 +2,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 /**
  * GitHub entity existence validation for /solve command.
  * Extracted from github.lib.mjs to keep files under 1500 line limit.
- * @see https://github.com/link-assistant/hive-mind/issues/1552
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1552
  */
 if (typeof globalThis.use === 'undefined') await ensureUseM();
 const { $ } = await use('command-stream');
@@ -189,7 +189,7 @@ export async function validateGitHubEntityExistence({ owner, repo, number, type,
       if (errorOutput.includes('404') || errorOutput.includes('Not Found')) {
         const bullets = ['• Repository may be private — ensure the bot has been granted access', '• The repository name is spelled correctly', '• The repository has not been deleted, transferred, or never existed'];
         if (!autoAcceptInvite) {
-          bullets.push('• If Hive Mind bot was recently invited, try using --auto-accept-invite to accept pending invitations');
+          bullets.push('• If Auto Programmer bot was recently invited, try using --auto-accept-invite to accept pending invitations');
         }
         return {
           valid: false,

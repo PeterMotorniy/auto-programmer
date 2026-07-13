@@ -18,19 +18,19 @@ async function test(name, fn) {
 }
 
 const incidentReason = buildForkReplacementBlockedReason({
-  existingRepository: 'konard/olproff-fastsbc_acli',
+  existingRepository: 'petermotorniy/olproff-fastsbc_acli',
   expectedUpstream: 'olproff/fastsbc_acli',
-  relationshipDescription: 'konard/olproff-fastsbc_acli is not a GitHub fork of olproff/fastsbc_acli.',
-  safetyCheckDescription: 'GitHub compare returned 404 Not Found, so Hive Mind could not prove the repository has no unique commits.',
+  relationshipDescription: 'petermotorniy/olproff-fastsbc_acli is not a GitHub fork of olproff/fastsbc_acli.',
+  safetyCheckDescription: 'GitHub compare returned 404 Not Found, so Auto Programmer could not prove the repository has no unique commits.',
 });
 
 await test('issue #1976 reason explains the blocked fork replacement instead of using the old terse title', () => {
   assert.match(incidentReason, /^Repository setup halted - existing fork replacement could lose commits\./);
-  assert.match(incidentReason, /Expected fork or replacement repository: konard\/olproff-fastsbc_acli/);
+  assert.match(incidentReason, /Expected fork or replacement repository: petermotorniy\/olproff-fastsbc_acli/);
   assert.match(incidentReason, /Expected upstream: olproff\/fastsbc_acli/);
   assert.match(incidentReason, /not a GitHub fork/);
   assert.match(incidentReason, /GitHub compare returned 404 Not Found/);
-  assert.match(incidentReason, /did not delete konard\/olproff-fastsbc_acli/);
+  assert.match(incidentReason, /did not delete petermotorniy\/olproff-fastsbc_acli/);
   assert.match(incidentReason, /delete, rename, archive, or repair/);
   assert.match(incidentReason, /--allow-force-non-fork-repository-deletion/);
   assert.doesNotMatch(incidentReason, /^Auto-recovery skipped - repository may contain commits that would be lost$/);
@@ -39,7 +39,7 @@ await test('issue #1976 reason explains the blocked fork replacement instead of 
 await test('issue #1976 action section keeps the exact repository and user options visible', () => {
   const section = buildPrePullRequestFailureActionSection(incidentReason);
 
-  assert.match(section, /konard\/olproff-fastsbc_acli/);
+  assert.match(section, /petermotorniy\/olproff-fastsbc_acli/);
   assert.match(section, /olproff\/fastsbc_acli/);
   assert.match(section, /could not prove whether the existing repository has unique commits/);
   assert.match(section, /delete, rename, archive, or repair/);
@@ -72,7 +72,7 @@ await test('issue #1976 log-upload failure comments receive the expanded reason 
   assert.deepEqual(result, { notified: true, method: 'log-upload' });
   assert.equal(calls.length, 1);
   assert.match(calls[0].errorMessage, /existing fork replacement could lose commits/);
-  assert.match(calls[0].errorMessage, /konard\/olproff-fastsbc_acli/);
+  assert.match(calls[0].errorMessage, /petermotorniy\/olproff-fastsbc_acli/);
   assert.match(calls[0].errorMessage, /GitHub compare returned 404 Not Found/);
   assert.match(calls[0].failureActionSection, /could not prove whether the existing repository has unique commits/);
   assert.match(calls[0].failureActionSection, /--allow-force-non-fork-repository-deletion/);

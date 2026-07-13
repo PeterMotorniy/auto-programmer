@@ -151,7 +151,7 @@ async function testScenario({ issueNumber, existingBranches, expectedBehavior })
   };
 
   const argv = { autoContinue: true, fork: false };
-  const result = await processAutoContinueForIssue(argv, true, issueNumber, 'link-assistant', 'hive-mind');
+  const result = await processAutoContinueForIssue(argv, true, issueNumber, 'PeterMotorniy', 'auto-programmer');
 
   console.log(`Result: isContinueMode=${result.isContinueMode}, prNumber=${result.prNumber}, prBranch=${result.prBranch}`);
 

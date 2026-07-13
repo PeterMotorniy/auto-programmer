@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite default
+// @auto-programmer-test-suite default
 
 /**
  * Test suite for Issue #1803: --auto-fork mode does not work.
@@ -8,7 +8,7 @@
  * PR (forkOwner branch with forkRepoName known from headRepository.name),
  * the code applied --prefix-fork-name-with-owner-name to forkRepoName. Since
  * forkRepoName is already authoritative (e.g. "labtgbot-telegram-claude-agent")
- * the result was a doubled prefix ("konard/labtgbot-labtgbot-telegram-claude-agent")
+ * the result was a doubled prefix ("petermotorniy/labtgbot-labtgbot-telegram-claude-agent")
  * and the fork lookup failed even though the actual fork exists.
  *
  * Fix: when forkRepoName is provided from PR head data, trust it directly.
@@ -18,11 +18,11 @@
  * Scenario from the failing log
  * (https://github.com/labtgbot/telegram-claude-agent/pull/4#issuecomment-4463389730):
  *   upstream:        labtgbot/telegram-claude-agent
- *   PR head:         konard/labtgbot-telegram-claude-agent
+ *   PR head:         petermotorniy/labtgbot-telegram-claude-agent
  *   forkRepoName:    labtgbot-telegram-claude-agent
  *   prefix flag:     true (default)
- *   Before fix:      expectedForkName = "konard/labtgbot-labtgbot-telegram-claude-agent"
- *   After fix:       expectedForkName = "konard/labtgbot-telegram-claude-agent"
+ *   Before fix:      expectedForkName = "petermotorniy/labtgbot-labtgbot-telegram-claude-agent"
+ *   After fix:       expectedForkName = "petermotorniy/labtgbot-telegram-claude-agent"
  */
 
 import { fileURLToPath } from 'url';
@@ -107,12 +107,12 @@ runTest('issue #1803 concrete scenario', () => {
   const got = computeExpectedForkName({
     owner: 'labtgbot',
     repo: 'telegram-claude-agent',
-    forkOwner: 'konard',
+    forkOwner: 'petermotorniy',
     forkRepoName: 'labtgbot-telegram-claude-agent',
     prefixForkNameWithOwnerName: true,
   });
-  if (got !== 'konard/labtgbot-telegram-claude-agent') {
-    throw new Error(`Expected konard/labtgbot-telegram-claude-agent, got ${got}`);
+  if (got !== 'petermotorniy/labtgbot-telegram-claude-agent') {
+    throw new Error(`Expected petermotorniy/labtgbot-telegram-claude-agent, got ${got}`);
   }
 });
 
@@ -121,14 +121,14 @@ runTest('authoritative path ignores prefix flag', () => {
   const a = computeExpectedForkName({
     owner: 'labtgbot',
     repo: 'telegram-claude-agent',
-    forkOwner: 'konard',
+    forkOwner: 'petermotorniy',
     forkRepoName: 'labtgbot-telegram-claude-agent',
     prefixForkNameWithOwnerName: true,
   });
   const b = computeExpectedForkName({
     owner: 'labtgbot',
     repo: 'telegram-claude-agent',
-    forkOwner: 'konard',
+    forkOwner: 'petermotorniy',
     forkRepoName: 'labtgbot-telegram-claude-agent',
     prefixForkNameWithOwnerName: false,
   });

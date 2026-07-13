@@ -9,7 +9,7 @@ import { detectCITools, runLocalCIChecks, generateCICheckReport } from '../src/l
 console.log('🧪 Testing Local CI Checks Detection\n');
 
 async function testCurrentRepo() {
-  console.log('Testing current repository (hive-mind)...\n');
+  console.log('Testing current repository (auto-programmer)...\n');
 
   const workDir = process.cwd();
   console.log('Working directory:', workDir);

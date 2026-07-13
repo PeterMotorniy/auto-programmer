@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #1741: cumulative sub-agent context-fill must use new + cache_writes
  * (NOT cache_reads). Cache reads represent the same cached prefix being

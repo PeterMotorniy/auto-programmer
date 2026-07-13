@@ -9,8 +9,8 @@ const use = globalThis.use;
 // Use command-stream for consistent $ behavior
 const { $ } = await use('command-stream');
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 
 console.log('Testing branch search with pagination fix...\n');
 

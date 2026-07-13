@@ -7,8 +7,8 @@
  * /claude, /codex, /opencode, /agent, /qwen, and /gemini are per-tool aliases equivalent to
  * /solve --tool <tool>.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/525
- * @see https://github.com/link-assistant/hive-mind/issues/1618
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/525
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1618
  */
 
 import { applySolveToolAlias, getSolveToolAliasFromText, parseCommandArgs, SOLVE_COMMAND_NAMES, TOOL_SOLVE_COMMAND_ALIASES } from '../src/telegram-solve-command.lib.mjs';
@@ -58,7 +58,7 @@ const tests = [
   },
   {
     name: '/agent injects --tool agent and handles bot mention',
-    input: '/agent@SwarmMindBot https://github.com/test/repo/issues/7 --model nemotron-3-super-free',
+    input: '/agent@AutoProgrammerBot https://github.com/test/repo/issues/7 --model nemotron-3-super-free',
     expectedArgs: ['https://github.com/test/repo/issues/7', '--model', 'nemotron-3-super-free', '--tool', 'agent'],
     expectedToolAlias: 'agent',
   },

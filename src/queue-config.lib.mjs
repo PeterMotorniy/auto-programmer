@@ -20,9 +20,9 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  *
  * Priority: HIVE_MIND_QUEUE_CONFIG > individual env vars > defaults
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1242
- * @see https://github.com/link-assistant/hive-mind/issues/1253
- * @see https://github.com/link-assistant/hive-mind/issues/1981
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1242
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1253
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1981
  */
 
 // Use use-m to dynamically import modules
@@ -233,7 +233,7 @@ function getThresholdConfig(linoKey, envVarThreshold, envVarStrategy, defaultThr
  *
  * IMPORTANT: Running claude processes is NOT a blocking limit by itself.
  * Commands can run in parallel as long as actual limits (CPU, API, etc.) are not exceeded.
- * See: https://github.com/link-assistant/hive-mind/issues/1078
+ * See: https://github.com/PeterMotorniy/auto-programmer/issues/1078
  *
  * NEW in issue #1253: Each threshold now has a configurable strategy:
  * - 'reject': Immediately reject the command (no queueing)
@@ -290,7 +290,7 @@ export const QUEUE_CONFIG = {
   // Maximum number of items shown per section (pending/processing/completed/failed)
   // in the /queue detailed status before collapsing into a
   // "... and N more" line. Keeps the Telegram message under the 4096-char cap.
-  // See: https://github.com/link-assistant/hive-mind/issues/1837
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1837
   MAX_DISPLAY_ITEMS_PER_QUEUE: parseIntWithDefault('HIVE_MIND_MAX_DISPLAY_ITEMS_PER_QUEUE', 5),
 };
 
@@ -307,7 +307,7 @@ export function thresholdToPercent(ratio) {
  * Display threshold constants for progress bar visualization
  * These are derived from QUEUE_CONFIG and converted to percentages (0-100)
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1242
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1242
  */
 export const DISPLAY_THRESHOLDS = {
   RAM: thresholdToPercent(QUEUE_CONFIG.RAM_THRESHOLD),

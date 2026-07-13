@@ -10,7 +10,7 @@
  *
  * Run with: node tests/test-version-info.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1320
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1320
  */
 
 import assert from 'node:assert/strict';
@@ -50,11 +50,11 @@ await asyncTest('getVersionInfo completes within the reasonable CI bound', async
   console.log(`   (actual time: ${duration}ms)`);
 });
 
-await asyncTest('getVersionInfo includes hiveMind version', async () => {
+await asyncTest('getVersionInfo includes autoProgrammer version', async () => {
   const result = await getVersionInfo(false);
-  assert.ok(result.versions.hiveMind, 'Should have hiveMind version');
+  assert.ok(result.versions.autoProgrammer, 'Should have autoProgrammer version');
   // Should be a version string like "1.23.12"
-  assert.ok(/^\d+\.\d+\.\d+/.test(result.versions.hiveMind), 'hiveMind should be a semver version');
+  assert.ok(/^\d+\.\d+\.\d+/.test(result.versions.autoProgrammer), 'autoProgrammer should be a semver version');
 });
 
 await asyncTest('getVersionInfo includes Node.js version from process', async () => {
@@ -103,7 +103,7 @@ console.log('\n📋 formatVersionMessage Tests\n');
 
 test('formatVersionMessage returns string', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     node: 'v20.20.0',
     platform: 'linux (x64)',
   };
@@ -111,19 +111,19 @@ test('formatVersionMessage returns string', () => {
   assert.ok(typeof message === 'string', 'Should return a string');
 });
 
-test('formatVersionMessage includes Hive-Mind header', () => {
+test('formatVersionMessage includes Auto-Programmer header', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     node: 'v20.20.0',
   };
   const message = formatVersionMessage(versions);
-  assert.ok(message.includes('*🤖 Hive-Mind*'), 'Should include Hive-Mind header');
+  assert.ok(message.includes('*🤖 Auto-Programmer*'), 'Should include Auto-Programmer header');
   assert.ok(message.includes('1.23.12'), 'Should include version number');
 });
 
 test('formatVersionMessage shows restart warning when needsRestart is true', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     processVersion: '1.22.0',
     needsRestart: true,
     node: 'v20.20.0',
@@ -135,7 +135,7 @@ test('formatVersionMessage shows restart warning when needsRestart is true', () 
 
 test('formatVersionMessage does not show restart warning when needsRestart is false', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     processVersion: '1.23.12',
     needsRestart: false,
     node: 'v20.20.0',
@@ -146,7 +146,7 @@ test('formatVersionMessage does not show restart warning when needsRestart is fa
 
 test('formatVersionMessage groups JavaScript tools under JavaScript/Node.js section', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     node: 'v20.20.0',
     bun: '1.3.9',
     deno: 'deno 2.6.9',
@@ -161,7 +161,7 @@ test('formatVersionMessage groups JavaScript tools under JavaScript/Node.js sect
 
 test('formatVersionMessage groups Python tools under Python section', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     python: 'Python 3.14.3',
     pyenv: 'pyenv 2.6.22',
   };
@@ -173,7 +173,7 @@ test('formatVersionMessage groups Python tools under Python section', () => {
 
 test('formatVersionMessage groups Rust tools under Rust section', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     rust: 'rustc 1.93.1',
     cargo: 'cargo 1.93.1',
   };
@@ -185,7 +185,7 @@ test('formatVersionMessage groups Rust tools under Rust section', () => {
 
 test('formatVersionMessage groups AI agents under AI Agents section', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     claudeCode: 'Claude Code 2.1.41',
     agent: 'agent 1.0.0',
     codex: 'codex 1.0.0',
@@ -199,7 +199,7 @@ test('formatVersionMessage groups AI agents under AI Agents section', () => {
 
 test('formatVersionMessage shows mixed Playwright MCP connection state for Claude and Codex', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     playwrightMcp: '@playwright/mcp@0.0.69',
     playwrightMcpClaudeStatus: 'playwright: connected',
     playwrightMcpCodexStatus: null,
@@ -210,7 +210,7 @@ test('formatVersionMessage shows mixed Playwright MCP connection state for Claud
 
 test('formatVersionMessage groups C/C++ tools under C/C++ section', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     gcc: 'gcc 13.3.0',
     gpp: 'g++ 13.3.0',
     clang: 'clang 18.1.3',
@@ -225,7 +225,7 @@ test('formatVersionMessage groups C/C++ tools under C/C++ section', () => {
 
 test('formatVersionMessage does not include empty sections', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     node: 'v20.20.0',
     // No Rust tools
     // No Java tools
@@ -237,7 +237,7 @@ test('formatVersionMessage does not include empty sections', () => {
 
 test('formatVersionMessage includes platform at the end', () => {
   const versions = {
-    hiveMind: '1.23.12',
+    autoProgrammer: '1.23.12',
     node: 'v20.20.0',
     platform: 'linux (x64)',
   };
@@ -252,7 +252,7 @@ test('formatVersionMessage includes platform at the end', () => {
 
 test('formatVersionMessage localizes Russian UI labels', () => {
   const versions = {
-    hiveMind: '1.69.10',
+    autoProgrammer: '1.69.10',
     processVersion: '1.69.9',
     needsRestart: true,
     claudeCode: 'Claude Code 2.1.138',
@@ -270,7 +270,7 @@ test('formatVersionMessage localizes Russian UI labels', () => {
 
   const message = formatVersionMessage(versions, { locale: 'ru' });
 
-  assert.ok(message.includes('• Версия: `1.69.10`'), 'Should translate Hive-Mind version label');
+  assert.ok(message.includes('• Версия: `1.69.10`'), 'Should translate Auto-Programmer version label');
   assert.ok(message.includes('требуется перезапуск'), 'Should translate restart warning');
   assert.ok(message.includes('*🎭 AI-агенты*'), 'Should translate AI Agents section');
   assert.ok(message.includes('*🌐 Браузеры*'), 'Should translate Browsers section');

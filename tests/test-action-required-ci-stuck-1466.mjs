@@ -19,9 +19,9 @@
  *
  * Run with: node tests/test-action-required-ci-stuck-1466.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1466
- * @see https://github.com/link-assistant/hive-mind/issues/1442 (related)
- * @see https://github.com/link-assistant/hive-mind/issues/1363 (related)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1466
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1442 (related)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1363 (related)
  */
 
 // ANSI color codes for terminal output

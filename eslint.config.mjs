@@ -137,7 +137,7 @@ export default [
       'streams/no-leaked-streams': 'error',
       // Disallow raw exec/execAsync/$ calls to `gh` without a rate-limit-safe wrapper.
       // Files that import ghWithRateLimitRetry / execGhWithRetry / ghRetry / ghCmdRetry are exempt.
-      // See: https://github.com/link-assistant/hive-mind/issues/1726
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1726
       'gh-rate-limit/no-direct-gh-exec': 'error',
       'output-sanitization/require-sanitized-output': 'error',
       // Enforce max 1500 lines per file to match CI workflow check.

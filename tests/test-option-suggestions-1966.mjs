@@ -38,7 +38,7 @@ assert.deepEqual(
 );
 
 await assert.rejects(
-  () => parseArgsWithYargs(['https://github.com/link-assistant/hive-mind/pull/1965', '--mode', 'opus'], yargsFactory, createSolveYargsConfig),
+  () => parseArgsWithYargs(['https://github.com/PeterMotorniy/auto-programmer/pull/1965', '--mode', 'opus'], yargsFactory, createSolveYargsConfig),
   error => {
     assert.match(error.message, /Unknown argument: mode/);
     assert.match(error.message, /Did you mean `--model` option\?/);
@@ -50,7 +50,7 @@ await assert.rejects(
 assert.throws(
   () =>
     parseCliArgumentsWithLino({
-      argv: ['node', 'solve', 'https://github.com/link-assistant/hive-mind/issues/1966', '--mode', 'opus'],
+      argv: ['node', 'solve', 'https://github.com/PeterMotorniy/auto-programmer/issues/1966', '--mode', 'opus'],
       commandName: 'solve',
       createYargsConfig: createSolveYargsConfig,
       positionalAliases: ['issue-url'],
@@ -64,7 +64,7 @@ assert.throws(
 );
 
 await assert.rejects(
-  () => parseArgsWithYargs(['https://github.com/link-assistant/hive-mind', '--targt-branch', 'main'], yargsFactory, createHiveYargsConfig),
+  () => parseArgsWithYargs(['https://github.com/PeterMotorniy/auto-programmer', '--targt-branch', 'main'], yargsFactory, createHiveYargsConfig),
   error => {
     assert.match(error.message, /Unknown arguments?: targt-branch/);
     assert.match(error.message, /Did you mean `--target-branch` option\?/);

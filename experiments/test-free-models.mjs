@@ -10,7 +10,7 @@ import { validateModelName } from '../src/models/index.mjs';
 
 const FREE_MODELS = ['opencode/big-pickle', 'opencode/gpt-5-nano', 'opencode/kimi-k2.5-free', 'opencode/glm-4.7-free', 'opencode/minimax-m2.1-free'];
 
-console.log('🧪 Testing free model support in hive-mind\n');
+console.log('🧪 Testing free model support in auto-programmer\n');
 
 // Test 1: Model validation
 console.log('1️⃣ Testing model validation...');

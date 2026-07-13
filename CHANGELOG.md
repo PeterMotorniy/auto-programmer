@@ -1,4 +1,4 @@
-# @link-assistant/hive-mind
+# auto-programmer
 
 ## 2.5.5
 
@@ -301,7 +301,7 @@
 
   Adds `tests/test-base-branch-existence.mjs` (17 offline assertions covering the helpers and
   the misdiagnosis fix), `tests/test-base-branch-existence-integration.mjs`
-  (`@hive-mind-integration`, the real `gh` gate), and a deep case study in
+  (`@auto-programmer-integration`, the real `gh` gate), and a deep case study in
   `docs/case-studies/issue-1959/`.
 
 ## 2.0.12
@@ -399,7 +399,7 @@ skipped in fixture` even though the codex session **succeeded** (`turn.completed
   fixed there, and are now pinned in this repo's images: `Dockerfile` /
   `Dockerfile.dind` bump `start-command` `0.29.1` → `0.29.2` (link-foundation/start#138
   — the `docker pull`/dind-boot phase is now recorded in the `$` session log), and
-  `Dockerfile.dind` bumps its base from `konard/box-dind:2.3.2` → `2.3.5`
+  `Dockerfile.dind` bumps its base from `petermotorniy/box-dind:2.3.2` → `2.3.5`
   (link-foundation/box#106 — the dind entrypoint now verifies host-image passthrough
   actually seeded the nested daemon instead of silently re-downloading ~30 GB). A
   deep case study is in `docs/case-studies/issue-1946/`.
@@ -537,7 +537,7 @@ skipped in fixture` even though the codex session **succeeded** (`turn.completed
 - d815c7d: Treat a Claude Code `pending` Playwright MCP `system.init` status as a normal
   still-connecting state instead of a failure (#1901). Claude Code enables Tool
   Search by default, so the deferred `mcp__playwright__*` browser tools load on
-  demand and Claude waits for the connecting server before using them. Hive Mind
+  demand and Claude waits for the connecting server before using them. Auto Programmer
   no longer aborts the working session on a `pending` status; only a terminal
   `failed`/`error` status surfaces a non-blocking diagnostic in the session-start
   comment. See `docs/case-studies/issue-1901`.
@@ -607,7 +607,7 @@ skipped in fixture` even though the codex session **succeeded** (`turn.completed
     from `screen -ls`/`tmux ls` + per-session `$ --status`; a single
     `listSessionTasks()` reads the whole catalog from `$ --list`, the same source
     `/queue`, `/limits` and the monitor already funnel through), and the cleanup
-    listing now annotates **every** hive-mind folder — active _and_ finished — with
+    listing now annotates **every** auto-programmer folder — active _and_ finished — with
     which PR/issue and which session it belongs (or belonged) to.
   - **`src/session-resume.lib.mjs`** — review follow-up: when a detached `/solve`
     is killed, the surviving parent (the bot, or `/hive`) now surfaces a
@@ -641,9 +641,9 @@ skipped in fixture` even though the codex session **succeeded** (`turn.completed
 - 40fbf3d: fix(isolation): mount git identity into docker-isolated containers and stop trusting premature terminal status (#1939)
 
   A `solve` task launched with `--isolation docker` inside a Docker-in-Docker host
-  (`konard/hive-mind-dind:2.0.2`) failed at the system-check stage with
+  (`petermotorniy/auto-programmer-dind:2.0.2`) failed at the system-check stage with
   `❌ Git identity not configured`, even though `gh` was fully authenticated
-  (account `konard`). The captured terminal log shows the native start-command
+  (account `petermotorniy`). The captured terminal log shows the native start-command
   (`$`) invocation mounting only `~/.config/gh`, `~/.claude`, and `~/.claude.json`
   — **no git identity** — so `git config user.name`/`user.email` were unset inside
   the container and `solve` aborted before doing any work.
@@ -788,7 +788,7 @@ skipped in fixture` even though the codex session **succeeded** (`turn.completed
 
   `--isolation docker` was reopened after PR #1915: native Docker isolation and
   host-image passthrough now work, but the first isolated task on the >30 GB
-  `konard/hive-mind-dind` image still died with:
+  `petermotorniy/auto-programmer-dind` image still died with:
 
   ```
   failed to register layer: no space left on device
@@ -936,10 +936,10 @@ DIND_STORAGE_DRIVER="vfs"` (commit 44d2c29e). `vfs` performs **no copy-on-write*
 
   Two problems made `--isolation docker` behave wrong on the Docker-in-Docker bot
   host:
-  1. **It wasn't real Docker isolation.** Hive Mind launched isolated tasks as
+  1. **It wasn't real Docker isolation.** Auto Programmer launched isolated tasks as
      `$ --isolated screen -- docker run …`, so `$ --status` reported
      `options / isolated screen` — a screen wrapper around a raw `docker run`, not
-     the native Docker backend. Hive Mind now builds
+     the native Docker backend. Auto Programmer now builds
      `$ --isolated docker --image <img> [--privileged] --shell sh … --detached --session <uuid> -- '<cmd>'`,
      so start-command owns the container lifecycle and `--status` reports real
      Docker isolation.
@@ -948,7 +948,7 @@ DIND_STORAGE_DRIVER="vfs"` (commit 44d2c29e). `vfs` performs **no copy-on-write*
      can seed that daemon from the host (host-image passthrough), but only when the
      host Docker socket is bind-mounted — and when it isn't, passthrough is a
      _silent_ no-op, so the first isolated task pulled the whole image from the
-     registry. Hive Mind now runs a startup preflight (`preflightDockerIsolation`)
+     registry. Auto Programmer now runs a startup preflight (`preflightDockerIsolation`)
      that probes the nested daemon and, when the image is absent, prints the exact
      remediation (mount `/var/run/docker.sock` + set `DIND_HOST_PASSTHROUGH_IMAGES`,
      or run `scripts/preload-dind-isolation-image.mjs`). The production deploy
@@ -958,8 +958,8 @@ DIND_STORAGE_DRIVER="vfs"` (commit 44d2c29e). `vfs` performs **no copy-on-write*
 
   Also filed the silent-passthrough footgun upstream as link-foundation/box#102
   (warn when an allowlist is set but no socket is mounted) — **now fixed and shipped
-  in box v2.3.2** — and bumped this repo's base images from `konard/box:2.3.1` /
-  `konard/box-dind:2.3.1` to `2.3.2` so the upstream warning ships at the source.
+  in box v2.3.2** — and bumped this repo's base images from `petermotorniy/box:2.3.1` /
+  `petermotorniy/box-dind:2.3.1` to `2.3.2` so the upstream warning ships at the source.
   Added a deep case study with the full reproduction, timeline, and root-cause
   analysis under `docs/case-studies/issue-1914`.
 
@@ -1021,7 +1021,7 @@ DIND_STORAGE_DRIVER="vfs"` (commit 44d2c29e). `vfs` performs **no copy-on-write*
 
 ### Patch Changes
 
-- b3d6588: Remove Hive Mind's npm global prefix workaround now that use-m handles non-writable npm global roots upstream.
+- b3d6588: Remove Auto Programmer's npm global prefix workaround now that use-m handles non-writable npm global roots upstream.
 
 ## 1.78.4
 
@@ -1055,7 +1055,7 @@ DIND_STORAGE_DRIVER="vfs"` (commit 44d2c29e). `vfs` performs **no copy-on-write*
   `/opt/node-v24.16.0-linux-x64/lib/node_modules`), that install failed with
   `npm error code EACCES … rename … command-stream-v-latest` and the whole process
   crashed at the very first `use()` call (`Error: Failed to install
-command-stream@latest globally.`). This commonly happens when hive-mind was
+command-stream@latest globally.`). This commonly happens when auto-programmer was
   installed with `bun add -g` (user-owned `~/.bun/...`) but invoked under a system
   Node whose global prefix needs root.
 
@@ -1066,7 +1066,7 @@ command-stream@latest globally.`). This commonly happens when hive-mind was
   prepending its `bin` to `PATH`. The common case where the prefix is already
   writable stays a no-op with no extra `npm` spawn.
 
-  Hive Mind now routes direct repository `use-m` bootstraps through
+  Auto Programmer now routes direct repository `use-m` bootstraps through
   `src/use-m-bootstrap.lib.mjs`, including CLI entry points, shared source modules,
   scripts, and executable tests. The workaround skips Windows' different global
   layout, skips Bun/Deno runtimes, and respects explicitly preset
@@ -1163,7 +1163,7 @@ fable`.
   (`tests/test-escalate-1885.mjs`); a deep case study is compiled under
   `docs/case-studies/issue-1885/`.
 
-- 53a0544: Update Hive Mind Docker images to `konard/box` and `konard/box-dind` 2.3.1 so Docker-in-Docker deployments can use the upstream host-image passthrough allowlist.
+- 53a0544: Update Auto Programmer Docker images to `petermotorniy/box` and `petermotorniy/box-dind` 2.3.1 so Docker-in-Docker deployments can use the upstream host-image passthrough allowlist.
 
 ## 1.76.2
 
@@ -1214,7 +1214,7 @@ fable`.
     host (`docker save | docker exec -i … docker load`) so isolated tasks reuse the host image.
   - .env.example: document the Docker isolation image/pull controls.
   - Dockerfile / Dockerfile.dind / coolify/Dockerfile: bump the box base images to
-    `konard/box:2.2.0` / `konard/box-dind:2.2.0` (and the `docs/UBUNTU-SERVER*.md` examples).
+    `petermotorniy/box:2.2.0` / `petermotorniy/box-dind:2.2.0` (and the `docs/UBUNTU-SERVER*.md` examples).
     v2.2.0 ships box's native host-image passthrough (box#94/#95), so the DinD deployment can seed
     the nested daemon from the host automatically with
     `-v /var/run/docker.sock:/var/run/host-docker.sock:ro -e DIND_HOST_PASSTHROUGH=public`.
@@ -1253,14 +1253,14 @@ fable`.
 ### Minor Changes
 
 - 80c56fa: Add experimental `--use-handoff` HANDOFF.md continuity **Agent Skill** (issue
-  #1877). When enabled, Hive Mind deploys a real `SKILL.md` (the Agent Skills open
+  #1877). When enabled, Auto Programmer deploys a real `SKILL.md` (the Agent Skills open
   standard created by Anthropic) into the session working directory for both tools
   natively — `.claude/skills/handoff/SKILL.md` for `--tool claude` and
   `.agents/skills/handoff/SKILL.md` for `--tool codex` — so the very same skill
   teaches each tool to read `HANDOFF.md` (repository root) first when present and
   keep it updated with task, current state, decisions, next steps, gotchas, and
   critical files. A minimal activation nudge in the system prompt ensures the
-  read-at-session-start behavior fires reliably. Because each Hive Mind working
+  read-at-session-start behavior fires reliably. Because each Auto Programmer working
   session runs in an ephemeral working directory cloned from the PR branch, the
   handoff file is committed to the branch — making it the shared cross-session,
   cross-tool memory so Claude and Codex can continue each other's work in a single
@@ -1370,13 +1370,13 @@ fable`.
 
 ### Patch Changes
 
-- 9b88700: Fix Telegram Docker isolation to use Hive Mind images with scoped GitHub, Claude, and Codex auth mounts.
+- 9b88700: Fix Telegram Docker isolation to use Auto Programmer images with scoped GitHub, Claude, and Codex auth mounts.
 
 ## 1.74.3
 
 ### Patch Changes
 
-- 741752e: Bump the Docker-in-Docker base image to `konard/box-dind:2.1.4` so `docker exec` sessions default to the `box` user with `/home/box` while dockerd still starts correctly.
+- 741752e: Bump the Docker-in-Docker base image to `petermotorniy/box-dind:2.1.4` so `docker exec` sessions default to the `box` user with `/home/box` while dockerd still starts correctly.
 
 ## 1.74.2
 
@@ -1397,7 +1397,7 @@ fable`.
   toward GitHub's size limit.
 
   Those base64 payloads are now uploaded to hidden custom Git refs
-  (`refs/hive-mind-media/pr-...`) via the Git Data API and embedded inline in the
+  (`refs/auto-programmer-media/pr-...`) via the Git Data API and embedded inline in the
   comment as commit-SHA `![](…?raw=true)` blob URLs, so reviewers see the actual
   image (GitHub's Camo proxy renders `?raw=true` blob URLs inline for both public
   and private repos, whereas `data:` URIs are stripped by the comment sanitizer).
@@ -1414,7 +1414,7 @@ fable`.
 
 - b00a51c: feat(cleanup): add a task-aware `cleanup` command to free disk space safely (#1848)
 
-  Adds a new `cleanup` bin that removes stale hive-mind temporary
+  Adds a new `cleanup` bin that removes stale auto-programmer temporary
   directories/files under the system temp dir while preserving folders that belong
   to currently-running tasks, protected system paths, and any clone with
   uncommitted or unpushed work.
@@ -1564,7 +1564,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
   `--resume` retry fails forever. This is an upstream Claude Code bug
   (anthropics/claude-code#63147).
 
-  Hive Mind now detects this terminal error (`classifyRetryableError` →
+  Auto Programmer now detects this terminal error (`classifyRetryableError` →
   `requiresFreshSession`) and recovers with a two-phase escalation: it **tries to
   resume the existing session first** (capped by
   `HIVE_MIND_MAX_THINKING_BLOCK_RESUMES`, default 1) and only when resume is not
@@ -1572,7 +1572,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
   by `HIVE_MIND_MAX_THINKING_BLOCK_RESTARTS`, default 2) — rather than retrying the
   dead session or failing outright.
 
-  Additionally, on **all** critical errors Hive Mind now auto-commits (and
+  Additionally, on **all** critical errors Auto Programmer now auto-commits (and
   best-effort pushes) any uncommitted changes by default before recovery resets
   the session, so partial work is preserved in the PR branch history. This is
   on by default and can be toggled with `HIVE_MIND_AUTO_COMMIT_ON_CRITICAL_ERROR`.
@@ -1625,7 +1625,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
 
 ### Patch Changes
 
-- 57f15ec: Detect same-account human feedback in auto-restart comment monitoring only when the AI tool is idle, while still filtering hive-mind tool-generated comments by marker and tracked ID.
+- 57f15ec: Detect same-account human feedback in auto-restart comment monitoring only when the AI tool is idle, while still filtering auto-programmer tool-generated comments by marker and tracked ID.
 
 ## 1.72.5
 
@@ -1643,7 +1643,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
 
 ### Patch Changes
 
-- 502e78f: Use `lino-i18n` for Hive Mind translation loading and runtime lookup.
+- 502e78f: Use `lino-i18n` for Auto Programmer translation loading and runtime lookup.
 
 ## 1.72.2
 
@@ -1651,7 +1651,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
 
 - 055a1a0: Fix `--auto-attach-solution-summary` so Codex-authored comments that use the
   visible "Working session summary" heading are counted as AI comments instead of
-  being mistaken for hive-mind's automated summary comment.
+  being mistaken for auto-programmer's automated summary comment.
 
 ## 1.72.1
 
@@ -1735,7 +1735,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
   `--prefix-fork-name-with-owner-name` option to `forkRepoName` (which is
   the authoritative head repo name from the PR's `headRepository.name`),
   producing a doubled prefix like
-  `konard/labtgbot-labtgbot-telegram-claude-agent` and a 404 lookup. The
+  `petermotorniy/labtgbot-labtgbot-telegram-claude-agent` and a 404 lookup. The
   prefix option now only controls fork _creation_, not fork _lookup_:
   when `forkRepoName` is present, the expected fork is
   `${forkOwner}/${forkRepoName}` and no alternate-name fallback is
@@ -1872,9 +1872,9 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
 
 - cbc7033: Switch the test runner to folder-based discovery and deprecate `start-screen` in favour of `--isolated screen` (issue #1758).
   - `scripts/run-tests.mjs` now discovers every `*.mjs` / `*.test.mjs` / `*.test.js` file under `tests/` automatically. The hard-coded `LEGACY_DEFAULT_TESTS` allow-list is gone, so new test files no longer need a runner update to be picked up.
-  - New markers complement the existing `@hive-mind-test-suite <name>` marker:
-    - `@hive-mind-integration` — skip the file in the default suite; opt in via `--suite integration` or `HIVE_MIND_RUN_INTEGRATION=1`.
-    - `@hive-mind-test-skip` — exclude helper / fixture modules from every suite.
+  - New markers complement the existing `@auto-programmer-test-suite <name>` marker:
+    - `@auto-programmer-integration` — skip the file in the default suite; opt in via `--suite integration` or `HIVE_MIND_RUN_INTEGRATION=1`.
+    - `@auto-programmer-test-skip` — exclude helper / fixture modules from every suite.
   - `tests/integration-guard.mjs` exposes `skipUnlessIntegration(import.meta.url)` for token- or network-heavy tests.
   - `src/start-screen.mjs` and `src/telegram-command-execution.lib.mjs::executeStartScreen` print a one-shot deprecation banner to stderr (suppressible with `HIVE_MIND_SUPPRESS_DEPRECATIONS=1`) recommending `--isolated screen`, which is already the default for `hive`/`solve` invocations through the Telegram bot.
   - Adds regression tests `tests/test-issue-1758-runner-discovery.mjs`, `tests/test-issue-1758-start-screen-deprecation.mjs`, and `tests/test-issue-1758-integration-guard.mjs`.
@@ -1958,7 +1958,7 @@ message cannot be modified`, permanently poisoning the on-disk session — so an
 
 ### Patch Changes
 
-- 51a8721: Add a separate `konard/hive-mind-dind` Docker image for nested Docker testing.
+- 51a8721: Add a separate `petermotorniy/auto-programmer-dind` Docker image for nested Docker testing.
 
 ## 1.64.0
 
@@ -2166,7 +2166,7 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
   the previous one. Verbose log:
 
   ```
-  [VERBOSE] /merge: Checking for active CI runs on link-assistant/hive-mind branch main...
+  [VERBOSE] /merge: Checking for active CI runs on PeterMotorniy/auto-programmer branch main...
   [VERBOSE] /merge: Error checking active runs on main: stdout maxBuffer length exceeded
   [VERBOSE] /merge: No active CI runs on main branch. Ready to proceed.
   ```
@@ -2220,7 +2220,7 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
 - 1a92ca1: Fix flaky CI `test-suites` job caused by `use-m`'s no-retry global npm install
   — issue #1724.
 
-  CI run [25109962685](https://github.com/link-assistant/hive-mind/actions/runs/25109962685/job/73581228475)
+  CI run [25109962685](https://github.com/PeterMotorniy/auto-programmer/actions/runs/25109962685/job/73581228475)
   on `main` failed in the `test-suites` job at the third test file
   (`tests/test-active-branch-runs-buffer-1722.mjs`) with:
 
@@ -2265,7 +2265,7 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
   covers the alias scheme, retryable-error matcher, exponential backoff, and
   the four `installWithRetry` paths (first-success, retry-then-succeed,
   non-retryable-abort, recovered-from-disk) deterministically (no real npm
-  calls). Marked `@hive-mind-test-suite default` so it runs in the same job
+  calls). Marked `@auto-programmer-test-suite default` so it runs in the same job
   that previously flaked.
 
   Documentation:
@@ -2274,7 +2274,7 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
   no-retry snippet from the live `use-m` source
   (`logs/use-m-source.js`), the comparison with both pipeline templates
   (JS/Rust — neither template uses `use-m @latest` at module load yet, so the
-  flake is hive-mind-specific until they do), and the implementation plan.
+  flake is auto-programmer-specific until they do), and the implementation plan.
 
 ## 1.59.4
 
@@ -2282,7 +2282,7 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
 
 - b2e0d12: Fix `/terminal_watch` uploading the full session log file when the watch
   completes — addresses issue
-  [#1720](https://github.com/link-assistant/hive-mind/issues/1720).
+  [#1720](https://github.com/PeterMotorniy/auto-programmer/issues/1720).
 
   Before this fix, `/terminal_watch` finished by calling
   `bot.telegram.sendDocument(chatId, ...)` to attach the `<uuid>.log` file. That
@@ -2418,7 +2418,7 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
 ### Patch Changes
 
 - 65d7b99: Fix misleading `/merge` verbose logs that read as "no CI configured" when CI was actually
-  running — addresses issue [#1712](https://github.com/link-assistant/hive-mind/issues/1712)
+  running — addresses issue [#1712](https://github.com/PeterMotorniy/auto-programmer/issues/1712)
   where a user mistakenly Ctrl+C'd the auto-restart-until-mergeable watcher after seeing:
 
   ```
@@ -2459,11 +2459,11 @@ skipComments: false`. Now `npm run lint` catches the failure locally before
   `links-notation` through the retry wrapper, matching `config.lib.mjs` and `lino.lib.mjs`.
   Three new unit tests in `tests/test-use-with-retry.mjs` cover the new mode.
 
-  No upstream issue is needed — the bug was entirely in `link-assistant/hive-mind`. The
+  No upstream issue is needed — the bug was entirely in `PeterMotorniy/auto-programmer`. The
   external workflow finished successfully (`check-runs-dfc4c14.json` shows `total_count: 22`).
 
   **Follow-up round** (after review feedback in
-  [PR #1713 comment](https://github.com/link-assistant/hive-mind/pull/1713#issuecomment-4342387674)):
+  [PR #1713 comment](https://github.com/PeterMotorniy/auto-programmer/pull/1713#issuecomment-4342387674)):
   - **List active runs across ALL PR commits, not just HEAD.** New
     `getActivePRWorkflowRuns()` in `src/github-merge-repo-actions.lib.mjs` walks every
     commit on the PR (`/repos/.../pulls/N/commits`), dedupes by `run.id`, returns groups
@@ -2715,7 +2715,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Public repository logs can update in chat; private/unknown visibility uses DM for manual watches
   - Auto-start remains off by default and never starts for private or unknown-visibility repositories
 
-  Based on the proof-of-concept from konard/telegram-terminal-bot.
+  Based on the proof-of-concept from petermotorniy/telegram-terminal-bot.
 
 ## 1.56.19
 
@@ -2857,7 +2857,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
   Pre-PR failures that are posted back to GitHub issues now use user-facing
   guidance: they ask the issue reporter to fix repository/account state when
-  possible or ask a Hive Mind administrator to handle the affected repository,
+  possible or ask a Auto Programmer administrator to handle the affected repository,
   while keeping administrator CLI details in the terminal log instead of the
   public issue comment.
 
@@ -2896,14 +2896,14 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
 ### Patch Changes
 
-- 2c15727: Migrate Docker images and deployment paths from `konard/sandbox` to the current
-  full `konard/box` base image with the `box` user and `/home/box` home directory.
+- 2c15727: Migrate Docker images and deployment paths from `petermotorniy/sandbox` to the current
+  full `petermotorniy/box` base image with the `box` user and `/home/box` home directory.
 
 ## 1.54.5
 
 ### Patch Changes
 
-- ea79845: Disable noisy Claude Code features for solve runs via merged user settings, subprocess environment variables, and Docker image defaults. Expands the quiet config to also disable fast mode, feedback surveys, mouse tracking, away summaries, Claude attribution (commit/pr), co-authored-by trailer, thinking summaries, and UI animations, sets viewMode to verbose, and caps tool-use concurrency at 4 for deterministic autonomous runs. Keeps Claude's built-in git/PR instructions on (`includeGitInstructions: true`), enables task tracking (`CLAUDE_CODE_ENABLE_TASKS=1`) and turn resume (`CLAUDE_CODE_RESUME_INTERRUPTED_TURN=1`), and makes the bypass-permissions mode audible via `permissions.defaultMode: "bypassPermissions"` + `skipDangerousModePermissionPrompt: true` (complementing the existing `--dangerously-skip-permissions` CLI flag). Adds a reusable `configure-claude` bin with an apply default and a `--verify` check-only mode so users and system administrators can reset or audit Claude Code configuration manually after installing `@link-assistant/hive-mind`. Docker release builds now wait for the npm package version to become available, pass that exact version into Docker as `HIVE_MIND_VERSION`, install `@link-assistant/hive-mind@${HIVE_MIND_VERSION}`, and invoke the published `configure-claude` bin directly instead of copying repo source files into the Docker build.
+- ea79845: Disable noisy Claude Code features for solve runs via merged user settings, subprocess environment variables, and Docker image defaults. Expands the quiet config to also disable fast mode, feedback surveys, mouse tracking, away summaries, Claude attribution (commit/pr), co-authored-by trailer, thinking summaries, and UI animations, sets viewMode to verbose, and caps tool-use concurrency at 4 for deterministic autonomous runs. Keeps Claude's built-in git/PR instructions on (`includeGitInstructions: true`), enables task tracking (`CLAUDE_CODE_ENABLE_TASKS=1`) and turn resume (`CLAUDE_CODE_RESUME_INTERRUPTED_TURN=1`), and makes the bypass-permissions mode audible via `permissions.defaultMode: "bypassPermissions"` + `skipDangerousModePermissionPrompt: true` (complementing the existing `--dangerously-skip-permissions` CLI flag). Adds a reusable `configure-claude` bin with an apply default and a `--verify` check-only mode so users and system administrators can reset or audit Claude Code configuration manually after installing `auto-programmer`. Docker release builds now wait for the npm package version to become available, pass that exact version into Docker as `HIVE_MIND_VERSION`, install `auto-programmer@${HIVE_MIND_VERSION}`, and invoke the published `configure-claude` bin directly instead of copying repo source files into the Docker build.
 
 ## 1.54.4
 
@@ -3280,7 +3280,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Add post-creation fork validation to detect non-fork repos immediately after `gh repo fork`
   - Report non-fork creation to Sentry for monitoring
   - Add `--allow-force-non-fork-repository-deletion` flag to force deletion even when additional commits would be lost
-  - Add case study documenting the root cause analysis of konard/MixaByk1996-elements-app
+  - Add case study documenting the root cause analysis of petermotorniy/MixaByk1996-elements-app
   - Document all previously undocumented solve options in CONFIGURATION.md (12 options including --allow-force-non-fork-repository-deletion)
   - Add CI/CD test to verify documentation stays in sync with code options (prevents drift)
 
@@ -3526,7 +3526,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Fix false warning "Main model does not match requested model" for agent free models (e.g., `kimi-k2.5-free` → `opencode/kimi-k2.5-free`)
   - Add missing base model pricing mappings for `minimax-m2.5-free`, `glm-5-free`, `glm-4.5-air-free`, `deepseek-r1-free`, `giga-potato-free` in `getBaseModelForPricing()`
   - Update `validateAgentConnection()` default model to `minimax-m2.5-free`
-  - Update `docs/FREE_MODELS.md` to sync with upstream [Agent CLI FREE_MODELS.md](https://github.com/link-assistant/agent/blob/main/FREE_MODELS.md)
+  - Update `docs/FREE_MODELS.md` to sync with upstream [Agent CLI FREE_MODELS.md](https://github.com/PeterMotorniy/agent/blob/main/FREE_MODELS.md)
   - Update README.md examples to use `minimax-m2.5-free` instead of deprecated `kimi-k2.5-free`
 
 ## 1.35.9
@@ -3927,7 +3927,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Add `ignore-error=true` to `cache-to` so cache export failure does not cancel a successful image push
   - Add comprehensive case study in `docs/case-studies/issue-1394/CASE-STUDY.md` with root cause analysis and CI log data
 
-  Root cause: The sandbox-based hive-mind image (~2-3 GB) takes ~30 min to build and push to Docker Hub.
+  Root cause: The sandbox-based auto-programmer image (~2-3 GB) takes ~30 min to build and push to Docker Hub.
   After the push, BuildKit exports all image layers sequentially to GHA cache (`mode=max`). This sequential
   write of ~800 MB per layer exhausted the 30-minute job timeout mid-export, cancelling an already-successful
   build. The Docker image itself was published correctly; only the cache export step was interrupted.
@@ -3936,8 +3936,8 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
 ### Minor Changes
 
-- ee6233a: Optimize Docker build by using pinned konard/sandbox version as base image
-  - Docker image now inherits from `konard/sandbox:1.3.16` (pinned) instead of building from scratch
+- ee6233a: Optimize Docker build by using pinned petermotorniy/sandbox version as base image
+  - Docker image now inherits from `petermotorniy/sandbox:1.3.16` (pinned) instead of building from scratch
   - Significantly faster build times (2-3 min vs 10-15+ min) as general-purpose tools are pre-installed
   - Reduced timeout risk since heavy installations (Homebrew, PHP, etc.) are handled by base image
   - Removed `scripts/ubuntu-24-server-install.sh` (functionality now provided by sandbox)
@@ -3948,7 +3948,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
   This change implements the separation of concerns described in link-foundation/sandbox#65:
   - sandbox: Universal development environment with all general-purpose tools
-  - hive-mind: AI-specific tools (Claude CLI, Playwright MCP, etc.) built on top of sandbox
+  - auto-programmer: AI-specific tools (Claude CLI, Playwright MCP, etc.) built on top of sandbox
 
 ## 1.29.0
 
@@ -3984,7 +3984,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
   The fix filters out workflows with the `dynamic/pages/` prefix from `getActiveRepoWorkflows()`. These are GitHub Pages internal workflows, not user-defined CI pipelines.
 
-  Affected scenario: repositories with GitHub Pages enabled but no `.github/workflows/` files (e.g., `konard/links-visuals`).
+  Affected scenario: repositories with GitHub Pages enabled but no `.github/workflows/` files (e.g., `petermotorniy/links-visuals`).
 
   fix: resolve Prettier formatting issue in README.md (Issue #1401)
 
@@ -4008,7 +4008,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
 - ff46719: fix: update default agent model to minimax-m2.5-free (Issue #1391)
 
-  `kimi-k2.5-free` is no longer supported by OpenCode Zen and returns a `ModelError` (HTTP 401). The new default for `--tool agent` is now `minimax-m2.5-free`, matching the upstream fix in [agent PR #209](https://github.com/link-assistant/agent/pull/209).
+  `kimi-k2.5-free` is no longer supported by OpenCode Zen and returns a `ModelError` (HTTP 401). The new default for `--tool agent` is now `minimax-m2.5-free`, matching the upstream fix in [agent PR #209](https://github.com/PeterMotorniy/agent/pull/209).
   - `minimax-m2.5-free` is now the default model for `--tool agent`
   - `kimi-k2.5-free` is moved to the deprecated backward-compatibility section across all model maps
   - Updated `docs/FREE_MODELS.md` to reflect the new default and document `kimi-k2.5-free` as discontinued
@@ -4063,7 +4063,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
   fix: auto-restart with --resume on "Request timed out" in --tool claude (Issue #1353)
 
-  When Claude CLI encounters a network timeout, it exhausts its own internal retries and emits a synthetic result event: `{"type":"result","is_error":true,"result":"Request timed out","session_id":"..."}`. Previously hive-mind treated this as a fatal failure and exited, losing all session context (conversation history, cached tokens, partially completed work).
+  When Claude CLI encounters a network timeout, it exhausts its own internal retries and emits a synthetic result event: `{"type":"result","is_error":true,"result":"Request timed out","session_id":"..."}`. Previously auto-programmer treated this as a fatal failure and exited, losing all session context (conversation history, cached tokens, partially completed work).
 
   This fix detects the timeout pattern and automatically retries with `--resume <session-id>` to preserve the session, using exponential backoff starting at 5 minutes (increasing to max 1 hour) — longer than regular API errors since Claude CLI has already exhausted its own retries before reporting the timeout.
 
@@ -4257,7 +4257,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   name using the base repo's name instead of the actual head repo name.
 
   Example failure scenario (Issue #1332):
-  - Base repo: `konard/MILANA808-Milana-backend` (a fork itself)
+  - Base repo: `petermotorniy/MILANA808-Milana-backend` (a fork itself)
   - PR head repo: `MILANA808/Milana-backend`
   - Tool tried: `MILANA808/MILANA808-Milana-backend` (wrong, 404)
   - Should try: `MILANA808/Milana-backend` (correct)
@@ -4290,7 +4290,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Reduced execution time from 30-150s to ~2-5s for version info gathering
   - Added support for all `--tool` options: agent, codex, opencode, qwen-code, gemini, copilot
   - Reorganized Telegram output to group tools by programming language instead of generic categories
-  - Consolidated hive-mind version display to show single version with restart warning when process version differs from installed
+  - Consolidated auto-programmer version display to show single version with restart warning when process version differs from installed
   - Added `gatherTimeMs` metric to track performance
 
 ## 1.23.13
@@ -4412,7 +4412,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 
 - a797e56: fix: escape owner/repo names for Telegram MarkdownV2 in /merge command
 
-  Fixed the `/merge` command silently failing when updating Telegram messages for repositories with hyphens in their names (e.g., `link-assistant/hive-mind`). The issue was caused by unescaped special characters in MarkdownV2 format.
+  Fixed the `/merge` command silently failing when updating Telegram messages for repositories with hyphens in their names (e.g., `PeterMotorniy/auto-programmer`). The issue was caused by unescaped special characters in MarkdownV2 format.
 
 ## 1.23.2
 
@@ -5386,8 +5386,8 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 - 4c46685: Add --enable-workspaces option for separate workspace directories
 
   This feature adds support for creating separate workspace directories for all AI tools (claude, opencode, codex, agent). When enabled with `--enable-workspaces`, the tool creates a structured workspace:
-  - `/tmp/hive-mind-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}/repository` - for the cloned repo
-  - `/tmp/hive-mind-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}/tmp` - for temp files, logs, downloads
+  - `/tmp/auto-programmer-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}/repository` - for the cloned repo
+  - `/tmp/auto-programmer-solve-gh-{owner}/{repo}-issue-{issueNumber}-workspace-{timestamp}/tmp` - for temp files, logs, downloads
 
   The workspace tmp directory is passed to all tool prompts, with explicit examples for saving CI logs, diffs, and command outputs.
 
@@ -5439,7 +5439,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Configuration can be overridden via `CLAUDE_CODE_MAX_OUTPUT_TOKENS` or `HIVE_MIND_CLAUDE_CODE_MAX_OUTPUT_TOKENS` environment variables
   - Added comprehensive case study analysis in `docs/case-studies/issue-1076/`
 
-  See: https://github.com/link-assistant/hive-mind/issues/1076
+  See: https://github.com/PeterMotorniy/auto-programmer/issues/1076
 
 ## 1.0.2
 
@@ -5453,7 +5453,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Added explicit 429 rate limit error handling
   - Updated documentation in `docs/CONFIGURATION.md`
 
-  See: https://github.com/link-assistant/hive-mind/issues/1074
+  See: https://github.com/PeterMotorniy/auto-programmer/issues/1074
 
 ## 1.0.1
 
@@ -5837,7 +5837,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
 - Keep hive user's home directory clean
   - Move Go GOPATH from `~/go` to `~/.go/path` to keep everything under the hidden `.go` directory
   - Move Perlbrew from `~/perl5` to `~/.perl5` (hidden directory)
-  - Remove automatic cloning of hive-mind repository to `~/hive-mind`
+  - Remove automatic cloning of auto-programmer repository to `~/auto-programmer`
 
   This keeps the user's home directory empty by default, giving users freedom to organize their workspace as they prefer.
 
@@ -5917,7 +5917,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - `docs/case-studies/issue-989/`: Add case study documentation
 
   References:
-  - Issue: https://github.com/link-assistant/hive-mind/issues/989
+  - Issue: https://github.com/PeterMotorniy/auto-programmer/issues/989
   - Upstream fix: https://github.com/gugod/App-perlbrew/pull/850
 
 ## 0.51.1
@@ -5932,7 +5932,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Dockerfile: Add opam environment variables (OPAM_SWITCH_PREFIX, CAML_LD_LIBRARY_PATH, OCAML_TOPLEVEL_PATH)
 
   References:
-  - Issue: https://github.com/link-assistant/hive-mind/issues/952
+  - Issue: https://github.com/PeterMotorniy/auto-programmer/issues/952
   - Rocq docs: https://rocq-prover.org/docs/using-opam
 
 ## 0.51.0
@@ -5947,7 +5947,7 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   When a user's fork was created from an intermediate fork (e.g., `user/repo` forked from `someone-else/repo` which was itself forked from `upstream/repo`), any pull requests created would include all commits that exist in the intermediate fork but not in the upstream. This could result in PRs with hundreds or thousands of unexpected commits.
 
   **Case study (Issue #967):**
-  A fork `konard/zamtmn-zcad` was created from `veb86/zcadvelecAI` (intermediate fork with 1,678 extra commits) instead of `zamtmn/zcad` (the upstream). This resulted in a PR with 1,681 commits instead of the expected 3 commits.
+  A fork `petermotorniy/zamtmn-zcad` was created from `veb86/zcadvelecAI` (intermediate fork with 1,678 extra commits) instead of `zamtmn/zcad` (the upstream). This resulted in a PR with 1,681 commits instead of the expected 3 commits.
 
   **Changes:**
   - **New function `validateForkParent()`**: Validates that a fork's parent matches the expected upstream repository before using it. Checks both the immediate parent and ultimate source (root) of the fork hierarchy.
@@ -6478,4 +6478,4 @@ isolation`. The parser now reads `options.isolated` first and keeps the legacy
   - Added template scripts for release automation (validate-changeset, version-and-commit, publish-to-npm, etc.)
   - Tests now run before release on main branch
   - Added manual release support (instant and changeset-pr modes)
-  - Maintained all existing hive-mind CI checks (docker-pr-check, helm-pr-check, memory-check, etc.)
+  - Maintained all existing auto-programmer CI checks (docker-pr-check, helm-pr-check, memory-check, etc.)

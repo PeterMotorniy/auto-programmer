@@ -101,14 +101,14 @@ async function main() {
       args: ['--version'],
     },
     {
-      name: 'Test 3: hive github.com/konard --dry-run (reported failing)',
+      name: 'Test 3: hive github.com/petermotorniy --dry-run (reported failing)',
       command: hivePath,
-      args: ['github.com/konard', '--dry-run', '--skip-tool-check', '--once', '--max-issues', '1'],
+      args: ['github.com/petermotorniy', '--dry-run', '--skip-tool-check', '--once', '--max-issues', '1'],
     },
     {
-      name: 'Test 4: hive https://github.com/konard --dry-run (reported failing)',
+      name: 'Test 4: hive https://github.com/petermotorniy --dry-run (reported failing)',
       command: hivePath,
-      args: ['https://github.com/konard', '--dry-run', '--skip-tool-check', '--once', '--max-issues', '1'],
+      args: ['https://github.com/petermotorniy', '--dry-run', '--skip-tool-check', '--once', '--max-issues', '1'],
     },
     {
       name: 'Test 5: hive with no arguments (should show error)',

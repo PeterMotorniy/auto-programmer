@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # verify-docker-image.sh
 #
-# Verifies the hive-mind Docker image has all required tools.
+# Verifies the auto-programmer Docker image has all required tools.
 # Run this script inside the Docker container:
 #
 #   docker run --rm IMAGE bash scripts/verify-docker-image.sh
@@ -9,7 +9,7 @@
 # This script verifies:
 #   1. User setup (box user with /home/box access)
 #   2. All system & development tools (from Box base image, alphabetical order)
-#   3. AI-specific tools (added by hive-mind on top of Box)
+#   3. AI-specific tools (added by auto-programmer on top of Box)
 #
 # Exit code 0 = all checks passed; non-zero = one or more checks failed.
 
@@ -120,7 +120,7 @@ if [ -d /home/box/.config ]; then
   if [ "$CONFIG_OWNER" != "box" ]; then
     echo "ERROR: /home/box/.config is owned by $CONFIG_OWNER, expected box"
     echo "This causes EACCES errors when tools try to create config subdirectories"
-    echo "See: https://github.com/link-assistant/hive-mind/issues/1419"
+    echo "See: https://github.com/PeterMotorniy/auto-programmer/issues/1419"
     exit 1
   fi
   echo ".config directory ownership: OK"
@@ -134,7 +134,7 @@ if mkdir -p /home/box/.config/.verify-test 2>/dev/null; then
   echo ".config directory write access: OK"
 else
   echo "ERROR: box user cannot create directories in /home/box/.config"
-  echo "See: https://github.com/link-assistant/hive-mind/issues/1419"
+  echo "See: https://github.com/PeterMotorniy/auto-programmer/issues/1419"
   exit 1
 fi
 
@@ -299,7 +299,7 @@ if [ "$ROCQ_VERIFIED" = false ]; then
   echo ""
   echo "ERROR: Rocq/Coq not accessible in container"
   echo "This indicates the Rocq installation failed or binaries were not properly installed"
-  echo "See issue #952 for more details: https://github.com/link-assistant/hive-mind/issues/952"
+  echo "See issue #952 for more details: https://github.com/PeterMotorniy/auto-programmer/issues/952"
   exit 1
 fi
 
@@ -310,10 +310,10 @@ echo ""
 echo "=== All system & development tools verification checks PASSED ==="
 
 # ---------------------------------------------------------------------------
-# Step 3: Verify AI-specific tools (added by hive-mind on top of Box)
+# Step 3: Verify AI-specific tools (added by auto-programmer on top of Box)
 # ---------------------------------------------------------------------------
 echo ""
-echo "=== Verifying AI-specific tools (hive-mind additions) ==="
+echo "=== Verifying AI-specific tools (auto-programmer additions) ==="
 
 # Global bun packages
 if bun pm ls -g &>/dev/null; then
@@ -324,7 +324,7 @@ else
 fi
 
 echo ""
-echo "Checking Hive-Mind configure-claude bin..."
+echo "Checking Auto-Programmer configure-claude bin..."
 if command -v configure-claude >/dev/null 2>&1; then
   configure-claude --help | head -n1 || true
   echo "configure-claude is accessible"
@@ -334,11 +334,11 @@ if command -v configure-claude >/dev/null 2>&1; then
   configure-claude --settings-path /home/box/.claude/settings.json --verify
   echo "Quiet Claude Code baseline: OK"
 else
-  # PR Docker builds install @link-assistant/hive-mind@latest, which can pre-date
+  # PR Docker builds install auto-programmer@latest, which can pre-date
   # this PR and therefore not ship the configure-claude bin yet. Release builds
   # install an exact pinned version where the bin must exist (enforced in the
   # Dockerfile itself when HIVE_MIND_VERSION != latest).
-  echo "configure-claude not found — tolerated only for PR builds where @link-assistant/hive-mind@latest pre-dates this PR"
+  echo "configure-claude not found — tolerated only for PR builds where auto-programmer@latest pre-dates this PR"
   echo "(solve re-applies the quiet baseline at runtime)"
 fi
 
@@ -419,4 +419,4 @@ else
 fi
 
 echo ""
-echo "=== All hive-mind Docker image verification checks PASSED ==="
+echo "=== All auto-programmer Docker image verification checks PASSED ==="

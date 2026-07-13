@@ -20,7 +20,7 @@
  *                 feedback. This works for every tool.
  *
  * Missing native live-input features for each tool are reported upstream in the
- * https://github.com/link-assistant/agent repository so they can be implemented
+ * https://github.com/PeterMotorniy/agent repository so they can be implemented
  * (see `agentIssue`), after which a tool can graduate from `fallback` to `stream`.
  */
 
@@ -100,7 +100,7 @@ const CAPABILITIES = Object.freeze({
     futureProtocol: 'Codex app-server JSON-RPC turn/steer',
     fallback: FALLBACK_DESCRIPTION,
     events: REQUIRED_EVENTS,
-    agentIssue: 'https://github.com/link-assistant/agent/issues',
+    agentIssue: 'https://github.com/PeterMotorniy/agent/issues',
     unsupportedReason: 'The current solve Codex runner uses codex exec, whose stdin is one-shot prompt/context at process start. It does not expose a live JSON input pipe for mid-session issue/PR events, so the restart/resume fallback is used. Codex app-server turn/steer is the candidate protocol for a future live-streaming Codex runner.',
     testing: 'Passing --tool codex --auto-input-until-mergeable activates the restart/resume fallback: the run finishes the current session, then resumes with the new issue/PR events.',
   }),
@@ -117,7 +117,7 @@ const CAPABILITIES = Object.freeze({
     futureProtocol: '',
     fallback: FALLBACK_DESCRIPTION,
     events: REQUIRED_EVENTS,
-    agentIssue: 'https://github.com/link-assistant/agent/pull/274',
+    agentIssue: 'https://github.com/PeterMotorniy/agent/pull/274',
     unsupportedReason: '',
     testing: 'Run solve with --tool agent --auto-input-until-mergeable, add an issue or PR comment while the Agent process is alive, and watch for the bidirectional handler to queue or stream a user frame into stdin.',
   }),
@@ -134,7 +134,7 @@ const CAPABILITIES = Object.freeze({
     futureProtocol: '',
     fallback: FALLBACK_DESCRIPTION,
     events: REQUIRED_EVENTS,
-    agentIssue: 'https://github.com/link-assistant/agent/issues',
+    agentIssue: 'https://github.com/PeterMotorniy/agent/issues',
     unsupportedReason: 'No verified live JSON input channel is wired through solve for OpenCode yet, so the restart/resume fallback is used.',
     testing: 'Passing --tool opencode --auto-input-until-mergeable activates the restart/resume fallback.',
   }),
@@ -151,7 +151,7 @@ const CAPABILITIES = Object.freeze({
     futureProtocol: '',
     fallback: FALLBACK_DESCRIPTION,
     events: REQUIRED_EVENTS,
-    agentIssue: 'https://github.com/link-assistant/agent/issues',
+    agentIssue: 'https://github.com/PeterMotorniy/agent/issues',
     unsupportedReason: 'No verified live JSON input channel is wired through solve for Gemini yet, so the restart/resume fallback is used.',
     testing: 'Passing --tool gemini --auto-input-until-mergeable activates the restart/resume fallback.',
   }),
@@ -168,7 +168,7 @@ const CAPABILITIES = Object.freeze({
     futureProtocol: '',
     fallback: FALLBACK_DESCRIPTION,
     events: REQUIRED_EVENTS,
-    agentIssue: 'https://github.com/link-assistant/agent/issues',
+    agentIssue: 'https://github.com/PeterMotorniy/agent/issues',
     unsupportedReason: 'No verified live JSON input channel is wired through solve for Qwen yet, so the restart/resume fallback is used.',
     testing: 'Passing --tool qwen --auto-input-until-mergeable activates the restart/resume fallback.',
   }),
@@ -188,8 +188,8 @@ const UNKNOWN_CAPABILITY = tool =>
     futureProtocol: '',
     fallback: FALLBACK_DESCRIPTION,
     events: REQUIRED_EVENTS,
-    agentIssue: 'https://github.com/link-assistant/agent/issues',
-    unsupportedReason: `No verified live JSON input channel is wired through solve for ${tool}, so the restart/resume fallback is used. Add a live-input capability entry (and report the missing native API to link-assistant/agent) once the runner has a long-lived stdin, JSON-RPC, or SDK channel that accepts new user turns mid-session.`,
+    agentIssue: 'https://github.com/PeterMotorniy/agent/issues',
+    unsupportedReason: `No verified live JSON input channel is wired through solve for ${tool}, so the restart/resume fallback is used. Add a live-input capability entry (and report the missing native API to PeterMotorniy/agent) once the runner has a long-lived stdin, JSON-RPC, or SDK channel that accepts new user turns mid-session.`,
     testing: 'The flag activates the restart/resume fallback until a live-streaming runner is implemented.',
   });
 

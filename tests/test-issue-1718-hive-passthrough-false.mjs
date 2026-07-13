@@ -13,7 +13,7 @@
 //   2. hive.mjs computes `issueQueue.getStats()` and calls `safeExit(1, …)`
 //      after the monitor loop when any task failed.
 //
-// See: https://github.com/link-assistant/hive-mind/issues/1718
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1718
 
 import fs from 'node:fs';
 import path from 'node:path';

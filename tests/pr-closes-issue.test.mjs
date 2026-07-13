@@ -7,7 +7,7 @@
  *
  * Run with: node tests/pr-closes-issue.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1094
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1094
  */
 
 import assert from 'node:assert/strict';

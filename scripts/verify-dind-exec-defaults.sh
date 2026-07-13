@@ -2,7 +2,7 @@
 set -euo pipefail
 
 image="${1:?Usage: verify-dind-exec-defaults.sh IMAGE}"
-container_name="hive-mind-dind-verify"
+container_name="auto-programmer-dind-verify"
 
 echo ""
 echo "=== Verifying Docker-in-Docker exec defaults ==="

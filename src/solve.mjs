@@ -649,7 +649,7 @@ try {
 
   // Start work session using the new module
   // Determine session type based on command line flags
-  // See: https://github.com/link-assistant/hive-mind/issues/1152
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
   let sessionType = SESSION_TYPES.NEW;
   if (argv.sessionType) {
     // Session type was explicitly set (e.g., by auto-resume/auto-restart spawning a new process)
@@ -904,7 +904,7 @@ try {
   // Handle limit reached scenario
   if (limitReached) {
     // Check for both auto-resume (maintains context) and auto-restart (fresh start)
-    // See: https://github.com/link-assistant/hive-mind/issues/1152
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
     const shouldAutoResumeOnReset = argv.autoResumeOnLimitReset;
     const shouldAutoRestartOnReset = argv.autoRestartOnLimitReset;
     const shouldAutoContinueOnReset = shouldAutoResumeOnReset || shouldAutoRestartOnReset;
@@ -923,7 +923,7 @@ try {
         await log(`📌 Session ID: ${sessionId}`);
         if (resetTime) {
           // Format reset time with relative time and UTC for better user understanding
-          // See: https://github.com/link-assistant/hive-mind/issues/1152
+          // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
           const formattedResetTime = formatResetTimeWithRelative(resetTime, timezone);
           await log(`⏰ Limit resets at: ${formattedResetTime}`);
         }
@@ -1035,7 +1035,7 @@ try {
               resumeCommand,
               sessionId,
               // Tell attachLogToGitHub that auto-resume is enabled to suppress CLI commands in the comment
-              // See: https://github.com/link-assistant/hive-mind/issues/1152
+              // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
               isAutoResumeEnabled: true,
               autoResumeMode: limitContinueMode,
               argv,
@@ -1074,11 +1074,11 @@ try {
             };
 
             // For waiting comments, don't show CLI commands since auto-continue will handle it automatically
-            // See: https://github.com/link-assistant/hive-mind/issues/1152
+            // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
             const continueModeName = limitContinueMode === 'restart' ? 'auto-restart' : 'auto-resume';
             const continueDescription = limitContinueMode === 'restart' ? 'The session will automatically restart (fresh start) when the limit resets.' : 'The session will automatically resume (with context preserved) when the limit resets.';
             // Format reset time with relative time and UTC for better user understanding
-            // See: https://github.com/link-assistant/hive-mind/issues/1236
+            // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
             const waitingResetTimeFormatted = formatResetTimeWithRelative(global.limitResetTime, global.limitTimezone || null) || global.limitResetTime;
             const waitingComment = `⏳ **${USAGE_LIMIT_REACHED_MARKER} - Waiting to ${limitContinueMode === 'restart' ? 'Restart' : 'Continue'}**\n\nThe AI tool has reached its usage limit. ${continueModeName} is enabled.\n\n**Reset time:** ${waitingResetTimeFormatted}\n**Wait time:** ${formatWaitTime(waitMs)} (days:hours:minutes:seconds)\n\n${continueDescription}\n\nSession ID: \`${sessionId}\``;
 

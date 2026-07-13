@@ -7,7 +7,7 @@
  *
  * Run with: node tests/test-solve-queue-command.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1232
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1232
  */
 
 import assert from 'node:assert/strict';

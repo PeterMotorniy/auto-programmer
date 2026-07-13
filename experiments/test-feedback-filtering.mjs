@@ -126,20 +126,20 @@ async function runTests() {
   // Test 2: PR draft conversion (would need a real PR)
   console.log('Test 2: PR Draft Conversion (example - needs real PR)');
   console.log('⚠️ Skipping - would need real PR number and permissions');
-  // await testPRDraftConversion(299, 'link-assistant', 'hive-mind');
+  // await testPRDraftConversion(299, 'PeterMotorniy', 'auto-programmer');
   console.log();
 
   // Test 3: Fork actions detection (would need a real fork)
   console.log('Test 3: Fork Actions Detection (example - needs real fork)');
   console.log('⚠️ Skipping - would need real fork repository');
-  // await testForkActionsDetection('someuser', 'hive-mind', 'issue-298-branch');
+  // await testForkActionsDetection('someuser', 'auto-programmer', 'issue-298-branch');
   console.log();
 
   // Test 4: Comment filtering (would need real PR data)
   console.log('Test 4: Comment Filtering (example - needs real PR)');
   console.log('⚠️ Skipping - would need real PR with comments');
   // const workStartTime = new Date(Date.now() - 3600000); // 1 hour ago
-  // await testCommentFiltering('link-assistant', 'hive-mind', 299, workStartTime);
+  // await testCommentFiltering('PeterMotorniy', 'auto-programmer', 299, workStartTime);
   console.log();
 
   console.log('✅ Test script complete!');

@@ -9,7 +9,7 @@
  * 5-minute cache-write price (`cache_write`, 1.25x input), so the local public
  * pricing estimate undercharged those writes unless the TTL split was used.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

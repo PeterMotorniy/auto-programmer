@@ -10,8 +10,8 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  * - checkForNonBotComments: Detection of human feedback on PRs
  * - getMergeBlockers: Comprehensive CI/CD status analysis
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1190
- * @see https://github.com/link-assistant/hive-mind/issues/1593
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1190
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1593
  */
 
 // Check if use is already defined globally (when imported from solve.mjs)
@@ -193,7 +193,7 @@ export const checkForNonBotComments = async (owner, repo, prNumber, issueNumber,
   try {
     const { trustAuthenticatedUserComments = false } = options;
 
-    // Get current GitHub user to identify which comments are from the bot/hive-mind
+    // Get current GitHub user to identify which comments are from the bot/auto-programmer
     let currentUser = null;
     try {
       const userResult = await commandRunner`gh api user --jq .login`;
@@ -220,7 +220,7 @@ export const checkForNonBotComments = async (owner, repo, prNumber, issueNumber,
       /^codecov$/i, // Codecov
       /^netlify$/i, // Netlify
       /^vercel$/i, // Vercel
-      /^hive-?mind$/i, // Hive Mind (with or without hyphen)
+      /^hive-?mind$/i, // Auto Programmer (with or without hyphen)
       /^claude$/i, // Claude (exact match only)
       /^copilot$/i, // GitHub Copilot
     ];
@@ -259,7 +259,7 @@ export const checkForNonBotComments = async (owner, repo, prNumber, issueNumber,
     // Combine all comments
     const allComments = [...prComments, ...prReviewComments, ...issueComments];
 
-    // Filter for new comments from non-bot users. Automated hive-mind/tool
+    // Filter for new comments from non-bot users. Automated auto-programmer/tool
     // comments are excluded by marker/ID, including comments posted by the
     // authenticated user during the current or a previous process.
     const newNonBotComments = allComments.filter(comment => {

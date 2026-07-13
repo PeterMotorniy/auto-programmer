@@ -8,7 +8,7 @@
  *
  * Run with: node tests/playwright-mcp-cleanup.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1124
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1124
  */
 
 import assert from 'node:assert/strict';
@@ -209,29 +209,6 @@ async function runTests() {
       assert.ok(await directoryExists(playwrightMcpDir), '.playwright-mcp should be preserved when cleanup is disabled');
     } finally {
       await cleanupTempTestDir(tempDir);
-    }
-  });
-
-  // ============================================================================
-  // Case Study Documentation Tests
-  // ============================================================================
-
-  console.log('\n📋 Case Study Documentation Tests\n');
-
-  await asyncTest('case study documentation exists', async () => {
-    const caseStudyPath = path.join(process.cwd(), 'docs/case-studies/issue-1124/README.md');
-    const caseStudyExists = await fs
-      .stat(caseStudyPath)
-      .then(() => true)
-      .catch(() => false);
-
-    assert.ok(caseStudyExists, 'Case study README.md should exist');
-
-    if (caseStudyExists) {
-      const content = await fs.readFile(caseStudyPath, 'utf-8');
-      assert.ok(content.includes('playwright-mcp'), 'Case study should mention playwright-mcp');
-      assert.ok(content.includes('auto-restart'), 'Case study should mention auto-restart issue');
-      assert.ok(content.includes('Root Cause'), 'Case study should have root cause analysis');
     }
   });
 

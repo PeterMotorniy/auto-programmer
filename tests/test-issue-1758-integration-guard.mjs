@@ -6,8 +6,8 @@
  *   1. Exits 0 with a skip line when HIVE_MIND_RUN_INTEGRATION is unset.
  *   2. Lets the test continue when HIVE_MIND_RUN_INTEGRATION=1.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1758
- * @hive-mind-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1758
+ * @auto-programmer-test-suite default
  */
 
 import { spawnSync } from 'node:child_process';
@@ -33,7 +33,7 @@ function assert(cond, message) {
   }
 }
 
-const dir = mkdtempSync(join(tmpdir(), 'hive-mind-guard-'));
+const dir = mkdtempSync(join(tmpdir(), 'auto-programmer-guard-'));
 const fakeTest = join(dir, 'fake-integration.mjs');
 writeFileSync(
   fakeTest,

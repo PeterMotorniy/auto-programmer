@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -12,7 +12,7 @@
  * regression of issue #625.
  *
  * References:
- * - Issue #625: https://github.com/link-assistant/hive-mind/issues/625
+ * - Issue #625: https://github.com/PeterMotorniy/auto-programmer/issues/625
  * - Root cause: CLAUDE.md was modified after initial commit (e.g., by prettier)
  *   causing a merge conflict when git revert tries to revert the initial commit
  */

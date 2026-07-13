@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // in CI because `getRepoVisibility` makes a real GitHub API call against
 // torvalds/linux, which requires authenticated access in CI. Tracked under
@@ -13,7 +13,7 @@
  *
  * Run with: node tests/test-billing-limit-detection.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1314
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1314
  */
 
 import assert from 'node:assert/strict';
@@ -117,9 +117,9 @@ await asyncTest('getRepoVisibility correctly identifies public repos', async () 
   assert.equal(result.visibility, 'public', 'torvalds/linux should have visibility=public');
 });
 
-await asyncTest('getRepoVisibility correctly identifies link-assistant/hive-mind', async () => {
+await asyncTest('getRepoVisibility correctly identifies PeterMotorniy/auto-programmer', async () => {
   // Our own repo
-  const result = await getRepoVisibility('link-assistant', 'hive-mind', false);
+  const result = await getRepoVisibility('PeterMotorniy', 'auto-programmer', false);
   assert.ok(typeof result.isPrivate === 'boolean', 'isPrivate should be a boolean');
   assert.ok(['public', 'private', 'internal', null].includes(result.visibility), `visibility should be valid, got: ${result.visibility}`);
 });
@@ -727,10 +727,10 @@ await asyncTest('Detect billing limit on unidel2035/btc#1436 (if accessible)', a
   }
 });
 
-await asyncTest('getDetailedCIStatus works on link-assistant/hive-mind (if PR exists)', async () => {
+await asyncTest('getDetailedCIStatus works on PeterMotorniy/auto-programmer (if PR exists)', async () => {
   // Test with our own repo's PR
   try {
-    const result = await getDetailedCIStatus('link-assistant', 'hive-mind', 1315, false);
+    const result = await getDetailedCIStatus('PeterMotorniy', 'auto-programmer', 1315, false);
     assert.ok('status' in result, 'Should have status');
     assert.ok(Array.isArray(result.checks), 'checks should be an array');
     assert.ok(Array.isArray(result.failedChecks), 'failedChecks should be an array');

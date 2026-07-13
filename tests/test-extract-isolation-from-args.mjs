@@ -3,7 +3,7 @@
  * Tests for extractIsolationFromArgs and isValidPerCommandIsolation
  * from telegram-isolation.lib.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1534
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1534
  */
 
 import { extractIsolationFromArgs, isValidPerCommandIsolation } from '../src/telegram-isolation.lib.mjs';

@@ -1,6 +1,6 @@
 +1 — this gap actively blocks automation.
 
-We run an automated agent ([hive-mind](https://github.com/link-assistant/hive-mind)) that opens a PR per issue. When a PR is stacked onto a **non-default base branch** (e.g. a parent `issue-47-…` branch rather than `main`), there is currently **no API path** to create a PR↔issue link that GitHub recognizes:
+We run an automated agent ([auto-programmer](https://github.com/PeterMotorniy/auto-programmer)) that opens a PR per issue. When a PR is stacked onto a **non-default base branch** (e.g. a parent `issue-47-…` branch rather than `main`), there is currently **no API path** to create a PR↔issue link that GitHub recognizes:
 
 - Closing keywords (`Fixes #N`) in the PR body are silently ignored for non-default-base PRs — `closingIssuesReferences` stays empty and the issue never auto-closes.
 - The web-UI **Development** sidebar _can_ link them, but — as this discussion notes — there is no `linkPullRequestToIssue` / `addClosingIssueReference` mutation (nor any REST endpoint), and `createPullRequest`/`updatePullRequest` expose no linked-issue field.

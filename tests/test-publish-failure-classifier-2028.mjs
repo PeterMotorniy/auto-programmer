@@ -9,8 +9,8 @@
  *
  * Run with: node tests/test-publish-failure-classifier-2028.mjs
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/2028
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2028
  */
 
 import assert from 'node:assert/strict';
@@ -35,7 +35,7 @@ await test('exports non-empty pattern lists', async () => {
 });
 
 await test('detects "packages failed to publish" (changeset failure)', async () => {
-  const output = 'info Publishing "@link-assistant/hive-mind"...\n🦋  error packages failed to publish';
+  const output = 'info Publishing "auto-programmer"...\n🦋  error packages failed to publish';
   assert.equal(detectPublishFailure(output), 'packages failed to publish');
 });
 
@@ -51,7 +51,7 @@ await test('detects npm error codes regardless of case', async () => {
 });
 
 await test('returns null for clean successful output', async () => {
-  const output = 'info Publishing...\nsuccess Published @link-assistant/hive-mind@2.1.10';
+  const output = 'info Publishing...\nsuccess Published auto-programmer@2.1.10';
   assert.equal(detectPublishFailure(output), null);
 });
 
@@ -76,8 +76,8 @@ await test('classifies the sigstore crash as retryable (transient/environmental)
 });
 
 await test('auth guidance mentions the package and the E404 bootstrap fix', async () => {
-  const guidance = buildAuthFailureGuidance('@link-assistant/hive-mind');
-  assert.ok(guidance.includes('@link-assistant/hive-mind'));
+  const guidance = buildAuthFailureGuidance('auto-programmer');
+  assert.ok(guidance.includes('auto-programmer'));
   assert.match(guidance, /E404|NPM_TOKEN|trusted publish/i);
 });
 

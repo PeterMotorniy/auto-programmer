@@ -3,7 +3,7 @@
 /**
  * Regression test for issue #1720.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Verifies that:
  * 1. `/terminal_watch` does NOT upload the session log document on its own —

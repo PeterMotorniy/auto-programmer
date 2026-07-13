@@ -5,7 +5,7 @@ import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
-// Git-related library functions for hive-mind project
+// Git-related library functions for auto-programmer project
 
 // Helper function to check if we're in a git repository
 export const isGitRepository = async (execFunc = execAsync) => {

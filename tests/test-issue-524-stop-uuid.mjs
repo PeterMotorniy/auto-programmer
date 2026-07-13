@@ -11,7 +11,7 @@
  *
  * Run with: node tests/test-issue-524-stop-uuid.mjs
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { extractStopSessionId, registerStartStopCommands } from '../src/telegram-start-stop-command.lib.mjs';

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite default
+// @auto-programmer-test-suite default
 
 /**
  * Regression coverage for Issue #1819.
  *
  * The failing run created a fork named
- * konard/pypypy1337-parking.github.io, but repository setup parsed the
- * `gh repo fork` output as konard/pypypy1337-parking because the regex did
+ * petermotorniy/pypypy1337-parking.github.io, but repository setup parsed the
+ * `gh repo fork` output as petermotorniy/pypypy1337-parking because the regex did
  * not allow dots in repository names. Verification then checked the wrong
  * repository and reported "Fork exists but not accessible".
  */
@@ -30,18 +30,18 @@ function runTest(name, testFn) {
 }
 
 runTest('parses dotted fork name from gh repo fork URL output', () => {
-  const output = 'https://github.com/konard/pypypy1337-parking.github.io';
+  const output = 'https://github.com/petermotorniy/pypypy1337-parking.github.io';
   const parsed = parseForkFullNameFromGhOutput(output);
-  if (parsed !== 'konard/pypypy1337-parking.github.io') {
-    throw new Error(`Expected konard/pypypy1337-parking.github.io, got ${parsed}`);
+  if (parsed !== 'petermotorniy/pypypy1337-parking.github.io') {
+    throw new Error(`Expected petermotorniy/pypypy1337-parking.github.io, got ${parsed}`);
   }
 });
 
 runTest('parses dotted fork name from already-exists output', () => {
-  const output = 'konard/pypypy1337-parking.github.io already exists';
+  const output = 'petermotorniy/pypypy1337-parking.github.io already exists';
   const parsed = parseForkFullNameFromGhOutput(output);
-  if (parsed !== 'konard/pypypy1337-parking.github.io') {
-    throw new Error(`Expected konard/pypypy1337-parking.github.io, got ${parsed}`);
+  if (parsed !== 'petermotorniy/pypypy1337-parking.github.io') {
+    throw new Error(`Expected petermotorniy/pypypy1337-parking.github.io, got ${parsed}`);
   }
 });
 
@@ -53,9 +53,9 @@ runTest('does not parse github.com/user as com/user', () => {
 });
 
 runTest('strips .git suffix from clone-style URLs', () => {
-  const parsed = parseForkFullNameFromGhOutput('git@github.com:konard/pypypy1337-parking.github.io.git');
-  if (parsed !== 'konard/pypypy1337-parking.github.io') {
-    throw new Error(`Expected konard/pypypy1337-parking.github.io, got ${parsed}`);
+  const parsed = parseForkFullNameFromGhOutput('git@github.com:petermotorniy/pypypy1337-parking.github.io.git');
+  if (parsed !== 'petermotorniy/pypypy1337-parking.github.io') {
+    throw new Error(`Expected petermotorniy/pypypy1337-parking.github.io, got ${parsed}`);
   }
 });
 

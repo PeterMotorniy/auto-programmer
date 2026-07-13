@@ -507,7 +507,7 @@ zh
         options
           label "🔒 锁定选项"
     help
-      title "🤖 *SwarmMindBot 帮助*"
+      title "🤖 *AutoProgrammerBot 帮助*"
       status
         stopped "🛑 *机器人状态：已停止*"
       reason "原因：{{reason}}"

@@ -21,20 +21,20 @@ const dockerfiles = ['Dockerfile', 'coolify/Dockerfile'];
 for (const filePath of dockerfiles) {
   const content = await read(filePath);
 
-  assertIncludes(content, 'FROM konard/box:2.3.5', filePath);
+  assertIncludes(content, 'FROM petermotorniy/box:2.3.5', filePath);
   assertIncludes(content, 'Keep this in lockstep with the DinD base-image release.', filePath);
   assertIncludes(content, 'USER box', filePath);
   assertIncludes(content, 'WORKDIR /home/box', filePath);
   assertIncludes(content, '/home/box/.local/bin', filePath);
   assertIncludes(content, '/home/box/.node-bin', filePath);
 
-  assertExcludes(content, 'konard/sandbox', filePath);
+  assertExcludes(content, 'petermotorniy/sandbox', filePath);
   assertExcludes(content, 'USER sandbox', filePath);
   assertExcludes(content, 'WORKDIR /workspace', filePath);
   assertExcludes(content, '/workspace', filePath);
 }
 
-const runtimePathFiles = ['coolify/start.sh', 'coolify/docker-compose.yml', 'docker-compose.yml', 'docker-restore-auth.sh', 'docker-solve.sh', 'scripts/verify-docker-image.sh', 'helm/hive-mind/templates/deployment.yaml'];
+const runtimePathFiles = ['coolify/start.sh', 'coolify/docker-compose.yml', 'docker-compose.yml', 'docker-restore-auth.sh', 'docker-solve.sh', 'scripts/verify-docker-image.sh', 'helm/auto-programmer/templates/deployment.yaml'];
 
 for (const filePath of runtimePathFiles) {
   const content = await read(filePath);
@@ -56,13 +56,13 @@ assertExcludes(verifyScript, 'Expected user sandbox', 'scripts/verify-docker-ima
 assertExcludes(verifyScript, 'id -nG sandbox', 'scripts/verify-docker-image.sh');
 
 const releaseWorkflow = await read('.github/workflows/release.yml');
-assertIncludes(releaseWorkflow, 'konard/box:', '.github/workflows/release.yml');
-assertExcludes(releaseWorkflow, 'konard/sandbox', '.github/workflows/release.yml');
+assertIncludes(releaseWorkflow, 'petermotorniy/box:', '.github/workflows/release.yml');
+assertExcludes(releaseWorkflow, 'petermotorniy/sandbox', '.github/workflows/release.yml');
 assertExcludes(releaseWorkflow, 'SANDBOX_VERSION', '.github/workflows/release.yml');
 
-const legacyInstallScriptUrl = 'https://raw.githubusercontent.com/link-assistant/hive-mind/4f027b32/scripts/ubuntu-24-server-install.sh';
-const legacyInstallBlobUrl = 'https://github.com/link-assistant/hive-mind/blob/4f027b32/scripts/ubuntu-24-server-install.sh';
-const ubuntuServerDocs = ['docs/UBUNTU-SERVER.md', 'docs/UBUNTU-SERVER.ru.md', 'docs/UBUNTU-SERVER.zh.md', 'docs/UBUNTU-SERVER.hi.md'];
+const legacyInstallScriptUrl = 'https://raw.githubusercontent.com/PeterMotorniy/auto-programmer/4f027b32/scripts/ubuntu-24-server-install.sh';
+const legacyInstallBlobUrl = 'https://github.com/PeterMotorniy/auto-programmer/blob/4f027b32/scripts/ubuntu-24-server-install.sh';
+const ubuntuServerDocs = ['docs/UBUNTU-SERVER.md'];
 for (const filePath of ubuntuServerDocs) {
   const content = await read(filePath);
 

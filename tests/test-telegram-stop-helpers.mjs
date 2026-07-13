@@ -3,7 +3,7 @@
  * (used by tests/test-issue-524-stop-uuid.mjs and
  * tests/test-issue-1783-stop-improvements.mjs).
  *
- * @hive-mind-test-skip
+ * @auto-programmer-test-skip
  */
 
 export function makeAsserts() {

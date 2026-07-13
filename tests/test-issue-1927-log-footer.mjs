@@ -17,7 +17,7 @@
  * down that we parse it correctly (last-footer-wins, signal codes, tail reads)
  * and never throw on a missing/partial log.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import os from 'node:os';

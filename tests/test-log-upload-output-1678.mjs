@@ -6,7 +6,7 @@
  * The failure mode was:
  * 1. a large --attach-logs upload used gh-upload-log,
  * 2. gh-upload-log failed,
- * 3. Hive Mind posted a truncated GitHub comment anyway.
+ * 3. Auto Programmer posted a truncated GitHub comment anyway.
  *
  * These tests keep the parser compatible with gh-upload-log v0.8 shared
  * repository output and verify the truncated-comment fallback is gone.
@@ -22,8 +22,8 @@ const test = (name, fn) => tests.push({ name, fn });
 test('parses gh-upload-log v0.8 shared repository output', () => {
   const output = `
 ✅ Repository created (🌐 public)
-🔗 https://github.com/konard/public-logs/tree/main/log-tmp-solution-draft-log-pr-1777069676373-txt
-📄 https://raw.githubusercontent.com/konard/public-logs/main/log-tmp-solution-draft-log-pr-1777069676373-txt/tmp-solution-draft-log-pr-1777069676373.txt
+🔗 https://github.com/petermotorniy/public-logs/tree/main/log-tmp-solution-draft-log-pr-1777069676373-txt
+📄 https://raw.githubusercontent.com/petermotorniy/public-logs/main/log-tmp-solution-draft-log-pr-1777069676373-txt/tmp-solution-draft-log-pr-1777069676373.txt
 
 Details:
   Type: 📦 Repository
@@ -34,8 +34,8 @@ Details:
 `;
 
   assert.deepEqual(parseGhUploadLogOutput(output), {
-    url: 'https://github.com/konard/public-logs/tree/main/log-tmp-solution-draft-log-pr-1777069676373-txt',
-    rawUrl: 'https://raw.githubusercontent.com/konard/public-logs/main/log-tmp-solution-draft-log-pr-1777069676373-txt/tmp-solution-draft-log-pr-1777069676373.txt',
+    url: 'https://github.com/petermotorniy/public-logs/tree/main/log-tmp-solution-draft-log-pr-1777069676373-txt',
+    rawUrl: 'https://raw.githubusercontent.com/petermotorniy/public-logs/main/log-tmp-solution-draft-log-pr-1777069676373-txt/tmp-solution-draft-log-pr-1777069676373.txt',
     type: 'repository',
     chunks: 1,
     repositoryName: 'public-logs',
@@ -46,7 +46,7 @@ Details:
 test('parses multi-file repository uploads as multiple chunks', () => {
   const output = `
 ✅ Repository created (🔒 private)
-🔗 https://github.com/konard/private-logs/tree/main/log-large
+🔗 https://github.com/petermotorniy/private-logs/tree/main/log-large
 
 Details:
   Type: 📦 Repository
@@ -57,7 +57,7 @@ Details:
 `;
 
   assert.deepEqual(parseGhUploadLogOutput(output), {
-    url: 'https://github.com/konard/private-logs/tree/main/log-large',
+    url: 'https://github.com/petermotorniy/private-logs/tree/main/log-large',
     rawUrl: null,
     type: 'repository',
     chunks: 3,
@@ -69,14 +69,14 @@ Details:
 test('keeps legacy dedicated repository output compatible', () => {
   const output = `
 ✅ Repository created (🔒 private)
-🔗 https://github.com/konard/log-tmp-start-command-logs-isolation-screen-78003ab5
-📄 https://raw.githubusercontent.com/konard/log-tmp-start-command-logs-isolation-screen-78003ab5/main/tmp-start-command-logs-isolation-screen-78003ab5.log?token=example
+🔗 https://github.com/petermotorniy/log-tmp-start-command-logs-isolation-screen-78003ab5
+📄 https://raw.githubusercontent.com/petermotorniy/log-tmp-start-command-logs-isolation-screen-78003ab5/main/tmp-start-command-logs-isolation-screen-78003ab5.log?token=example
 ⚠️  Note: Raw URL token expires in ~10 minutes for private repositories
 `;
 
   assert.deepEqual(parseGhUploadLogOutput(output), {
-    url: 'https://github.com/konard/log-tmp-start-command-logs-isolation-screen-78003ab5',
-    rawUrl: 'https://raw.githubusercontent.com/konard/log-tmp-start-command-logs-isolation-screen-78003ab5/main/tmp-start-command-logs-isolation-screen-78003ab5.log?token=example',
+    url: 'https://github.com/petermotorniy/log-tmp-start-command-logs-isolation-screen-78003ab5',
+    rawUrl: 'https://raw.githubusercontent.com/petermotorniy/log-tmp-start-command-logs-isolation-screen-78003ab5/main/tmp-start-command-logs-isolation-screen-78003ab5.log?token=example',
     type: 'repository',
     chunks: 1,
     repositoryName: null,

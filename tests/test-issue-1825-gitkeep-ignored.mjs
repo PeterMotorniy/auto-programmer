@@ -19,7 +19,7 @@
  * These tests verify each branch of addPlaceholderFileToGit /
  * removePlaceholderFromGitignore / stagePlaceholderFileOrExplain.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -201,7 +201,7 @@ test('stagePlaceholderFileOrExplain throws a user-facing error when the placehol
           issueUrl: 'https://github.com/owner/repo/issues/1',
         }),
       err => {
-        assert.equal(err.hiveMindUserFacingLogged, true, 'the error should be flagged as already logged');
+        assert.equal(err.autoProgrammerUserFacingLogged, true, 'the error should be flagged as already logged');
         assert.match(err.message, /\.gitignore/, 'the error should mention .gitignore');
         return true;
       }

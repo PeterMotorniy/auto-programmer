@@ -9,7 +9,7 @@
  * the LAST `Session ID:` marker, not the first. A successful (exit 0) session and
  * a /hive session must NOT get a resume command — backward compatibility.
  *
- * @see https://github.com/link-assistant/hive-mind/pull/1928
+ * @see https://github.com/PeterMotorniy/auto-programmer/pull/1928
  */
 
 import os from 'node:os';

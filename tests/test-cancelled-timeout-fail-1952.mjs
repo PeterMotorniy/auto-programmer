@@ -9,9 +9,9 @@
  * status='cancelled' and the auto-merge loop posted a "Cancelled CI/CD Requires Review"
  * comment and stopped, instead of treating the timeout as a CI failure and restarting the AI.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1952
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1952
  */
 
 import { readFileSync } from 'node:fs';

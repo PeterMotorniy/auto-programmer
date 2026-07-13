@@ -134,8 +134,8 @@ await test('hive --dry-run should produce output and exit cleanly', async () => 
 
   // Check that it shows initialization message (proves no silent failure)
   const combinedOutput = result.stdout + result.stderr;
-  if (!combinedOutput.includes('Hive Mind') && !combinedOutput.includes('Initializing')) {
-    throw new Error('Expected to see "Hive Mind" or "Initializing" in output (proves command is not failing silently)');
+  if (!combinedOutput.includes('Auto Programmer') && !combinedOutput.includes('Initializing')) {
+    throw new Error('Expected to see "Auto Programmer" or "Initializing" in output (proves command is not failing silently)');
   }
 
   // Optionally check for monitoring configuration or dry-run mode (may appear later)

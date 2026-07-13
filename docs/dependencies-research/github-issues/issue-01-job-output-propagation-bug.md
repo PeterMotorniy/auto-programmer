@@ -110,7 +110,7 @@ jobs:
 
 The workaround was verified to work in production:
 
-- Repository: https://github.com/link-assistant/hive-mind
+- Repository: https://github.com/PeterMotorniy/auto-programmer
 - Working run: #14 (after applying workaround)
 - Previously failing runs: #11, #12, #13
 

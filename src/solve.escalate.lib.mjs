@@ -35,7 +35,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  * powers `--keep-working-until-all-requirements-are-fully-done` (issue #1883) as
  * the "did the cheaper model finish?" signal.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1885
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1885
  */
 
 // ───────────────────────────── Pure helpers ──────────────────────────────────

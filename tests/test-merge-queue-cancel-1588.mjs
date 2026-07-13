@@ -6,7 +6,7 @@
  *
  * Run with: node tests/test-merge-queue-cancel-1588.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1588
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1588
  */
 
 import assert from 'node:assert/strict';

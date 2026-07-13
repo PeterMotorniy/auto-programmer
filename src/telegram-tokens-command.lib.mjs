@@ -18,7 +18,7 @@
  *    this bot, not a random DMer.
  *  - Output is always masked. We never print raw values.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1745
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1745
  * @module telegram-tokens-command
  */
 

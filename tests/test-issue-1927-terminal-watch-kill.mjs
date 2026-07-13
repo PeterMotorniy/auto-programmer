@@ -13,7 +13,7 @@
  * once present the session is finished, the displayed status is corrected to the
  * real terminal status (e.g. `killed`), and the watch stops and reports it.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import fs from 'fs/promises';

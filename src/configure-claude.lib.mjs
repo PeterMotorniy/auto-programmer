@@ -62,7 +62,7 @@ export const parseConfigureClaudeArgs = argv => {
 
 export const CONFIGURE_CLAUDE_HELP = `Usage: configure-claude [options]
 
-Apply or verify Hive-Mind's quiet, deterministic Claude Code defaults in
+Apply or verify Auto-Programmer's quiet, deterministic Claude Code defaults in
 a target ~/.claude/settings.json (env vars, settings, attribution,
 permissions.defaultMode, and the disallowedTools block-list).
 
@@ -76,7 +76,7 @@ Examples:
   configure-claude --verify                  # check only, non-zero exit if drift detected
   configure-claude -s /home/box/.claude/settings.json
 
-Reference: https://github.com/link-assistant/hive-mind/issues/1642
+Reference: https://github.com/PeterMotorniy/auto-programmer/issues/1642
 `;
 
 const isPlainObject = value => value && typeof value === 'object' && !Array.isArray(value);

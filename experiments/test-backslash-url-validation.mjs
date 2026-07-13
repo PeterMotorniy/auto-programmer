@@ -16,10 +16,10 @@ console.log('===========================================\n');
 const backslashTests = [
   {
     desc: 'Trailing backslash at end of URL',
-    url: 'https://github.com/konard/hh-job-application-automation/issues/124\\',
+    url: 'https://github.com/petermotorniy/hh-job-application-automation/issues/124\\',
     shouldPass: false,
     expectedError: 'Invalid character in URL: backslash (\\) is not allowed in URL paths',
-    expectedSuggestion: 'https://github.com/konard/hh-job-application-automation/issues/124/',
+    expectedSuggestion: 'https://github.com/petermotorniy/hh-job-application-automation/issues/124/',
   },
   {
     desc: 'Backslash in path (middle)',

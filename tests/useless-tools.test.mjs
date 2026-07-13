@@ -4,11 +4,11 @@
  *
  * Tests for src/useless-tools.lib.mjs — the block-list of Claude Code
  * built-in tools and MCP servers that have no value (and may be harmful)
- * in autonomous headless hive-mind runs.
+ * in autonomous headless auto-programmer runs.
  *
  * Run with: node tests/useless-tools.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1627
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1627
  */
 
 import assert from 'node:assert/strict';

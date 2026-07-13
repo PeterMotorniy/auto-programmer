@@ -14,7 +14,7 @@
  * branches), and keep those while removing the rest. Protected system paths such
  * as `/tmp/start-command/` are always preserved unless explicitly forced.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1848
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1848
  */
 
 import { classifyExitStatus, isExecutingSessionStatus, isFailureSessionStatus, isTerminalSessionStatus, normalizeExitCode } from './session-status.lib.mjs';
@@ -36,7 +36,7 @@ export const DEFAULT_PROTECTED_NAMES = ['start-command'];
 export const SYSTEM_PROTECTED_PATTERNS = [/^\.X11-unix$/, /^\.XIM-unix$/, /^\.ICE-unix$/, /^\.font-unix$/, /^\.Test-unix$/, /^systemd-private-/, /^snap-private-tmp$/, /^snap\./, /^\.snap/, /^dbus-/, /^ssh-/, /^hsperfdata_/, /^\.org\.chromium\./, /^\.com\.google\.Chrome\./];
 
 /**
- * Patterns for temporary entries that are unambiguously created by hive-mind
+ * Patterns for temporary entries that are unambiguously created by auto-programmer
  * (solve.mjs, github.lib.mjs, claude.lib.mjs, telegram-*, etc.). These are safe
  * to delete when they are not tied to an active task. Each entry has a `name`
  * (for reporting) and a `regex` matched against the basename under the tmp root.
@@ -49,7 +49,7 @@ export const HIVE_MIND_TEMP_PATTERNS = [
   { name: 'solve workspace clone', regex: /^gh-issue-solver-\d+$/ },
   { name: 'solve resume workspace', regex: /^gh-issue-solver-resume-.+$/ },
   // solve.repository.lib.mjs buildWorkspacePath parent dir
-  { name: 'solve workspace root', regex: /^hive-mind-solve-gh-/ },
+  { name: 'solve workspace root', regex: /^auto-programmer-solve-gh-/ },
   // github.lib.mjs log download working dirs
   { name: 'solution draft log dir', regex: /^log-tmp-solution-draft-log-/ },
   // claude.lib.mjs MCP config temp files
@@ -60,7 +60,7 @@ export const HIVE_MIND_TEMP_PATTERNS = [
   { name: 'log upload comment', regex: /^log-upload-comment-.+\.md$/ },
   { name: 'log comment', regex: /^log-comment-.+\.md$/ },
   // github-error-reporter.lib.mjs
-  { name: 'issue body temp', regex: /^hive-mind-issue-body-.+\.md$/ },
+  { name: 'issue body temp', regex: /^auto-programmer-issue-body-.+\.md$/ },
   // solve.auto-pr.lib.mjs / solve.results.lib.mjs
   { name: 'PR body temp', regex: /^pr-body-.+$/ },
   { name: 'PR title temp', regex: /^pr-title-.+\.txt$/ },
@@ -199,12 +199,12 @@ function matchesAny(name, patterns) {
 }
 
 /**
- * Identify the hive-mind temp pattern a name matches, if any.
+ * Identify the auto-programmer temp pattern a name matches, if any.
  *
  * @param {string} name
  * @returns {{name: string}|null}
  */
-export function matchHiveMindPattern(name) {
+export function matchAutoProgrammerPattern(name) {
   return HIVE_MIND_TEMP_PATTERNS.find(p => p.regex.test(name)) || null;
 }
 
@@ -212,7 +212,7 @@ export function matchHiveMindPattern(name) {
  * Pure classification of a single temp entry into keep/remove with a reason.
  *
  * Reason precedence (highest first): protected > self > active-process >
- * active-task > dirty-worktree > hive-mind-temp (remove) > all-mode (remove) >
+ * active-task > dirty-worktree > auto-programmer-temp (remove) > all-mode (remove) >
  * unrecognized (keep).
  *
  * @param {{name: string, path: string, isDirectory: boolean}} entry
@@ -220,7 +220,7 @@ export function matchHiveMindPattern(name) {
  * @param {string[]} ctx.protectedNames
  * @param {boolean} ctx.forceStartCommand
  * @param {boolean} ctx.includeSystem - allow classifying system entries in --all
- * @param {boolean} ctx.includeAll - consider non-hive-mind entries for removal
+ * @param {boolean} ctx.includeAll - consider non-auto-programmer entries for removal
  * @param {boolean} ctx.keepDirty
  * @param {Set<string>} ctx.selfPaths - absolute paths the cleanup process itself uses
  * @param {Set<string>} ctx.heldPaths - absolute paths held by running processes
@@ -270,12 +270,12 @@ export function classifyEntry(entry, ctx) {
     return { action: 'keep', reason: 'dirty-worktree' };
   }
 
-  // 6. Recognised hive-mind temp artifact -> safe to remove.
-  if (matchHiveMindPattern(name)) {
-    return { action: 'remove', reason: isStartCommand ? 'forced-start-command' : 'hive-mind-temp' };
+  // 6. Recognised auto-programmer temp artifact -> safe to remove.
+  if (matchAutoProgrammerPattern(name)) {
+    return { action: 'remove', reason: isStartCommand ? 'forced-start-command' : 'auto-programmer-temp' };
   }
 
-  // start-command forced but not a hive-mind pattern: still remove when forced.
+  // start-command forced but not a auto-programmer pattern: still remove when forced.
   if (isStartCommand && forceStartCommand) {
     return { action: 'remove', reason: 'forced-start-command' };
   }
@@ -366,10 +366,10 @@ export function describeReason(reason) {
     'active-process': 'in use by a running process',
     'active-task': 'belongs to an active task',
     'dirty-worktree': 'has uncommitted/unpushed changes',
-    'hive-mind-temp': 'hive-mind temporary artifact',
+    'auto-programmer-temp': 'auto-programmer temporary artifact',
     'forced-start-command': 'start-command (forced)',
     'all-mode': 'removed by --all',
-    unrecognized: 'not a recognised hive-mind artifact',
+    unrecognized: 'not a recognised auto-programmer artifact',
   };
   return map[reason] || reason;
 }
@@ -423,7 +423,7 @@ export function formatEntryContext(item) {
     if (gitInfo.branch) gitParts.push(`branch ${gitInfo.branch}`);
     if (gitInfo.dirty) gitParts.push('dirty/unpushed');
     // When neither an active task nor a known session resolved the issue/PR,
-    // derive the issue number from the folder's branch so every hive-mind
+    // derive the issue number from the folder's branch so every auto-programmer
     // folder in the listing still shows which issue it belongs to.
     if (!item?.activeTask && !item?.session && gitInfo.branch) {
       const parsed = parseIssueBranchName(gitInfo.branch);

@@ -507,7 +507,7 @@ hi
         options
           label "🔒 लॉक किए गए विकल्प"
     help
-      title "🤖 *SwarmMindBot मदद*"
+      title "🤖 *AutoProgrammerBot मदद*"
       status
         stopped "🛑 *बॉट स्थिति: बंद*"
       reason "कारण: {{reason}}"

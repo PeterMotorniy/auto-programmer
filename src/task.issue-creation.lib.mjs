@@ -197,7 +197,7 @@ export function parseCreatedTaskIssueOutput(output) {
 }
 
 export async function createTaskIssue({ repository, title, body, run = runCommand }) {
-  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'hive-mind-task-issue-'));
+  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'auto-programmer-task-issue-'));
   const bodyFile = path.join(tempDir, 'body.md');
 
   try {

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite default
+// @auto-programmer-test-suite default
 
 /**
  * Test suite for Issue #1795 fix: Auto-fork should not bail out on a private

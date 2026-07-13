@@ -2,7 +2,7 @@
 BOX_HOME=/home/box
 
 echo "========================================"
-echo "Hive-Mind Container"
+echo "Auto-Programmer Container"
 echo "========================================"
 
 # Fix permissions and git config issues (runs as root)
@@ -18,7 +18,7 @@ fi
 if [ ! -f "$BOX_HOME/.gitconfig" ]; then
   echo "  - Creating git configuration"
   echo "[user]" > "$BOX_HOME/.gitconfig"
-  echo "  name = Hive-Mind Bot" >> "$BOX_HOME/.gitconfig"
+  echo "  name = Auto-Programmer Bot" >> "$BOX_HOME/.gitconfig"
   echo "  email = hive@localhost" >> "$BOX_HOME/.gitconfig"
   echo "[init]" >> "$BOX_HOME/.gitconfig"
   echo "  defaultBranch = main" >> "$BOX_HOME/.gitconfig"
@@ -57,7 +57,7 @@ export PATH="/home/box/.bun/bin:/home/box/.node-bin:/home/box/.local/bin:/home/b
 if gh auth status >/dev/null 2>&1 && [ -n "$GITHUB_URL" ]; then
   echo "✓ GitHub authenticated"
 
-  # Build hive-mind command with all environment variables as CLI options
+  # Build auto-programmer command with all environment variables as CLI options
   HIVE_CMD="node hive.mjs \"$GITHUB_URL\""
 
   # Add options based on environment variables
@@ -92,8 +92,8 @@ if gh auth status >/dev/null 2>&1 && [ -n "$GITHUB_URL" ]; then
   # Add any additional arguments from HIVE_ARGS
   [ -n "$HIVE_ARGS" ] && HIVE_CMD="$HIVE_CMD $HIVE_ARGS"
 
-  # Try to start hive-mind, but catch failures
-  echo "✓ Starting hive-mind to monitor: $GITHUB_URL"
+  # Try to start auto-programmer, but catch failures
+  echo "✓ Starting auto-programmer to monitor: $GITHUB_URL"
   echo "  Command: $HIVE_CMD"
   eval $HIVE_CMD
   EXIT_CODE=$?

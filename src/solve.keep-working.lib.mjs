@@ -20,7 +20,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  * By default the restart limit is 5. The limit can be set to a custom number,
  * or to "forever" / "unlimited" / "infinite" / 0 to remove the limit entirely.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1883
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1883
  */
 
 // Check if use is already defined globally (when imported from solve.mjs)

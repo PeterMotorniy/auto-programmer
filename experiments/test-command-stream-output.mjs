@@ -12,7 +12,7 @@ import { execSync } from 'child_process';
 console.log('=== Testing raw gh output format ===');
 try {
   const testComment = 'Test comment - will be deleted';
-  const rawResult = execSync(`gh pr comment 852 --repo link-assistant/hive-mind --body "${testComment}"`, {
+  const rawResult = execSync(`gh pr comment 852 --repo PeterMotorniy/auto-programmer --body "${testComment}"`, {
     encoding: 'utf8',
   });
   console.log('Raw output:', JSON.stringify(rawResult));
@@ -23,7 +23,7 @@ try {
 
   if (match && match[1]) {
     console.log('Comment ID found:', match[1]);
-    execSync(`gh api repos/link-assistant/hive-mind/issues/comments/${match[1]} -X DELETE`);
+    execSync(`gh api repos/PeterMotorniy/auto-programmer/issues/comments/${match[1]} -X DELETE`);
     console.log('Comment deleted');
   }
 } catch (e) {
@@ -40,7 +40,7 @@ try {
   console.log('$ type:', typeof $);
 
   const testComment2 = 'Test comment 2 - command-stream test';
-  const result = await $`gh pr comment 852 --repo link-assistant/hive-mind --body ${testComment2}`;
+  const result = await $`gh pr comment 852 --repo PeterMotorniy/auto-programmer --body ${testComment2}`;
 
   console.log('\n=== Result object analysis ===');
   console.log('typeof result:', typeof result);
@@ -71,7 +71,7 @@ try {
 
   if (match2 && match2[1]) {
     console.log('Deleting comment...');
-    await $`gh api repos/link-assistant/hive-mind/issues/comments/${match2[1]} -X DELETE`;
+    await $`gh api repos/PeterMotorniy/auto-programmer/issues/comments/${match2[1]} -X DELETE`;
     console.log('Deleted');
   } else {
     console.log('⚠️ Could not extract comment ID');

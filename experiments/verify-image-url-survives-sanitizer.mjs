@@ -26,7 +26,7 @@ const fakeBase64 = Buffer.from('the quick brown fox jumps over the lazy dog').to
 const hash16 = createHash('sha256').update(fakeBase64).digest('hex').slice(0, 16);
 const commitSha = '0123456789abcdef0123456789abcdef01234567';
 const path = `media/pr-1844/${hash16}.png`;
-const url = buildRawBlobUrl('link-assistant', 'hive-mind', commitSha, path);
+const url = buildRawBlobUrl('PeterMotorniy', 'auto-programmer', commitSha, path);
 
 console.log(`hash16 = ${hash16} (len ${hash16.length})`);
 console.log(`url    = ${url}\n`);
@@ -55,14 +55,14 @@ check('40-char loose hex is masked (sanitizer is live)', out3 !== body3, out3 ==
 // 5. End-to-end through the uploader with an injected gh stub: the URL it
 //    returns is the same one we just proved survives.
 const uploader = createImageUploader({
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
   prNumber: 1844,
   execFile: async (_cmd, args) => {
     const apiPath = args[1];
     const method = args.includes('-X') ? args[args.indexOf('-X') + 1] : 'GET';
-    if (method === 'GET' && apiPath.includes('/git/ref/hive-mind-media/pr-1844')) {
-      return { stdout: JSON.stringify({ ref: 'refs/hive-mind-media/pr-1844', object: { sha: commitSha, type: 'commit' } }) };
+    if (method === 'GET' && apiPath.includes('/git/ref/auto-programmer-media/pr-1844')) {
+      return { stdout: JSON.stringify({ ref: 'refs/auto-programmer-media/pr-1844', object: { sha: commitSha, type: 'commit' } }) };
     }
     if (method === 'GET' && apiPath.includes('/git/commits/')) {
       return { stdout: JSON.stringify({ sha: commitSha, tree: { sha: '1111111111111111111111111111111111111111' } }) };
@@ -73,7 +73,7 @@ const uploader = createImageUploader({
     if (method === 'POST' && apiPath.endsWith('/git/blobs')) return { stdout: JSON.stringify({ sha: '2222222222222222222222222222222222222222' }) };
     if (method === 'POST' && apiPath.endsWith('/git/trees')) return { stdout: JSON.stringify({ sha: '3333333333333333333333333333333333333333' }) };
     if (method === 'POST' && apiPath.endsWith('/git/commits')) return { stdout: JSON.stringify({ sha: '4444444444444444444444444444444444444444' }) };
-    if (method === 'PATCH' && apiPath.includes('/git/refs/hive-mind-media/pr-1844')) return { stdout: JSON.stringify({ ref: 'refs/hive-mind-media/pr-1844', object: { sha: '4444444444444444444444444444444444444444' } }) };
+    if (method === 'PATCH' && apiPath.includes('/git/refs/auto-programmer-media/pr-1844')) return { stdout: JSON.stringify({ ref: 'refs/auto-programmer-media/pr-1844', object: { sha: '4444444444444444444444444444444444444444' } }) };
     throw new Error(`unexpected gh call: ${method} ${apiPath}`);
   },
 });

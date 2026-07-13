@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression tests for issue #1827: the auto-restart-until-mergeable / watch
  * loops must NOT treat their own session comments as new feedback.
@@ -70,13 +70,13 @@ const REPO = 'rust-web-box';
   const aiStatusComment = {
     id: 4553469248,
     created_at: '2026-05-27T09:56:14Z', // posted by the agent during the session
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: '## ✅ CI now green on `774f52f`\n\nAll three workflows now pass.',
   };
   const olderOwnComment = {
     id: 4553000000,
     created_at: '2026-05-27T09:40:00Z', // before the session window — not ours to track
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: 'A pre-session note from the same account.',
   };
   const otherUserComment = {
@@ -88,7 +88,7 @@ const REPO = 'rust-web-box';
 
   const fakeGh = async (strings, ...values) => {
     const command = commandText(strings, values);
-    if (command === 'gh api user --jq .login') return response('konard\n');
+    if (command === 'gh api user --jq .login') return response('petermotorniy\n');
     if (command === `gh api repos/${OWNER}/${REPO}/issues/34/comments --paginate`) {
       return response([olderOwnComment, aiStatusComment, otherUserComment]);
     }
@@ -109,7 +109,7 @@ const REPO = 'rust-web-box';
   const buggyLastCheck = sessionStart;
   const checkGh = async (strings, ...values) => {
     const command = commandText(strings, values);
-    if (command === 'gh api user --jq .login') return response('konard\n');
+    if (command === 'gh api user --jq .login') return response('petermotorniy\n');
     if (command === `gh api repos/${OWNER}/${REPO}/issues/34/comments --paginate`) {
       return response([aiStatusComment, otherUserComment]);
     }
@@ -138,12 +138,12 @@ const REPO = 'rust-web-box';
   const aiStatusComment = {
     id: 4553469248,
     created_at: '2026-05-27T09:56:14Z',
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: '## ✅ CI now green\n\nAll workflows pass.', // free-form: no tool marker
   };
   const checkGh = async (strings, ...values) => {
     const command = commandText(strings, values);
-    if (command === 'gh api user --jq .login') return response('konard\n');
+    if (command === 'gh api user --jq .login') return response('petermotorniy\n');
     if (command === `gh api repos/${OWNER}/${REPO}/issues/34/comments --paginate`) return response([aiStatusComment]);
     if (command === `gh api repos/${OWNER}/${REPO}/pulls/34/comments --paginate`) return response([]);
     throw new Error(`Unexpected command in test: ${command}`);
@@ -176,13 +176,13 @@ const REPO = 'rust-web-box';
     {
       id: 7001,
       created_at: '2026-05-27T09:47:03Z',
-      user: { login: 'konard' },
+      user: { login: 'petermotorniy' },
       body: '## 🔄 Auto-restart triggered (iteration 1)\n\nReason: CI failures detected', // tool marker
     },
     {
       id: trackedFreeFormId,
       created_at: '2026-05-27T09:56:14Z',
-      user: { login: 'konard' },
+      user: { login: 'petermotorniy' },
       body: '## ✅ CI now green\n\nfree-form status, no marker', // excluded by tracked ID
     },
     {
@@ -196,7 +196,7 @@ const REPO = 'rust-web-box';
   const fakeDollar = async (strings, ...values) => {
     const command = commandText(strings, values);
     if (command.startsWith('git log')) return response(lastCommitISO);
-    if (command === 'gh api user --jq .login') return response('konard\n');
+    if (command === 'gh api user --jq .login') return response('petermotorniy\n');
     if (command === `gh api repos/${OWNER}/${REPO}/issues/34/comments --paginate`) return response(prConversationComments);
     if (command === `gh api repos/${OWNER}/${REPO}/pulls/34/comments --paginate`) return response([]);
     if (command === `gh api repos/${OWNER}/${REPO}/issues/33/comments --paginate`) return response([]);

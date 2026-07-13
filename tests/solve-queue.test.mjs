@@ -7,7 +7,7 @@
  *
  * Run with: node tests/solve-queue.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1078
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1078
  */
 
 import assert from 'node:assert/strict';
@@ -87,7 +87,7 @@ test('MIN_START_INTERVAL_MS is 10 minutes', () => {
 
 test('CONSUMER_POLL_INTERVAL_MS is 1 minute', () => {
   // 1 minute poll interval reduces unnecessary system checks
-  // See: https://github.com/link-assistant/hive-mind/issues/1078
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1078
   assert.equal(QUEUE_CONFIG.CONSUMER_POLL_INTERVAL_MS, 60000, 'CONSUMER_POLL_INTERVAL_MS should be 1 minute (60000ms)');
 });
 
@@ -411,7 +411,7 @@ await asyncTest('formatStatus returns correct string for empty queue', async () 
   const status = await queue.formatStatus();
   // New format: per-queue breakdown with pending/processing counts
   // Processing counts are actual running system processes (via pgrep)
-  // See: https://github.com/link-assistant/hive-mind/issues/1267
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1267
   assert.ok(status.includes('Queues'), 'Should include Queues header');
   assert.ok(status.includes('claude') && status.includes('pending: 0'), 'Should show claude queue with 0 pending');
   assert.ok(status.includes('agent') && status.includes('pending: 0'), 'Should show agent queue with 0 pending');
@@ -434,7 +434,7 @@ await asyncTest('formatStatus returns correct string for non-empty queue', async
   const status = await queue.formatStatus();
   // New format: per-queue breakdown
   // Processing counts are actual running system processes (via pgrep)
-  // See: https://github.com/link-assistant/hive-mind/issues/1267
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1267
   assert.ok(status.includes('claude') && status.includes('pending: 1'), 'Should show claude queue with 1 pending');
   assert.ok(status.includes('agent') && status.includes('pending: 0'), 'Should show agent queue with 0 pending');
   assert.ok(status.includes('processing:'), 'Should include processing counts');
@@ -571,7 +571,7 @@ test('CACHE_TTL has all required values', () => {
 // The Claude Usage API returns a "Resets in 3m Xs" rate-limit error when called
 // too frequently, so the default cache TTL must exceed that ~3-minute window
 // with a comfortable safety margin. Issue #1798 raised the default from 10 → 13 min.
-// See: https://github.com/link-assistant/hive-mind/issues/1798
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1798
 test('CACHE_TTL.USAGE_API default is at least 13 minutes (issue #1798)', () => {
   const thirteenMinutes = 13 * 60 * 1000;
   assert.ok(CACHE_TTL.USAGE_API >= thirteenMinutes, `CACHE_TTL.USAGE_API (${CACHE_TTL.USAGE_API} ms) should be at least 13 minutes (${thirteenMinutes} ms) per issue #1798`);
@@ -811,7 +811,7 @@ test('checkSystemResources accepts totalProcessing=0 for disk one-at-a-time mode
   // checkSystemResources now accepts totalProcessing for disk one-at-a-time mode
   // RAM and CPU block unconditionally, but disk uses one-at-a-time mode
   // When totalProcessing=0, disk threshold should allow starting (nothing is running)
-  // See: https://github.com/link-assistant/hive-mind/issues/1155
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1155
   const result = await queue.checkSystemResources(0);
 
   // Should return an object with 'ok', 'reasons', and 'oneAtATime'
@@ -828,7 +828,7 @@ test('checkSystemResources accepts totalProcessing=1 for disk one-at-a-time mode
 
   // checkSystemResources with totalProcessing=1 tests behavior when something is already running
   // If disk usage is high (oneAtATime mode), this should block since totalProcessing > 0
-  // See: https://github.com/link-assistant/hive-mind/issues/1155
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1155
   const result = await queue.checkSystemResources(1);
 
   // Should return an object with 'ok', 'reasons', and 'oneAtATime'

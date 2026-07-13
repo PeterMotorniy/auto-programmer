@@ -5,7 +5,7 @@
  * These filters determine whether incoming messages should be processed
  * or silently ignored by the bot's command handlers.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1207
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1207
  * @see https://core.telegram.org/bots/features#privacy-mode
  */
 
@@ -73,7 +73,7 @@ export function isChatAuthorized(chatId, allowedChats) {
  * @param {Object} [options] - Options
  * @param {boolean} [options.verbose] - Enable verbose logging
  * @returns {boolean} true if message is forwarded (and should be filtered)
- * @see https://github.com/link-assistant/hive-mind/issues/1922
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1922
  */
 export function isForwarded(ctx, options = {}) {
   const message = ctx.message;
@@ -191,7 +191,7 @@ export function isForwardedOrReply(ctx, options = {}) {
  * @param {string} text - Message text
  * @param {string|null} [botUsername] - Bot's username for @mention validation (case-insensitive)
  * @returns {{ command: string, botMention: string|null } | null} Extracted command info, or null if no command found
- * @see https://github.com/link-assistant/hive-mind/issues/1207
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1207
  */
 export function extractCommandFromText(text, botUsername = null) {
   if (!text || typeof text !== 'string') {
@@ -226,7 +226,7 @@ export function extractCommandFromText(text, botUsername = null) {
  * @param {Function} deps.parseGitHubUrl - Function to parse GitHub URLs
  * @param {Function} deps.cleanNonPrintableChars - Function to clean non-printable characters
  * @returns {{ url: string|null, error: string|null, linkCount: number }}
- * @see https://github.com/link-assistant/hive-mind/issues/1325
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1325
  */
 export function extractGitHubUrl(text, { parseGitHubUrl, cleanNonPrintableChars }) {
   if (!text || typeof text !== 'string') {

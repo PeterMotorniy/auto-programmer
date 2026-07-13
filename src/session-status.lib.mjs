@@ -16,7 +16,7 @@
  * dependency-free (pure JS, no Node built-ins) so every layer can import it
  * without pulling heavy transitive deps (command-stream, i18n, …).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 function norm(status) {
@@ -36,7 +36,7 @@ export function normalizeExitCode(value) {
   return Number.isFinite(numeric) ? numeric : null;
 }
 
-// A session that is still executing. start-command emits `executing`; hive-mind
+// A session that is still executing. start-command emits `executing`; auto-programmer
 // historically also accepted `running`.
 export const RUNNING_SESSION_STATUSES = new Set(['executing', 'running']);
 

@@ -21,7 +21,7 @@
  * The logger is intentionally dependency-free (node:fs/node:path only) and fully
  * injectable so it can be unit-tested without touching the real filesystem.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import fs from 'node:fs';
@@ -51,7 +51,7 @@ export function resolveBotLogDir(env = process.env, homedir = os.homedir) {
       return '/tmp';
     }
   })();
-  return path.join(home, '.hive-mind', 'logs');
+  return path.join(home, '.auto-programmer', 'logs');
 }
 
 /**

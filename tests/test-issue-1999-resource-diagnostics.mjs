@@ -8,7 +8,7 @@
  *
  * Run with: node tests/test-issue-1999-resource-diagnostics.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1999
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1999
  */
 
 import assert from 'node:assert/strict';

@@ -11,8 +11,8 @@ const forumTopicMessage = {
   from: { id: 123456, is_bot: false, first_name: 'User' },
   chat: {
     id: -1002975819706,
-    title: 'Pull Request from Hive Mind',
-    username: 'hive_mind_pull_requests',
+    title: 'Pull Request from Auto Programmer',
+    username: 'auto_programmer_pull_requests',
     is_forum: true,
     type: 'supergroup',
   },
@@ -23,8 +23,8 @@ const forumTopicMessage = {
     from: { id: 1339837872, is_bot: false, first_name: 'Konstantin' },
     chat: {
       id: -1002975819706,
-      title: 'Pull Request from Hive Mind',
-      username: 'hive_mind_pull_requests',
+      title: 'Pull Request from Auto Programmer',
+      username: 'auto_programmer_pull_requests',
       is_forum: true,
       type: 'supergroup',
     },

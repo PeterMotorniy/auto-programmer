@@ -11,7 +11,7 @@
  * Tokens (HTTP 422), so it cannot be driven headlessly either.
  *
  * The token-viable approach used here: store image blobs in a hidden custom Git
- * ref (`refs/hive-mind-media/...`) via the Git Data API and embed a commit-SHA
+ * ref (`refs/auto-programmer-media/...`) via the Git Data API and embed a commit-SHA
  * `?raw=true` blob URL. The custom ref keeps commits reachable without creating
  * a branch or tag, while GitHub's Camo proxy renders the URL inline for authorized
  * viewers in public and private repos.
@@ -28,16 +28,16 @@ import { execFileAsync } from './interactive-mode.shared.lib.mjs';
 /**
  * Hidden custom-ref namespace used to keep interactive-mode image commits alive
  * without adding a branch or tag to the repository UI. Each PR gets its own ref:
- * `refs/hive-mind-media/pr-<number>`.
+ * `refs/auto-programmer-media/pr-<number>`.
  */
-export const DEFAULT_MEDIA_REF_NAMESPACE = 'refs/hive-mind-media';
+export const DEFAULT_MEDIA_REF_NAMESPACE = 'refs/auto-programmer-media';
 
-const README_CONTENT = `# hive-mind interactive media
+const README_CONTENT = `# auto-programmer interactive media
 
-This custom Git ref stores images that hive-mind's \`--interactive-mode\` read or
+This custom Git ref stores images that auto-programmer's \`--interactive-mode\` read or
 wrote during a session, so they can be embedded inline in PR comments.
 
-It is created and updated automatically under \`refs/hive-mind-media/...\`. It is
+It is created and updated automatically under \`refs/auto-programmer-media/...\`. It is
 not a branch or tag and is not meant to be checked out or merged. Files are
 organized as \`media/pr-<number>/<sha256-prefix>.<ext>\` and de-duplicated by
 content hash. See \`docs/case-studies/issue-1843/\` for details.
@@ -165,7 +165,7 @@ export const buildRawBlobUrl = (owner, repo, commitSha, path) => {
  * @param {string} options.owner - Repository owner
  * @param {string} options.repo - Repository name
  * @param {number|string} [options.prNumber] - PR number (used to namespace paths/ref)
- * @param {string} [options.mediaRef] - Full custom media ref (defaults to refs/hive-mind-media/pr-<n>)
+ * @param {string} [options.mediaRef] - Full custom media ref (defaults to refs/auto-programmer-media/pr-<n>)
  * @param {string} [options.refNamespace] - Custom media ref namespace
  * @param {Function} [options.log] - async logging function
  * @param {boolean} [options.verbose=false]
@@ -261,7 +261,7 @@ export const createImageUploader = (options = {}) => {
         });
         const commit = await ghJson(`repos/${owner}/${repo}/git/commits`, {
           method: 'POST',
-          body: { message: 'chore: initialize hive-mind interactive media ref', tree: tree.sha, parents: [] },
+          body: { message: 'chore: initialize auto-programmer interactive media ref', tree: tree.sha, parents: [] },
         });
         await ghJson(`repos/${owner}/${repo}/git/refs`, {
           method: 'POST',

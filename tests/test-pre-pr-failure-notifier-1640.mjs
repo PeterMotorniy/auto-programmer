@@ -41,7 +41,7 @@ await test('builds a pre-PR failure comment with the tracked failure marker', as
   assert.match(body, /fork divergence requires user decision/);
   assert.match(body, /xierongchuan\/TaskMateServer/);
   assert.match(body, /gpt-5\.4/);
-  assert.match(body, /Ask a Hive Mind administrator/);
+  assert.match(body, /Ask a Auto Programmer administrator/);
   assert.doesNotMatch(body, /Administrator-only CLI details/);
   assert.doesNotMatch(body, /```bash/);
   assert.doesNotMatch(body, /solve https:\/\/github.com\/xierongchuan\/TaskMateServer\/issues\/34/);
@@ -52,7 +52,7 @@ await test('builds fork-specific user guidance without administrator commands', 
 
   assert.match(section, /affected fork or repository/);
   assert.match(section, /repository deletion permission/);
-  assert.match(section, /Hive Mind does not rely on that permission by default/);
+  assert.match(section, /Auto Programmer does not rely on that permission by default/);
   assert.doesNotMatch(section, /gh auth refresh/);
   assert.doesNotMatch(section, /gh repo delete/);
 });

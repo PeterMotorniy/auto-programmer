@@ -416,10 +416,10 @@ runTest('missing delete_repo scope remediation (Issue #1651)', () => {
   if (!content.includes('gh auth refresh -h github.com -s delete_repo')) {
     throw new Error('Missing gh auth refresh remediation for missing delete_repo scope');
   }
-  if (!content.includes('Hive Mind does not request it by default')) {
+  if (!content.includes('Auto Programmer does not request it by default')) {
     throw new Error('Missing explanation that delete_repo is not requested by default');
   }
-  if (!content.includes('ask the fork owner or Hive Mind administrator to delete, rename, or archive')) {
+  if (!content.includes('ask the fork owner or Auto Programmer administrator to delete, rename, or archive')) {
     throw new Error('Missing user-facing issue-comment remediation for affected fork');
   }
 

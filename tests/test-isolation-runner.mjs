@@ -5,7 +5,7 @@
  * Tests the isolation runner module that wraps $ from start-command
  * for executing commands in isolated environments with GUID-based tracking.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/380
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/380
  */
 
 let passed = 0;

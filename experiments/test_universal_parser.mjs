@@ -10,14 +10,14 @@ console.log('===========================================\n');
 // Test cases for various GitHub URL formats
 const testCases = [
   // Basic user/org and repo URLs
-  { url: 'https://github.com/konard', desc: 'Standard user URL' },
-  { url: 'http://github.com/konard', desc: 'HTTP user URL (should convert to HTTPS)' },
-  { url: 'github.com/konard', desc: 'Protocol-less user URL' },
-  { url: 'konard', desc: 'Shorthand user' },
-  { url: 'https://github.com/konard/test-repo', desc: 'Standard repo URL' },
-  { url: 'http://github.com/konard/test-repo', desc: 'HTTP repo URL' },
-  { url: 'github.com/konard/test-repo', desc: 'Protocol-less repo URL' },
-  { url: 'konard/test-repo', desc: 'Shorthand repo' },
+  { url: 'https://github.com/petermotorniy', desc: 'Standard user URL' },
+  { url: 'http://github.com/petermotorniy', desc: 'HTTP user URL (should convert to HTTPS)' },
+  { url: 'github.com/petermotorniy', desc: 'Protocol-less user URL' },
+  { url: 'petermotorniy', desc: 'Shorthand user' },
+  { url: 'https://github.com/petermotorniy/test-repo', desc: 'Standard repo URL' },
+  { url: 'http://github.com/petermotorniy/test-repo', desc: 'HTTP repo URL' },
+  { url: 'github.com/petermotorniy/test-repo', desc: 'Protocol-less repo URL' },
+  { url: 'petermotorniy/test-repo', desc: 'Shorthand repo' },
 
   // Issue URLs
   { url: 'https://github.com/owner/repo/issues/123', desc: 'Standard issue URL' },
@@ -72,7 +72,7 @@ console.log('\n===========================================');
 console.log('Testing normalizeGitHubUrl function:');
 console.log('---------------------------------\n');
 
-const urlsToNormalize = ['http://github.com/konard', 'github.com/konard', 'konard', 'konard/repo', 'owner/repo/issues/123', 'not valid!'];
+const urlsToNormalize = ['http://github.com/petermotorniy', 'github.com/petermotorniy', 'petermotorniy', 'petermotorniy/repo', 'owner/repo/issues/123', 'not valid!'];
 
 for (const url of urlsToNormalize) {
   const normalized = normalizeGitHubUrl(url);
@@ -124,7 +124,7 @@ for (const url of solveUrls) {
 console.log('');
 
 // Test specific use cases for hive.mjs
-const hiveUrls = ['https://github.com/konard', 'http://github.com/konard', 'github.com/konard', 'konard', 'https://github.com/konard/repo', 'konard/repo'];
+const hiveUrls = ['https://github.com/petermotorniy', 'http://github.com/petermotorniy', 'github.com/petermotorniy', 'petermotorniy', 'https://github.com/petermotorniy/repo', 'petermotorniy/repo'];
 
 console.log('Hive.mjs URLs (should accept users and repos):');
 for (const url of hiveUrls) {

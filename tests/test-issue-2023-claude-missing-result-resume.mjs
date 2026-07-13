@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression coverage for issue #2023. The captured Claude stream ended after
  * a failed tool_result ("Exit code 144") without a terminal result event. The
@@ -103,7 +103,7 @@ const buildExecutionParams = ({ fakeDollar, logs }) => {
     argv: {
       model: 'opus',
       tool: 'claude',
-      url: 'https://github.com/link-assistant/hive-mind/issues/2023',
+      url: 'https://github.com/PeterMotorniy/auto-programmer/issues/2023',
       verbose: false,
       fallbackModel: null,
       disable1mContext: false,
@@ -120,8 +120,8 @@ const buildExecutionParams = ({ fakeDollar, logs }) => {
     feedbackLines: [],
     claudePath: 'claude',
     $: fakeDollar,
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     prNumber: 2024,
     issueNumber: 2023,
   };

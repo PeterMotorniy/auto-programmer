@@ -6,7 +6,7 @@
  * workflow runs across the entire repository. This is the "absolute safety
  * mechanism" modeled after the /merge command's waitForBranchCI pattern.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1503
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1503
  */
 
 import { promisify } from 'util';

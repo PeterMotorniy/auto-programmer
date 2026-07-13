@@ -71,22 +71,22 @@ const normalizeForkDivergenceSnapshot = (snapshot = {}) => {
 
 const buildActorLine = ({ currentUser, taskRequester }) => {
   if (sameLogin(currentUser, taskRequester)) {
-    return `Hive Mind is authenticated as \`${currentUser}\`, the same GitHub user that requested this task.`;
+    return `Auto Programmer is authenticated as \`${currentUser}\`, the same GitHub user that requested this task.`;
   }
 
   if (currentUser && taskRequester) {
-    return `Hive Mind is authenticated as \`${currentUser}\`; the task requester is \`${taskRequester}\`.`;
+    return `Auto Programmer is authenticated as \`${currentUser}\`; the task requester is \`${taskRequester}\`.`;
   }
 
   if (currentUser) {
-    return `Hive Mind is authenticated as \`${currentUser}\`; the task requester could not be resolved.`;
+    return `Auto Programmer is authenticated as \`${currentUser}\`; the task requester could not be resolved.`;
   }
 
   if (taskRequester) {
-    return `The task requester is \`${taskRequester}\`; the authenticated Hive Mind user could not be resolved.`;
+    return `The task requester is \`${taskRequester}\`; the authenticated Auto Programmer user could not be resolved.`;
   }
 
-  return 'Hive Mind could not resolve the authenticated user or task requester.';
+  return 'Auto Programmer could not resolve the authenticated user or task requester.';
 };
 
 const buildManualForkRepairCommands = ({ snapshot, solveCommand }) => {
@@ -178,7 +178,7 @@ export function buildForkDivergenceBlockedReason({ snapshot }) {
 
   if (details.fetchError || details.inspectError) {
     lines.push(`Inspection error: ${details.fetchError || details.inspectError}`);
-    lines.push('Hive Mind did not recommend automatic force-with-lease because it could not prove whether fork-only commits would be lost.');
+    lines.push('Auto Programmer did not recommend automatic force-with-lease because it could not prove whether fork-only commits would be lost.');
     return lines.join('\n');
   }
 
@@ -204,7 +204,7 @@ export function buildForkDivergenceFailureActionSection({ snapshot = {}, current
   const forkUniqueCount = details.forkUniqueCount;
   const upstreamUniqueCount = details.upstreamUniqueCount;
 
-  const header = ['### What happened', `- Hive Mind checked \`${details.forkRef}\` in \`${details.forkedRepo}\` against \`${details.upstreamRef}\` in \`${details.upstreamRepo}\`.`, `- ${actorLine}`];
+  const header = ['### What happened', `- Auto Programmer checked \`${details.forkRef}\` in \`${details.forkedRepo}\` against \`${details.upstreamRef}\` in \`${details.upstreamRepo}\`.`, `- ${actorLine}`];
   if (details.compareUrl) {
     header.push(`- Compare the branch state: ${details.compareUrl}`);
   }
@@ -214,25 +214,25 @@ export function buildForkDivergenceFailureActionSection({ snapshot = {}, current
     return `${header.join('\n')}
 
 ### What you can do
-- Hive Mind did not recommend automatic force-with-lease because it could not prove whether fork-only commits would be overwritten.
-- Ask a Hive Mind administrator to handle manual recreation or fix of the repository.
+- Auto Programmer did not recommend automatic force-with-lease because it could not prove whether fork-only commits would be overwritten.
+- Ask a Auto Programmer administrator to handle manual recreation or fix of the repository.
 - Repository owner path: inspect \`${details.forkedRepo}\`, preserve any needed commits, then recreate or repair the fork default branch.`;
   }
 
   if (forkUniqueCount === 0) {
-    const rerunLine = sameUser ? `Rerun with \`${FORK_DIVERGENCE_RESOLUTION_OPTION}\` to let Hive Mind update \`${details.forkedRepo}\` using \`git push --force-with-lease origin ${details.branchName}\`.` : `Ask a Hive Mind administrator to rerun with \`${FORK_DIVERGENCE_RESOLUTION_OPTION}\` so Hive Mind can update \`${details.forkedRepo}\` using \`git push --force-with-lease origin ${details.branchName}\`.`;
+    const rerunLine = sameUser ? `Rerun with \`${FORK_DIVERGENCE_RESOLUTION_OPTION}\` to let Auto Programmer update \`${details.forkedRepo}\` using \`git push --force-with-lease origin ${details.branchName}\`.` : `Ask a Auto Programmer administrator to rerun with \`${FORK_DIVERGENCE_RESOLUTION_OPTION}\` so Auto Programmer can update \`${details.forkedRepo}\` using \`git push --force-with-lease origin ${details.branchName}\`.`;
 
     return `${header.join('\n')}
 - GitHub inspection found 0 commit(s) unique to \`${details.forkRef}\`; \`${details.forkRef}\` is ${upstreamUniqueCount ?? 'an unknown number of'} commit(s) behind \`${details.upstreamRef}\`.
 
 ### What you can do
 - ${rerunLine}
-- Delete or recreate the fork repository, or fix the repository manually, using these commands when you own the fork or are acting as the Hive Mind administrator:
+- Delete or recreate the fork repository, or fix the repository manually, using these commands when you own the fork or are acting as the Auto Programmer administrator:
 
 ${buildManualForkRepairCommands({ snapshot: details, solveCommand })}`;
   }
 
-  const administratorLine = sameUser ? 'Delete or recreate the fork repository, or fix the repository manually, after preserving the fork-only commits listed above.' : 'Ask a Hive Mind administrator to handle manual recreation or fix of the repository.';
+  const administratorLine = sameUser ? 'Delete or recreate the fork repository, or fix the repository manually, after preserving the fork-only commits listed above.' : 'Ask a Auto Programmer administrator to handle manual recreation or fix of the repository.';
 
   return `${header.join('\n')}
 - \`${details.forkRef}\` has ${forkUniqueCount ?? 'an unknown number of'} commit(s) unique to \`${details.forkRef}\`; replacing it with \`${details.upstreamRef}\` would remove them from the fork default branch history.
@@ -451,7 +451,7 @@ export async function logBlockingPushRejection({ log, formatAligned, branchName,
   await log('  🔍 What happened:');
   if (isRefCollision) {
     await log(`     GitHub rejected creation or update of ${links.headBranchRef} because that remote ref already exists.`);
-    await log('     The existing remote branch does not match this local branch, so hive-mind cannot assume it is safe to continue.');
+    await log('     The existing remote branch does not match this local branch, so auto-programmer cannot assume it is safe to continue.');
   } else {
     await log(`     Git rejected updating ${links.headBranchRef} from this local branch.`);
     await log('     The local and remote histories are not in a state that a normal push can update safely.');
@@ -543,7 +543,7 @@ export async function handleRejectedPushForAutoPr({ errorOutput, $, tempDir, log
     classification,
   });
   const error = new Error(`Push rejected for ${links.headBranchRef}; compare ${links.compareUrl} and inspect ${links.branchUrl}`);
-  error.hiveMindUserFacingLogged = true;
+  error.autoProgrammerUserFacingLogged = true;
   error.failureActionSection = failureActionSection;
   throw error;
 }

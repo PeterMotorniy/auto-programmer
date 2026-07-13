@@ -1,29 +1,21 @@
-# Docker Support for Hive Mind (languages: en • [zh](DOCKER.zh.md) • [hi](DOCKER.hi.md) • [ru](DOCKER.ru.md))
+# Поддержка Docker для Auto Programmer
 
-This document explains how to run Hive Mind in Docker containers.
+Этот документ объясняет, как запускать Auto Programmer в Docker-контейнерах.
 
-## Quick Start
+## Быстрый старт
 
-### Option 1: Using Pre-built Image from Docker Hub (Recommended)
+### Вариант 1: Использование готового образа из Docker Hub (рекомендуется)
 
 ```bash
 # Pull the latest image
-docker pull konard/hive-mind:latest
+docker pull petermotorniy/auto-programmer:latest
 
-# Create persistent host directories used by the current Docker workflow
-mkdir -p /root/.hive-mind/claude /root/.hive-mind/codex /root/.hive-mind/gh
-touch -a /root/.hive-mind/claude.json
+# Run an interactive session
+docker run -it petermotorniy/auto-programmer:latest
 
-# Run the container in detached mode with the same mounts we use locally
-docker run -dit --user box --name hive-mind --restart unless-stopped \
-  -v /root/.hive-mind/claude:/home/box/.claude \
-  -v /root/.hive-mind/codex:/home/box/.codex \
-  -v /root/.hive-mind/claude.json:/home/box/.claude.json \
-  -v /root/.hive-mind/gh:/home/box/.config/gh \
-  konard/hive-mind:latest bash -l -c 'bash /home/box/start-bot.sh'
-
-# Open a shell in the running container
-docker exec -it hive-mind bash
+# IMPORTANT: Authentication is done AFTER the Docker image is installed
+# The installation script does NOT run gh auth login to avoid build timeouts
+# This allows the Docker build to complete successfully without interactive prompts
 
 # Inside the container, authenticate with GitHub
 gh auth login -h github.com -s repo,workflow,user,read:org,gist
@@ -31,183 +23,151 @@ gh auth login -h github.com -s repo,workflow,user,read:org,gist
 # Authenticate with Claude
 claude
 
-# Install or update Codex CLI
-bun install -g @openai/codex@latest
-
-# Log in to Codex using the current device auth flow
-codex login --device-auth
-
-# Verify Codex after login succeeds with "Successfully logged in"
-codex exec --model gpt-5.4-mini "hi"
-
-# Verify Playwright MCP registration in both CLIs
-claude mcp list | grep playwright
-codex mcp list | grep playwright
-
-# Exit the shell when setup is complete
-exit
+# Now you can use hive and solve commands
+solve https://github.com/owner/repo/issues/123
 ```
 
-### Option 2: Building Locally
+### Вариант 2: Локальная сборка
 
 ```bash
 # Build the production image
-docker build -t hive-mind:local .
+docker build -t auto-programmer:local .
 
 # Run the image
-docker run -it hive-mind:local
+docker run -it auto-programmer:local
 ```
 
-### Option 3: Docker-in-Docker Image
+### Вариант 3: Docker-in-Docker образ
 
-Use `konard/hive-mind-dind:latest` when the agent must run Docker commands,
-Docker Compose, or Testcontainers inside the Hive Mind container.
+Используйте `petermotorniy/auto-programmer-dind:latest`, когда агенту нужно запускать Docker, Docker Compose или Testcontainers внутри контейнера Auto Programmer.
 
 ```bash
 # Pull the Docker-in-Docker image
-docker pull konard/hive-mind-dind:latest
+docker pull petermotorniy/auto-programmer-dind:latest
 
 # Default runtime: privileged container starts an inner dockerd
-docker run --rm --privileged -it konard/hive-mind-dind:latest bash
+docker run --rm --privileged -it petermotorniy/auto-programmer-dind:latest bash
 
 # Inside the container, verify nested Docker
 docker info
 docker run hello-world
 ```
 
-The image defaults the inner Docker daemon to
-`DIND_STORAGE_DRIVER=fuse-overlayfs`. This is a **copy-on-write** driver, so the
-multi-gigabyte Hive Mind images cost roughly their real size once on disk —
-unlike `vfs`, which copies every layer in full and inflated the on-disk
-footprint to many times the image size, overflowing the disk with
-`failed to register layer: no space left on device`
-([issue #1914](https://github.com/link-assistant/hive-mind/issues/1914)).
-`fuse-overlayfs` also works overlay-on-overlay (the compatibility that `vfs` was
-originally chosen for), and the image already ships the `fuse-overlayfs` binary;
-Hive Mind launches the DinD container with `--privileged`, so `/dev/fuse` is
-available. Overrides:
+Образ по умолчанию запускает внутренний Docker daemon с `DIND_STORAGE_DRIVER=fuse-overlayfs`. Это драйвер с **копированием при записи (copy-on-write)**, поэтому многогигабайтные образы Auto Programmer занимают на диске примерно свой реальный размер один раз — в отличие от `vfs`, который копирует каждый слой целиком и раздувал занятое место до многократного размера образа, переполняя диск ошибкой `failed to register layer: no space left on device` ([issue #1914](https://github.com/PeterMotorniy/auto-programmer/issues/1914)). `fuse-overlayfs` также работает overlay-on-overlay (совместимость, ради которой изначально выбрали `vfs`), бинарник `fuse-overlayfs` уже включён в образ, а Auto Programmer запускает DinD-контейнер с `--privileged`, поэтому `/dev/fuse` доступен. Переопределения:
 
-- `-e DIND_STORAGE_DRIVER=overlay2` — faster on hosts that support nested
-  overlay mounts, but can fail on overlay-backed hosts;
-- `-e DIND_STORAGE_DRIVER=vfs` — last-resort compatibility only; uses many times
-  the disk and is the configuration that caused issue #1914.
+- `-e DIND_STORAGE_DRIVER=overlay2` — быстрее на хостах с поддержкой nested overlay mounts, но может не работать на overlay-backed хостах;
+- `-e DIND_STORAGE_DRIVER=vfs` — только как крайний запасной вариант совместимости; занимает многократно больше диска, и именно эта конфигурация вызвала issue #1914.
 
-> **Already-running container on the old `vfs` image?** Add
-> `-e DIND_STORAGE_DRIVER=fuse-overlayfs` to the bot container's `docker run`
-> and recreate it — no rebuild required.
+> **Контейнер уже работает на старом образе с `vfs`?** Добавьте `-e DIND_STORAGE_DRIVER=fuse-overlayfs` в `docker run` контейнера бота и пересоздайте его — пересборка образа не нужна.
 
-On shared hosts, prefer a Sysbox runtime when it is available:
+На общих хостах лучше использовать Sysbox runtime, если он доступен:
 
 ```bash
-docker run --rm --runtime=sysbox-runc -it konard/hive-mind-dind:latest bash
+docker run --rm --runtime=sysbox-runc -it petermotorniy/auto-programmer-dind:latest bash
 ```
 
-The DinD image is published separately from `konard/hive-mind:latest` so users
-who do not need nested Docker keep the existing lower-privilege image.
+DinD-образ публикуется отдельно от `petermotorniy/auto-programmer:latest`, поэтому пользователи без необходимости во вложенном Docker могут продолжать использовать существующий образ с меньшими привилегиями.
 
-#### Host-image passthrough (avoid re-downloading multi-GB images)
+#### Проброс образов с хоста (избегаем повторной загрузки многогигабайтных образов)
 
-When the bot runs with `--isolation docker` inside a release DinD image, each
-task is launched as a _nested_
-`docker run konard/hive-mind-dind:<release-tag> ...`. Release images bake
-`HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG` from the published `HIVE_MIND_VERSION`,
-so even a parent container started as `konard/hive-mind-dind:latest` uses the
-same immutable release tag for child containers. That nested `docker run` talks
-to the **inner** dockerd, whose image store starts **empty** (the deploy wipes
-`/var/lib/docker` before
-`docker commit`). Docker then reports `Unable to find image '…' locally` and
-pulls a fresh copy — and the Hive Mind images are multiple gigabytes, so the
-first isolated task can spend a very long time (or run out of disk)
-re-downloading an image the **host already has**. See
-[issue #1914](https://github.com/link-assistant/hive-mind/issues/1914) and
-[#1879](https://github.com/link-assistant/hive-mind/issues/1879).
+Когда бот работает с `--isolation docker` внутри release DinD-образа, каждая задача
+запускается как _вложенный_ `docker run petermotorniy/auto-programmer-dind:<release-tag> …`.
+Release-образы записывают `HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG` из опубликованного
+`HIVE_MIND_VERSION`, поэтому даже родительский контейнер, запущенный как
+`petermotorniy/auto-programmer-dind:latest`, использует тот же неизменяемый release-tag для
+дочерних контейнеров. Этот вложенный `docker run` обращается к **внутреннему**
+dockerd, чьё хранилище образов изначально **пусто** (деплой очищает
+`/var/lib/docker` перед `docker commit`). Тогда Docker сообщает
+`Unable to find image '…' locally` и загружает свежую копию — а образы Auto Programmer
+весят несколько гигабайт, поэтому первая изолированная задача может потратить
+очень много времени (или исчерпать диск), повторно скачивая образ, который **уже
+есть на хосте**. См.
+[issue #1914](https://github.com/PeterMotorniy/auto-programmer/issues/1914) и
+[#1879](https://github.com/PeterMotorniy/auto-programmer/issues/1879).
 
-The base image (`konard/box-dind`) can seed the inner daemon from the host
-automatically — **host-image passthrough** — but only when the host Docker
-socket is bind-mounted into the container. **Without the socket mount,
-passthrough is a silent no-op** and the inner daemon stays empty. Mount it and
-set the allowlist:
+Базовый образ (`petermotorniy/box-dind`) может автоматически заполнять внутренний daemon
+с хоста — **проброс образов с хоста (host-image passthrough)** — но только если
+сокет Docker хоста смонтирован (bind-mount) в контейнер. **Без монтирования сокета
+проброс является тихой no-op-операцией**, и внутренний daemon остаётся пустым.
+Смонтируйте сокет и задайте список разрешённых образов:
 
 ```bash
-docker run -dit --privileged --name hive-mind --restart unless-stopped \
-  # ... your usual credential mounts ...
+docker run -dit --privileged --name auto-programmer --restart unless-stopped \
+  # ... ваши обычные монтирования учётных данных ...
   -v /var/run/docker.sock:/var/run/host-docker.sock:ro \
-  -e DIND_HOST_PASSTHROUGH_IMAGES="konard/hive-mind konard/hive-mind-dind" \
-  konard/hive-mind-dind:latest bash -l -c 'bash /home/box/start-bot.sh'
+  -e DIND_HOST_PASSTHROUGH_IMAGES="petermotorniy/auto-programmer petermotorniy/auto-programmer-dind" \
+  petermotorniy/auto-programmer-dind:latest bash -l -c 'bash /home/box/start-bot.sh'
 ```
 
-Passthrough is controlled by these environment variables (honored by `box-dind`):
+Проброс управляется следующими переменными окружения (их учитывает `box-dind`):
 
-| Variable                           | Default                     | Purpose                                                                                   |
-| ---------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------- |
-| `DIND_HOST_PASSTHROUGH`            | `public`                    | `off`, `public` (copy only images with a public-registry digest), or `all`.               |
-| `DIND_HOST_DOCKER_SOCK`            | `/var/run/host-docker.sock` | Where the host socket is mounted inside the container. Hive Mind reads the same variable. |
-| `DIND_HOST_PASSTHROUGH_IMAGES`     | _(empty = any)_             | Space-separated image-name allowlist, e.g. `konard/hive-mind konard/hive-mind-dind`.      |
-| `DIND_HOST_PASSTHROUGH_REGISTRIES` | _(empty)_                   | Optional registry allowlist for `public` mode.                                            |
+| Переменная                         | По умолчанию                | Назначение                                                                                                              |
+| ---------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `DIND_HOST_PASSTHROUGH`            | `public`                    | `off`, `public` (копировать только образы с digest из публичного реестра) или `all`.                                    |
+| `DIND_HOST_DOCKER_SOCK`            | `/var/run/host-docker.sock` | Куда смонтирован сокет хоста внутри контейнера. Auto Programmer читает ту же переменную.                                |
+| `DIND_HOST_PASSTHROUGH_IMAGES`     | _(пусто = любой)_           | Список разрешённых имён образов через пробел, напр. `petermotorniy/auto-programmer petermotorniy/auto-programmer-dind`. |
+| `DIND_HOST_PASSTHROUGH_REGISTRIES` | _(пусто)_                   | Необязательный список разрешённых реестров для режима `public`.                                                         |
 
-In the default `public` mode, only images that carry a digest from a public
-registry are copied, so the host copy must be a pulled/pushed image (a locally
-`docker build`-only image without a `RepoDigest` will be skipped — push it first
-or use `all`).
+В режиме `public` по умолчанию копируются только образы с digest из публичного
+реестра, поэтому копия на хосте должна быть загруженным/отправленным образом
+(образ, собранный только локально через `docker build` и не имеющий `RepoDigest`,
+будет пропущен — сначала отправьте его в реестр или используйте `all`).
 
-For release deployments, make sure the host also has the exact child tag before
-the final bot container starts. Pulling only `:latest` is not enough once the
-release image has pinned `HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG`:
+Для release-деплоев убедитесь, что на хосте есть и точный дочерний tag до запуска
+финального контейнера. Одного `:latest` уже недостаточно, потому что release-образ
+пинит `HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG`:
 
 ```bash
-TAG="$(docker image inspect konard/hive-mind-dind:latest \
+TAG="$(docker image inspect petermotorniy/auto-programmer-dind:latest \
   --format '{{range .Config.Env}}{{println .}}{{end}}' \
   | sed -n 's/^HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG=//p' \
   | tail -1)"
-docker pull "konard/hive-mind-dind:${TAG:-latest}"
+docker pull "petermotorniy/auto-programmer-dind:${TAG:-latest}"
 ```
 
-**Startup preflight.** When `--isolation docker` is enabled, the bot probes the
-inner daemon at startup and logs the result, so a misconfiguration surfaces
-immediately instead of as a surprise pull mid-task:
+**Предстартовая проверка (preflight).** Когда включён `--isolation docker`, бот при
+запуске опрашивает внутренний daemon и логирует результат, чтобы ошибка конфигурации
+проявилась сразу, а не как неожиданная загрузка посреди задачи:
 
-- ✅ image already present → isolated tasks reuse it (no pull);
-- ⚠️ socket **not** mounted → it tells you to add the socket mount + allowlist;
-- ⚠️ socket mounted but image still absent → it tells you to check the
-  passthrough mode/allowlist/digest;
-- ⚠️ inner daemon on the `vfs` storage driver → it tells you to switch to
-  `fuse-overlayfs` (the disk-amplification root cause of issue #1914);
-- ⚠️ low free space on the Docker data root with the image still absent → it
-  warns that the impending pull may run out of disk.
+- ✅ образ уже присутствует → изолированные задачи переиспользуют его (без загрузки);
+- ⚠️ сокет **не** смонтирован → подсказывает добавить монтирование сокета + список разрешённых образов;
+- ⚠️ сокет смонтирован, но образ всё ещё отсутствует → подсказывает проверить режим проброса/список/digest;
+- ⚠️ внутренний daemon на storage-драйвере `vfs` → подсказывает переключиться на `fuse-overlayfs` (причина переполнения диска в issue #1914);
+- ⚠️ мало свободного места на data root Docker, а образ всё ещё отсутствует → предупреждает, что предстоящая загрузка может исчерпать диск.
 
-Run the bot with `--verbose` (or `TELEGRAM_BOT_VERBOSE=true`) for the underlying
-`docker image inspect` traces.
+Запустите бота с `--verbose` (или `TELEGRAM_BOT_VERBOSE=true`), чтобы видеть низкоуровневые
+трассировки `docker image inspect`.
 
-**Task container retention.** When a Docker-isolated task reaches a terminal
-state, Hive Mind removes the task container after a successful run so its
-writable layer is reclaimed while the host-side start-command log remains
-available. Failed runs are kept by default for investigation, and the Telegram
-completion message includes inspect and cleanup commands. Override the policy
-with `HIVE_MIND_KEEP_TASK_CONTAINER=always|on-failure|never` (default:
+**Хранение task-контейнеров.** Когда Docker-изолированная задача достигает
+терминального состояния, Auto Programmer удаляет task-контейнер после успешного запуска,
+чтобы освободить его writable layer, сохраняя при этом host-side лог start-command.
+Неудачные запуски по умолчанию остаются для расследования, а Telegram-сообщение о
+завершении включает команды для проверки и очистки. Политику можно переопределить
+через `HIVE_MIND_KEEP_TASK_CONTAINER=always|on-failure|never` (по умолчанию:
 `on-failure`).
 
-**Manual fallback.** To seed an already-running container immediately (or when
-you cannot change the deployment), copy the host image into the inner daemon:
+**Ручной запасной вариант.** Чтобы немедленно заполнить уже запущенный контейнер (или
+когда вы не можете изменить деплой), скопируйте образ с хоста во внутренний daemon:
 
 ```bash
-TAG="$(docker exec hive-mind printenv HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG || true)"
+TAG="$(docker exec auto-programmer printenv HIVE_MIND_DOCKER_ISOLATION_IMAGE_TAG || true)"
 node scripts/preload-dind-isolation-image.mjs \
-  --container hive-mind --image "konard/hive-mind-dind:${TAG:-latest}"
+  --container auto-programmer --image "petermotorniy/auto-programmer-dind:${TAG:-latest}"
 ```
 
-This streams `docker save … | docker exec -i <container> docker load` so the
-tarball never touches disk, and is a no-op if the inner daemon already has the
-image. Once the image is present, start-command's native Docker backend reuses
-it automatically (Docker's default "missing" pull policy — it pulls only when
-the image is absent, so there is no re-download).
+Скрипт передаёт `docker save … | docker exec -i <container> docker load` потоком, так что
+tarball никогда не пишется на диск, и ничего не делает, если внутренний daemon уже имеет
+образ. После появления образа нативный Docker-бэкенд start-command переиспользует его
+автоматически (политика загрузки Docker по умолчанию «missing» — загружает только при
+отсутствии образа, поэтому повторной загрузки не происходит).
 
-### Option 4: Development Mode (Gitpod-style)
+### Вариант 4: Режим разработки (в стиле Gitpod)
 
-For development purposes, the legacy `Dockerfile` provides a Gitpod-compatible environment:
+Для целей разработки устаревший `Dockerfile` предоставляет Gitpod-совместимую среду:
 
 ```bash
 # Build the development image
-docker build -t hive-mind-dev .
+docker build -t auto-programmer-dev .
 
 # Run with credential mounts
 docker run --rm -it \
@@ -215,197 +175,144 @@ docker run --rm -it \
     -v ~/.local/share/claude-profiles:/home/box/.persisted-configs/claude:ro \
     -v ~/.config/claude-code:/home/box/.persisted-configs/claude-code:ro \
     -v "$(pwd)/output:/home/box/output" \
-    hive-mind-dev
+    auto-programmer-dev
 ```
 
-## Authentication
+## Аутентификация
 
-The production Docker image (`Dockerfile`) extends the pinned full `konard/box` image, which provides Ubuntu 24.04 plus the general development toolchain. **IMPORTANT:** Authentication is performed **inside the container AFTER** the Docker image is fully installed and running.
+Production Docker-образ (`Dockerfile`) использует Ubuntu 24.04 и официальный скрипт установки. **ВАЖНО:** Аутентификация выполняется **внутри контейнера ПОСЛЕ** того, как Docker-образ полностью установлен и запущен.
 
-**Why Authentication Happens After Installation:**
+**Почему аутентификация происходит после установки:**
 
-- ✅ Avoids Docker build timeouts caused by interactive prompts
-- ✅ Prevents build failures in CI/CD pipelines
-- ✅ Allows the installation script to complete successfully
-- ✅ Supports automated Docker image builds
+- ✅ Избегает таймаутов сборки Docker, вызванных интерактивными подсказками
+- ✅ Предотвращает сбои сборки в CI/CD-пайплайнах
+- ✅ Позволяет скрипту установки успешно завершиться
+- ✅ Поддерживает автоматизированные сборки Docker-образов
 
-### GitHub Authentication
+### Аутентификация GitHub
 
 ```bash
 # Inside the container, AFTER it's running
 gh auth login -h github.com -s repo,workflow,user,read:org,gist
 ```
 
-**Note:** The installation script intentionally does NOT call `gh auth login` during the build process. This is by design to support Docker builds without timeouts.
+**Примечание:** Скрипт установки намеренно НЕ вызывает `gh auth login` в процессе сборки. Это сделано специально для поддержки сборок Docker без таймаутов.
 
-### Claude Authentication
+### Аутентификация Claude
 
 ```bash
 # Inside the container, AFTER it's running
 claude
 ```
 
-### Codex Authentication
+Этот подход позволяет:
 
-Install or update Codex CLI inside the running container:
+- ✅ Нескольким Docker-экземплярам использовать разные аккаунты GitHub
+- ✅ Нескольким Docker-экземплярам использовать разные подписки Claude
+- ✅ Никакой утечки учётных данных между контейнерами
+- ✅ Каждый контейнер имеет собственную изолированную аутентификацию
+- ✅ Успешные сборки Docker без интерактивной аутентификации
 
-```bash
-bun install -g @openai/codex@latest
-```
+## Состояние Playwright MCP в Docker
 
-Log in with the device auth flow we currently use:
-
-```bash
-codex login --device-auth
-```
-
-The command should finish with:
-
-```text
-Successfully logged in
-```
-
-Then run the current smoke test:
-
-```bash
-codex exec --model gpt-5.4-mini "hi"
-```
-
-This approach allows:
-
-- ✅ Multiple Docker instances with different GitHub accounts
-- ✅ Multiple Docker instances with different Claude subscriptions
-- ✅ Persistent Codex authentication and session data when `/home/box/.codex` is mounted
-- ✅ No credential leakage between containers
-- ✅ Each container has its own isolated authentication
-- ✅ Successful Docker builds without interactive authentication
-
-## Playwright MCP State in Docker
-
-The image build now registers Playwright MCP for both Claude and Codex:
+Сборка образа теперь регистрирует Playwright MCP и для Claude, и для Codex:
 
 - `claude mcp add playwright -s user -- ...`
 - `codex mcp add playwright -- ...`
 
-The CI workflow also builds the Docker image and verifies that:
+CI workflow также собирает Docker-образ и проверяет, что:
 
-- `playwright --version` works as a CLI fallback;
-- `npx --no-install @playwright/mcp --help` works without reinstalling the MCP package;
-- `claude mcp list` reports the Playwright server as connected/enabled, not pending or unavailable;
-- `codex mcp list` reports the Playwright server as connected/enabled, not pending or unavailable.
+- `playwright --version` работает как CLI fallback;
+- `npx --no-install @playwright/mcp --help` работает без повторной установки MCP package;
+- `claude mcp list` сообщает Playwright server как connected/enabled, а не pending или unavailable;
+- `codex mcp list` сообщает Playwright server как connected/enabled, а не pending или unavailable.
 
-If you still reproduce `codex mcp list` showing `No MCP servers configured yet` in a running container, the most likely root cause is a mounted `/home/box/.codex` directory from the host. In this image `HOME=/home/box`, so mounting `/home/box/.codex` replaces the image-baked Codex config, including any preconfigured MCP entries.
+Если в запущенном контейнере `codex mcp list` всё ещё показывает `No MCP servers configured yet`, наиболее вероятная причина — смонтированная с хоста директория `/home/box/.codex`. В этом образе `HOME=/home/box`, поэтому mount `/home/box/.codex` заменяет встроенную в образ Codex config, включая заранее настроенные MCP entries.
 
-That means:
+Это означает:
 
-- the published image can be correct,
-- the runtime container can still show Codex as unconfigured,
-- and the difference is caused by persisted host state overriding the container defaults.
+- опубликованный образ может быть корректным;
+- runtime container всё равно может показывать Codex как unconfigured;
+- отличие вызвано persisted host state, который переопределяет defaults контейнера.
 
-To confirm that quickly, compare these two cases:
+Чтобы быстро проверить это, сравните два случая:
 
 ```bash
 # Fresh container without host-mounted Codex state
-docker run --rm -it konard/hive-mind:latest bash -lc 'codex mcp list'
+docker run --rm -it petermotorniy/auto-programmer:latest bash -lc 'codex mcp list'
 
 # Container with persisted Codex state from host
 docker run --rm -it \
-  -v /root/.hive-mind/codex:/home/box/.codex \
-  konard/hive-mind:latest \
+  -v /root/.auto-programmer/codex:/home/box/.codex \
+  petermotorniy/auto-programmer:latest \
   bash -lc 'codex mcp list'
 ```
 
-If the first command shows `playwright` and the second does not, the host-mounted Codex directory is the source of the mismatch.
+Если первая команда показывает `playwright`, а вторая нет, источник расхождения — смонтированная с хоста директория Codex.
 
-## Prerequisites
+## Предварительные требования
 
-1. **Docker:** Install Docker Desktop or Docker Engine (version 20.10 or higher)
-2. **Internet Connection:** Required for pulling images and authentication
+1. **Docker:** Установите Docker Desktop или Docker Engine (версия 20.10 или выше)
+2. **Интернет-соединение:** Требуется для загрузки образов и аутентификации
 
-## Directory Structure
+## Структура директорий
 
 ```
 .
-├── Dockerfile                    # Production image based on konard/box
+├── Dockerfile                    # Production image using Ubuntu 24.04
 ├── experiments/
 │   └── solve-dockerize/
 │       └── Dockerfile            # Legacy Gitpod-compatible image (archived)
 ├── scripts/
-│   └── verify-docker-image.sh    # Docker image verification script
+│   └── ubuntu-24-server-install.sh  # Installation script used by Dockerfile
 └── docs/
     └── DOCKER.md                 # This file
 ```
 
-## Advanced Usage
+## Расширенное использование
 
-### Running with Persistent Storage
+### Запуск с постоянным хранилищем
 
-To persist authentication and work between container restarts, mount the actual per-tool directories instead of a generic `/home/box` volume. In our Docker images `HOME=/home/box`, so Codex stores its data in `/home/box/.codex`.
+Для сохранения аутентификации и работы между перезапусками контейнера:
 
 ```bash
-# Host directories used by the current local Docker workflow
-mkdir -p /root/.hive-mind/claude /root/.hive-mind/codex /root/.hive-mind/gh
-touch -a /root/.hive-mind/claude.json
+# Create a volume for the box user's home directory
+docker volume create box-home
 
-# Run with persistent mounts
-docker run -dit --user box --name hive-mind --restart unless-stopped \
-  -v /root/.hive-mind/claude:/home/box/.claude \
-  -v /root/.hive-mind/codex:/home/box/.codex \
-  -v /root/.hive-mind/claude.json:/home/box/.claude.json \
-  -v /root/.hive-mind/gh:/home/box/.config/gh \
-  konard/hive-mind:latest bash -l -c 'bash /home/box/start-bot.sh'
-
-# Fix ownership after the container starts
-BOX_UID=$(docker exec hive-mind id -u box)
-chown -R $BOX_UID:$BOX_UID /root/.hive-mind/claude /root/.hive-mind/codex /root/.hive-mind/gh
-chown $BOX_UID:$BOX_UID /root/.hive-mind/claude.json
+# Run with the volume mounted
+docker run -it -v box-home:/home/box petermotorniy/auto-programmer:latest
 ```
 
-The mounted Codex directory keeps the files we rely on:
-
-- `/home/box/.codex/auth.json`
-- `/home/box/.codex/config.toml`
-- `/home/box/.codex/sessions/`
-
-Because this mount fully overrides the image's `/home/box/.codex` directory, it can also preserve an older `config.toml` that does not include the Playwright MCP registration added by newer images. After starting a container with an older persisted Codex directory, re-run:
+Если persisted `/home/box/.codex/config.toml` пришёл из старого образа, в нём может не быть Playwright MCP registration, добавленной в новых образах. После запуска контейнера выполните заново:
 
 ```bash
 codex mcp add playwright -- npx -y @playwright/mcp@latest --isolated --headless --no-sandbox --timeout-action=600000 --viewport-size 1920x1080
 ```
 
-Hive Mind also attempts this default registration repair at runtime when
-`codex mcp list` has no Playwright row and `@playwright/mcp` is installed. It
-does not overwrite an existing Playwright row that is pending, disabled, or
-customized; those states need direct MCP startup debugging.
+Auto Programmer также пытается выполнить этот default registration repair во время runtime, когда `codex mcp list` не содержит Playwright row и `@playwright/mcp` установлен. Он не перезаписывает существующую Playwright row в состоянии pending, disabled или с custom settings; такие состояния требуют прямой отладки MCP startup path.
 
-### Running in Detached Mode
+### Запуск в фоновом режиме
 
 ```bash
-# Start a detached container with persistent auth mounts
-docker run -dit --user box --name hive-worker --restart unless-stopped \
-  -v /root/.hive-mind/claude:/home/box/.claude \
-  -v /root/.hive-mind/codex:/home/box/.codex \
-  -v /root/.hive-mind/claude.json:/home/box/.claude.json \
-  -v /root/.hive-mind/gh:/home/box/.config/gh \
-  konard/hive-mind:latest bash -l -c 'bash /home/box/start-bot.sh'
+# Start a detached container
+docker run -d --name hive-worker -v box-home:/home/box petermotorniy/auto-programmer:latest sleep infinity
 
 # Execute commands in the running container
 docker exec -it hive-worker bash
 
 # Inside the container, run your commands
-codex exec --model gpt-5.4-mini "hi"
 solve https://github.com/owner/repo/issues/123
 ```
 
-### Using with Docker Compose
+### Использование с Docker Compose
 
-Create a `docker-compose.yml`:
+Создайте `docker-compose.yml`:
 
 ```yaml
 version: '3.8'
 services:
-  hive-mind:
-    image: konard/hive-mind:latest
+  auto-programmer:
+    image: petermotorniy/auto-programmer:latest
     volumes:
       - box-home:/home/box
     stdin_open: true
@@ -415,15 +322,15 @@ volumes:
   box-home:
 ```
 
-Then run:
+Затем запустите:
 
 ```bash
-docker-compose run --rm hive-mind
+docker-compose run --rm auto-programmer
 ```
 
-## Troubleshooting
+## Устранение неполадок
 
-### GitHub Authentication Issues
+### Проблемы с аутентификацией GitHub
 
 ```bash
 # Inside the container, check authentication status
@@ -433,123 +340,123 @@ gh auth status
 gh auth login -h github.com -s repo,workflow,user,read:org,gist
 ```
 
-### Claude Authentication Issues
+### Проблемы с аутентификацией Claude
 
 ```bash
 # Inside the container, re-run Claude to authenticate
 claude
 ```
 
-### Docker Issues
+### Проблемы с Docker
 
 ```bash
 # Check Docker status on host
 docker info
 
 # Pull the latest image
-docker pull konard/hive-mind:latest
+docker pull petermotorniy/auto-programmer:latest
 
 # Rebuild from source
-docker build -t hive-mind:local .
+docker build -t auto-programmer:local .
 ```
 
-### Build Issues
+### Проблемы со сборкой
 
-If you encounter issues building the image locally:
+Если при локальной сборке образа возникают проблемы:
 
-1. Ensure you have enough disk space (at least 20GB free)
-2. Check your internet connection
-3. Try building with more verbose output:
+1. Убедитесь, что у вас достаточно дискового пространства (не менее 20 ГБ свободного)
+2. Проверьте интернет-соединение
+3. Попробуйте собрать с более подробным выводом:
    ```bash
-   docker build -t hive-mind:local --progress=plain .
+   docker build -t auto-programmer:local --progress=plain .
    ```
 
-## CI/CD Configuration for Docker Hub Publishing
+## Конфигурация CI/CD для публикации на Docker Hub
 
-If you're maintaining a fork or want to publish to your own Docker Hub account, follow these steps to configure GitHub Actions:
+Если вы поддерживаете форк или хотите опубликовать в свой аккаунт Docker Hub, выполните следующие шаги для настройки GitHub Actions:
 
-### Step 1: Create a Docker Hub Account
+### Шаг 1: Создайте аккаунт Docker Hub
 
-1. Go to [hub.docker.com](https://hub.docker.com)
-2. Sign up or log in to your account
-3. Note your Docker Hub username (e.g., `konard`)
+1. Перейдите на [hub.docker.com](https://hub.docker.com)
+2. Зарегистрируйтесь или войдите в аккаунт
+3. Запомните ваше имя пользователя Docker Hub (например, `petermotorniy`)
 
-### Step 2: Generate a Docker Hub Access Token
+### Шаг 2: Создайте токен доступа Docker Hub
 
-1. Log in to [hub.docker.com](https://hub.docker.com)
-2. Click on your username in the top-right corner
-3. Select **Account Settings** → **Security**
-4. Click **New Access Token**
-5. Enter a description (e.g., "GitHub Actions - Hive Mind")
-6. Set permissions to **Read, Write, Delete** (required for publishing)
-7. Click **Generate**
-8. **IMPORTANT:** Copy the token immediately - you won't be able to see it again!
-   - Example format: `dckr_pat_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p`
+1. Войдите на [hub.docker.com](https://hub.docker.com)
+2. Нажмите на ваше имя пользователя в правом верхнем углу
+3. Выберите **Account Settings** → **Security**
+4. Нажмите **New Access Token**
+5. Введите описание (например, «GitHub Actions - Auto Programmer»)
+6. Установите права **Read, Write, Delete** (требуется для публикации)
+7. Нажмите **Generate**
+8. **ВАЖНО:** Скопируйте токен немедленно — вы больше не сможете его увидеть!
+   - Пример формата: `dckr_pat_1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p`
 
-### Step 3: Add Secrets to GitHub Repository
+### Шаг 3: Добавьте секреты в репозиторий GitHub
 
-1. Go to your GitHub repository (e.g., `https://github.com/konard/hive-mind`)
-2. Click **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret**
-4. Add the following two secrets:
+1. Перейдите в ваш репозиторий GitHub (например, `https://github.com/petermotorniy/auto-programmer`)
+2. Нажмите **Settings** → **Secrets and variables** → **Actions**
+3. Нажмите **New repository secret**
+4. Добавьте следующие два секрета:
 
-   **Secret 1: DOCKERHUB_USERNAME**
+   **Секрет 1: DOCKERHUB_USERNAME**
    - Name: `DOCKERHUB_USERNAME`
-   - Value: Your Docker Hub username (e.g., `konard`)
-   - Click **Add secret**
+   - Value: Ваше имя пользователя Docker Hub (например, `petermotorniy`)
+   - Нажмите **Add secret**
 
-   **Secret 2: DOCKERHUB_TOKEN**
+   **Секрет 2: DOCKERHUB_TOKEN**
    - Name: `DOCKERHUB_TOKEN`
-   - Value: The access token you generated in Step 2
-   - Click **Add secret**
+   - Value: Токен доступа, созданный на шаге 2
+   - Нажмите **Add secret**
 
-### Step 4: Update Docker Image Name
+### Шаг 4: Обновите название Docker-образа
 
-If using a fork, update the image name in `.github/workflows/docker-publish.yml`:
+При использовании форка обновите название образа в `.github/workflows/docker-publish.yml`:
 
 ```yaml
 env:
   REGISTRY: docker.io
-  IMAGE_NAME: YOUR_DOCKERHUB_USERNAME/hive-mind # Change this to your username
+  IMAGE_NAME: YOUR_DOCKERHUB_USERNAME/auto-programmer # Change this to your username
 ```
 
-### Step 5: Verify the Configuration
+### Шаг 5: Проверьте конфигурацию
 
-1. Push changes to the `main` branch
-2. Go to **Actions** tab in your GitHub repository
-3. Find the "Docker Build and Publish" workflow
-4. Check that it completes successfully
-5. Verify the image appears on [hub.docker.com/r/YOUR_USERNAME/hive-mind](https://hub.docker.com/r/konard/hive-mind)
+1. Отправьте изменения в ветку `main`
+2. Перейдите во вкладку **Actions** в вашем репозитории GitHub
+3. Найдите рабочий процесс «Docker Build and Publish»
+4. Проверьте, что он завершается успешно
+5. Убедитесь, что образ появился на [hub.docker.com/r/YOUR_USERNAME/auto-programmer](https://hub.docker.com/r/petermotorniy/auto-programmer)
 
-### How It Works
+### Как это работает
 
-- **On Pull Requests:** The workflow tests building the Docker image without publishing
-- **On Main Branch:** The workflow builds and publishes to Docker Hub with the `latest` tag
-- **On Version Tags:** The workflow publishes with semantic version tags (e.g., `v0.37.0`, `0.37`, `0`)
+- **При Pull Requests:** Рабочий процесс тестирует сборку Docker-образа без публикации
+- **В ветке Main:** Рабочий процесс собирает и публикует на Docker Hub с тегом `latest`
+- **На тегах версий:** Рабочий процесс публикует с семантическими тегами версий (например, `v0.37.0`, `0.37`, `0`)
 
-### Troubleshooting CI/CD
+### Устранение неполадок CI/CD
 
-**Build fails with authentication error:**
+**Сборка завершается с ошибкой аутентификации:**
 
-- Verify `DOCKERHUB_USERNAME` matches your Docker Hub username exactly
-- Regenerate `DOCKERHUB_TOKEN` and update the secret
+- Проверьте, что `DOCKERHUB_USERNAME` точно совпадает с вашим именем пользователя Docker Hub
+- Пересоздайте `DOCKERHUB_TOKEN` и обновите секрет
 
-**Image published but can't pull:**
+**Образ опубликован, но не удаётся загрузить:**
 
-- Ensure the repository on Docker Hub is public (or you're authenticated)
-- Check [hub.docker.com](https://hub.docker.com) → Your repositories → hive-mind → Settings → Make Public
+- Убедитесь, что репозиторий на Docker Hub публичный (или вы аутентифицированы)
+- Проверьте [hub.docker.com](https://hub.docker.com) → Your repositories → auto-programmer → Settings → Make Public
 
-**Build succeeds but image doesn't appear:**
+**Сборка успешна, но образ не появляется:**
 
-- Check you're pushing to the `main` branch (pull requests only test, don't publish)
-- Verify the workflow ran in the Actions tab
-- Check Docker Hub rate limits haven't been exceeded
+- Проверьте, что вы отправляете в ветку `main` (pull requests только тестируют, не публикуют)
+- Убедитесь, что рабочий процесс запустился во вкладке Actions
+- Проверьте, не превышены ли ограничения скорости Docker Hub
 
-## Security Notes
+## Заметки по безопасности
 
-- Each container maintains its own isolated authentication
-- No credentials are shared between containers
-- No credentials are stored in the Docker image itself
-- Authentication happens inside the container after it starts
-- Each GitHub/Claude account can have its own container instance
-- Docker Hub access tokens should be stored only as GitHub Secrets, never committed to the repository
+- Каждый контейнер поддерживает собственную изолированную аутентификацию
+- Учётные данные не передаются между контейнерами
+- Учётные данные не хранятся в самом Docker-образе
+- Аутентификация происходит внутри контейнера после его запуска
+- Каждый аккаунт GitHub/Claude может иметь собственный экземпляр контейнера
+- Токены доступа Docker Hub должны храниться только как секреты GitHub, никогда не фиксироваться в репозитории

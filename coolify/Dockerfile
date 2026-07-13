@@ -1,13 +1,13 @@
-# Hive Mind Coolify Docker image
-# Inherits from konard/box which provides all general-purpose development tools
+# Auto Programmer Coolify Docker image
+# Inherits from petermotorniy/box which provides all general-purpose development tools
 # This image adds AI-specific tools and application code for Coolify deployment
 #
 # Architecture (see issue #1394, #1499, #1505 and box#79):
-#   konard/box (pinned full image)
+#   petermotorniy/box (pinned full image)
 #     └── All general dev tools: Node.js, Bun, Deno, Python, Go, Rust, Java, PHP, etc.
 #     └── Playwright browsers pre-installed (chromium, firefox, webkit, msedge, chrome)
 #     └── /home/box directory owned by box user
-#   hive-mind (this Dockerfile)
+#   auto-programmer (this Dockerfile)
 #     └── Inherits Box, adds AI coding assistants, Playwright MCP, and app code
 #     └── Runs tool installs as box user (no USER root needed for those steps)
 #
@@ -16,9 +16,9 @@
 # Keep this in lockstep with the DinD base-image release.
 # Latest Box releases: https://github.com/link-foundation/box/releases
 #
-# Build: docker build -f coolify/Dockerfile -t konard/hive-mind .
+# Build: docker build -f coolify/Dockerfile -t petermotorniy/auto-programmer .
 
-FROM konard/box:2.3.5
+FROM petermotorniy/box:2.3.5
 ARG HIVE_MIND_VERSION=latest
 # Release builds pass the exact published package version here. Bake it as the
 # default child isolation image tag so a parent started via :latest still runs
@@ -105,14 +105,14 @@ RUN bun install -g @openai/codex && \
     bun install -g @github/copilot && \
     bun install -g opencode-ai
 
-# Install hive-mind workflow utilities
+# Install auto-programmer workflow utilities
 # Release builds pass HIVE_MIND_VERSION after npm publish, so Docker installs
 # the exact package version that contains the configure-claude bin.
 # Note: start-command provides `$` CLI for isolation modes (--isolation screen/tmux/docker)
 # The Box base image includes screen. For tmux/docker isolation, ensure they are
 # available in the base image or install them separately.
-RUN echo "Installing @link-assistant/hive-mind@${HIVE_MIND_VERSION}" && \
-    bun install -g "@link-assistant/hive-mind@${HIVE_MIND_VERSION}" && \
+RUN echo "Installing auto-programmer@${HIVE_MIND_VERSION}" && \
+    bun install -g "auto-programmer@${HIVE_MIND_VERSION}" && \
     if [ "${HIVE_MIND_VERSION}" != "latest" ]; then \
       test "$(hive --version)" = "${HIVE_MIND_VERSION}"; \
     fi && \
@@ -160,7 +160,7 @@ RUN if command -v claude >/dev/null 2>&1; then \
     fi
 
 # --- Disable noisy/unused Claude Code features and tools (issue #1627, issue #1642) ---
-# Autonomous headless hive-mind runs never benefit from tools that wait for
+# Autonomous headless auto-programmer runs never benefit from tools that wait for
 # human interaction or leave persistent side effects. Pre-seed the
 # user-scope ~/.claude/settings.json disallowedTools list so that even
 # interactive claude sessions in this image do not surface them. The three
@@ -182,7 +182,7 @@ RUN mkdir -p /home/box/.claude && \
       configure-claude --settings-path /home/box/.claude/settings.json && \
       configure-claude --settings-path /home/box/.claude/settings.json --verify; \
     else \
-      echo "configure-claude not present in @link-assistant/hive-mind@latest yet (likely a PR build before the bin is published); skipping baseline — solve re-applies it at runtime"; \
+      echo "configure-claude not present in auto-programmer@latest yet (likely a PR build before the bin is published); skipping baseline — solve re-applies it at runtime"; \
     fi
 
 # --- Application Setup ---
@@ -219,8 +219,8 @@ RUN echo 'export PATH="/home/box/.node-bin:/home/box/.bun/bin:/home/box/.cargo/b
 
 # Create git config file for box user
 RUN echo "[user]" > /home/box/.gitconfig && \
-    echo "  name = Hive-Mind Bot" >> /home/box/.gitconfig && \
-    echo "  email = hive-mind@localhost" >> /home/box/.gitconfig && \
+    echo "  name = Auto-Programmer Bot" >> /home/box/.gitconfig && \
+    echo "  email = auto-programmer@localhost" >> /home/box/.gitconfig && \
     echo "[init]" >> /home/box/.gitconfig && \
     echo "  defaultBranch = main" >> /home/box/.gitconfig && \
     echo "[safe]" >> /home/box/.gitconfig && \
@@ -239,7 +239,7 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
     CMD pgrep -f "hive.mjs\|tail" > /dev/null || exit 1
 
 # Start as root only to repair bind-mounted directory ownership, then start.sh
-# drops to the box user before running hive-mind.
+# drops to the box user before running auto-programmer.
 USER root
 
 SHELL ["/bin/bash", "-c"]

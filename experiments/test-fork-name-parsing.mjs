@@ -2,7 +2,7 @@
 
 // Test fork name parsing from various gh repo fork outputs
 
-const testCases = ['konard/Test_Canaan already exists', 'https://github.com/konard/Test_Canaan', '✓ Created fork konard/netkeep80-jsonRVM', 'konard/jsonRVM', '! konard/repo-name already exists on GitHub'];
+const testCases = ['petermotorniy/Test_Canaan already exists', 'https://github.com/petermotorniy/Test_Canaan', '✓ Created fork petermotorniy/netkeep80-jsonRVM', 'petermotorniy/jsonRVM', '! petermotorniy/repo-name already exists on GitHub'];
 
 console.log('Testing fork name parsing\n');
 console.log('Current regex: ([a-zA-Z0-9_-]+\\/[a-zA-Z0-9_-]+)\n');

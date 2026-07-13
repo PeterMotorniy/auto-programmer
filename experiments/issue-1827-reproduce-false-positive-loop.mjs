@@ -32,7 +32,7 @@ const commandText = (strings, values) => strings.reduce((acc, part, i) => acc + 
 const makeGh = comments => {
   const fakeGh = async (strings, ...values) => {
     const command = commandText(strings, values);
-    if (command === 'gh api user --jq .login') return response('konard\n');
+    if (command === 'gh api user --jq .login') return response('petermotorniy\n');
     if (command === 'gh api repos/link-foundation/rust-web-box/issues/34/comments --paginate') return response(comments);
     if (command === 'gh api repos/link-foundation/rust-web-box/pulls/34/comments --paginate') return response([]);
     throw new Error(`Unexpected command: ${command}`);
@@ -44,7 +44,7 @@ const makeGh = comments => {
 const aiStatusComment = {
   id: 4553469248,
   created_at: '2026-05-27T09:56:14Z',
-  user: { login: 'konard' }, // same authenticated account the AI tool posts through
+  user: { login: 'petermotorniy' }, // same authenticated account the AI tool posts through
   body: '## ✅ CI now green on `774f52f`\n\nAll three workflows now pass.',
 };
 

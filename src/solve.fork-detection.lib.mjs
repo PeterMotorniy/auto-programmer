@@ -105,10 +105,10 @@ export async function handleAutoForkOption({ owner, repo, argv, safeExit }) {
           });
           await log('');
           await log('   💡 Solution:', { level: 'error' });
-          await log('      • To let Hive Mind work directly in this repository:', { level: 'error' });
+          await log('      • To let Auto Programmer work directly in this repository:', { level: 'error' });
           await log(`        Ask an owner/admin to open https://github.com/${owner}/${repo}/settings/access`, { level: 'error' });
           await log('        Then add this GitHub account or its team with the Write role (Maintain/Admin also works)', { level: 'error' });
-          await log('      • To let Hive Mind work through a fork instead:', { level: 'error' });
+          await log('      • To let Auto Programmer work through a fork instead:', { level: 'error' });
           await log(`        Ask an owner/admin to open https://github.com/${owner}/${repo}/settings`, { level: 'error' });
           await log('        Then enable Settings -> General -> Features -> Allow forking', { level: 'error' });
           await log('        For organization-owned private repositories, the organization must also allow private repository forks', {

@@ -5,7 +5,7 @@
  * Split from telegram-merge-queue.lib.mjs to keep that file under the
  * repository line limit.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/2013
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2013
  */
 
 /**

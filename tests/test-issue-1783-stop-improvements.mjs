@@ -16,7 +16,7 @@
  *
  * Run with: node tests/test-issue-1783-stop-improvements.mjs
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { isStopTargetRequester, updateQueueCardForCancellation, registerStartStopCommands } from '../src/telegram-start-stop-command.lib.mjs';
@@ -28,7 +28,7 @@ console.log('='.repeat(80));
 
 const { counts, assert } = makeAsserts();
 
-const ISSUE_URL = 'https://github.com/link-assistant/hive-mind/issues/1783';
+const ISSUE_URL = 'https://github.com/PeterMotorniy/auto-programmer/issues/1783';
 const UUID = '4d934f71-4cdb-4b8c-b474-582116d12c12';
 const REQUESTER_ID = 123456;
 const OWNER_ID = 999999;

@@ -5,7 +5,7 @@
  * with exponential backoff. Non-retryable errors (401 Unauthorized) cause
  * immediate exit.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1240
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1240
  * @see https://core.telegram.org/bots/api#getupdates
  */
 

@@ -3,8 +3,8 @@ const USE_M_URL = 'https://unpkg.com/use-m/use.js';
 const { use } = eval(await (await fetch(USE_M_URL)).text());
 const { $ } = await use('command-stream');
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 const prNumber = 1459;
 
 // Create initial comment

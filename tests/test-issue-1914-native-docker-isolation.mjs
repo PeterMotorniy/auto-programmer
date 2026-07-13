@@ -4,7 +4,7 @@
  *
  * Complaint 1: `--isolation docker` must use ACTUAL Docker isolation, not screen
  * isolation. Earlier versions built `$ --isolated screen -- docker run …`, i.e.
- * screen isolation that merely shelled out to Docker. Hive Mind now hands the
+ * screen isolation that merely shelled out to Docker. Auto Programmer now hands the
  * container lifecycle to start-command's native Docker backend:
  *
  *   $ --isolated docker --image <img> [--privileged] --shell sh -e … --volume … \
@@ -15,8 +15,8 @@
  * the log-path fallback are covered by the #1860 and #1879 regression tests; this
  * file focuses on the docker-vs-screen distinction and the regular variant.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1914
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1914
  */
 
 import { buildStartCommandArgs, buildDockerIsolationStartArgs, checkDockerContainerRunning } from '../src/isolation-runner.lib.mjs';
@@ -53,7 +53,7 @@ function assertIncludes(haystack, needle, label) {
 
 const valueAfter = (arr, flag) => arr[arr.indexOf(flag) + 1];
 
-const url = 'https://github.com/link-assistant/hive-mind/issues/1914';
+const url = 'https://github.com/PeterMotorniy/auto-programmer/issues/1914';
 const existing = new Set(['/home/box/.config/gh', '/home/box/.claude', '/home/box/.claude.json', '/home/box/.codex']);
 const existsSync = p => existing.has(p);
 
@@ -79,13 +79,13 @@ assertEqual(tmuxArgs[1], 'tmux', 'tmux backend still maps to "--isolated tmux"')
 
 console.log('\n--- Native invocation carries a concrete image and lifecycle flags ---');
 
-assertEqual(valueAfter(dockerArgs, '--image'), 'konard/hive-mind-dind:latest', 'docker isolation passes a concrete --image (the dind Hive Mind image)');
+assertEqual(valueAfter(dockerArgs, '--image'), 'petermotorniy/auto-programmer-dind:latest', 'docker isolation passes a concrete --image (the dind Auto Programmer image)');
 assertEqual(dockerArgs.includes('--privileged'), true, 'dind variant requests docker privileges (the nested dockerd needs them)');
 assertEqual(valueAfter(dockerArgs, '--shell'), 'sh', 'docker isolation forces the sh shell so start-command does not boot a container to probe for one');
 assertEqual(dockerArgs.includes('--detached'), true, 'docker isolation runs detached');
 assertEqual(valueAfter(dockerArgs, '--session'), 'uuid-docker', 'the session UUID is passed as --session (and is also the container name)');
 assertEqual(dockerArgs[dockerArgs.length - 2], '--', 'a command separator precedes the task command');
-assertIncludes(dockerArgs[dockerArgs.length - 1], "gate='/tmp/hive-mind-disk-baseline-uuid-docker'", 'the task command waits behind the docker writable-layer baseline gate');
+assertIncludes(dockerArgs[dockerArgs.length - 1], "gate='/tmp/auto-programmer-disk-baseline-uuid-docker'", 'the task command waits behind the docker writable-layer baseline gate');
 assertIncludes(dockerArgs[dockerArgs.length - 1], `exec 'solve' '${url}'`, 'the original task command is preserved after the baseline gate');
 
 console.log('\n--- Regular (non-dind) variant ---');
@@ -97,7 +97,7 @@ const regularArgs = buildDockerIsolationStartArgs('solve', [url], {
   homeDir: '/home/box',
   existsSync,
 });
-assertEqual(valueAfter(regularArgs, '--image'), 'konard/hive-mind:latest', 'regular variant runs the regular Hive Mind image');
+assertEqual(valueAfter(regularArgs, '--image'), 'petermotorniy/auto-programmer:latest', 'regular variant runs the regular Auto Programmer image');
 assertEqual(regularArgs.includes('--privileged'), false, 'regular variant does NOT request docker privileges (no nested dockerd)');
 assertEqual(valueAfter(regularArgs, '--shell'), 'sh', 'regular variant also forces the sh shell');
 assertEqual(regularArgs.includes('/home/box/.claude:/home/box/.claude'), true, 'a claude task mounts Claude credentials');
@@ -108,11 +108,11 @@ console.log('\n--- Explicit image override ---');
 const overrideArgs = buildDockerIsolationStartArgs('solve', [url], {
   sessionId: 'uuid-ovr',
   tool: 'claude',
-  env: { HIVE_MIND_DOCKER_ISOLATION_IMAGE: 'local/hive-mind:dev' },
+  env: { HIVE_MIND_DOCKER_ISOLATION_IMAGE: 'local/auto-programmer:dev' },
   homeDir: '/home/box',
   existsSync,
 });
-assertEqual(valueAfter(overrideArgs, '--image'), 'local/hive-mind:dev', 'explicit HIVE_MIND_DOCKER_ISOLATION_IMAGE flows into --image');
+assertEqual(valueAfter(overrideArgs, '--image'), 'local/auto-programmer:dev', 'explicit HIVE_MIND_DOCKER_ISOLATION_IMAGE flows into --image');
 
 console.log('\n--- Completion detection uses docker inspect, not screen -ls ---');
 
@@ -120,7 +120,7 @@ console.log('\n--- Completion detection uses docker inspect, not screen -ls ---'
 // fallback (issue #1545/#1914). For a container that does not exist it must
 // return false whether or not docker is installed (docker inspect exits non-zero
 // → caught; missing docker binary → caught). This exercises the real error path.
-const bogusRunning = await checkDockerContainerRunning('hive-mind-nonexistent-container-1914', false);
+const bogusRunning = await checkDockerContainerRunning('auto-programmer-nonexistent-container-1914', false);
 assertEqual(bogusRunning, false, 'checkDockerContainerRunning returns false for a non-existent container (docker inspect path)');
 
 console.log(`\n${failed === 0 ? '✅' : '❌'} issue-1914 native docker isolation: ${passed} passed, ${failed} failed`);

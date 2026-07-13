@@ -5,7 +5,7 @@
  * Tests that session monitor correctly handles both screen-based
  * and isolation-based session tracking.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/380
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/380
  */
 
 import { trackSession, getActiveSessionCount, getSessionStats, checkScreenSessionExists } from '../src/session-monitor.lib.mjs';

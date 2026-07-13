@@ -40,7 +40,7 @@ await preloadAllLocales();
 
 await test('/help uses Russian UI strings when locale is ru', () => {
   const message = buildHelp('ru');
-  assert.ok(message.includes('Справка SwarmMindBot'));
+  assert.ok(message.includes('Справка AutoProgrammerBot'));
   assert.ok(message.includes('Решить задачу GitHub'));
   assert.ok(message.includes('Выполнить команду hive'));
   assert.ok(!message.includes('Available Commands'));
@@ -49,10 +49,10 @@ await test('/help uses Russian UI strings when locale is ru', () => {
 
 await test('/help has translated strings for every supported Telegram locale', () => {
   const expected = {
-    en: 'SwarmMindBot Help',
-    ru: 'Справка SwarmMindBot',
-    zh: 'SwarmMindBot 帮助',
-    hi: 'SwarmMindBot मदद',
+    en: 'AutoProgrammerBot Help',
+    ru: 'Справка AutoProgrammerBot',
+    zh: 'AutoProgrammerBot 帮助',
+    hi: 'AutoProgrammerBot मदद',
   };
   for (const [locale, text] of Object.entries(expected)) {
     const message = buildHelp(locale);

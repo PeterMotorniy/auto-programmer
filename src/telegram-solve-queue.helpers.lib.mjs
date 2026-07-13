@@ -379,7 +379,7 @@ export function formatThresholdPercent(ratio) {
  *
  * @param {number} ms - Duration in milliseconds
  * @returns {string} Human-readable duration
- * @see https://github.com/link-assistant/hive-mind/issues/1267
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1267
  */
 export function formatDuration(ms, options = {}) {
   if (ms < 0) ms = 0;
@@ -510,7 +510,7 @@ export function formatWaitingReason(metric, currentValue, threshold, options = {
  * @param {Object} queue - SolveQueue-like instance (uses verbose, log, recordThrottle, stats).
  * @param {Array<{tool: string, item: Object, ageMs: number, startable: boolean, blockReasons: string[]}>} headDiagnostics
  * @param {{item: Object, tool: string}|undefined} selected
- * @see https://github.com/link-assistant/hive-mind/issues/2051
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2051
  */
 export function reportDequeueDecision(queue, headDiagnostics, selected) {
   if (!headDiagnostics || headDiagnostics.length === 0) return;

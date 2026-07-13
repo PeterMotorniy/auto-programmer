@@ -5,8 +5,8 @@
  * so it can be used for execution isolation (via $ CLI from start-command)
  * instead of being forwarded to solve/hive as an unknown argument.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1534
- * @see https://github.com/link-assistant/hive-mind/pull/390
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1534
+ * @see https://github.com/PeterMotorniy/auto-programmer/pull/390
  */
 
 const VALID_ISOLATION_BACKENDS = ['screen', 'tmux', 'docker'];

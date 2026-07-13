@@ -7,7 +7,7 @@
  * GitHub), a minimum interval between command starts, running-process
  * detection, and status tracking (Queued -> Waiting -> Starting -> Started).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1041
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1041
  */
 
 import { getCachedClaudeLimits, getCachedCodexLimits, getCachedGitHubLimits, getCachedMemoryInfo, getCachedCpuInfo, getCachedDiskInfo, getLimitCache } from './limits.lib.mjs';
@@ -75,7 +75,7 @@ class SolveQueueItem {
     // Message tracking - forget after STARTED
     this.messageInfo = null; // { chatId, messageId }
     // Track when we last updated the Telegram message
-    // See: https://github.com/link-assistant/hive-mind/issues/1078
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1078
     this.lastMessageUpdateTime = null;
   }
 
@@ -149,7 +149,7 @@ class SolveQueueItem {
  * - Each tool queue maintains FIFO order
  * - Each tool has independent rate limiting
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1159
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
  */
 export class SolveQueue {
   constructor(options = {}) {
@@ -164,7 +164,7 @@ export class SolveQueue {
     this.autoStart = options.autoStart !== false;
 
     // Separate queues per tool type - claude tasks never block other tool tasks
-    // See: https://github.com/link-assistant/hive-mind/issues/1159
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1159
     this.queues = {
       claude: [],
       agent: [],
@@ -254,7 +254,7 @@ export class SolveQueue {
    * Items are added to the queue for their specific tool type.
    * @param {Object} options - Queue item options
    * @returns {SolveQueueItem} The queued item
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
    */
   enqueue(options) {
     const item = new SolveQueueItem(options);
@@ -275,7 +275,7 @@ export class SolveQueue {
    * Used to prevent duplicate URLs from being added to the queue
    * @param {string} url - The URL to search for
    * @returns {SolveQueueItem|null} The found item or null
-   * @see https://github.com/link-assistant/hive-mind/issues/1080
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1080
    */
   findByUrl(url) {
     // Check all tool queues
@@ -301,7 +301,7 @@ export class SolveQueue {
    * Searches all tool queues to find the item.
    * @param {string} id - Item ID
    * @returns {boolean} True if cancelled
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
    */
   cancel(id) {
     // Search all tool queues
@@ -356,7 +356,7 @@ export class SolveQueue {
    * Used for tool-specific limit checking - e.g., Claude limits only count Claude processing items
    * @param {string} tool - Tool type to count ('claude', 'agent', 'codex', 'gemini', etc.)
    * @returns {number} Count of processing items with the specified tool
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
    */
   getProcessingCountByTool(tool) {
     let count = 0;
@@ -387,8 +387,8 @@ export class SolveQueue {
    * 'reject' strategy threshold is exceeded rather than left waiting.
    *
    * @returns {Promise<Array<{item: SolveQueueItem, tool: string, index: number, check: Object}>>}
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
-   * @see https://github.com/link-assistant/hive-mind/issues/1555
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1555
    */
   async findStartableItems() {
     const startableItems = [];
@@ -404,7 +404,7 @@ export class SolveQueue {
 
       // When a 'reject' strategy threshold is exceeded, immediately reject
       // all items in this tool's queue instead of leaving them waiting.
-      // See: https://github.com/link-assistant/hive-mind/issues/1555
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1555
       if (check.rejected) {
         await this.rejectAllItemsInQueue(tool, toolQueue, check.rejectReason);
         continue;
@@ -449,7 +449,7 @@ export class SolveQueue {
    * @param {string} tool - Tool type (e.g., 'claude', 'agent', 'codex', 'gemini')
    * @param {SolveQueueItem[]} toolQueue - The tool's queue array
    * @param {string} rejectReason - Reason for rejection
-   * @see https://github.com/link-assistant/hive-mind/issues/1555
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1555
    */
   async rejectAllItemsInQueue(tool, toolQueue, rejectReason) {
     while (toolQueue.length > 0) {
@@ -470,7 +470,7 @@ export class SolveQueue {
    * Find first queue item that can start based on its tool's limits (legacy compatibility)
    * With separate queues, returns the first startable item from any tool queue.
    * @returns {Promise<{item: SolveQueueItem|null, index: number, check: Object}>}
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
    */
   async findStartableItem() {
     const startableItems = await this.findStartableItems();
@@ -486,7 +486,7 @@ export class SolveQueue {
    * Get queue items summary for display
    * Combines items from all tool queues into a single pending list.
    * @returns {Object}
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
    */
   getQueueSummary() {
     // Collect pending items from all tool queues
@@ -620,7 +620,7 @@ export class SolveQueue {
     // Calculate Claude-specific processing count for Claude API limits
     // Only counts Claude items in queue + external claude processes
     // Non-Claude items don't count against Claude's one-at-a-time limit
-    // See: https://github.com/link-assistant/hive-mind/issues/1159
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1159
     const claudeProcessingCount = this.getProcessingCountByTool('claude');
     const codexProcessingCount = this.getProcessingCountByTool('codex');
     const qwenProcessingCount = this.getProcessingCountByTool('qwen');
@@ -642,8 +642,8 @@ export class SolveQueue {
 
     // Check system resources with strategy support
     // System resources apply to ALL tools, not just Claude
-    // See: https://github.com/link-assistant/hive-mind/issues/1155
-    // See: https://github.com/link-assistant/hive-mind/issues/1253 (strategies)
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1155
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1253 (strategies)
     const resourceCheck = await this.checkSystemResources(totalProcessing, { locale });
     if (resourceCheck.rejected) {
       rejected = true;
@@ -659,8 +659,8 @@ export class SolveQueue {
     // Check API limits with strategy support (pass hasRunningClaude, claudeProcessingCount, and tool)
     // Claude limits use claudeProcessingCount (only Claude items), not totalProcessing
     // This allows non-Claude tasks to proceed when Claude limits are reached
-    // See: https://github.com/link-assistant/hive-mind/issues/1159
-    // See: https://github.com/link-assistant/hive-mind/issues/1253 (strategies)
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1159
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1253 (strategies)
     const hasRunningToolProcess = (externalProcessing.byTool[tool] || 0) > 0;
     const toolProcessingCount = this.getProcessingCountByTool(tool);
     const limitCheck = await this.checkApiLimits(hasRunningToolProcess, toolProcessingCount, tool, { locale });
@@ -680,7 +680,7 @@ export class SolveQueue {
     if (hasRunningClaude && reasons.length > 0) {
       // Add claude_running info at the END (not beginning) of reasons
       // Since it's supplementary info, not the primary blocking reason
-      // See: https://github.com/link-assistant/hive-mind/issues/1078
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1078
       reasons.push(`${formatWaitingReason('claude_running', claudeProcessCount, 0, { locale })} (${lt('queue_processes', { count: claudeProcessCount }, { locale })})`);
     }
     if (tool === 'codex' && hasRunningCodex && reasons.length > 0) {
@@ -741,9 +741,9 @@ export class SolveQueue {
    * - CPU: enqueue
    * - DISK: enqueue (waits until disk drops below the threshold)
    *
-   * See: https://github.com/link-assistant/hive-mind/issues/1155
-   * See: https://github.com/link-assistant/hive-mind/issues/1253
-   * See: https://github.com/link-assistant/hive-mind/issues/1981
+   * See: https://github.com/PeterMotorniy/auto-programmer/issues/1155
+   * See: https://github.com/PeterMotorniy/auto-programmer/issues/1253
+   * See: https://github.com/PeterMotorniy/auto-programmer/issues/1981
    *
    * @param {number} totalProcessing - Total processing count (queue + external claude processes)
    * @returns {Promise<{ok: boolean, reasons: string[], oneAtATime: boolean, rejected: boolean, rejectReason: string|null}>}
@@ -817,7 +817,7 @@ export class SolveQueue {
 
     // Check disk space (using cached value)
     // Default strategy changed to 'reject' because queue is lost on restart anyway
-    // See: https://github.com/link-assistant/hive-mind/issues/1253
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1253
     const diskResult = await getCachedDiskInfo(this.verbose);
     if (diskResult.success) {
       // Calculate usage from free percentage
@@ -879,7 +879,7 @@ export class SolveQueue {
     // Apply Claude-specific limits only when tool is 'claude'
     // Other tools (like 'agent', 'gemini', and 'qwen') use different rate limiting backends and are not
     // affected by Claude API limits (5-hour session, weekly limits)
-    // See: https://github.com/link-assistant/hive-mind/issues/1159
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1159
     const applyClaudeLimits = tool === 'claude';
     const applyCodexLimits = tool === 'codex';
 
@@ -895,7 +895,7 @@ export class SolveQueue {
 
         // Session limit (5-hour)
         // Configurable strategy via HIVE_MIND_QUEUE_CONFIG or HIVE_MIND_CLAUDE_5_HOUR_SESSION_STRATEGY
-        // See: https://github.com/link-assistant/hive-mind/issues/1133, #1159, #1253
+        // See: https://github.com/PeterMotorniy/auto-programmer/issues/1133, #1159, #1253
         if (sessionPercent !== null) {
           const sessionRatio = sessionPercent / 100;
           if (sessionRatio >= QUEUE_CONFIG.thresholds.claude5Hour.value) {
@@ -920,7 +920,7 @@ export class SolveQueue {
 
         // Weekly limit
         // Configurable strategy via HIVE_MIND_QUEUE_CONFIG or HIVE_MIND_CLAUDE_WEEKLY_STRATEGY
-        // See: https://github.com/link-assistant/hive-mind/issues/1133, #1159, #1253
+        // See: https://github.com/PeterMotorniy/auto-programmer/issues/1133, #1159, #1253
         if (weeklyPercent !== null) {
           const weeklyRatio = weeklyPercent / 100;
           if (weeklyRatio >= QUEUE_CONFIG.thresholds.claudeWeekly.value) {
@@ -1088,7 +1088,7 @@ export class SolveQueue {
    * - Agent queue can proceed even when Claude is blocked (and vice versa)
    * - The oldest startable item starts each cycle to preserve global pacing
    *
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
    */
   async runConsumer() {
     this.log('Consumer started with separate tool queues');
@@ -1146,14 +1146,14 @@ export class SolveQueue {
    * and removed from the queue, since they cannot proceed and keeping them
    * queued would only confuse users (the queue is lost on restart anyway).
    *
-   * @see https://github.com/link-assistant/hive-mind/issues/1078
-   * @see https://github.com/link-assistant/hive-mind/issues/1555
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1078
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1555
    */
   async updateAllWaitingItems() {
     for (const [tool, toolQueue] of Object.entries(this.queues)) {
       // First check if the tool's threshold triggers a 'reject' strategy.
       // If so, reject all items at once rather than iterating one by one.
-      // See: https://github.com/link-assistant/hive-mind/issues/1555
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1555
       const toolCheck = await this.canStartCommand({ tool, locale: toolQueue[0]?.locale || null });
       if (toolCheck.rejected) {
         await this.rejectAllItemsInQueue(tool, toolQueue, toolCheck.rejectReason);
@@ -1199,7 +1199,7 @@ export class SolveQueue {
 
         // IMPORTANT: Save messageInfo BEFORE calling setStarted, because setStarted clears it
         // This was a bug where the final message update never happened because messageInfo was null
-        // See: https://github.com/link-assistant/hive-mind/issues/1062
+        // See: https://github.com/PeterMotorniy/auto-programmer/issues/1062
         const savedMessageInfo = item.messageInfo;
 
         // Update to Started status (terminal - forgets message tracking)
@@ -1227,7 +1227,7 @@ export class SolveQueue {
               }
             } catch (error) {
               // Log message edit failures for debugging
-              // See: https://github.com/link-assistant/hive-mind/issues/1062
+              // See: https://github.com/PeterMotorniy/auto-programmer/issues/1062
               console.error(`[solve_queue] Failed to update message for item ${item.id}: ${error.message}`);
             }
           }
@@ -1249,7 +1249,7 @@ export class SolveQueue {
           await item.ctx.telegram.editMessageText(chatId, messageId, undefined, errorText, { parse_mode: 'Markdown' });
         } catch (editError) {
           // Log the edit failure for debugging
-          // See: https://github.com/link-assistant/hive-mind/issues/1062
+          // See: https://github.com/PeterMotorniy/auto-programmer/issues/1062
           console.error(`[solve_queue] Failed to update error message for item ${item.id}: ${editError.message}`);
         }
       }
@@ -1310,8 +1310,8 @@ export class SolveQueue {
    * ```
    *
    * @returns {Promise<string>}
-   * @see https://github.com/link-assistant/hive-mind/issues/1159
-   * @see https://github.com/link-assistant/hive-mind/issues/1267
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1159
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1267
    */
   async formatStatus(options = {}) {
     const locale = getLocale(options);
@@ -1337,9 +1337,9 @@ export class SolveQueue {
    * is shown once per tool.
    *
    * @returns {Promise<string>}
-   * @see https://github.com/link-assistant/hive-mind/issues/1267
-   * @see https://github.com/link-assistant/hive-mind/issues/1837
-   * @see https://github.com/link-assistant/hive-mind/issues/1891
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1267
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1837
+   * @see https://github.com/PeterMotorniy/auto-programmer/issues/1891
    */
   async formatDetailedStatus(options = {}) {
     const locale = getLocale(options);

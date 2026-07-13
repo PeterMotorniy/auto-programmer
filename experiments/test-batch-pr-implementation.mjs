@@ -8,13 +8,13 @@ async function testBatchImplementation() {
   console.log('🧪 Testing Batch PR Checking Implementation\n');
   console.log('='.repeat(60));
 
-  // Test with some real issues from the hive-mind repository
+  // Test with some real issues from the auto-programmer repository
   const testCases = [
     {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       issues: [186, 194, 197, 183, 184], // Mix of issues with and without PRs
-      description: 'Mixed issues from hive-mind repo',
+      description: 'Mixed issues from auto-programmer repo',
     },
   ];
 

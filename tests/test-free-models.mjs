@@ -2,7 +2,7 @@
 
 /**
  * Comprehensive tests for all free models
- * Tests all 12 free models (6 OpenCode Zen + 6 Kilo Gateway) to ensure they work in hive-mind
+ * Tests all 12 free models (6 OpenCode Zen + 6 Kilo Gateway) to ensure they work in auto-programmer
  * Issue #1300: Updated free models - minimax-m2.5-free replaces m2.1, glm-4.7-free removed from OpenCode
  * Issue #1543: Added qwen3.6-plus-free (former default) and nemotron-3-super-free
  * Issue #1563: qwen3.6-plus-free deprecated (free promotion ended), nemotron-3-super-free is now default

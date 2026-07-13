@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.

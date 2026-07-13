@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression test for issue #1745 — Telegram bot token leak via interactive
  * mode `Bash` tool output.

@@ -8,8 +8,8 @@
 
 import { $ } from 'command-stream';
 
-const OWNER = 'link-assistant';
-const REPO = 'hive-mind';
+const OWNER = 'PeterMotorniy';
+const REPO = 'auto-programmer';
 const PR_NUMBER = 846;
 
 async function testCommandStreamBuffer() {

@@ -6,7 +6,7 @@
  * handles the narrower targets introduced in issue #2013: a single PR URL, an
  * issue URL with linked PRs, or a GitHub URL found in a replied message.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/2013
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2013
  */
 
 import { promisify } from 'node:util';

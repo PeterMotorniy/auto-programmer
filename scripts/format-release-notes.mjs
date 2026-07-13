@@ -24,7 +24,7 @@ import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry } from '../src/github-r
  * Note: Uses --release-version instead of --version to avoid conflict with yargs' built-in --version flag.
  */
 
-const PACKAGE_NAME = '@link-assistant/hive-mind';
+const PACKAGE_NAME = 'auto-programmer';
 
 // Load use-m dynamically
 const use = await ensureUseM();

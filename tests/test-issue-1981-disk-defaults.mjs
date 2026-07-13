@@ -3,7 +3,7 @@
 /**
  * Regression coverage for issue #1981 default safety changes.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1981
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1981
  */
 
 import { spawn } from 'child_process';

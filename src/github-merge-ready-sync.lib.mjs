@@ -6,7 +6,7 @@
  * and for finding genuinely linked PRs via the GitHub issue timeline API.
  * Split from github-merge.lib.mjs to maintain file size limits.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1413
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1413
  */
 
 import { promisify } from 'util';

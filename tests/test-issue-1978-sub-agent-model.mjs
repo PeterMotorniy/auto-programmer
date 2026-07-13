@@ -18,8 +18,8 @@ import { mapClaudeSubAgentModelToEnvValue, validateClaudeSubAgentModelName } fro
 import { createYargsConfig as createSolveYargsConfig, SOLVE_OPTION_DEFINITIONS } from '../src/solve.config.lib.mjs';
 import { getFirstParsedPositionalArg, moveArgumentToFront, parseArgsWithYargs, parseCommandArgs } from '../src/telegram-solve-command.lib.mjs';
 
-const issueUrl = 'https://github.com/link-assistant/hive-mind/issues/1978';
-const repoUrl = 'https://github.com/link-assistant/hive-mind';
+const issueUrl = 'https://github.com/PeterMotorniy/auto-programmer/issues/1978';
+const repoUrl = 'https://github.com/PeterMotorniy/auto-programmer';
 const yargsFactory = getLinoYargsFactory();
 
 assert.equal(SOLVE_OPTION_DEFINITIONS['sub-agent-model']?.type, 'string');

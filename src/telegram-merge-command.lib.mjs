@@ -15,7 +15,7 @@
  * - Cancel via inline button
  * - Per-repository concurrency control (not per-chat)
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1143
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1143
  */
 
 import { checkLabelPermissions, ensureReadyLabel } from './github-merge.lib.mjs';

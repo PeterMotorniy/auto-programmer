@@ -22,7 +22,7 @@
  * (e.g. Claude) can be continued by another tool (e.g. Codex) inside the same
  * pull request, because the HANDOFF.md state travels with the branch.
  *
- * Design rationale specific to hive-mind:
+ * Design rationale specific to auto-programmer:
  *   - Each working session runs in an ephemeral temp working directory that is
  *     cloned fresh from the pull request branch. The ONLY state that persists
  *     between sessions (and between different tools) is what is committed to the
@@ -31,7 +31,7 @@
  *     the next session/tool can read it. We keep a single active HANDOFF.md per
  *     branch to avoid ambiguity.
  *   - The skill file itself (SKILL.md) is tool configuration, not project state,
- *     so it is re-deployed each session by hive-mind and is NOT committed to the
+ *     so it is re-deployed each session by auto-programmer and is NOT committed to the
  *     target repository (see handoff-skill.lib.mjs).
  */
 

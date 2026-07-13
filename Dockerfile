@@ -1,13 +1,13 @@
-# Hive Mind Docker image
-# Inherits from konard/box which provides all general-purpose development tools
+# Auto Programmer Docker image
+# Inherits from petermotorniy/box which provides all general-purpose development tools
 # This image adds AI-specific tools (Claude CLI, OpenAI Codex, Playwright MCP, etc.)
 #
 # Architecture (see issue #1394, #1499, #1505 and box#79):
-#   konard/box (pinned full image)
+#   petermotorniy/box (pinned full image)
 #     └── All general dev tools: Node.js, Bun, Deno, Python, Go, Rust, Java, PHP, etc.
 #     └── Playwright browsers pre-installed (chromium, firefox, webkit, msedge, chrome)
 #     └── /home/box directory owned by box user
-#   hive-mind (konard/hive-mind)
+#   auto-programmer (petermotorniy/auto-programmer)
 #     └── Inherits Box, adds AI coding assistants and Playwright MCP
 #     └── Runs entirely as box user (no USER root needed)
 #
@@ -16,9 +16,9 @@
 # Keep this in lockstep with the DinD base-image release.
 # Latest Box releases: https://github.com/link-foundation/box/releases
 #
-# Build: docker build -t konard/hive-mind .
+# Build: docker build -t petermotorniy/auto-programmer .
 
-FROM konard/box:2.3.5
+FROM petermotorniy/box:2.3.5
 ARG HIVE_MIND_VERSION=latest
 # Release builds pass the exact published package version here. Bake it as the
 # default child isolation image tag so a parent started via :latest still runs
@@ -92,7 +92,7 @@ RUN mkdir -p /home/box/.local/bin && \
     chmod +x /home/box/.local/bin/opam
 
 # --- AI-specific packages installation ---
-# These are the tools that differentiate hive-mind from the generic Box image
+# These are the tools that differentiate auto-programmer from the generic Box image
 # Global bun packages for AI coding assistants and workflow utilities
 # Every install must fail the build on error — no silent fallbacks (see issue #1505)
 
@@ -110,7 +110,7 @@ RUN bun install -g @openai/codex && \
     bun install -g @github/copilot && \
     bun install -g opencode-ai
 
-# Install hive-mind workflow utilities
+# Install auto-programmer workflow utilities
 # Release builds pass HIVE_MIND_VERSION after npm publish, so Docker installs
 # the exact package version that contains the configure-claude bin.
 # Note: start-command provides `$` CLI for isolation modes (--isolation screen/tmux/docker)
@@ -119,20 +119,20 @@ RUN bun install -g @openai/codex && \
 # start-command is pinned to 0.30.3: 0.29.1 fixed detached docker
 # `--status`/`--list` reporting a terminal status (`executed`) with the `-1`
 # sentinel while the container is still running (link-foundation/start#136,
-# link-assistant/hive-mind#1939); 0.29.2 (start#138 / start PR #139) records the
+# PeterMotorniy/auto-programmer#1939); 0.29.2 (start#138 / start PR #139) records the
 # docker image-preparation phase (the `docker pull`/dind boot) in the session log,
 # so `$ --upload-log` no longer returns a near-empty log while a multi-GB image is
 # still pulling. 0.30.1 (start#140 / start PR #141) adds explicit docker
 # container cleanup policies and removes successful containers by default while
-# keeping the host-side log, which Hive Mind also enforces at task completion
+# keeping the host-side log, which Auto Programmer also enforces at task completion
 # for defense in depth (issue #1979). 0.30.2 (start#144) surfaces detached docker
 # `OOMKilled` status and preserves abnormally-terminated container filesystems
 # under the default cleanup policy — the upstream defense-in-depth half of the
 # #1990 fix (the primary terminal-completion gate lives in this repo's solve).
 # 0.30.3 (start#148/#149) reconciles detached Docker `OOMKilled=true` as terminal
 # in upstream `--status`/`--list`, which directly covers issue #2015.
-RUN echo "Installing @link-assistant/hive-mind@${HIVE_MIND_VERSION}" && \
-    bun install -g "@link-assistant/hive-mind@${HIVE_MIND_VERSION}" && \
+RUN echo "Installing auto-programmer@${HIVE_MIND_VERSION}" && \
+    bun install -g "auto-programmer@${HIVE_MIND_VERSION}" && \
     if [ "${HIVE_MIND_VERSION}" != "latest" ]; then \
       test "$(hive --version)" = "${HIVE_MIND_VERSION}"; \
     fi && \
@@ -180,7 +180,7 @@ RUN if command -v claude >/dev/null 2>&1; then \
     fi
 
 # --- Disable noisy/unused Claude Code features and tools (issue #1627, issue #1642) ---
-# Autonomous headless hive-mind runs never benefit from tools that wait for
+# Autonomous headless auto-programmer runs never benefit from tools that wait for
 # human interaction (AskUserQuestion, EnterPlanMode) or that register local
 # session cron jobs (CronCreate/List/Delete) or create worktrees
 # (EnterWorktree/ExitWorktree) or fire mobile notifications
@@ -208,7 +208,7 @@ RUN mkdir -p /home/box/.claude && \
       configure-claude --settings-path /home/box/.claude/settings.json && \
       configure-claude --settings-path /home/box/.claude/settings.json --verify; \
     else \
-      echo "configure-claude not present in @link-assistant/hive-mind@latest yet (likely a PR build before the bin is published); skipping baseline — solve re-applies it at runtime"; \
+      echo "configure-claude not present in auto-programmer@latest yet (likely a PR build before the bin is published); skipping baseline — solve re-applies it at runtime"; \
     fi
 
 SHELL ["/bin/bash", "-c"]

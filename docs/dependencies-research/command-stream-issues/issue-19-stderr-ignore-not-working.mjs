@@ -7,7 +7,7 @@
  * options ($({ stderr: 'ignore' }) and $({ silent: true, stderr: 'ignore' }))
  * don't actually suppress stderr output in practice.
  *
- * Real-world impact: In hive-mind project (issue #583), worker processes showed
+ * Real-world impact: In auto-programmer project (issue #583), worker processes showed
  * non-blocking error messages in stderr that made execution look broken even
  * though everything was working correctly.
  *
@@ -135,7 +135,7 @@ async function runTest() {
 
   // REAL-WORLD EXAMPLE
   console.log('\n' + '='.repeat(70));
-  console.log('REAL-WORLD EXAMPLE: hive-mind issue #583\n');
+  console.log('REAL-WORLD EXAMPLE: auto-programmer issue #583\n');
 
   console.log('Problem:');
   console.log('  When hive worker processes start, they run git commands before');

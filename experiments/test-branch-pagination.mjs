@@ -4,10 +4,10 @@
 
 const { $ } = await (await import('command-stream')).default;
 
-const owner = 'link-assistant';
-const repo = 'hive-mind';
+const owner = 'PeterMotorniy';
+const repo = 'auto-programmer';
 
-console.log('Testing branch pagination for link-assistant/hive-mind...\n');
+console.log('Testing branch pagination for PeterMotorniy/auto-programmer...\n');
 
 // Test 1: Current approach (no pagination)
 console.log('=== Test 1: Current approach (no pagination) ===');

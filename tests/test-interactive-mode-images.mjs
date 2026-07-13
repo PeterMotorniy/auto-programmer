@@ -60,12 +60,12 @@ const assert = (cond, msg) => {
 // ============================================================
 //
 // Simulates the GitHub API sequence createImageUploader drives:
-//   GET   repos/.../git/ref/hive-mind-media/pr-<n>  → 404 unless refExists
+//   GET   repos/.../git/ref/auto-programmer-media/pr-<n>  → 404 unless refExists
 //   GET   repos/.../git/commits/<sha>               → { tree: { sha } }
 //   GET   repos/.../git/trees/<sha>?recursive=1     → known file paths
 //   POST  repos/.../git/blobs|trees|commits         → { sha }
-//   POST  repos/.../git/refs                        → creates refs/hive-mind-media/pr-<n>
-//   PATCH repos/.../git/refs/hive-mind-media/pr-<n> → advances the custom ref
+//   POST  repos/.../git/refs                        → creates refs/auto-programmer-media/pr-<n>
+//   PATCH repos/.../git/refs/auto-programmer-media/pr-<n> → advances the custom ref
 function makeMockGh({ refExists = false, failPatch = false, existsAfterFail = false } = {}) {
   const calls = [];
   const sha = n => n.toString(16).padStart(40, '0');
@@ -211,9 +211,9 @@ await runTest('buildRawBlobUrl produces an embeddable ?raw=true URL', () => {
 });
 
 await runTest('buildMediaRef produces hidden per-PR custom refs', () => {
-  assert(DEFAULT_MEDIA_REF_NAMESPACE === 'refs/hive-mind-media', 'unexpected default media ref namespace');
-  assert(buildMediaRef({ prNumber: 1844 }) === 'refs/hive-mind-media/pr-1844', 'expected default PR media ref');
-  assert(buildMediaRef({ prNumber: 'feature/a b' }) === 'refs/hive-mind-media/pr-feature-a-b', 'expected sanitized PR segment');
+  assert(DEFAULT_MEDIA_REF_NAMESPACE === 'refs/auto-programmer-media', 'unexpected default media ref namespace');
+  assert(buildMediaRef({ prNumber: 1844 }) === 'refs/auto-programmer-media/pr-1844', 'expected default PR media ref');
+  assert(buildMediaRef({ prNumber: 'feature/a b' }) === 'refs/auto-programmer-media/pr-feature-a-b', 'expected sanitized PR segment');
 });
 
 await runTest('embedded image URL (commit SHA + hex filename) survives token sanitizer (#1745)', async () => {
@@ -226,7 +226,7 @@ await runTest('embedded image URL (commit SHA + hex filename) survives token san
   // no-op, while Pass 2 (regex + secretlint — where the hex rule lives) runs.
   const hex16 = createHash('sha256').update(PNG_1x1).digest('hex').slice(0, 16);
   const commitSha = '0123456789abcdef0123456789abcdef01234567';
-  const url = buildRawBlobUrl('link-assistant', 'hive-mind', commitSha, `media/pr-1844/${hex16}.png`);
+  const url = buildRawBlobUrl('PeterMotorniy', 'auto-programmer', commitSha, `media/pr-1844/${hex16}.png`);
   const body = `### 🖼️ Images\n\n![shot.png](${url})\n`;
   const out = await sanitizeCommentBody(body, { knownTokens: [] });
   assert(out === body, `image embed must be unchanged by sanitizer; got:\n${out}`);
@@ -323,16 +323,16 @@ await runTest('uploadImage creates custom media ref once, returns commit-SHA ?ra
   assert(typeof url === 'string' && url.includes('?raw=true'), `expected raw URL, got ${url}`);
   assert(/\/blob\/[0-9a-f]{40}\/media\/pr-7\//.test(url), `expected commit-SHA PR path, got ${url}`);
   assert(!url.includes('/blob/refs/'), `custom ref name must not be embedded directly, got ${url}`);
-  assert(!url.includes('hive-mind-interactive-media'), `old media branch name must not appear, got ${url}`);
+  assert(!url.includes('auto-programmer-interactive-media'), `old media branch name must not appear, got ${url}`);
 
   // Upload a SECOND, different image — custom ref must NOT be recreated.
   const url2 = await uploader.uploadImage({ base64: PNG_1x1.replace('iVBOR', 'AAAAA'), mediaType: 'image/png', name: 'second' });
   assert(url2 && url2 !== url, 'second distinct image gets its own URL');
   const refCreations = calls.filter(c => c.method === 'POST' && c.apiPath.endsWith('/git/refs'));
   assert(refCreations.length === 1, `custom media ref should be created exactly once, got ${refCreations.length}`);
-  assert(refCreations[0].body.ref === 'refs/hive-mind-media/pr-7', `unexpected custom ref: ${refCreations[0].body.ref}`);
+  assert(refCreations[0].body.ref === 'refs/auto-programmer-media/pr-7', `unexpected custom ref: ${refCreations[0].body.ref}`);
   assert(!refCreations[0].body.ref.startsWith('refs/heads/'), 'media ref must not be a branch');
-  const patches = calls.filter(c => c.method === 'PATCH' && c.apiPath.endsWith('/git/refs/hive-mind-media/pr-7'));
+  const patches = calls.filter(c => c.method === 'PATCH' && c.apiPath.endsWith('/git/refs/auto-programmer-media/pr-7'));
   assert(patches.length === 2, `expected 2 custom-ref PATCHes, got ${patches.length}`);
   const contentsCalls = calls.filter(c => c.apiPath.includes('/contents/'));
   assert(contentsCalls.length === 0, `uploads should use Git Data API, not Contents API; got ${contentsCalls.length} Contents API calls`);

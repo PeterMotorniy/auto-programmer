@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #1737: budget stats must report restored-context input pressure.
  *
@@ -90,7 +90,7 @@ await test('renders single sub-agent input as total input with context limit', a
 });
 
 await test('calculateSessionTokens includes cache reads in peak context', async () => {
-  const root = await mkdtemp(path.join(tmpdir(), 'hive-mind-1737-'));
+  const root = await mkdtemp(path.join(tmpdir(), 'auto-programmer-1737-'));
   const homeDir = path.join(root, 'home');
   const tempDir = path.join(root, 'workspace');
   const sessionId = 'session-issue-1737';

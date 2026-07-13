@@ -7,7 +7,7 @@
  * because the Compare API was checking for commits using the wrong head reference.
  *
  * Root Cause:
- * - In fork mode, branches are pushed to the fork (e.g., konard/repo)
+ * - In fork mode, branches are pushed to the fork (e.g., petermotorniy/repo)
  * - But Compare API was checking in upstream (e.g., owner/repo) using just branchName
  * - This caused 404 errors because branchName doesn't exist in upstream
  *
@@ -34,13 +34,13 @@ const testCases = [
   {
     name: 'Fork mode',
     fork: true,
-    forkedRepo: 'konard/repo',
+    forkedRepo: 'petermotorniy/repo',
     owner: 'upstream-owner',
     repo: 'repo',
     baseBranch: 'main',
     branchName: 'issue-123-abc',
-    expectedHeadRef: 'konard:issue-123-abc',
-    expectedApiCall: 'repos/upstream-owner/repo/compare/main...konard:issue-123-abc',
+    expectedHeadRef: 'petermotorniy:issue-123-abc',
+    expectedApiCall: 'repos/upstream-owner/repo/compare/main...petermotorniy:issue-123-abc',
   },
   {
     name: 'Fork mode with custom base branch',

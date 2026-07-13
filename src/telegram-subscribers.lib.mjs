@@ -11,7 +11,7 @@
  * user only ever receives one private notification, regardless of which
  * chat they ran the command in.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1688
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1688
  */
 
 // Map<userId, { username, firstName, subscribedAt, sourceChatId }>

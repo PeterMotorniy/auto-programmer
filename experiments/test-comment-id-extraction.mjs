@@ -18,7 +18,7 @@ async function testCommentOutput() {
   try {
     // Test with execSync
     console.log('=== Using execSync ===');
-    const resultSync = execSync(`gh pr comment 852 --repo link-assistant/hive-mind --body "${testComment.replace(/"/g, '\\"')}"`, { encoding: 'utf8' });
+    const resultSync = execSync(`gh pr comment 852 --repo PeterMotorniy/auto-programmer --body "${testComment.replace(/"/g, '\\"')}"`, { encoding: 'utf8' });
     console.log('Result type:', typeof resultSync);
     console.log('Result value:', resultSync);
 
@@ -30,14 +30,14 @@ async function testCommentOutput() {
     // If we found the comment ID, delete the test comment
     if (matchSync && matchSync[1]) {
       console.log('\n=== Deleting test comment ===');
-      execSync(`gh api repos/link-assistant/hive-mind/issues/comments/${matchSync[1]} -X DELETE`);
+      execSync(`gh api repos/PeterMotorniy/auto-programmer/issues/comments/${matchSync[1]} -X DELETE`);
       console.log('Deleted successfully');
     }
 
     // Now test with execAsync (more similar to command-stream behavior)
     console.log('\n\n=== Using execAsync ===');
     const testComment2 = '## Test comment 2 for async\n\nSecond test.\n\n_Will be deleted shortly._';
-    const { stdout, stderr } = await execAsync(`gh pr comment 852 --repo link-assistant/hive-mind --body "${testComment2.replace(/"/g, '\\"')}"`);
+    const { stdout, stderr } = await execAsync(`gh pr comment 852 --repo PeterMotorniy/auto-programmer --body "${testComment2.replace(/"/g, '\\"')}"`);
     console.log('stdout type:', typeof stdout);
     console.log('stdout value:', stdout);
     console.log('stderr type:', typeof stderr);
@@ -49,7 +49,7 @@ async function testCommentOutput() {
 
     if (matchAsync && matchAsync[1]) {
       console.log('\n=== Deleting test comment 2 ===');
-      execSync(`gh api repos/link-assistant/hive-mind/issues/comments/${matchAsync[1]} -X DELETE`);
+      execSync(`gh api repos/PeterMotorniy/auto-programmer/issues/comments/${matchAsync[1]} -X DELETE`);
       console.log('Deleted successfully');
     }
   } catch (error) {

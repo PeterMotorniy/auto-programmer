@@ -33,7 +33,7 @@ try {
   await $`git commit -m "Initial commit"`;
 
   console.log('3. Add origin remote (simulating fork)');
-  await $`git remote add origin https://github.com/konard/tinkoff-invest-etf-balancer-bot.git`;
+  await $`git remote add origin https://github.com/petermotorniy/tinkoff-invest-etf-balancer-bot.git`;
 
   console.log('4. Add upstream remote (simulating it already exists)');
   await $`git remote add upstream https://github.com/suenot/tinkoff-invest-etf-balancer-bot.git`;

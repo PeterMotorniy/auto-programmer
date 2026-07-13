@@ -7,7 +7,7 @@
  * Covers the pure detection + normalization helpers (network-free) plus the
  * CLI option definition and the config-level normalization of the flag.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1883
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1883
  */
 
 import assert from 'node:assert/strict';

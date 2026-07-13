@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // in CI because it expects a particular GitHub API permission response. Tracked
 // under issue #1758 follow-up; opt in via
@@ -12,7 +12,7 @@
  *
  * Run with: node tests/test-auto-merge-permissions.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1226
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1226
  */
 
 import assert from 'node:assert/strict';
@@ -70,9 +70,9 @@ await asyncTest('checkMergePermissions returns false for nonexistent repo', asyn
   assert.equal(result.permission, null, 'Should return permission=null for nonexistent repo');
 });
 
-await asyncTest('checkMergePermissions returns correct result for link-assistant/hive-mind', async () => {
+await asyncTest('checkMergePermissions returns correct result for PeterMotorniy/auto-programmer', async () => {
   // We should have access to our own repo
-  const result = await checkMergePermissions('link-assistant', 'hive-mind', false);
+  const result = await checkMergePermissions('PeterMotorniy', 'auto-programmer', false);
   assert.ok(result !== null, 'Result should not be null');
   assert.ok(typeof result.canMerge === 'boolean', 'canMerge should be a boolean');
   if (result.permission !== null) {

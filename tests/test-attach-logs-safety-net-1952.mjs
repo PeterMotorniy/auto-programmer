@@ -17,9 +17,9 @@
  * successful upload, and solve.mjs adds a final safety net that attaches the log when nothing else
  * did. This test verifies the flag mechanism (behaviourally) and the wiring (source assertions).
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1952
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1952
  */
 
 import { readFileSync, promises as fs } from 'node:fs';

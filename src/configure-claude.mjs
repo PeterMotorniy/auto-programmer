@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * `configure-claude` — reusable bin that resets Hive-Mind's quiet,
+ * `configure-claude` — reusable bin that resets Auto-Programmer's quiet,
  * deterministic Claude Code defaults (env, settings, attribution,
  * permissions.defaultMode, and the disallowedTools block-list) in a
  * target `settings.json`, or verifies that they are already in place.
  *
  * Users and system administrators can run this manually after installing
- * `@link-assistant/hive-mind` to reset Claude Code configuration. Docker
+ * `auto-programmer` to reset Claude Code configuration. Docker
  * images invoke this published bin after npm release, so the image baseline
  * stays in lock-step with the package users install.
  *

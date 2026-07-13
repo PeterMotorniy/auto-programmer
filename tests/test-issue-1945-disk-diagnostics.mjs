@@ -17,8 +17,8 @@
  *
  * Run with: node tests/test-issue-1945-disk-diagnostics.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1945
- * @see https://github.com/link-assistant/hive-mind/issues/1988
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1945
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1988
  */
 
 import assert from 'node:assert/strict';
@@ -142,7 +142,7 @@ await test('buildDiskMarker after_agent shape includes deltaBytes', () => {
 await test('parseDiskMarkers round-trips both phases out of a log haystack', () => {
   const log = [
     '[2026-06-19T10:00:00Z] 🔧 Raw command executed:',
-    '[2026-06-19T10:00:01Z]    /solve https://github.com/link-assistant/hive-mind/issues/1945',
+    '[2026-06-19T10:00:01Z]    /solve https://github.com/PeterMotorniy/auto-programmer/issues/1945',
     buildDiskMarker({ phase: DISK_PHASE_AFTER_CLONE, bytes: 12 * 1024 ** 3, path: '/tmp/foo' }),
     '[2026-06-19T10:30:00Z] ⏳ Executing...',
     buildDiskMarker({

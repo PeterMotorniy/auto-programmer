@@ -117,7 +117,7 @@ await test('Locale catalogues use deeper lino nesting without breaking existing 
   assert.ok(source.includes('\n      general\n        guidelines\n          header "General guidelines."\n          body """'), 'expected prompt system keys to use deeper general/guidelines grouping');
   assert.strictEqual(t('error'), 'Error');
   assert.strictEqual(t('error.invalid_github_url'), 'Error: Invalid GitHub URL format');
-  assert.strictEqual(t('telegram.help_title'), '🤖 *SwarmMindBot Help*');
+  assert.strictEqual(t('telegram.help_title'), '🤖 *AutoProgrammerBot Help*');
   assert.strictEqual(t('telegram.help.solve.alias.detail'), 'Tool aliases imply `--tool <tool>`: `/codex <github-url>` equals `/solve <github-url> --tool codex`');
   assert.strictEqual(t('telegram.help.solve.alias_detail'), 'Tool aliases imply `--tool <tool>`: `/codex <github-url>` equals `/solve <github-url> --tool codex`');
 });

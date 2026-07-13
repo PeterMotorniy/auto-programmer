@@ -3,9 +3,9 @@
 /**
  * Unit Tests: Issue #1769 - cancelled CI rerun failure must not wait forever.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1769
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1769
  */
 
 import { readFileSync } from 'node:fs';

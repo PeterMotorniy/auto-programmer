@@ -17,7 +17,7 @@
  *
  * The flag is purely a Telegram bot concern; downstream commands never see it.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/594
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/594
  */
 
 import { lt, resolveLimitLocale } from './limits-i18n.lib.mjs';

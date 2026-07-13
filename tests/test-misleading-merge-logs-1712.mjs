@@ -25,8 +25,8 @@
  *
  * Run with: node tests/test-misleading-merge-logs-1712.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1712
- * @see https://github.com/link-assistant/hive-mind/issues/1480 (race condition wait that this
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1712
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1480 (race condition wait that this
  *      case study sits on top of — that fix was correct, but the wording wasn't)
  */
 

@@ -67,8 +67,8 @@ async function simulateForkedPRError() {
 async function simulateNormalPRError() {
   const isForkPR = false;
   const prNumber = 123;
-  const owner = 'link-assistant';
-  const repo = 'hive-mind';
+  const owner = 'PeterMotorniy';
+  const repo = 'auto-programmer';
   const branchName = 'issue-123-abcd1234';
   const tempDir = '/tmp/test-directory';
   const errorOutput = "fatal: A branch named 'issue-123-abcd1234' already exists.";

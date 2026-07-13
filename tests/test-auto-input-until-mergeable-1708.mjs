@@ -41,9 +41,9 @@
  * Together these assertions form the safety contract called out in R4
  * of the issue: "should not break any existing features".
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1708
- * @see https://github.com/link-assistant/hive-mind/issues/817
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1708
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/817
  */
 
 import { SOLVE_OPTION_DEFINITIONS as yargsOptions } from '../src/solve.config.lib.mjs';

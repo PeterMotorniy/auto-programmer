@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -141,21 +141,6 @@ runTest('Auto-init failure provides actionable guidance', () => {
   const repoSetupContent = readFileSync(join(srcDir, 'solve.repo-setup.lib.mjs'), 'utf-8');
   assert(repoSetupContent.includes('AUTO-INIT FAILED'), 'Should show AUTO-INIT FAILED when initialization fails');
   assert(repoSetupContent.includes('Empty repository auto-initialization failed'), 'Should throw descriptive error on auto-init failure');
-});
-
-// =============================================
-// Test 12: Case study documentation exists
-// =============================================
-runTest('Case study documentation created for issue #1230', () => {
-  const caseStudyDir = join(__dirname, '..', 'docs', 'case-studies', 'issue-1230');
-  const readmeContent = readFileSync(join(caseStudyDir, 'README.md'), 'utf-8');
-  assert(readmeContent.includes('Empty Repository Branch Creation Failure'), 'Case study should describe the empty repo branch creation failure');
-  assert(readmeContent.includes('Root Cause Analysis'), 'Case study should include root cause analysis');
-  assert(readmeContent.includes('--auto-init-repository'), 'Case study should reference the new option');
-
-  // Verify the solve log is saved
-  const logContent = readFileSync(join(caseStudyDir, 'solve-log.txt'), 'utf-8');
-  assert(logContent.includes('BRANCH CREATION FAILED'), 'Solve log should contain the original error');
 });
 
 // =============================================

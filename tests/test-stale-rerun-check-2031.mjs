@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression tests for issue #2031: an obsolete failed check-run must not
  * restart the AI when GitHub says the live PR is CLEAN and MERGEABLE.

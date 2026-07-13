@@ -328,7 +328,7 @@ function detectChanges() {
   setOutput('workflow', workflowChanged ? 'true' : 'false');
 
   // Detect docker-related changes
-  // Note: ubuntu-24-server-install.sh was removed in issue #1394 - now using pinned konard/box base image
+  // Note: ubuntu-24-server-install.sh was removed in issue #1394 - now using pinned petermotorniy/box base image
   const dockerPattern = /^(Dockerfile|Dockerfile\.dind|coolify\/Dockerfile|\.dockerignore)$/;
   const dockerChanged = changedFiles.some(file => dockerPattern.test(file));
   setOutput('docker', dockerChanged ? 'true' : 'false');

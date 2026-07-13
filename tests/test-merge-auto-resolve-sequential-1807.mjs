@@ -9,7 +9,7 @@
  *
  * Run with: node tests/test-merge-auto-resolve-sequential-1807.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1807
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1807
  */
 
 import assert from 'node:assert/strict';

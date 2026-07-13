@@ -22,8 +22,8 @@
  *
  * Run with: node tests/test-false-positive-iteration-count-1503.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1503
- * @see https://github.com/link-assistant/hive-mind/issues/1480 (related: multi-layer defense)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1503
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1480 (related: multi-layer defense)
  */
 
 // ANSI color codes for terminal output

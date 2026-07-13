@@ -4,7 +4,7 @@
  * Test suite for git identity validation functions
  * Tests git.lib.mjs checkGitIdentity function
  *
- * Issue: https://github.com/link-assistant/hive-mind/issues/1131
+ * Issue: https://github.com/PeterMotorniy/auto-programmer/issues/1131
  * This test validates the fix for "fatal: empty ident name" errors
  */
 

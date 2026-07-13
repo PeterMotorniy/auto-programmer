@@ -676,10 +676,10 @@ await runAsyncTest('handler excludes own comments when excludeOwnComments is tru
   const mock$ = (strings, ...values) => {
     const full = Array.isArray(strings) ? strings.reduce((acc, s, i) => acc + s + (values[i] !== undefined ? String(values[i]) : ''), '') : String(strings);
     if (full.includes('gh api user')) {
-      return Promise.resolve({ stdout: 'konard\n' });
+      return Promise.resolve({ stdout: 'petermotorniy\n' });
     }
     const comments = JSON.stringify([
-      { id: 101, body: 'please fix the typo', created_at: '2026-01-01T00:00:00Z', user: 'konard' },
+      { id: 101, body: 'please fix the typo', created_at: '2026-01-01T00:00:00Z', user: 'petermotorniy' },
       { id: 102, body: 'actual feedback', created_at: '2026-01-02T00:00:00Z', user: 'alice' },
     ]);
     return Promise.resolve({ stdout: comments });
@@ -719,10 +719,10 @@ await runAsyncTest('handler keeps own comments when excludeOwnComments is false'
   const mock$ = (strings, ...values) => {
     const full = Array.isArray(strings) ? strings.reduce((acc, s, i) => acc + s + (values[i] !== undefined ? String(values[i]) : ''), '') : String(strings);
     if (full.includes('gh api user')) {
-      return Promise.resolve({ stdout: 'konard\n' });
+      return Promise.resolve({ stdout: 'petermotorniy\n' });
     }
     const comments = JSON.stringify([
-      { id: 201, body: 'talking to myself', created_at: '2026-01-01T00:00:00Z', user: 'konard' },
+      { id: 201, body: 'talking to myself', created_at: '2026-01-01T00:00:00Z', user: 'petermotorniy' },
       { id: 202, body: 'feedback from other', created_at: '2026-01-02T00:00:00Z', user: 'alice' },
     ]);
     return Promise.resolve({ stdout: comments });

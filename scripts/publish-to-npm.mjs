@@ -33,7 +33,7 @@ import { readFileSync, appendFileSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 import { detectPublishFailure, isNonRetryableFailure, buildAuthFailureGuidance } from './publish-failure-classifier.mjs';
 
-export const PACKAGE_NAME = '@link-assistant/hive-mind';
+export const PACKAGE_NAME = 'auto-programmer';
 const DEFAULT_MAX_RETRIES = 3;
 const DEFAULT_RETRY_DELAY_MS = 10000; // 10 seconds
 

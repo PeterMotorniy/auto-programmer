@@ -104,7 +104,7 @@ await test('checkForExistingComment paginates PR comments before applying sessio
     return { code: 0, stdout: JSON.stringify(returnedBodies), stderr: '' };
   };
 
-  const hasExistingReadyComment = await checkForExistingComment('link-assistant', 'hive-mind', 1643, signature, false, mockCommandRunner);
+  const hasExistingReadyComment = await checkForExistingComment('PeterMotorniy', 'auto-programmer', 1643, signature, false, mockCommandRunner);
 
   assert(capturedCommands.length === 1, 'expected exactly one gh api command');
   assert(capturedCommands[0].includes('--paginate'), 'comment query must request all pages with --paginate');

@@ -11,7 +11,7 @@ console.log('🧪 Testing archived repository filtering...\n');
 
 // Test case 1: Fetch issues from a known archived repository
 console.log('📋 Test 1: Checking if a repository is archived');
-const testRepoOwner = 'konard';
+const testRepoOwner = 'petermotorniy';
 const testRepoName = 'test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5';
 
 try {

@@ -18,7 +18,7 @@
  * - buildClaudeResumeCommand: Generate `(cd ... && claude --resume ...)` command
  * - buildClaudeInitialCommand: Generate `(cd ... && claude ...)` command for new sessions
  *
- * Related issue: https://github.com/link-assistant/hive-mind/issues/942
+ * Related issue: https://github.com/PeterMotorniy/auto-programmer/issues/942
  */
 
 /**

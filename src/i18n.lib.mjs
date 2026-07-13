@@ -1,4 +1,4 @@
-// i18n module for hive-mind.
+// i18n module for auto-programmer.
 // - Translation files live in src/locales/<locale>.lino and are stored
 //   in Links Notation, parsed and resolved via lino-i18n.
 // - Supported locales: en (default fallback), ru, zh, hi.

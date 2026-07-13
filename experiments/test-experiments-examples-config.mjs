@@ -9,7 +9,7 @@
  * 5. Disable both folders
  * 6. Custom folder paths
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1199
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1199
  */
 
 // Use use-m to load modules

@@ -14,7 +14,7 @@
  * (interactive-mode.lib.mjs) to ensure all text is valid before
  * JSON serialization or external API calls.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1324
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1324
  * @see https://www.rfc-editor.org/rfc/rfc8259#section-7
  * @module unicode-sanitization
  */

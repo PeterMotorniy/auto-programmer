@@ -8,7 +8,7 @@
  *
  * Run with: node tests/github-issue-auto-close.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1895
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1895
  */
 
 import assert from 'node:assert/strict';

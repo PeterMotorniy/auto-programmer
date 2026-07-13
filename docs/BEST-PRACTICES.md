@@ -1,35 +1,35 @@
-# Best Practices for AI-Driven Development (languages: en • [zh](BEST-PRACTICES.zh.md) • [hi](BEST-PRACTICES.hi.md) • [ru](BEST-PRACTICES.ru.md))
+# Лучшие практики AI-driven разработки
 
-This document describes general best practices for working effectively with Hive Mind and AI-driven development workflows. It covers universal prompting strategies, issue writing guidelines, architecture principles, and links to CI/CD standards.
+Этот документ описывает общие лучшие практики для эффективной работы с Auto Programmer и AI-driven рабочими процессами разработки. Он охватывает универсальные стратегии промптинга, руководства по написанию задач, принципы архитектуры и ссылки на стандарты CI/CD.
 
-## Table of Contents
+## Содержание
 
-- [Why Best Practices Matter](#why-best-practices-matter)
-- [Universal Prompts](#universal-prompts)
-- [Writing Good Issues](#writing-good-issues)
-- [Architecture Improvement](#architecture-improvement)
-- [CI/CD Best Practices](#cicd-best-practices)
-- [Using Subagents](#using-subagents)
-- [References](#references)
+- [Почему важны лучшие практики](#почему-важны-лучшие-практики)
+- [Универсальные промпты](#универсальные-промпты)
+- [Написание хороших задач](#написание-хороших-задач)
+- [Улучшение архитектуры](#улучшение-архитектуры)
+- [Лучшие практики CI/CD](#лучшие-практики-cicd)
+- [Использование субагентов](#использование-субагентов)
+- [Ссылки](#ссылки)
 
-## Why Best Practices Matter
+## Почему важны лучшие практики
 
-Hive Mind's quality depends heavily on:
+Качество Auto Programmer во многом зависит от:
 
-1. **Clear issue requirements** — Ambiguous issues produce ambiguous solutions
-2. **Strong CI/CD pipelines** — AI solvers iterate until all checks pass, guaranteeing quality
-3. **Good prompting** — Universal prompts help AI do deep analysis and avoid common mistakes
-4. **Architecture discipline** — Consistent code structure is easier for AI to navigate and extend
+1. **Чётких требований к задачам** — Неоднозначные задачи дают неоднозначные решения
+2. **Надёжных CI/CD-пайплайнов** — AI-решатели итерируют пока все проверки не пройдут, гарантируя качество
+3. **Хорошего промптинга** — Универсальные промпты помогают AI делать глубокий анализ и избегать распространённых ошибок
+4. **Архитектурной дисциплины** — Последовательная структура кода проще для AI для навигации и расширения
 
-Each of these layers compounds: good requirements + strong CI/CD + good prompts = consistently excellent automated solutions.
+Каждый из этих слоёв усиливает другие: хорошие требования + надёжный CI/CD + хорошие промпты = стабильно отличные автоматизированные решения.
 
-## Universal Prompts
+## Универсальные промпты
 
-The following prompts can be added as comments to any GitHub issue or pull request to guide the AI solver's behavior.
+Следующие промпты можно добавлять как комментарии к любой задаче или pull request на GitHub для управления поведением AI-решателя.
 
-### Deep Analysis Bug Prompt
+### Промпт глубокого анализа ошибки
 
-Use this when a bug needs thorough investigation before a fix is attempted:
+Используйте, когда ошибка требует тщательного изучения перед попыткой исправления:
 
 ```
 Please perform a deep case study for this issue:
@@ -42,9 +42,9 @@ Please perform a deep case study for this issue:
 7. Verify CI/CD checks pass before finalizing
 ```
 
-### Deep Analysis Feature Prompt
+### Промпт глубокого анализа функциональности
 
-Use this when a feature request needs research and design before implementation:
+Используйте, когда запрос функциональности требует исследования и дизайна перед реализацией:
 
 ```
 Please perform a deep analysis for this feature request:
@@ -57,9 +57,9 @@ Please perform a deep analysis for this feature request:
 7. Verify all CI/CD checks pass before finalizing
 ```
 
-### Universal Validation Prompt
+### Универсальный промпт валидации
 
-Add this as a comment before finalizing any solution to ensure nothing is missed:
+Добавьте как комментарий перед финализацией любого решения, чтобы ничего не упустить:
 
 ```
 Before marking this complete, please verify:
@@ -73,9 +73,9 @@ Before marking this complete, please verify:
 8. The changeset (if required) is present and accurate
 ```
 
-### Plan Mode Prompt
+### Промпт режима планирования
 
-Use this when you want the AI to propose a plan before writing any code:
+Используйте, когда хотите, чтобы AI предложил план перед написанием кода:
 
 ```
 Please enter plan mode for this issue:
@@ -88,9 +88,9 @@ Please enter plan mode for this issue:
 7. Wait for approval before writing any code
 ```
 
-### Maximum Power Prompt
+### Промпт максимальной мощности
 
-Use this for complex issues where full AI capability is needed:
+Используйте для сложных задач, где требуются все возможности AI:
 
 ```
 Solve this issue using maximum thoroughness:
@@ -103,25 +103,25 @@ Solve this issue using maximum thoroughness:
 - Leave no stone unturned
 ```
 
-## Writing Good Issues
+## Написание хороших задач
 
-Good issue requirements are the foundation of quality AI solutions. Study closed issues and merged PRs in this repository for examples.
+Хорошие требования к задачам — это основа качественных AI-решений. Изучайте закрытые задачи и слитые PR в этом репозитории для примеров.
 
-### Issue Writing Checklist
+### Чеклист для написания задач
 
-- [ ] **Clear problem statement** — What is broken or missing? What is the expected vs. actual behavior?
-- [ ] **Reproduction steps** — How can the problem be reliably reproduced?
-- [ ] **Context** — Which files, functions, or components are involved? Link to them.
-- [ ] **Acceptance criteria** — What specific conditions define "done"? List them explicitly.
-- [ ] **Examples** — Include code snippets, error messages, or screenshots as evidence.
-- [ ] **Constraints** — Are there things the solution must NOT do (e.g., must not break X, must not add a dependency)?
-- [ ] **Priority** — How urgent is this? What is the impact if left unfixed?
+- [ ] **Чёткое описание проблемы** — Что сломано или отсутствует? Какое ожидаемое и фактическое поведение?
+- [ ] **Шаги воспроизведения** — Как надёжно воспроизвести проблему?
+- [ ] **Контекст** — Какие файлы, функции или компоненты задействованы? Дайте ссылки на них.
+- [ ] **Критерии приёмки** — Какие конкретные условия определяют «сделано»? Перечислите их явно.
+- [ ] **Примеры** — Включите фрагменты кода, сообщения об ошибках или скриншоты в качестве доказательств.
+- [ ] **Ограничения** — Есть ли вещи, которые решение НЕ должно делать (например, не должно сломать X, не должно добавлять зависимость)?
+- [ ] **Приоритет** — Насколько срочно это? Какой будет эффект если оставить неисправленным?
 
-### Issue Requirement Patterns from This Repository
+### Паттерны требований к задачам из этого репозитория
 
-Based on successfully solved issues in this repository:
+На основе успешно решённых задач в этом репозитории:
 
-**For bugs:**
+**Для ошибок:**
 
 ```
 ## Problem
@@ -141,7 +141,7 @@ Based on successfully solved issues in this repository:
 - [ ] All CI/CD checks pass
 ```
 
-**For features:**
+**Для функциональностей:**
 
 ```
 ## Goal
@@ -161,9 +161,9 @@ Based on successfully solved issues in this repository:
 - [ ] All CI/CD checks pass
 ```
 
-## Architecture Improvement
+## Улучшение архитектуры
 
-To improve the architecture of a codebase using AI, use this prompt referencing the Code Architecture Principles:
+Для улучшения архитектуры кодовой базы с помощью AI используйте этот промпт, ссылающийся на принципы архитектуры кода:
 
 ```
 Please analyze this codebase against the architecture principles at:
@@ -183,61 +183,61 @@ Focus especially on:
 - Explicit interfaces and minimal coupling
 ```
 
-### Key Architecture Principles Summary
+### Краткое изложение ключевых архитектурных принципов
 
-For deeper guidance on writing maintainable code, see the [Code Architecture Principles](https://github.com/link-foundation/code-architecture-principles), which covers:
+Для более глубокого руководства по написанию поддерживаемого кода смотрите [Принципы архитектуры кода](https://github.com/link-foundation/code-architecture-principles), которые охватывают:
 
-**Universal Principles:**
+**Универсальные принципы:**
 
-- **Modularity**: Split systems into small, testable parts
-- **Separation of concerns**: High cohesion, low coupling
-- **Abstraction**: Hide implementation details behind stable interfaces
-- **Immutability**: Prefer creating new values over mutation
-- **Fail fast**: Validate input at system boundaries
+- **Модульность**: Разделяйте системы на небольшие, тестируемые части
+- **Разделение ответственности**: Высокая связность, низкая зависимость
+- **Абстракция**: Скрывайте детали реализации за стабильными интерфейсами
+- **Неизменяемость**: Предпочитайте создание новых значений вместо мутации
+- **Отказывать быстро**: Проверяйте входные данные на границах системы
 
-**Key Recommendations:**
+**Ключевые рекомендации:**
 
-1. Design APIs that are obvious to use correctly and difficult to misuse
-2. Expose functionality to enable extensibility rather than hiding internals
-3. Make invalid states impossible through thoughtful data modeling
-4. Relocate side effects to system edges; keep core logic pure
-5. Use type systems to model valid data shapes
-6. Write small, focused functions that do one thing well
-7. Prefer composition over inheritance and complexity
+1. Проектируйте API, которые очевидно правильно использовать и трудно использовать неправильно
+2. Открывайте функциональность для расширяемости, а не прячьте внутренности
+3. Делайте невалидные состояния невозможными через продуманное моделирование данных
+4. Переносите побочные эффекты на края системы; сохраняйте чистоту основной логики
+5. Используйте системы типов для моделирования допустимых форм данных
+6. Пишите небольшие, сфокусированные функции, делающие одно хорошо
+7. Предпочитайте композицию наследованию и сложности
 
-## CI/CD Best Practices
+## Лучшие практики CI/CD
 
-CI/CD pipelines are the backbone of AI-driven development quality. When checks are enforced:
+CI/CD-пайплайны — основа качества AI-driven разработки. Когда проверки применяются:
 
-- AI solvers are **forced to iterate** until all tests pass
-- Code quality is **guaranteed** regardless of human or AI authorship
-- Issues are caught **early** before reaching production
+- AI-решатели **вынуждены итерировать** пока все тесты не пройдут
+- Качество кода **гарантировано** независимо от того, человек или AI его написал
+- Проблемы выявляются **рано** до попадания в production
 
-See **[CI-CD-BEST-PRACTICES.md](./CI-CD-BEST-PRACTICES.md)** for the full guide, including:
+Смотрите **[CI-CD-BEST-PRACTICES.md](./CI-CD-BEST-PRACTICES.md)** для полного руководства, включая:
 
-- Running checks only on relevant file changes (save CI costs)
-- File size limits and fast-fail job ordering
-- Automated formatting, linting, and static analysis
-- Changeset-based versioning without merge conflicts
-- Fresh merge simulation to validate the actual merged result
-- OIDC trusted publishing without long-lived secrets
+- Запуск проверок только при изменениях релевантных файлов (экономия затрат CI)
+- Ограничения размера файлов и порядок заданий с ранним отказом
+- Автоматизированное форматирование, линтинг и статический анализ
+- Версионирование на основе Changeset без конфликтов слияния
+- Симуляция свежего слияния для проверки фактического результата слияния
+- Доверенная публикация OIDC без долгосрочных секретов
 
-Ready-to-use templates are available for JavaScript, Rust, Python, Go, C#, and Java.
+Готовые к использованию шаблоны доступны для JavaScript, Rust, Python, Go, C# и Java.
 
-## Using Subagents
+## Использование субагентов
 
-Hive Mind can coordinate multiple AI agents working in parallel. Use subagents for:
+Auto Programmer может координировать несколько AI-агентов, работающих параллельно. Используйте субагентов для:
 
-### When to Use Subagents
+### Когда использовать субагентов
 
-- **Independent parallel research** — One agent searches logs while another reads source code
-- **Protecting the main context** — Offload large file reads or long searches to subagents
-- **Specialized tasks** — Use a dedicated agent for documentation, another for tests
-- **Cross-validation** — Have multiple agents propose solutions independently, then compare
+- **Независимые параллельные исследования** — Один агент ищет логи, пока другой читает исходный код
+- **Защита основного контекста** — Передавайте большие чтения файлов или длинные поиски субагентам
+- **Специализированные задачи** — Используйте выделенного агента для документации, другого для тестов
+- **Перекрёстная проверка** — Пусть несколько агентов предлагают решения независимо, затем сравните
 
-### Subagent Patterns
+### Паттерны субагентов
 
-**Parallel research:**
+**Параллельные исследования:**
 
 ```
 Launch subagents concurrently for:
@@ -247,7 +247,7 @@ Launch subagents concurrently for:
 Then synthesize findings before implementing.
 ```
 
-**Staged work:**
+**Поэтапная работа:**
 
 ```
 Stage 1 (research subagent): Collect and analyze all relevant data
@@ -256,7 +256,7 @@ Stage 3 (implementation): Write and test the solution
 Stage 4 (validation subagent): Run all checks and verify requirements
 ```
 
-**Checklist iteration:**
+**Итерация по чеклисту:**
 
 ```
 Maintain a checklist of all requirements from the issue.
@@ -265,9 +265,9 @@ Iterate until the checklist is fully complete and all CI/CD checks pass.
 Never mark a task done until it is verified working.
 ```
 
-## References
+## Ссылки
 
-- [Code Architecture Principles](https://github.com/link-foundation/code-architecture-principles)
-- [CI/CD Best Practices](./CI-CD-BEST-PRACTICES.md)
-- [Contributing Guidelines](./CONTRIBUTING.md)
-- [Configuration Options](./CONFIGURATION.md)
+- [Принципы архитектуры кода](https://github.com/link-foundation/code-architecture-principles)
+- [Лучшие практики CI/CD](./CI-CD-BEST-PRACTICES.md)
+- [Руководство по участию в разработке](./CONTRIBUTING.md)
+- [Параметры конфигурации](./CONFIGURATION.md)

@@ -10,7 +10,7 @@
  * signal is forwarded, so even a fast SIGKILL race still finds the flag when
  * the completion message is formatted.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/2052
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2052
  */
 
 import { formatSessionCompletionMessage } from '../src/work-session-formatting.lib.mjs';
@@ -40,12 +40,12 @@ assert(!/finished successfully/.test(killedByUser), 'user-stopped message NEVER 
 // --- SIGTERM (143) after a user stop → "stopped by user" ----------------------
 const termByUser = formatSessionCompletionMessage({
   ...baseArgs,
-  sessionInfo: { isolationBackend: 'docker', stopRequestedByUser: true, stopRequestedBy: '@konard' },
+  sessionInfo: { isolationBackend: 'docker', stopRequestedByUser: true, stopRequestedBy: '@petermotorniy' },
   statusResult: { status: 'terminated', exitCode: 143 },
   exitCode: 143,
 });
 assert(termByUser.startsWith('🛑'), 'user-stopped SIGTERM message starts with 🛑');
-assert(/@konard/.test(termByUser), 'user-stopped message includes the requester when known');
+assert(/@petermotorniy/.test(termByUser), 'user-stopped message includes the requester when known');
 
 // --- Without the flag, a SIGKILL is still an OOM/forced kill ------------------
 const oomKill = formatSessionCompletionMessage({

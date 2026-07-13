@@ -1,7 +1,7 @@
 /**
  * Shared helpers for destructive CLI confirmations.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1930
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1930
  */
 
 import { createInterface } from 'node:readline/promises';

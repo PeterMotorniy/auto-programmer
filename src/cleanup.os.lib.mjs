@@ -11,7 +11,7 @@
  * depend on `use-m` / `command-stream` being reachable, except for the optional
  * `$ --status` session query which reuses isolation-runner.lib.mjs.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1848
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1848
  */
 
 import fs from 'node:fs';

@@ -61,9 +61,9 @@ const shouldTrigger = [
   'coolify/Dockerfile',
   '.dockerignore',
   // Helm charts
-  'helm/hive-mind/Chart.yaml',
-  'helm/hive-mind/values.yaml',
-  'helm/hive-mind/templates/deployment.yaml',
+  'helm/auto-programmer/Chart.yaml',
+  'helm/auto-programmer/values.yaml',
+  'helm/auto-programmer/templates/deployment.yaml',
   // Prettier/ESLint config
   '.prettierrc',
   '.prettierignore',

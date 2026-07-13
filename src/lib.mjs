@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 
-// Shared library functions for hive-mind project
+// Shared library functions for auto-programmer project
 
 // Try to import reportError and reportWarning from sentry.lib.mjs, but make it optional
 // This allows the module to work even when @sentry/node is not installed

@@ -13,7 +13,7 @@
  *
  * Run with: node tests/test-issue-1780-stop-by-url.mjs
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { extractStopTarget, registerStartStopCommands } from '../src/telegram-start-stop-command.lib.mjs';
@@ -49,8 +49,8 @@ function assertEqual(actual, expected, name) {
   }
 }
 
-const ISSUE_URL = 'https://github.com/link-assistant/hive-mind/issues/1780';
-const PR_URL = 'https://github.com/link-assistant/hive-mind/pull/1781';
+const ISSUE_URL = 'https://github.com/PeterMotorniy/auto-programmer/issues/1780';
+const PR_URL = 'https://github.com/PeterMotorniy/auto-programmer/pull/1781';
 const UUID = '4d934f71-4cdb-4b8c-b474-582116d12c12';
 const OTHER_UUID = 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee';
 

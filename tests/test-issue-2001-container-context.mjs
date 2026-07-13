@@ -10,7 +10,7 @@
  *
  * Run with: node tests/test-issue-2001-container-context.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/2001
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2001
  */
 
 import assert from 'node:assert/strict';

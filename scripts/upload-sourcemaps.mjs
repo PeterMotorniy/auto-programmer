@@ -5,7 +5,7 @@
  * This should be run in CI/CD after a new version is published.
  *
  * Updated for sentry-cli v3.0.0+ which removed the `releases files` command.
- * @see https://github.com/link-assistant/hive-mind/issues/969
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/969
  */
 
 import { execSync } from 'child_process';
@@ -20,7 +20,7 @@ const rootDir = join(__dirname, '..');
 // Read package.json to get version and name
 const packageJson = JSON.parse(readFileSync(join(rootDir, 'package.json'), 'utf8'));
 const version = packageJson.version;
-const projectName = 'hive-mind';
+const projectName = 'auto-programmer';
 const orgName = 'deepassistant';
 
 console.log(`📦 Uploading source maps for ${packageJson.name}@${version}`);
@@ -59,7 +59,7 @@ try {
 
   // Upload source maps using the new sentry-cli 3.0.0+ API
   // Note: The old command `releases files <VERSION> upload-sourcemaps` was removed in sentry-cli 3.0.0
-  // See: https://github.com/link-assistant/hive-mind/issues/969
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/969
   console.log('📤 Uploading source maps...');
 
   // Upload source files from src directory

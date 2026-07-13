@@ -5,8 +5,8 @@
  * hive-cleanup must clean Docker-isolation task containers by session UUID,
  * without falling back to host-wide `docker system prune -f`.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1980
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1980
  */
 
 import assert from 'node:assert/strict';
@@ -38,9 +38,9 @@ const CREATED = '55555555-5555-4555-8555-555555555555';
 
 function dockerPsFixture() {
   return [
-    { ID: 'abc123', Image: 'konard/hive-mind-dind:latest', Names: SUCCESS, State: 'exited', Status: 'Exited (0) 2 hours ago' },
-    { ID: 'def456', Image: 'konard/hive-mind-dind:latest', Names: FAILED, State: 'exited', Status: 'Exited (1) 1 hour ago' },
-    { ID: 'ghi789', Image: 'konard/hive-mind-dind:latest', Names: RUNNING, State: 'running', Status: 'Up 4 minutes' },
+    { ID: 'abc123', Image: 'petermotorniy/auto-programmer-dind:latest', Names: SUCCESS, State: 'exited', Status: 'Exited (0) 2 hours ago' },
+    { ID: 'def456', Image: 'petermotorniy/auto-programmer-dind:latest', Names: FAILED, State: 'exited', Status: 'Exited (1) 1 hour ago' },
+    { ID: 'ghi789', Image: 'petermotorniy/auto-programmer-dind:latest', Names: RUNNING, State: 'running', Status: 'Up 4 minutes' },
     { ID: 'jkl012', Image: 'custom/hive-task:dev', Names: UNKNOWN, State: 'exited', Status: 'Exited (137) 10 minutes ago' },
     { ID: 'pqr678', Image: 'custom/hive-task:dev', Names: CREATED, State: 'created', Status: 'Created' },
     { ID: 'mno345', Image: 'postgres:16', Names: 'unrelated-db', State: 'exited', Status: 'Exited (0) 5 hours ago' },
@@ -52,8 +52,8 @@ function dockerPsFixture() {
 function sessionTasks() {
   return [
     {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       type: 'issue',
       number: 1980,
       sessionId: SUCCESS,
@@ -64,8 +64,8 @@ function sessionTasks() {
       terminal: true,
     },
     {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       type: 'issue',
       number: 1979,
       sessionId: FAILED,
@@ -76,8 +76,8 @@ function sessionTasks() {
       terminal: true,
     },
     {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       type: 'issue',
       number: 1946,
       sessionId: RUNNING,
@@ -187,7 +187,7 @@ test('docker container summary includes session and cleanup context', () => {
 
   assert.ok(summary.includes(FAILED));
   assert.ok(summary.includes('exit 1'));
-  assert.ok(summary.includes('link-assistant/hive-mind issue #1979'));
+  assert.ok(summary.includes('PeterMotorniy/auto-programmer issue #1979'));
   assert.ok(summary.includes(`remove when done: docker rm -f ${FAILED}`));
 });
 

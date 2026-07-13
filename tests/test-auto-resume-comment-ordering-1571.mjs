@@ -4,7 +4,7 @@
  * Test suite for issue #1571: No `solution draft log` and `ready to merge` comments
  * should appear between limit reached and auto resume.
  *
- * Related issue: https://github.com/link-assistant/hive-mind/issues/1571
+ * Related issue: https://github.com/PeterMotorniy/auto-programmer/issues/1571
  *
  * Root cause: When the usage limit is reached with --auto-resume-on-limit-reset enabled,
  * autoContinueWhenLimitResets() spawns a child process but returned immediately without

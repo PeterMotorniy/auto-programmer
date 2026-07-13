@@ -21,7 +21,7 @@
  *
  * The store is dependency-free and fully injectable for unit testing.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import fs from 'node:fs';
@@ -53,7 +53,7 @@ export function resolveBotStateDir(env = process.env, homedir = os.homedir) {
       return '/tmp';
     }
   })();
-  return path.join(home, '.hive-mind', 'state');
+  return path.join(home, '.auto-programmer', 'state');
 }
 
 function toIso(value) {

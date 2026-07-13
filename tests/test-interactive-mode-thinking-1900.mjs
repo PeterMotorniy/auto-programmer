@@ -3,7 +3,7 @@
 /**
  * Regression tests for issue #1900 interactive system events.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { fileURLToPath } from 'url';

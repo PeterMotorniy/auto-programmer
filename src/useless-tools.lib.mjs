@@ -15,7 +15,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 // This module centralises the block-list and provides helpers that both the
 // Docker image baseline and the `solve` runtime use to disable them.
 //
-// Related issue: https://github.com/link-assistant/hive-mind/issues/1627
+// Related issue: https://github.com/PeterMotorniy/auto-programmer/issues/1627
 
 if (typeof globalThis.use === 'undefined') {
   await ensureUseM();
@@ -26,7 +26,7 @@ const path = (await use('path')).default;
 
 /**
  * Built-in Claude Code tools that have no value (and may be harmful) in
- * autonomous headless hive-mind runs. Every entry is a tool name as it
+ * autonomous headless auto-programmer runs. Every entry is a tool name as it
  * appears in the stream-json `tools` array emitted by `claude --verbose`.
  */
 export const USELESS_CLAUDE_BUILTIN_TOOLS = Object.freeze(['AskUserQuestion', 'CronCreate', 'CronDelete', 'CronList', 'EnterPlanMode', 'EnterWorktree', 'ExitPlanMode', 'ExitWorktree', 'Monitor', 'NotebookEdit', 'PushNotification', 'RemoteTrigger', 'ScheduleWakeup']);

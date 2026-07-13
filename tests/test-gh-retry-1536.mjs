@@ -9,7 +9,7 @@
  * - Exponential backoff between retries
  * - Logs stderr to log file on failure (terminal/log parity)
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1536
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1536
  */
 
 import assert from 'assert';
@@ -166,13 +166,13 @@ await test('Returns result on first success (code 0)', async () => {
   const result = await ghCmdRetry(
     () => {
       attempts++;
-      return { stdout: 'konard', stderr: '', code: 0 };
+      return { stdout: 'petermotorniy', stderr: '', code: 0 };
     },
     { delay: 1, label: 'test' }
   );
   assert.strictEqual(attempts, 1);
   assert.strictEqual(result.code, 0);
-  assert.strictEqual(result.stdout, 'konard');
+  assert.strictEqual(result.stdout, 'petermotorniy');
 });
 
 await test('Retries on transient network error in stderr', async () => {

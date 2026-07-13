@@ -11,8 +11,8 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  *   ./protect-branch.mjs <owner>/<repo> <branch-name>
  *
  * Examples:
- *   ./protect-branch.mjs konard/my-repo
- *   ./protect-branch.mjs konard/my-repo main
+ *   ./protect-branch.mjs petermotorniy/my-repo
+ *   ./protect-branch.mjs petermotorniy/my-repo main
  */
 
 // Use use-m to dynamically import modules for cross-runtime compatibility
@@ -30,8 +30,8 @@ if (args.length === 0 || args[0] === '--help' || args[0] === '-h') {
   console.log('Usage: ./protect-branch.mjs <owner>/<repo> [branch-name]');
   console.log('');
   console.log('Examples:');
-  console.log('  ./protect-branch.mjs konard/my-repo');
-  console.log('  ./protect-branch.mjs konard/my-repo main');
+  console.log('  ./protect-branch.mjs petermotorniy/my-repo');
+  console.log('  ./protect-branch.mjs petermotorniy/my-repo main');
   process.exit(0);
 }
 

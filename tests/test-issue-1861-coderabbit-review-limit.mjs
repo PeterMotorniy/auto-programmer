@@ -3,9 +3,9 @@
 /**
  * Unit Tests: Issue #1861 - CodeRabbit review credit limits must not trigger auto-restart.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1861
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1861
  */
 
 import { readFileSync } from 'node:fs';
@@ -78,7 +78,7 @@ test('ordinary GitHub Actions failures remain actionable CI failures', () => {
       type: 'check_run',
       conclusion: 'failure',
       description: 'npm test failed',
-      html_url: 'https://github.com/link-assistant/hive-mind/actions/runs/1',
+      html_url: 'https://github.com/PeterMotorniy/auto-programmer/actions/runs/1',
     }),
     'Expected a normal GitHub Actions failure to remain actionable'
   );

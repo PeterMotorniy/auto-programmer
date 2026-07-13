@@ -74,7 +74,7 @@ const buildExecutionParams = overrides => ({
   systemPrompt: 'Use structured output',
   argv: {
     model: 'qwen',
-    url: 'https://github.com/link-assistant/hive-mind/issues/513',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/513',
     verbose: false,
     ...overrides?.argv,
   },
@@ -160,7 +160,7 @@ await test('executeQwenCommand passes resume session to qwen', async () => {
     argv: {
       model: 'qwen3-coder-plus',
       resume: 'session-existing',
-      url: 'https://github.com/link-assistant/hive-mind/issues/513',
+      url: 'https://github.com/PeterMotorniy/auto-programmer/issues/513',
       verbose: false,
     },
   });
@@ -192,7 +192,7 @@ await test('executeQwenCommand retries retryable errors and preserves session id
   ]);
   const argv = {
     model: 'qwen3-coder-plus',
-    url: 'https://github.com/link-assistant/hive-mind/issues/513',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/513',
     verbose: false,
   };
   const params = buildExecutionParams({ $: fakeDollar, argv });

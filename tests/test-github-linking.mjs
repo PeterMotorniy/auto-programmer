@@ -7,7 +7,7 @@
  * for linking pull requests to issues, and prevents regression of issue #568.
  *
  * References:
- * - Issue #568: https://github.com/link-assistant/hive-mind/issues/568
+ * - Issue #568: https://github.com/PeterMotorniy/auto-programmer/issues/568
  * - PR #558: Missing "Resolves #515" keyword
  * - PR #563: Used "Implements issue #524" which is NOT a GitHub keyword
  */
@@ -76,10 +76,10 @@ const validFormats = [
   { prBody: 'Resolved #44', issueNumber: '44', desc: 'Resolved #N' },
   { prBody: 'Some text here\n\nFixes #515\n\nMore text', issueNumber: '515', desc: 'Fixes #N in middle of text' },
   {
-    prBody: 'Fixes link-assistant/hive-mind#515',
+    prBody: 'Fixes PeterMotorniy/auto-programmer#515',
     issueNumber: '515',
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     desc: 'Fixes owner/repo#N',
   },
   {
@@ -88,10 +88,10 @@ const validFormats = [
     desc: 'Fixes generic owner/repo#N',
   },
   {
-    prBody: 'Resolves https://github.com/link-assistant/hive-mind/issues/515',
+    prBody: 'Resolves https://github.com/PeterMotorniy/auto-programmer/issues/515',
     issueNumber: '515',
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     desc: 'Resolves full URL',
   },
   { prBody: 'Multiple changes\n\n---\n\nResolves #568', issueNumber: '568', desc: 'Resolves #N after separator' },
@@ -140,9 +140,9 @@ console.log('\n📋 Test Suite 5: Issue Number Extraction\n');
 const extractionTests = [
   { prBody: 'Fixes #515', expected: '515', desc: 'Extract from Fixes #N' },
   { prBody: 'Closes #42', expected: '42', desc: 'Extract from Closes #N' },
-  { prBody: 'Resolves link-assistant/hive-mind#568', expected: '568', desc: 'Extract from owner/repo#N' },
+  { prBody: 'Resolves PeterMotorniy/auto-programmer#568', expected: '568', desc: 'Extract from owner/repo#N' },
   {
-    prBody: 'Fixes https://github.com/link-assistant/hive-mind/issues/123',
+    prBody: 'Fixes https://github.com/PeterMotorniy/auto-programmer/issues/123',
     expected: '123',
     desc: 'Extract from full URL',
   },

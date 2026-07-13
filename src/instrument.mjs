@@ -64,7 +64,7 @@ if (!shouldDisableSentry()) {
 
       // Application name
       environment: process.env.NODE_ENV || 'production',
-      release: `hive-mind@${process.env.npm_package_version || version.default}`,
+      release: `auto-programmer@${process.env.npm_package_version || version.default}`,
 
       // Send structured logs to Sentry
       enableLogs: true,
@@ -122,10 +122,10 @@ if (!shouldDisableSentry()) {
       // Transaction name
       beforeTransaction(context) {
         // Customize transaction names to be more meaningful
-        if (context.name && context.name.startsWith('hive-mind')) {
+        if (context.name && context.name.startsWith('auto-programmer')) {
           return context;
         }
-        context.name = `hive-mind.${context.name || 'unknown'}`;
+        context.name = `auto-programmer.${context.name || 'unknown'}`;
         return context;
       },
     });

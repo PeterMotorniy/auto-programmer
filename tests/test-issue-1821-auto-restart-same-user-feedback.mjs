@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Regression test for issue #1821: auto-restart must not hide a human
  * feedback comment just because it was posted by the same GitHub account that
- * is running hive-mind, once the caller knows the AI tool is idle.
+ * is running auto-programmer, once the caller knows the AI tool is idle.
  * Tool-generated comments from that account are filtered by markers instead.
  */
 
@@ -27,12 +27,12 @@ const createFakeGh = ({ prComments, reviewComments = [] }) => {
     calls.push(command);
 
     if (command === 'gh api user --jq .login') {
-      return response('konard\n');
+      return response('petermotorniy\n');
     }
-    if (command === 'gh api repos/link-assistant/formal-ai/issues/222/comments --paginate') {
+    if (command === 'gh api repos/PeterMotorniy/formal-ai/issues/222/comments --paginate') {
       return response(prComments);
     }
-    if (command === 'gh api repos/link-assistant/formal-ai/pulls/222/comments --paginate') {
+    if (command === 'gh api repos/PeterMotorniy/formal-ai/pulls/222/comments --paginate') {
       return response(reviewComments);
     }
 
@@ -48,25 +48,25 @@ const incidentComments = [
   {
     id: 4518895370,
     created_at: '2026-05-22T13:03:59Z',
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: 'Old same-user comment before the check window',
   },
   {
     id: 4518897330,
     created_at: '2026-05-22T13:04:33Z',
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: '## Solution Draft Log\n\nNow working session is ended',
   },
   {
     id: 4518909964,
     created_at: '2026-05-22T13:06:01Z',
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: 'We should not encode raw API data in .lino files as base64, it should be all human readable.',
   },
   {
     id: 4518934890,
     created_at: '2026-05-22T13:08:55Z',
-    user: { login: 'konard' },
+    user: { login: 'petermotorniy' },
     body: '## Auto-restart triggered (iteration 1)\n\nReason: CI failures detected',
   },
   {
@@ -79,7 +79,7 @@ const incidentComments = [
 
 {
   const fakeGh = createFakeGh({ prComments: incidentComments });
-  const result = await checkForNonBotComments('link-assistant', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh, {
+  const result = await checkForNonBotComments('PeterMotorniy', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh, {
     trustAuthenticatedUserComments: true,
   });
 
@@ -91,7 +91,7 @@ const incidentComments = [
 
 {
   const fakeGh = createFakeGh({ prComments: incidentComments });
-  const result = await checkForNonBotComments('link-assistant', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh);
+  const result = await checkForNonBotComments('PeterMotorniy', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh);
 
   assert.equal(result.hasNewComments, false, 'same-account comments must be ignored by default while a tool may still be running');
   assert.deepEqual(result.comments, []);
@@ -101,7 +101,7 @@ const incidentComments = [
   const fakeGh = createFakeGh({
     prComments: incidentComments.filter(comment => comment.id !== 4518909964),
   });
-  const result = await checkForNonBotComments('link-assistant', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh, {
+  const result = await checkForNonBotComments('PeterMotorniy', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh, {
     trustAuthenticatedUserComments: true,
   });
 
@@ -121,7 +121,7 @@ const incidentComments = [
       },
     ],
   });
-  const result = await checkForNonBotComments('link-assistant', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh);
+  const result = await checkForNonBotComments('PeterMotorniy', 'formal-ai', 222, 222, lastCheckTime, false, fakeGh);
 
   assert.equal(result.hasNewComments, true, 'comments from other human users should still be detected by default');
   assert.equal(result.comments.length, 1);

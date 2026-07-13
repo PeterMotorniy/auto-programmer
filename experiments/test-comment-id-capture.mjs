@@ -12,8 +12,8 @@ if (typeof globalThis.use === 'undefined') {
 }
 const { $ } = await use('command-stream');
 
-const OWNER = 'link-assistant';
-const REPO = 'hive-mind';
+const OWNER = 'PeterMotorniy';
+const REPO = 'auto-programmer';
 const PR_NUMBER = 846;
 
 // Simulate the postComment logic from interactive-mode.lib.mjs

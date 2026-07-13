@@ -87,7 +87,7 @@ const testEvents = [
           id: 'toolu_01ABC123',
           name: 'Bash',
           input: {
-            command: 'gh issue view https://github.com/link-assistant/hive-mind/issues/796',
+            command: 'gh issue view https://github.com/PeterMotorniy/auto-programmer/issues/796',
           },
         },
       ],
@@ -108,7 +108,7 @@ const testEvents = [
         {
           type: 'tool_result',
           tool_use_id: 'toolu_01ABC123',
-          content: 'title: Interactive mode\nstate: OPEN\nauthor: konard\nlabels: documentation, enhancement\ncomments: 0\nassignees:\nprojects:\nmilestone:\nnumber: 800\n--\nAdd option `--interactive-mode` for `solve` command...',
+          content: 'title: Interactive mode\nstate: OPEN\nauthor: petermotorniy\nlabels: documentation, enhancement\ncomments: 0\nassignees:\nprojects:\nmilestone:\nnumber: 800\n--\nAdd option `--interactive-mode` for `solve` command...',
         },
       ],
     },

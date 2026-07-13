@@ -24,8 +24,8 @@
  *      and falls through to PR creation, still guarded by branch verification
  *      and the local `git rev-list` commit check.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1829
- * @hive-mind-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1829
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

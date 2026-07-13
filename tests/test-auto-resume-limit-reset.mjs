@@ -5,7 +5,7 @@
  * Tests that when usage limit is reached with auto-resume enabled,
  * the process continues to showSessionSummary() instead of exiting early.
  *
- * Related issue: https://github.com/link-assistant/hive-mind/issues/1054
+ * Related issue: https://github.com/PeterMotorniy/auto-programmer/issues/1054
  *
  * Root cause of bug: When limitReached=true, success=false (is_error=true),
  * so code entered the failure branch and called safeExit(1) before reaching

@@ -15,7 +15,7 @@ const branchLabel = branch => {
 
 export function buildReplacementBranchSafetyDescription({ uniqueBranches = [], branchCount = 0, failureOutput = '' } = {}) {
   if (failureOutput) {
-    return `Local Git branch reachability check failed (${summarizeGitHubCompareFailure(failureOutput)}), so Hive Mind could not prove all replacement repository branches are preserved upstream.`;
+    return `Local Git branch reachability check failed (${summarizeGitHubCompareFailure(failureOutput)}), so Auto Programmer could not prove all replacement repository branches are preserved upstream.`;
   }
 
   if (uniqueBranches.length > 0) {
@@ -55,7 +55,7 @@ const parseReplacementRefs = output =>
  * only in the rare fork-replacement recovery path.
  */
 export async function checkReplacementRepositoryBranchSafety({ $, owner, repo, existingRepository, tempRoot = os.tmpdir() }) {
-  const tempDir = await fs.mkdtemp(path.join(tempRoot, 'hive-mind-fork-replacement-'));
+  const tempDir = await fs.mkdtemp(path.join(tempRoot, 'auto-programmer-fork-replacement-'));
 
   try {
     const init = await runStep($({ cwd: tempDir })`git init -q 2>&1`, 'git init failed');

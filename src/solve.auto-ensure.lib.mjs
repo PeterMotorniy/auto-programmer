@@ -8,7 +8,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  *
  * Extracted from solve.mjs to keep files under 1500 lines.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1383
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1383
  */
 
 // Check if use is already defined globally (when imported from solve.mjs)

@@ -31,7 +31,7 @@ echo ""
 echo "Testing 'configure-claude' global command..."
 timeout 10s configure-claude --help
 CONFIGURE_CLAUDE_TEST_DIR="$(mktemp -d)"
-trap 'rm -rf "$CONFIGURE_CLAUDE_TEST_DIR"; npm unlink -g @link-assistant/hive-mind || true' EXIT
+trap 'rm -rf "$CONFIGURE_CLAUDE_TEST_DIR"; npm unlink -g auto-programmer || true' EXIT
 timeout 10s configure-claude --settings-path "$CONFIGURE_CLAUDE_TEST_DIR/settings.json"
 timeout 10s configure-claude --settings-path "$CONFIGURE_CLAUDE_TEST_DIR/settings.json" --verify
 echo "'configure-claude' global command works"
@@ -53,4 +53,4 @@ echo "'hive-telegram-bot --dry-run' works"
 
 echo ""
 echo "Cleaning up global link..."
-npm unlink -g @link-assistant/hive-mind || true
+npm unlink -g auto-programmer || true

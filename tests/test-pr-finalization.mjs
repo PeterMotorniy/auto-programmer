@@ -10,7 +10,7 @@
  * solve.results.lib.mjs (hasPRTitlePlaceholder, hasPRBodyPlaceholder, buildPRNotUpdatedHint).
  *
  * References:
- * - Issue #1162: https://github.com/link-assistant/hive-mind/issues/1162
+ * - Issue #1162: https://github.com/PeterMotorniy/auto-programmer/issues/1162
  * - PR #132 in bpmbpm/rdf-grapher that remained with [WIP] prefix
  */
 

@@ -326,7 +326,7 @@ function stripMarkdown(text) {
     locale: 'ru',
     chatId: -1002975819706,
     chatType: 'supergroup',
-    chatTitle: 'Pull Request from Hive Mind',
+    chatTitle: 'Pull Request from Auto Programmer',
     topicId: 32470,
     solveEnabled: true,
     taskEnabled: true,

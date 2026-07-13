@@ -4,7 +4,7 @@
  * Integration tests for issue #1959 — the base-branch existence gate that runs
  * against the real GitHub API via `gh`.
  *
- * Verifies, against the public link-assistant/hive-mind repository:
+ * Verifies, against the public PeterMotorniy/auto-programmer repository:
  *   1. checkBaseBranchExists() returns {exists:true} for a branch that exists
  *      (the default branch "main").
  *   2. checkBaseBranchExists() returns {exists:false} for a branch that does
@@ -17,8 +17,8 @@
  *   HIVE_MIND_RUN_INTEGRATION=1 node tests/test-base-branch-existence-integration.mjs
  *   (or `node scripts/run-tests.mjs --suite integration`).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1959
- * @hive-mind-integration
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1959
+ * @auto-programmer-integration
  */
 
 import { checkBaseBranchExists, validateGitHubEntityExistence } from '../src/github-entity-validation.lib.mjs';
@@ -26,8 +26,8 @@ import { skipUnlessIntegration } from './integration-guard.mjs';
 
 skipUnlessIntegration(import.meta.url);
 
-const OWNER = 'link-assistant';
-const REPO = 'hive-mind';
+const OWNER = 'PeterMotorniy';
+const REPO = 'auto-programmer';
 const MISSING_BRANCH = 'this-branch-definitely-does-not-exist-1959';
 
 let passed = 0;

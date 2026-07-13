@@ -86,14 +86,14 @@ assert(formatted.includes('Repo: `owner/repo`'), 'includes repository descriptio
 console.log('\n--- resolveTerminalWatchRepository() ---');
 const resolved = await resolveTerminalWatchRepository({
   sessionInfo: null,
-  statusResult: { command: `solve https://github.com/link-assistant/hive-mind/issues/467 --tool codex` },
+  statusResult: { command: `solve https://github.com/PeterMotorniy/auto-programmer/issues/467 --tool codex` },
   parseGitHubUrl: url => {
     const match = url.match(/github\.com\/([^/]+)\/([^/]+)/);
     return match ? { valid: true, owner: match[1], repo: match[2] } : { valid: false };
   },
-  detectRepositoryVisibility: async (owner, repo) => ({ visibility: 'public', isPublic: owner === 'link-assistant' && repo === 'hive-mind' }),
+  detectRepositoryVisibility: async (owner, repo) => ({ visibility: 'public', isPublic: owner === 'PeterMotorniy' && repo === 'auto-programmer' }),
 });
-assertEqual(resolved.repoDescription, 'link-assistant/hive-mind', 'derives repo from $ --status command when in-memory tracking is missing');
+assertEqual(resolved.repoDescription, 'PeterMotorniy/auto-programmer', 'derives repo from $ --status command when in-memory tracking is missing');
 assertEqual(resolved.repoVisibility?.isPublic, true, 'returns detected visibility');
 
 console.log('\n--- watchTerminalLogSession() ---');

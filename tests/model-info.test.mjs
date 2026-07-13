@@ -10,7 +10,7 @@
  *
  * Run with: node tests/model-info.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1225
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1225
  */
 
 import assert from 'node:assert/strict';

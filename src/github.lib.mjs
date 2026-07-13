@@ -10,7 +10,7 @@ import { batchCheckPullRequestsForIssues as batchCheckPRs, batchCheckArchivedRep
 import { isSafeToken, isHexInSafeContext, getGitHubTokensFromFiles, getGitHubTokensFromCommand, sanitizeOutput, sanitizeLogContent } from './token-sanitization.lib.mjs';
 export { isSafeToken, isHexInSafeContext, getGitHubTokensFromFiles, getGitHubTokensFromCommand, sanitizeOutput, sanitizeLogContent }; // Re-export for backward compatibility
 import { uploadLogWithGhUploadLog } from './log-upload.lib.mjs';
-import { formatResetTimeWithRelative } from './usage-limit.lib.mjs'; // See: https://github.com/link-assistant/hive-mind/issues/1236
+import { formatResetTimeWithRelative } from './usage-limit.lib.mjs'; // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
 // Import model info helpers (Issue #1225)
 import { getToolDisplayName, getModelInfoForComment } from './models/index.mjs';
 export { getToolDisplayName }; // Re-export for use by other modules
@@ -31,8 +31,8 @@ const buildIssueFailureActionSection = targetType => {
 
 ### What you can do
 - Resolve the repository, account, permissions, or environment problem described above, then rerun the solver.
-- Repository owner or Hive Mind administrator path: handle manual recreation or fix of the repository when the required action is outside the requester access.
-- Repository deletion can require a separate GitHub account or token with repository deletion permission; Hive Mind does not rely on that permission by default.`;
+- Repository owner or Auto Programmer administrator path: handle manual recreation or fix of the repository when the required action is outside the requester access.
+- Repository deletion can require a separate GitHub account or token with repository deletion permission; Auto Programmer does not rely on that permission by default.`;
 };
 const normalizeFailureActionSection = section => {
   const text = section || '';
@@ -477,7 +477,7 @@ The automated solution draft was interrupted because the ${toolName} usage limit
       if (limitResetTime) {
         // Format reset time with relative time and UTC for better user understanding
         // Shows "in 14m (Feb 6, 3:00 PM UTC)" instead of just "4:00 PM"
-        // See: https://github.com/link-assistant/hive-mind/issues/1236
+        // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
         const formattedResetTime = formatResetTimeWithRelative(limitResetTime, global.limitTimezone || null) || limitResetTime;
         logComment += `\n- **Reset Time**: ${formattedResetTime}`;
       }
@@ -489,7 +489,7 @@ The automated solution draft was interrupted because the ${toolName} usage limit
       logComment += '\n\n### 🔄 How to Continue\n';
 
       // If auto-resume/auto-restart is enabled, show automatic continuation message instead of CLI commands
-      // See: https://github.com/link-assistant/hive-mind/issues/1152
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
       if (isAutoResumeEnabled) {
         const modeName = autoResumeMode === 'restart' ? 'restart' : 'resume';
         const modeDescription = autoResumeMode === 'restart' ? 'The session will automatically restart (fresh start) when the limit resets.' : 'The session will automatically resume (with context preserved) when the limit resets.';
@@ -681,7 +681,7 @@ The automated solution draft was interrupted because the ${toolName} usage limit
             if (limitResetTime) {
               // Format reset time with relative time and UTC for better user understanding
               // Shows "in 14m (Feb 6, 3:00 PM UTC)" instead of just "4:00 PM"
-              // See: https://github.com/link-assistant/hive-mind/issues/1236
+              // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
               const formattedUploadResetTime = formatResetTimeWithRelative(limitResetTime, global.limitTimezone || null) || limitResetTime;
               logUploadComment += `\n- **Reset Time**: ${formattedUploadResetTime}`;
             }
@@ -693,7 +693,7 @@ The automated solution draft was interrupted because the ${toolName} usage limit
             logUploadComment += '\n\n### 🔄 How to Continue\n';
 
             // If auto-resume/auto-restart is enabled, show automatic continuation message instead of CLI commands
-            // See: https://github.com/link-assistant/hive-mind/issues/1152
+            // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
             if (isAutoResumeEnabled) {
               const modeName = autoResumeMode === 'restart' ? 'restart' : 'resume';
               const modeDescription = autoResumeMode === 'restart' ? 'The session will automatically restart (fresh start) when the limit resets.' : 'The session will automatically resume (with context preserved) when the limit resets.';
@@ -758,7 +758,7 @@ This log file contains the complete execution trace of the AI ${targetType === '
             // Success log format - use helper function for cost info
             const costInfo = buildCostInfoString(totalCostUSD, anthropicTotalCostUSD, pricingInfo, { includeTokenUsage: !budgetStats });
             // Determine title based on session type
-            // See: https://github.com/link-assistant/hive-mind/issues/1152
+            // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
             // Issue #1625: titles embed SOLUTION_DRAFT_LOG_MARKER (single source).
             let title = customTitle;
             let sessionNote = '';

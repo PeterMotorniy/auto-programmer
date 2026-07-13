@@ -10,7 +10,7 @@
  *
  * Run with: node tests/test-telegram-message-split-1891.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1891
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1891
  */
 
 import { assert, printSummary, getFailCount } from './test-helpers.mjs';

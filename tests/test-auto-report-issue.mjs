@@ -132,13 +132,13 @@ runTest('CLI option definitions include disable-issue-auto-creation-on-error', (
 });
 
 await runAsyncTest('--disable-issue-auto-creation-on-error normalizes to disabled error issue creation', async () => {
-  const argv = await parseSolveArgs(['https://github.com/link-assistant/hive-mind/issues/1752', '--disable-issue-auto-creation-on-error']);
+  const argv = await parseSolveArgs(['https://github.com/PeterMotorniy/auto-programmer/issues/1752', '--disable-issue-auto-creation-on-error']);
   assert(argv.disableIssueAutoCreationOnError === true, 'disableIssueAutoCreationOnError should be true');
   assert(argv.disableReportIssue === true, 'disableReportIssue should be true after normalization');
 });
 
 await runAsyncTest('--disable-issue-auto-creation-on-error overrides --auto-report-issue at parse time', async () => {
-  const argv = await parseSolveArgs(['https://github.com/link-assistant/hive-mind/issues/1752', '--auto-report-issue', '--disable-issue-auto-creation-on-error']);
+  const argv = await parseSolveArgs(['https://github.com/PeterMotorniy/auto-programmer/issues/1752', '--auto-report-issue', '--disable-issue-auto-creation-on-error']);
   assert(argv.autoReportIssue === true, 'autoReportIssue should still reflect the CLI flag');
   assert(argv.disableReportIssue === true, 'disableReportIssue should be true so disable wins in the handler');
 });

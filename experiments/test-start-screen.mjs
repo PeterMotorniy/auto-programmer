@@ -20,8 +20,8 @@ const testCases = [
   },
   {
     command: 'solve',
-    url: 'https://github.com/link-assistant/hive-mind/issues/333',
-    expectedName: 'solve-link-assistant-hive-mind-333',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/333',
+    expectedName: 'solve-PeterMotorniy-auto-programmer-333',
     description: 'solve command with another issue',
   },
   {
@@ -149,7 +149,7 @@ try {
 // Test --dry-run mode for solve command with issue URL
 console.log('Testing --dry-run mode for solve command...');
 try {
-  const output = execSync('./src/start-screen.mjs solve https://github.com/link-assistant/hive-mind/issues/539 --dry-run 2>&1', {
+  const output = execSync('./src/start-screen.mjs solve https://github.com/PeterMotorniy/auto-programmer/issues/539 --dry-run 2>&1', {
     encoding: 'utf8',
     env: { ...process.env, PATH: process.env.PATH },
   });
@@ -184,7 +184,7 @@ try {
 // Test --dry-run mode for hive command with user URL (the issue from #539)
 console.log('Testing --dry-run mode for hive command with user URL...');
 try {
-  const output = execSync('./src/start-screen.mjs hive https://github.com/konard --dry-run --once --verbose 2>&1', {
+  const output = execSync('./src/start-screen.mjs hive https://github.com/petermotorniy --dry-run --once --verbose 2>&1', {
     encoding: 'utf8',
     env: { ...process.env, PATH: process.env.PATH },
   });
@@ -219,7 +219,7 @@ try {
 // Test --dry-run mode for hive command with repo URL
 console.log('Testing --dry-run mode for hive command with repo URL...');
 try {
-  const output = execSync('./src/start-screen.mjs hive https://github.com/link-assistant/hive-mind --dry-run --once 2>&1', {
+  const output = execSync('./src/start-screen.mjs hive https://github.com/PeterMotorniy/auto-programmer --dry-run --once 2>&1', {
     encoding: 'utf8',
     env: { ...process.env, PATH: process.env.PATH },
   });

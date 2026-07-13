@@ -7,16 +7,16 @@
  * the manual workflow the maintainer used to free disk space:
  *   - keep the clone that belongs to the active solve task (matched by branch),
  *   - keep protected paths such as /tmp/start-command,
- *   - delete the rest of the hive-mind temp artifacts.
+ *   - delete the rest of the auto-programmer temp artifacts.
  *
  * Run with: node tests/test-cleanup-1848.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1848
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1848
  */
 
 import assert from 'node:assert/strict';
 
-import { parseTaskUrl, extractTaskRefsFromCommand, parseRemoteUrl, buildActiveMatchers, folderMatchesActiveTask, matchHiveMindPattern, classifyEntry, classifyEntries, formatBytes, summarize, describeReason, formatEntryContext, formatTaskSummary, DEFAULT_PROTECTED_NAMES } from '../src/cleanup.lib.mjs';
+import { parseTaskUrl, extractTaskRefsFromCommand, parseRemoteUrl, buildActiveMatchers, folderMatchesActiveTask, matchAutoProgrammerPattern, classifyEntry, classifyEntries, formatBytes, summarize, describeReason, formatEntryContext, formatTaskSummary, DEFAULT_PROTECTED_NAMES } from '../src/cleanup.lib.mjs';
 
 let testsPassed = 0;
 let testsFailed = 0;
@@ -39,8 +39,8 @@ console.log('\n📋 hive-cleanup command (#1848) Tests\n');
 // URL / command parsing
 // ---------------------------------------------------------------------------
 test('parseTaskUrl parses a PR URL', () => {
-  assert.deepEqual(parseTaskUrl('https://github.com/link-assistant/formal-ai/pull/387'), {
-    owner: 'link-assistant',
+  assert.deepEqual(parseTaskUrl('https://github.com/PeterMotorniy/formal-ai/pull/387'), {
+    owner: 'PeterMotorniy',
     repo: 'formal-ai',
     type: 'pull',
     number: 387,
@@ -48,9 +48,9 @@ test('parseTaskUrl parses a PR URL', () => {
 });
 
 test('parseTaskUrl parses an issue URL', () => {
-  assert.deepEqual(parseTaskUrl('https://github.com/link-assistant/hive-mind/issues/1848'), {
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+  assert.deepEqual(parseTaskUrl('https://github.com/PeterMotorniy/auto-programmer/issues/1848'), {
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     type: 'issue',
     number: 1848,
   });
@@ -72,10 +72,10 @@ test('parseTaskUrl returns null for non-GitHub strings', () => {
 });
 
 test('extractTaskRefsFromCommand extracts the URL from a solve command (issue gist)', () => {
-  const command = 'solve https://github.com/link-assistant/formal-ai/pull/387 --model opus --think max --tool claude --attach-logs --verbose';
+  const command = 'solve https://github.com/PeterMotorniy/formal-ai/pull/387 --model opus --think max --tool claude --attach-logs --verbose';
   const refs = extractTaskRefsFromCommand(command);
   assert.equal(refs.length, 1);
-  assert.deepEqual(refs[0], { owner: 'link-assistant', repo: 'formal-ai', type: 'pull', number: 387 });
+  assert.deepEqual(refs[0], { owner: 'PeterMotorniy', repo: 'formal-ai', type: 'pull', number: 387 });
 });
 
 test('extractTaskRefsFromCommand dedupes repeated references', () => {
@@ -84,8 +84,8 @@ test('extractTaskRefsFromCommand dedupes repeated references', () => {
 });
 
 test('parseRemoteUrl handles https and ssh remotes', () => {
-  assert.deepEqual(parseRemoteUrl('https://github.com/link-assistant/formal-ai.git'), { owner: 'link-assistant', repo: 'formal-ai' });
-  assert.deepEqual(parseRemoteUrl('git@github.com:konard/test-for-test.git'), { owner: 'konard', repo: 'test-for-test' });
+  assert.deepEqual(parseRemoteUrl('https://github.com/PeterMotorniy/formal-ai.git'), { owner: 'PeterMotorniy', repo: 'formal-ai' });
+  assert.deepEqual(parseRemoteUrl('git@github.com:petermotorniy/test-for-test.git'), { owner: 'petermotorniy', repo: 'test-for-test' });
 });
 
 // ---------------------------------------------------------------------------
@@ -93,8 +93,8 @@ test('parseRemoteUrl handles https and ssh remotes', () => {
 // ---------------------------------------------------------------------------
 test('folderMatchesActiveTask matches a PR head branch exactly', () => {
   // Active task is PR 387 whose head branch resolves to issue-386-<hex>.
-  const matchers = buildActiveMatchers([{ owner: 'link-assistant', repo: 'formal-ai', type: 'pull', number: 387, branch: 'issue-386-0f7c7e8a730c' }]);
-  const gitInfo = { branch: 'issue-386-0f7c7e8a730c', remotes: [{ owner: 'link-assistant', repo: 'formal-ai' }], dirty: false };
+  const matchers = buildActiveMatchers([{ owner: 'PeterMotorniy', repo: 'formal-ai', type: 'pull', number: 387, branch: 'issue-386-0f7c7e8a730c' }]);
+  const gitInfo = { branch: 'issue-386-0f7c7e8a730c', remotes: [{ owner: 'PeterMotorniy', repo: 'formal-ai' }], dirty: false };
   assert.ok(folderMatchesActiveTask(gitInfo, matchers));
 });
 
@@ -124,18 +124,18 @@ test('folderMatchesActiveTask returns null for non-git folders', () => {
 // ---------------------------------------------------------------------------
 // Hive-mind pattern recognition
 // ---------------------------------------------------------------------------
-test('matchHiveMindPattern recognises solve workspace clones', () => {
-  assert.ok(matchHiveMindPattern('gh-issue-solver-1780391173130'));
-  assert.ok(matchHiveMindPattern('gh-issue-solver-resume-123-1780391173130'));
-  assert.ok(matchHiveMindPattern('hive-mind-solve-gh-konard'));
-  assert.ok(matchHiveMindPattern('claude-mcp-no-useless-1780391132829-3571.json'));
-  assert.ok(matchHiveMindPattern('log-tmp-solution-draft-log-pr-1780407010440.txt-1780407013300'));
+test('matchAutoProgrammerPattern recognises solve workspace clones', () => {
+  assert.ok(matchAutoProgrammerPattern('gh-issue-solver-1780391173130'));
+  assert.ok(matchAutoProgrammerPattern('gh-issue-solver-resume-123-1780391173130'));
+  assert.ok(matchAutoProgrammerPattern('auto-programmer-solve-gh-petermotorniy'));
+  assert.ok(matchAutoProgrammerPattern('claude-mcp-no-useless-1780391132829-3571.json'));
+  assert.ok(matchAutoProgrammerPattern('log-tmp-solution-draft-log-pr-1780407010440.txt-1780407013300'));
 });
 
-test('matchHiveMindPattern ignores unrelated names', () => {
-  assert.equal(matchHiveMindPattern('android-sdk'), null);
-  assert.equal(matchHiveMindPattern('flutter'), null);
-  assert.equal(matchHiveMindPattern('start-command'), null);
+test('matchAutoProgrammerPattern ignores unrelated names', () => {
+  assert.equal(matchAutoProgrammerPattern('android-sdk'), null);
+  assert.equal(matchAutoProgrammerPattern('flutter'), null);
+  assert.equal(matchAutoProgrammerPattern('start-command'), null);
 });
 
 // ---------------------------------------------------------------------------
@@ -191,9 +191,9 @@ test('classifyEntry keeps a dirty clone by default and removes it with keepDirty
   assert.equal(classifyEntry(e, { gitInfoByPath, keepDirty: false }).action, 'remove');
 });
 
-test('classifyEntry removes an inactive hive-mind clone', () => {
+test('classifyEntry removes an inactive auto-programmer clone', () => {
   const r = classifyEntry(entry('gh-issue-solver-4444444444444'), {});
-  assert.deepEqual(r, { action: 'remove', reason: 'hive-mind-temp' });
+  assert.deepEqual(r, { action: 'remove', reason: 'auto-programmer-temp' });
 });
 
 test('classifyEntry keeps unrecognised entries unless --all', () => {
@@ -218,10 +218,10 @@ test('classifyEntries reproduces the issue gist scenario', () => {
     { name: 'claude-mcp-no-useless-1780391132829-3571.json', path: '/tmp/claude-mcp-no-useless-1780391132829-3571.json', isDirectory: false }, // stale
     { name: 'android-sdk', path: '/tmp/android-sdk', isDirectory: true }, // unrecognised, kept by default
   ];
-  const matchers = buildActiveMatchers([{ owner: 'link-assistant', repo: 'formal-ai', type: 'pull', number: 387, branch: 'issue-386-0f7c7e8a730c' }]);
+  const matchers = buildActiveMatchers([{ owner: 'PeterMotorniy', repo: 'formal-ai', type: 'pull', number: 387, branch: 'issue-386-0f7c7e8a730c' }]);
   const gitInfoByPath = new Map([
-    ['/tmp/gh-issue-solver-1780391173130', { branch: 'issue-386-0f7c7e8a730c', remotes: [{ owner: 'link-assistant', repo: 'formal-ai' }], dirty: false }],
-    ['/tmp/gh-issue-solver-1780421766903', { branch: 'issue-999-ffffffffffff', remotes: [{ owner: 'konard', repo: 'test-for-test' }], dirty: false }],
+    ['/tmp/gh-issue-solver-1780391173130', { branch: 'issue-386-0f7c7e8a730c', remotes: [{ owner: 'PeterMotorniy', repo: 'formal-ai' }], dirty: false }],
+    ['/tmp/gh-issue-solver-1780421766903', { branch: 'issue-999-ffffffffffff', remotes: [{ owner: 'petermotorniy', repo: 'test-for-test' }], dirty: false }],
   ]);
   const { keep, remove } = classifyEntries(entries, { protectedNames: DEFAULT_PROTECTED_NAMES, matchers, gitInfoByPath });
 
@@ -257,8 +257,8 @@ test('summarize aggregates counts and bytes', () => {
 
 test('formatTaskSummary includes PR and session context', () => {
   const summary = formatTaskSummary({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     type: 'pull',
     number: 1934,
     branch: 'issue-1930-79b41127892b',
@@ -266,14 +266,14 @@ test('formatTaskSummary includes PR and session context', () => {
     status: 'executing',
     workspace: '/tmp/gh-issue-solver-1781543261323',
   });
-  assert.equal(summary, 'link-assistant/hive-mind PR #1934, branch issue-1930-79b41127892b, session session-123, status executing, workspace /tmp/gh-issue-solver-1781543261323');
+  assert.equal(summary, 'PeterMotorniy/auto-programmer PR #1934, branch issue-1930-79b41127892b, session session-123, status executing, workspace /tmp/gh-issue-solver-1781543261323');
 });
 
 test('formatEntryContext includes active task and git context', () => {
   const item = {
     activeTask: {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       type: 'pull',
       number: 1934,
       branch: 'issue-1930-79b41127892b',
@@ -281,21 +281,21 @@ test('formatEntryContext includes active task and git context', () => {
     },
     gitInfo: {
       branch: 'issue-1930-79b41127892b',
-      remotes: [{ owner: 'link-assistant', repo: 'hive-mind' }],
+      remotes: [{ owner: 'PeterMotorniy', repo: 'auto-programmer' }],
       dirty: true,
     },
   };
-  assert.equal(formatEntryContext(item), ' (task link-assistant/hive-mind PR #1934, branch issue-1930-79b41127892b, session session-123; repo link-assistant/hive-mind, branch issue-1930-79b41127892b, dirty/unpushed)');
+  assert.equal(formatEntryContext(item), ' (task PeterMotorniy/auto-programmer PR #1934, branch issue-1930-79b41127892b, session session-123; repo PeterMotorniy/auto-programmer, branch issue-1930-79b41127892b, dirty/unpushed)');
 });
 
 test('formatEntryContext shows the PR/session a finished (non-active) folder belonged to', () => {
   // Issue #1927 review: even for non-active tasks the listing must show which
-  // PR and session a hive-mind folder was belonging to.
+  // PR and session a auto-programmer folder was belonging to.
   const item = {
     activeTask: null,
     session: {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       type: 'pull',
       number: 1934,
       branch: 'issue-1930-79b41127892b',
@@ -304,11 +304,11 @@ test('formatEntryContext shows the PR/session a finished (non-active) folder bel
     },
     gitInfo: {
       branch: 'issue-1930-79b41127892b',
-      remotes: [{ owner: 'link-assistant', repo: 'hive-mind' }],
+      remotes: [{ owner: 'PeterMotorniy', repo: 'auto-programmer' }],
       dirty: false,
     },
   };
-  assert.equal(formatEntryContext(item), ' (was link-assistant/hive-mind PR #1934, branch issue-1930-79b41127892b, session session-123, status completed; repo link-assistant/hive-mind, branch issue-1930-79b41127892b)');
+  assert.equal(formatEntryContext(item), ' (was PeterMotorniy/auto-programmer PR #1934, branch issue-1930-79b41127892b, session session-123, status completed; repo PeterMotorniy/auto-programmer, branch issue-1930-79b41127892b)');
 });
 
 test('formatEntryContext derives the issue # from the branch when no task/session matched', () => {
@@ -319,22 +319,22 @@ test('formatEntryContext derives the issue # from the branch when no task/sessio
     session: null,
     gitInfo: {
       branch: 'issue-1927-ae9e469b0606',
-      remotes: [{ owner: 'link-assistant', repo: 'hive-mind' }],
+      remotes: [{ owner: 'PeterMotorniy', repo: 'auto-programmer' }],
       dirty: false,
     },
   };
-  assert.equal(formatEntryContext(item), ' (repo link-assistant/hive-mind, branch issue-1927-ae9e469b0606, issue #1927)');
+  assert.equal(formatEntryContext(item), ' (repo PeterMotorniy/auto-programmer, branch issue-1927-ae9e469b0606, issue #1927)');
 });
 
 test('classifyEntries annotates non-active folders with the session they belonged to', () => {
   const entries = [{ name: 'gh-issue-solver-111', path: '/tmp/gh-issue-solver-111', isDirectory: true, size: 100 }];
-  const gitInfoByPath = new Map([['/tmp/gh-issue-solver-111', { branch: 'issue-1930-79b41127892b', remotes: [{ owner: 'link-assistant', repo: 'hive-mind' }], dirty: false }]]);
+  const gitInfoByPath = new Map([['/tmp/gh-issue-solver-111', { branch: 'issue-1930-79b41127892b', remotes: [{ owner: 'PeterMotorniy', repo: 'auto-programmer' }], dirty: false }]]);
   // The session that worked this folder has already finished (terminal), so it
   // is NOT an active-task matcher — only a session matcher.
-  const sessionMatchers = buildActiveMatchers([{ owner: 'link-assistant', repo: 'hive-mind', type: 'pull', number: 1934, branch: 'issue-1930-79b41127892b', sessionId: 'sess-abc', status: 'completed' }]);
+  const sessionMatchers = buildActiveMatchers([{ owner: 'PeterMotorniy', repo: 'auto-programmer', type: 'pull', number: 1934, branch: 'issue-1930-79b41127892b', sessionId: 'sess-abc', status: 'completed' }]);
   const { remove } = classifyEntries(entries, { matchers: [], sessionMatchers, gitInfoByPath });
   assert.equal(remove.length, 1);
-  assert.equal(remove[0].reason, 'hive-mind-temp');
+  assert.equal(remove[0].reason, 'auto-programmer-temp');
   assert.ok(remove[0].session, 'session annotation present');
   assert.equal(remove[0].session.number, 1934);
   assert.equal(remove[0].session.sessionId, 'sess-abc');

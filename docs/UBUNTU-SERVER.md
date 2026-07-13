@@ -1,71 +1,67 @@
-# Installation on Ubuntu 24.04 Server (Deprecated) (languages: en • [zh](UBUNTU-SERVER.zh.md) • [hi](UBUNTU-SERVER.hi.md) • [ru](UBUNTU-SERVER.ru.md))
+# Установка на Ubuntu 24.04 Server (устарело)
 
-> ⚠️ **DEPRECATED:** This installation method is no longer recommended.
+> ⚠️ **УСТАРЕЛО:** Этот метод установки больше не рекомендуется.
 >
-> **We now recommend using Docker for all installations**, both on developer machines and servers.
-> Docker provides better isolation, easier management, and consistent environments.
+> **Теперь мы рекомендуем использовать Docker для всех установок**, как на машинах разработчиков, так и на серверах.
+> Docker обеспечивает лучшую изоляцию, более простое управление и согласованные среды.
 >
-> Please use the [Docker installation method](../README.md#using-docker) instead.
-> For Kubernetes deployments, see the [Helm installation](../README.md#helm-installation-kubernetes).
-> For detailed Docker usage, see [docs/DOCKER.md](./DOCKER.md).
+> Пожалуйста, используйте [метод установки через Docker](../README.md#using-docker).
+> Для развёртывания на Kubernetes смотрите [установку через Helm](../README.md#helm-installation-kubernetes).
+> Для подробного использования Docker смотрите [docs/DOCKER.md](./DOCKER.md).
 
 ---
 
-The following instructions describe the legacy bare-metal installation on Ubuntu 24.04 server. This approach is kept for reference only.
+Следующие инструкции описывают устаревшую установку на «голое железо» на Ubuntu 24.04 server. Этот подход сохранён только для справки.
 
-> **Note:** As of issue #1639, the Docker image uses the full `konard/box`
-> image, pinned to the current Box release, as the base image that provides all
-> development tools. The standalone Hive Mind bare-metal install script was
-> removed from this repository; the last version that pre-installed all Hive
-> Mind tools on top of Ubuntu 24.04 is preserved for historical reference at:
-> https://github.com/link-assistant/hive-mind/blob/4f027b32/scripts/ubuntu-24-server-install.sh
+> **Примечание:** С задачи #1639 скрипт `ubuntu-24-server-install.sh` был удалён из репозитория.
+> Docker-образ теперь использует `petermotorniy/box` (зафиксированный на конкретной версии) в качестве базового образа, который предоставляет все инструменты разработки.
+> Для исторической справки последняя версия скрипта, которая устанавливала весь стек Auto Programmer поверх Ubuntu 24.04, сохранена по адресу:
+> https://github.com/PeterMotorniy/auto-programmer/blob/4f027b32/scripts/ubuntu-24-server-install.sh
 >
-> The `konard/box` image is a universal base image and does not contain Hive
-> Mind specific tooling by itself, so this legacy Hive Mind script is kept as
-> the only remaining source for the bare-metal install path.
+> Образ `petermotorniy/box` является универсальным базовым образом и сам по себе не содержит инструменты Auto Programmer, поэтому этот устаревший скрипт Auto Programmer оставлен как единственный оставшийся источник для варианта установки на «голое железо».
 
-## Steps
+## Шаги
 
-1. Reset/install VPS/VDS server with fresh Ubuntu 24.04
-2. Login to `root` user.
-3. Install the Hive Mind toolchain (provides Docker, development tools, and the Hive Mind CLIs)
+1. Сбросьте/установите VPS/VDS сервер со свежим Ubuntu 24.04
+2. Войдите как пользователь `root`.
+3. Сначала установите Box (предоставляет все инструменты разработки)
 
    ```bash
    # Option 1: Use Docker (recommended)
-   docker pull konard/box:2.3.2
-   docker run -it konard/box:2.3.2
+   docker pull petermotorniy/box:2.3.2
+   docker run -it petermotorniy/box:2.3.2
 
-   # Option 2: Use the legacy Hive Mind bare-metal install script (pinned to the last commit that carried it: 4f027b32)
-   curl -fsSL -o- https://raw.githubusercontent.com/link-assistant/hive-mind/4f027b32/scripts/ubuntu-24-server-install.sh | bash
+   # Option 2: Use the legacy Auto Programmer bare-metal install script (pinned to the last commit that carried it: 4f027b32)
+   curl -fsSL -o- https://raw.githubusercontent.com/PeterMotorniy/auto-programmer/4f027b32/scripts/ubuntu-24-server-install.sh | bash
    ```
 
-   **Note:** The installation does NOT run `gh auth login` automatically. This is intentional to support Docker builds without timeouts. Authentication is performed in the next steps.
+   **Примечание:** Установка НЕ запускает `gh auth login` автоматически. Это намеренно для поддержки сборок Docker без таймаутов. Аутентификация выполняется на следующих шагах.
 
-4. Login to `box` user
+4. Войдите как пользователь `box`
 
    ```bash
    su - box
    ```
 
-5. **IMPORTANT:** Authenticate with GitHub CLI AFTER installation is complete
+5. **ВАЖНО:** Пройдите аутентификацию в GitHub CLI ПОСЛЕ завершения установки
 
    ```bash
    gh-setup-git-identity
    ```
 
-   Note: Follow the prompts to authenticate with your GitHub account. This is required for the gh tool to work, and the system will perform all actions using this GitHub account. This step must be done AFTER the installation script completes to avoid build timeouts in Docker environments.
+   Примечание: Следуйте подсказкам для аутентификации с вашим аккаунтом GitHub. Это необходимо для работы инструмента gh, и система будет выполнять все действия используя этот аккаунт GitHub. Этот шаг должен быть выполнен ПОСЛЕ завершения скрипта установки для избежания таймаутов сборки в Docker-средах.
 
-6. Claude Code CLI, OpenCode AI CLI, and @link-assistant/agent are preinstalled with the previous script. Now you need to make sure claude is authorized. Execute claude command, and follow all steps to authorize the local claude
+6. Claude Code CLI, OpenCode AI CLI и @link-assistant/agent предустановлены с предыдущим скриптом. Теперь необходимо убедиться, что claude авторизован. Выполните команду claude и следуйте всем шагам для авторизации локального claude
 
    ```bash
    claude
    ```
 
-   Note: Both opencode and agent come with free Grok Code Fast 1 model by default - so no authorization is required for these tools.
+   Примечание: Как opencode, так и agent поставляются с бесплатной моделью Grok Code Fast 1 по умолчанию — поэтому авторизация для этих инструментов не требуется.
 
-7. Launch the Hive Mind telegram bot:
+7. Запустите Telegram-бот Auto Programmer:
 
-   **Using Links Notation (recommended):**
+   **Используя Links Notation (рекомендуется):**
 
    ```
    screen -R bot # Enter new screen for bot
@@ -92,7 +88,7 @@ The following instructions describe the legacy bare-metal installation on Ubuntu
    # Press CTRL + A + D for detach from screen
    ```
 
-   **Using individual command-line options:**
+   **Используя отдельные параметры командной строки:**
 
    ```
    screen -R bot # Enter new screen for bot
@@ -116,42 +112,22 @@ The following instructions describe the legacy bare-metal installation on Ubuntu
    # Press CTRL + A + D for detach from screen
    ```
 
-   Note: You may need to register you own bot with https://t.me/BotFather to get the bot token.
+   Примечание: Возможно, вам потребуется зарегистрировать собственного бота на https://t.me/BotFather для получения токена бота.
 
-## Codex sign-in
+## Вход в Codex
 
-1. Connect to your instance of VPS with Hive Mind installed, using SSH with tunnel opened
+1. Подключитесь к вашему экземпляру VPS с установленным Auto Programmer, используя SSH с открытым туннелем
 
 ```bash
 ssh -L 1455:localhost:1455 root@123.123.123.123
 ```
 
-2. Install or update Codex CLI:
+2. Запустите oAuth-сервер для входа в codex:
 
 ```bash
-bun install -g @openai/codex@latest
+codex login
 ```
 
-3. Start the current Codex device auth flow:
+Будет запущен oAuth callback-сервер на порту 1455, и будет напечатана ссылка на oAuth, скопируйте ссылку.
 
-```bash
-codex login --device-auth
-```
-
-4. Finish login in your browser. The command should end with:
-
-```text
-Successfully logged in
-```
-
-5. Verify the Codex CLI with the same smoke test used in the Docker workflow:
-
-```bash
-codex exec --model gpt-5.4-mini "hi"
-```
-
-Codex stores its data in `~/.codex` on a regular server. The most important paths are:
-
-- `~/.codex/auth.json`
-- `~/.codex/config.toml`
-- `~/.codex/sessions/`
+3. Используйте браузер на машине, с которой вы открыли туннель, вставьте туда ссылку из команды `codex login` и перейдите туда через браузер. После перенаправления на localhost:1455 вы увидите страницу успешного входа, а в `codex login` увидите `Successfully logged in`. После этого команда `codex login` завершится, и вы сможете использовать команду `codex` как обычно для проверки. Она также должна работать с `--tool codex` в командах `solve` и `hive`.

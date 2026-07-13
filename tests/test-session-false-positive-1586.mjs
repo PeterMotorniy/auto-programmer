@@ -9,7 +9,7 @@
  * - URL normalization works correctly
  * - Edge cases are handled
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1586
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1586
  */
 
 import { trackSession, hasActiveSessionForUrl, getActiveSessionCount, NON_ISOLATION_SESSION_TIMEOUT_MS } from '../src/session-monitor.lib.mjs';

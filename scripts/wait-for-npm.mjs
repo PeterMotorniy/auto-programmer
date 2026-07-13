@@ -6,7 +6,7 @@ import { ensureUseM } from '../src/use-m-bootstrap.lib.mjs';
  * Usage: node scripts/wait-for-npm.mjs --release-version <version>
  *   release-version: Version number to wait for (e.g., 1.0.0)
  *
- * This script waits for a specific version of @link-assistant/hive-mind
+ * This script waits for a specific version of auto-programmer
  * to become available on the npm registry. This is necessary because there
  * can be a delay between publishing and availability.
  *
@@ -16,7 +16,7 @@ import { ensureUseM } from '../src/use-m-bootstrap.lib.mjs';
  * - lino-arguments: Unified configuration from CLI args, env vars, and .lenv files
  */
 
-const PACKAGE_NAME = '@link-assistant/hive-mind';
+const PACKAGE_NAME = 'auto-programmer';
 
 // Load use-m dynamically
 const use = await ensureUseM();

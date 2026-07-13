@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -11,7 +11,7 @@
  * 3. Auto-restart and cleanup flows include git pull before push
  *
  * References:
- * - Issue #1572: https://github.com/link-assistant/hive-mind/issues/1572
+ * - Issue #1572: https://github.com/PeterMotorniy/auto-programmer/issues/1572
  * - Root cause: auto-restart-until-mergeable mode didn't sync local branch
  *   with remote before launching new sessions, causing push failures
  */

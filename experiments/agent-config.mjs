@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Agent Configuration Example
- * Demonstrates typed configuration for Hive Mind agents
+ * Demonstrates typed configuration for Auto Programmer agents
  */
 
 /**

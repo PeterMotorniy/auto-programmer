@@ -7,7 +7,7 @@
  *
  * Run with: node tests/test-timeline-linked-prs.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1413
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1413
  */
 
 import assert from 'node:assert/strict';
@@ -195,8 +195,8 @@ test('Issue #1413: getLinkedPRsFromTimeline handles empty timeline', () => {
 test('Issue #1413: getLinkedPRsFromTimeline handles timeline with no cross-referenced events', () => {
   const mockTimeline = [
     { event: 'labeled', label: { name: 'ready' } },
-    { event: 'assigned', assignee: { login: 'konard' } },
-    { event: 'mentioned', actor: { login: 'konard' } },
+    { event: 'assigned', assignee: { login: 'petermotorniy' } },
+    { event: 'mentioned', actor: { login: 'petermotorniy' } },
   ];
 
   const linkedPRs = mockTimeline.filter(e => e.event === 'cross-referenced' && e.source?.issue?.pull_request != null && e.source?.issue?.state === 'open');

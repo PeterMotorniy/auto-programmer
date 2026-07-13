@@ -36,7 +36,7 @@ const { checkFileInBranch } = githubLib;
 const validation = await import('./solve.validation.lib.mjs');
 
 // Import usage limit formatting functions
-// See: https://github.com/link-assistant/hive-mind/issues/1152
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
 const usageLimitLib = await import('./usage-limit.lib.mjs');
 const { formatResetTimeWithRelative } = usageLimitLib;
 
@@ -82,7 +82,7 @@ const formatWaitTime = ms => {
 // tempDir parameter is required for passing --working-directory to the resumed session
 // (Claude Code sessions are stored per-working-directory, so resume must use same directory)
 // isRestart parameter distinguishes between resume (maintains context) and restart (fresh start)
-// See: https://github.com/link-assistant/hive-mind/issues/1152
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
 export const autoContinueWhenLimitResets = async (issueUrl, sessionId, argv, shouldAttachLogs, tempDir = null, isRestart = false) => {
   try {
     const maxAutoResumeIterations = normalizeAutoIterationLimit(argv.autoResumeMaxIterations);
@@ -100,14 +100,14 @@ export const autoContinueWhenLimitResets = async (issueUrl, sessionId, argv, sho
 
     // Add buffer time after limit reset to account for server time differences
     // Default: 10 minutes (configurable via HIVE_MIND_LIMIT_RESET_BUFFER_MS)
-    // See: https://github.com/link-assistant/hive-mind/issues/1152
-    // See: https://github.com/link-assistant/hive-mind/issues/1236
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
     const bufferMs = limitReset.bufferMs;
 
     // Add random jitter to avoid thundering herd problem when multiple instances
     // wait for the same limit reset time and all resume simultaneously
     // Default: random 0-5 minutes (configurable via HIVE_MIND_LIMIT_RESET_JITTER_MS)
-    // See: https://github.com/link-assistant/hive-mind/issues/1236
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1236
     const jitterMs = Math.floor(Math.random() * limitReset.jitterMs);
     const totalBufferMs = bufferMs + jitterMs;
     const waitMs = baseWaitMs + totalBufferMs;
@@ -115,7 +115,7 @@ export const autoContinueWhenLimitResets = async (issueUrl, sessionId, argv, sho
     const jitterSeconds = Math.round(jitterMs / 1000);
 
     // Format reset time with relative time and UTC for better user understanding
-    // See: https://github.com/link-assistant/hive-mind/issues/1152
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
     const formattedResetTime = formatResetTimeWithRelative(resetTime, timezone);
 
     await log(`\n⏰ Waiting until ${formattedResetTime} + ${bufferMinutes} min buffer + ${jitterSeconds}s jitter for limit to reset...`);
@@ -145,7 +145,7 @@ export const autoContinueWhenLimitResets = async (issueUrl, sessionId, argv, sho
     // Recursively call the solve script
     // For resume: use --resume with session ID to maintain context
     // For restart: don't use --resume to start fresh
-    // See: https://github.com/link-assistant/hive-mind/issues/1152
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
     const childProcess = await import('child_process');
 
     // Build the resume/restart command
@@ -187,7 +187,7 @@ export const autoContinueWhenLimitResets = async (issueUrl, sessionId, argv, sho
     }
 
     // Pass session type for proper comment differentiation
-    // See: https://github.com/link-assistant/hive-mind/issues/1152
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
     const sessionType = isRestart ? 'auto-restart' : 'auto-resume';
     resumeArgs.push('--session-type', sessionType);
 

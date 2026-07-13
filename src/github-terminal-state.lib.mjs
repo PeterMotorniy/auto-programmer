@@ -8,7 +8,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  * responses as terminal. In a solver loop, deleted entities and lost access are
  * not transient CI states; retrying them indefinitely wastes time and tokens.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1931
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1931
  */
 
 let defaultCommandRunner = null;

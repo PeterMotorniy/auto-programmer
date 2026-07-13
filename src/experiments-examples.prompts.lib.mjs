@@ -2,7 +2,7 @@
  * Experiments and examples folder prompts module
  * Handles building configurable prompts for experiments/examples folders
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1199
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1199
  */
 
 /**

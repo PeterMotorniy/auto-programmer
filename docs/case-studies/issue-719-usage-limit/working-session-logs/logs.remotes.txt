@@ -1,2 +1,0 @@
-origin	https://github.com/deep-assistant/hive-mind.git (fetch)
-origin	https://github.com/deep-assistant/hive-mind.git (push)

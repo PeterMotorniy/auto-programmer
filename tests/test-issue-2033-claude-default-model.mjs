@@ -3,7 +3,7 @@
 /**
  * Regression test for issue #2033.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -14,8 +14,8 @@ import { defaultModels } from '../src/models/index.mjs';
 import { createYargsConfig as createSolveYargsConfig } from '../src/solve.config.lib.mjs';
 import { parseArgsWithYargs } from '../src/telegram-solve-command.lib.mjs';
 
-const issueUrl = 'https://github.com/link-assistant/hive-mind/issues/2033';
-const repoUrl = 'https://github.com/link-assistant/hive-mind';
+const issueUrl = 'https://github.com/PeterMotorniy/auto-programmer/issues/2033';
+const repoUrl = 'https://github.com/PeterMotorniy/auto-programmer';
 const yargsFactory = getLinoYargsFactory();
 
 assert.equal(defaultModels.claude, 'opus', 'Claude should default to opus');

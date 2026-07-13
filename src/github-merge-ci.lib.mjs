@@ -5,7 +5,7 @@
  * Provides utilities for monitoring CI/CD status on commits and branches.
  * Split from github-merge.lib.mjs to maintain file size limits.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1341
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1341
  */
 
 import { getWorkflowRunsForSha } from './github-merge.lib.mjs';

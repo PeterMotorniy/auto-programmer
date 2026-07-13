@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
 /**
- * Pre-seed the nested Docker daemon of a Hive Mind DinD container with an image
+ * Pre-seed the nested Docker daemon of a Auto Programmer DinD container with an image
  * already present on the host, so `--isolation docker` tasks reuse it instead
  * of re-downloading a full copy inside the container.
  *
  * Why this is needed
  * ------------------
- * In our DinD deployment the Telegram bot runs inside `konard/hive-mind-dind`
- * with a *nested* dockerd. When a task launches `docker run konard/hive-mind-dind:...`
+ * In our DinD deployment the Telegram bot runs inside `petermotorniy/auto-programmer-dind`
+ * with a *nested* dockerd. When a task launches `docker run petermotorniy/auto-programmer-dind:...`
  * that `docker run` talks to the nested daemon, whose image store starts empty
  * (the deploy wipes `/var/lib/docker` before `docker commit`). Docker therefore
  * reports "Unable to find image ... locally" and pulls a fresh multi-gigabyte
  * copy on the first task — even though the host's outer daemon already has the
- * exact image. See https://github.com/link-assistant/hive-mind/issues/1879.
+ * exact image. See https://github.com/PeterMotorniy/auto-programmer/issues/1879.
  *
  * This script copies the host image into the nested daemon via
  * `docker save | docker exec -i <container> docker load`. Run it once after the
@@ -26,15 +26,15 @@
  * is to let box's host-image passthrough seed the nested daemon on boot by
  * bind-mounting the host Docker socket into the bot container:
  *   -v /var/run/docker.sock:/var/run/host-docker.sock:ro
- *   -e DIND_HOST_PASSTHROUGH_IMAGES="konard/hive-mind konard/hive-mind-dind"
+ *   -e DIND_HOST_PASSTHROUGH_IMAGES="petermotorniy/auto-programmer petermotorniy/auto-programmer-dind"
  * See docs/DOCKER.md ("Host-image passthrough"). Use this script when you cannot
  * change the deployment or need to seed an already-running container immediately.
  *
  * Usage:
- *   node scripts/preload-dind-isolation-image.mjs [--container hive-mind] [--image konard/hive-mind-dind:latest] [--verbose]
+ *   node scripts/preload-dind-isolation-image.mjs [--container auto-programmer] [--image petermotorniy/auto-programmer-dind:latest] [--verbose]
  *
- * Defaults match the standard server deployment (container `hive-mind`, image
- * `konard/hive-mind-dind:latest`). Environment overrides:
+ * Defaults match the standard server deployment (container `auto-programmer`, image
+ * `petermotorniy/auto-programmer-dind:latest`). Environment overrides:
  *   PRELOAD_CONTAINER, PRELOAD_IMAGE
  */
 
@@ -42,8 +42,8 @@ import { spawnSync } from 'node:child_process';
 
 function parseArgs(argv) {
   const opts = {
-    container: process.env.PRELOAD_CONTAINER || 'hive-mind',
-    image: process.env.PRELOAD_IMAGE || 'konard/hive-mind-dind:latest',
+    container: process.env.PRELOAD_CONTAINER || 'auto-programmer',
+    image: process.env.PRELOAD_IMAGE || 'petermotorniy/auto-programmer-dind:latest',
     verbose: false,
   };
   for (let i = 0; i < argv.length; i++) {
@@ -70,18 +70,18 @@ function run(command, args, { capture = false } = {}) {
 }
 
 function printHelp() {
-  console.log(`Pre-seed a Hive Mind DinD container's nested Docker daemon with a host image.
+  console.log(`Pre-seed a Auto Programmer DinD container's nested Docker daemon with a host image.
 
 Usage:
   node scripts/preload-dind-isolation-image.mjs [options]
 
 Options:
-  -c, --container <name>   Target container name (default: hive-mind)
-  -i, --image <ref>        Image reference to copy (default: konard/hive-mind-dind:latest)
+  -c, --container <name>   Target container name (default: auto-programmer)
+  -i, --image <ref>        Image reference to copy (default: petermotorniy/auto-programmer-dind:latest)
   -v, --verbose            Verbose output
   -h, --help               Show this help
 
-See https://github.com/link-assistant/hive-mind/issues/1879`);
+See https://github.com/PeterMotorniy/auto-programmer/issues/1879`);
 }
 
 function main() {
@@ -136,7 +136,7 @@ function main() {
   console.log('>>> Isolated tasks now reuse it automatically (native docker backend pulls only when missing).');
   console.log('>>> Tip: to seed automatically on boot, mount the host socket into the bot container:');
   console.log('>>>   -v /var/run/docker.sock:/var/run/host-docker.sock:ro \\');
-  console.log('>>>   -e DIND_HOST_PASSTHROUGH_IMAGES="konard/hive-mind konard/hive-mind-dind"');
+  console.log('>>>   -e DIND_HOST_PASSTHROUGH_IMAGES="petermotorniy/auto-programmer petermotorniy/auto-programmer-dind"');
   return 0;
 }
 

@@ -7,16 +7,16 @@
 # bytes are served back over the raw/blob URLs that GitHub markdown can embed.
 #
 # Approaches tested:
-#   A) tag ref          refs/tags/hive-mind-media-probe  -> blob/<tag>/<path>?raw=true
-#   B) custom ref       refs/hive-mind-media/probe       -> blob/<commit-sha>/<path>?raw=true
+#   A) tag ref          refs/tags/auto-programmer-media-probe  -> blob/<tag>/<path>?raw=true
+#   B) custom ref       refs/auto-programmer-media/probe       -> blob/<commit-sha>/<path>?raw=true
 #   C) commit SHA only  (no extra ref beyond B's, but URL by SHA)
 #
 # All probe refs are deleted at the end. Output is appended to the log so the
 # result survives even if the session is interrupted.
 set -uo pipefail
 
-OWNER=link-assistant
-REPO=hive-mind
+OWNER=PeterMotorniy
+REPO=auto-programmer
 LOG="experiments/storage-probe.log"
 TS="$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)"
 
@@ -70,23 +70,23 @@ probe_url() {
 
 echo "--- 4A) tag ref ---"
 api repos/$OWNER/$REPO/git/refs -X POST --input - <<JSON 2>&1 | head -3
-{"ref":"refs/tags/hive-mind-media-probe","sha":"$COMMIT_SHA"}
+{"ref":"refs/tags/auto-programmer-media-probe","sha":"$COMMIT_SHA"}
 JSON
-probe_url "tag blob?raw=true" "https://github.com/$OWNER/$REPO/blob/hive-mind-media-probe/$PATH_IN_REPO?raw=true"
-probe_url "tag raw.githubusercontent" "https://raw.githubusercontent.com/$OWNER/$REPO/hive-mind-media-probe/$PATH_IN_REPO"
+probe_url "tag blob?raw=true" "https://github.com/$OWNER/$REPO/blob/auto-programmer-media-probe/$PATH_IN_REPO?raw=true"
+probe_url "tag raw.githubusercontent" "https://raw.githubusercontent.com/$OWNER/$REPO/auto-programmer-media-probe/$PATH_IN_REPO"
 
-echo "--- 4B) custom ref (refs/hive-mind-media/probe) ---"
+echo "--- 4B) custom ref (refs/auto-programmer-media/probe) ---"
 api repos/$OWNER/$REPO/git/refs -X POST --input - <<JSON 2>&1 | head -3
-{"ref":"refs/hive-mind-media/probe","sha":"$COMMIT_SHA"}
+{"ref":"refs/auto-programmer-media/probe","sha":"$COMMIT_SHA"}
 JSON
 probe_url "custom-ref via commit-SHA blob?raw=true" "https://github.com/$OWNER/$REPO/blob/$COMMIT_SHA/$PATH_IN_REPO?raw=true"
 probe_url "custom-ref via commit-SHA raw.githubusercontent" "https://raw.githubusercontent.com/$OWNER/$REPO/$COMMIT_SHA/$PATH_IN_REPO"
 
 echo "--- 5) cleanup: delete probe refs ---"
-api repos/$OWNER/$REPO/git/refs/tags/hive-mind-media-probe -X DELETE 2>&1 | head -2; echo "tag delete done ($?)"
-api repos/$OWNER/$REPO/git/refs/hive-mind-media/probe -X DELETE 2>&1 | head -2; echo "custom-ref delete done ($?)"
+api repos/$OWNER/$REPO/git/refs/tags/auto-programmer-media-probe -X DELETE 2>&1 | head -2; echo "tag delete done ($?)"
+api repos/$OWNER/$REPO/git/refs/auto-programmer-media/probe -X DELETE 2>&1 | head -2; echo "custom-ref delete done ($?)"
 
 echo "--- 6) verify cleanup ---"
-echo "tag still exists?    $(api repos/$OWNER/$REPO/git/ref/tags/hive-mind-media-probe --jq .ref 2>&1 | head -1)"
-echo "custom still exists? $(api repos/$OWNER/$REPO/git/refs/hive-mind-media/probe --jq '.[].ref' 2>&1 | head -1)"
+echo "tag still exists?    $(api repos/$OWNER/$REPO/git/ref/tags/auto-programmer-media-probe --jq .ref 2>&1 | head -1)"
+echo "custom still exists? $(api repos/$OWNER/$REPO/git/refs/auto-programmer-media/probe --jq '.[].ref' 2>&1 | head -1)"
 echo "=== DONE $TS ==="

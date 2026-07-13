@@ -6,7 +6,7 @@
  * formatLimitsSnapshotBlock, formatLimitsDeltaBlock, appendInfoSection,
  * handleShowLimitsFlag, captureStartSnapshotAndAppend.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/594
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/594
  */
 
 import assert from 'node:assert/strict';

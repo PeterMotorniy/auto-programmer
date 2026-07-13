@@ -208,7 +208,7 @@ export const createYargsConfig = yargsInstance => {
   // Auto-register all remaining solve options as passthrough options.
   // This ensures any new option added to solve.config.lib.mjs is automatically
   // available in hive (and TELEGRAM_HIVE_OVERRIDES) without manual code changes.
-  // See: https://github.com/link-assistant/hive-mind/issues/1209
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1209
   for (const [name, def] of Object.entries(SOLVE_OPTION_DEFINITIONS)) {
     // Skip options that are hive-only, solve-only, or already registered with custom hive config
     if (HIVE_ONLY_OPTION_NAMES.has(name)) continue;

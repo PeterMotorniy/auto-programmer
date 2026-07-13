@@ -170,7 +170,7 @@ const qwenDollar = jsonl => () => () => ({
 const runQwen = async (jsonl, argv = {}) => {
   const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'qwen-1990-'));
   const logLines = [];
-  const fullArgv = { model: 'qwen', url: 'https://github.com/link-assistant/hive-mind/issues/1990', verbose: false, ...argv };
+  const fullArgv = { model: 'qwen', url: 'https://github.com/PeterMotorniy/auto-programmer/issues/1990', verbose: false, ...argv };
   const result = await executeQwenCommand({
     tempDir,
     branchName: 'issue-1990-test',

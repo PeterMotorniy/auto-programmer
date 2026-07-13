@@ -1,7 +1,7 @@
 {
-  "name": "@link-assistant/hive-mind",
+  "name": "auto-programmer",
   "version": "2.5.5",
-  "description": "AI-powered issue solver and hive mind for collaborative problem solving",
+  "description": "ИИ-оркестратор для автоматического решения задач: автоматизация автоматизации",
   "main": "src/hive.mjs",
   "type": "module",
   "bin": {
@@ -33,22 +33,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/link-assistant/hive-mind.git"
+    "url": "git+https://github.com/PeterMotorniy/auto-programmer.git"
   },
   "keywords": [
     "ai",
     "automation",
     "issue-solver",
     "cli",
-    "hive-mind",
+    "auto-programmer",
     "collaborative"
   ],
-  "author": "link-assistant",
+  "author": "PeterMotorniy",
   "license": "Unlicense",
   "bugs": {
-    "url": "https://github.com/link-assistant/hive-mind/issues"
+    "url": "https://github.com/PeterMotorniy/auto-programmer/issues"
   },
-  "homepage": "https://github.com/link-assistant/hive-mind#readme",
+  "homepage": "https://github.com/PeterMotorniy/auto-programmer#readme",
   "engines": {
     "node": ">=24.0.0"
   },

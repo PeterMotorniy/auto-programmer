@@ -233,7 +233,7 @@ done
 
 - [command-stream source](https://unpkg.com/command-stream)
 - [GitHub Actions environment variables](https://docs.github.com/en/actions/learn-github-actions/environment-variables)
-- [Our test failures](https://github.com/link-assistant/hive-mind/actions)
+- [Our test failures](https://github.com/PeterMotorniy/auto-programmer/actions)
 
 ## Status
 

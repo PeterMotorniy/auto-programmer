@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

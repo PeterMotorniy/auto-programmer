@@ -12,11 +12,11 @@ console.log('🧪 Testing batchCheckArchivedRepositories function...\n');
 // Test with known repositories (some archived, some not)
 const testRepos = [
   // Archived repository from the issue
-  { owner: 'konard', name: 'test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5' },
+  { owner: 'petermotorniy', name: 'test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5' },
   // Regular repository (should not be archived)
-  { owner: 'link-assistant', name: 'hive-mind' },
+  { owner: 'PeterMotorniy', name: 'auto-programmer' },
   // Another test repository
-  { owner: 'konard', name: 'vk-bot' },
+  { owner: 'petermotorniy', name: 'vk-bot' },
 ];
 
 try {

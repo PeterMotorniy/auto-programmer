@@ -148,7 +148,7 @@ console.log('  → Process continues automatically ✅\n');
 console.log('🔗 RELATED ISSUES:');
 console.log('• Issue #445: Find root cause and auto-resolve fork divergence');
 console.log('• Issue #159: Fail-fast fork sync (still preserved for non-divergence errors)');
-console.log('• Gist: https://gist.github.com/konard/c007af0d280f1928603f327bbcecde63\n');
+console.log('• Gist: https://gist.github.com/petermotorniy/c007af0d280f1928603f327bbcecde63\n');
 
 console.log('✅ Fork divergence auto-fix implemented and ready!');
 console.log('🎯 Issue #445 should be fully resolved with automatic recovery');

@@ -1,316 +1,318 @@
-# Hive Mind: Vision (languages: en • [zh](VISION.zh.md) • [hi](VISION.hi.md) • [ru](VISION.ru.md))
+# Auto Programmer: Видение
 
-This document explains **what pain Hive Mind solves, for whom, and where it is
-going**. If [FEATURES.md](./FEATURES.md) answers _"what can it do?"_ and
-[flow.md](./flow.md) answers _"how does it work?"_, this document answers _"why
-does it exist, and what does a day with it actually look like?"_
+Этот документ объясняет, **какую боль решает Auto Programmer, для кого и куда он
+движется**. Если [FEATURES.md](./FEATURES.md) отвечает на вопрос _«что он
+умеет?»_, а [flow.md](./flow.md) — _«как он работает?»_, то этот документ
+отвечает на вопрос _«зачем он существует и как на самом деле выглядит день с
+ним?»_
 
-To make the value concrete, the largest part of this document is a catalogue of
-**user journeys** — short, realistic stories that walk from a real problem to a
-delivered result. They are split into journeys we **support today** and journeys
-we **want to support in the future**.
+Чтобы сделать ценность наглядной, бо́льшую часть документа занимает каталог
+**пользовательских сценариев (user journeys)** — коротких реалистичных историй,
+ведущих от реальной проблемы к доставленному результату. Они разделены на
+сценарии, которые мы **поддерживаем сегодня**, и сценарии, которые мы **хотим
+поддерживать в будущем**.
 
-## Table of Contents
+## Содержание
 
-1. [The Pain](#the-pain)
-2. [The Vision](#the-vision)
-3. [Guiding Principles](#guiding-principles)
-4. [Who It Is For](#who-it-is-for)
-5. [User Journeys We Support Today](#user-journeys-we-support-today)
-6. [User Journeys We Want to Support](#user-journeys-we-want-to-support-future)
-7. [How Journeys Map to the Pain](#how-journeys-map-to-the-pain)
-8. [Where to Go Next](#where-to-go-next)
+1. [Боль](#боль)
+2. [Видение](#видение)
+3. [Руководящие принципы](#руководящие-принципы)
+4. [Для кого это](#для-кого-это)
+5. [Сценарии, которые мы поддерживаем сегодня](#сценарии-которые-мы-поддерживаем-сегодня)
+6. [Сценарии, которые мы хотим поддерживать (будущее)](#сценарии-которые-мы-хотим-поддерживать-будущее)
+7. [Как сценарии соотносятся с болью](#как-сценарии-соотносятся-с-болью)
+8. [Куда двигаться дальше](#куда-двигаться-дальше)
 
-## The Pain
+## Боль
 
-Software teams and solo developers share a set of recurring frustrations. Hive
-Mind exists to remove them.
+Команды и разработчики-одиночки сталкиваются с набором повторяющихся
+разочарований. Auto Programmer существует, чтобы их устранить.
 
-- **Endless backlogs of small-but-real work.** Bug reports, flaky tests,
-  outdated docs, dependency bumps, small refactors, "good first issues" — each
-  is individually cheap but collectively never-ending. They starve more
-  important work and rarely get done.
-- **Babysitting AI tools.** Most AI coding assistants stop every few seconds to
-  ask for permission, run only while you watch, and lose all context the moment
-  you close the editor. You become a supervisor of the AI instead of a reviewer
-  of its results.
-- **Unsafe local execution.** Giving an AI full freedom on your developer
-  machine risks your tokens, your files, and your production systems. Fully
-  sandboxed alternatives are safe but too limited to install packages, browse
-  docs, or configure a real environment.
-- **Context switching kills flow.** A two-hour interruption to fix a small issue
-  costs far more than two hours once you account for losing focus on the work
-  that actually matters.
-- **You are tied to a computer.** Triggering, steering, and reviewing AI work
-  usually requires SSH access, a terminal, and an IDE — so nothing happens while
-  you are away from your desk.
-- **Work does not scale.** When ten issues land at once, a single human (or a
-  single AI chat session) processes them one at a time. There is no easy way to
-  spin up "a team" on demand.
-- **Tokens wasted on plumbing.** AI budget burns on routine git operations,
-  branch creation, and PR boilerplate instead of on actually solving the
-  problem.
+- **Бесконечные бэклоги мелкой, но реальной работы.** Баг-репорты, нестабильные
+  тесты, устаревшая документация, обновления зависимостей, небольшие
+  рефакторинги, «good first issues» — каждая задача по отдельности дешёвая, но
+  вместе они нескончаемы. Они отнимают ресурсы у более важной работы и редко
+  доводятся до конца.
+- **Постоянный надзор за ИИ-инструментами.** Большинство ИИ-ассистентов
+  останавливаются каждые несколько секунд, чтобы спросить разрешение, работают
+  только пока вы смотрите и теряют весь контекст, как только вы закрываете
+  редактор. Вы становитесь надзирателем за ИИ, а не рецензентом его результатов.
+- **Небезопасный локальный запуск.** Дать ИИ полную свободу на вашей рабочей
+  машине — значит рисковать токенами, файлами и продакшен-системами. Песочницы
+  безопасны, но слишком ограничены, чтобы устанавливать пакеты, читать
+  документацию или настроить полноценное окружение.
+- **Переключение контекста убивает поток.** Двухчасовое отвлечение на мелкую
+  задачу обходится гораздо дороже двух часов, если учесть потерю фокуса на
+  по-настоящему важной работе.
+- **Вы привязаны к компьютеру.** Чтобы запустить, направить и проверить работу
+  ИИ, обычно нужны SSH-доступ, терминал и IDE — поэтому вдали от рабочего стола
+  ничего не происходит.
+- **Работа не масштабируется.** Когда сразу прилетает десять задач, один человек
+  (или одна ИИ-сессия) обрабатывает их по очереди. Нет простого способа поднять
+  «команду» по требованию.
+- **Токены тратятся на рутину.** Бюджет ИИ сгорает на рутинных git-операциях,
+  создании веток и шаблонах PR вместо собственно решения проблемы.
 
-The common thread: **the routine parts of software work consume the time,
-attention, and money that should go to the creative parts.**
+Общий знаменатель: **рутинная часть работы над ПО поглощает время, внимание и
+деньги, которые должны были бы идти на творческую часть.**
 
-## The Vision
+## Видение
 
-> **Hive Mind is a master-mind AI that orchestrates a hive of AI workers — and,
-> when needed, collective human intelligence — to clear the routine work of
-> software so that human attention is reserved for decisions that truly need
-> it.**
+> **Auto Programmer — это управляющий ИИ, который оркестрирует рой ИИ-воркеров — и при
+> необходимости коллективный человеческий интеллект, — чтобы расчищать рутинную
+> работу в разработке ПО, оставляя человеческое внимание для решений, которые
+> действительно его требуют.**
 
-We believe the right division of labour is:
+Мы считаем, что правильное разделение труда таково:
 
-- **AI does the routine work** — reading the codebase, writing the change,
-  creating the branch and the pull request, iterating until checks pass.
-- **Humans make the decisions** — defining the problem, answering questions when
-  requirements are unclear, and deciding what gets merged.
-- **Automation does the plumbing** — git, forking, PR creation, session
-  recovery, and orchestration are handled in code, so AI tokens and human
-  attention both stay focused on the creative core.
+- **ИИ делает рутину** — читает кодовую базу, пишет изменение, создаёт ветку и
+  pull request, итерирует, пока проверки не пройдут.
+- **Люди принимают решения** — формулируют задачу, отвечают на вопросы, когда
+  требования неясны, и решают, что вливать.
+- **Автоматизация занимается «сантехникой»** — git, форки, создание PR,
+  восстановление сессий и оркестрация выполнены в коде, поэтому и токены ИИ, и
+  внимание человека остаются сосредоточены на творческом ядре.
 
-The end state we are building toward: you describe a problem from any device,
-sleep, and wake up to a reviewable draft pull request — or to a thoughtful
-question if the problem was under-specified. Scale that from one issue to an
-entire backlog, and from one worker to a coordinated swarm.
+Целевое состояние, к которому мы идём: вы описываете проблему с любого
+устройства, спите и просыпаетесь к готовому для ревью черновику pull request —
+или к продуманному вопросу, если задача была недоопределена. Масштабируйте это
+от одной задачи до целого бэклога и от одного воркера до скоординированного роя.
 
-## Guiding Principles
+## Руководящие принципы
 
-These principles explain the trade-offs Hive Mind deliberately makes.
+Эти принципы объясняют компромиссы, на которые Auto Programmer идёт осознанно.
 
-1. **Autonomy over babysitting.** Workers run in full autonomous mode. The human
-   touch points are the start (the issue) and the end (the review), not every
-   command in between.
-2. **Isolation over local risk.** Workers run in disposable VMs or Docker
-   containers, never (recommended) on your developer machine. A broken
-   environment is restored, not repaired.
-3. **Human control at the merge gate.** AI produces **draft** pull requests.
-   Nothing reaches your main branch without a human decision. Branch protections
-   are respected.
-4. **Token and attention efficiency.** Routine steps are code, not prompts. The
-   expensive, creative budget is spent only where creativity is required.
-5. **Generalist by default.** Almost anything that can be done with files in a
-   repository is in scope — code, docs, configuration, tests, data — not just
-   programming.
-6. **Meet people where they are.** GitHub and Telegram are available on every
-   phone, so managing the hive must not require a laptop.
-7. **Open and portable.** Unlicense (public domain). No vendor lock-in; run it
-   on our infrastructure or your own.
+1. **Автономность вместо надзора.** Воркеры работают в полностью автономном
+   режиме. Точки участия человека — это начало (задача) и конец (ревью), а не
+   каждая команда между ними.
+2. **Изоляция вместо локального риска.** Воркеры работают в одноразовых ВМ или
+   Docker-контейнерах, а не (рекомендуется) на вашей рабочей машине. Сломанное
+   окружение восстанавливают, а не чинят.
+3. **Контроль человека на этапе слияния.** ИИ создаёт **черновые** pull request.
+   Ничто не попадает в основную ветку без решения человека. Защита веток
+   соблюдается.
+4. **Эффективность токенов и внимания.** Рутинные шаги — это код, а не промпты.
+   Дорогой творческий бюджет тратится только там, где нужна креативность.
+5. **Универсальность по умолчанию.** Почти всё, что можно сделать с файлами в
+   репозитории, входит в область применения — код, документация, конфигурация,
+   тесты, данные, — а не только программирование.
+6. **Встречаем людей там, где они есть.** GitHub и Telegram есть на каждом
+   телефоне, поэтому управление роем не должно требовать ноутбука.
+7. **Открытость и переносимость.** Лицензия Unlicense (общественное достояние).
+   Без привязки к поставщику; запускайте на нашей инфраструктуре или на своей.
 
-## Who It Is For
+## Для кого это
 
-| Persona                    | Their pain                                           | What Hive Mind gives them                                             |
-| -------------------------- | ---------------------------------------------------- | --------------------------------------------------------------------- |
-| **Solo developer**         | Backlog of small issues steals time from real work   | A tireless teammate that drafts fixes while they focus or sleep       |
-| **Team lead / manager**    | Routine issues pile up; reviews bottleneck on people | A swarm that clears the backlog overnight, leaving only review        |
-| **Open-source maintainer** | Too many issues, too few contributors                | Auto-forking workers that turn issues into reviewable PRs             |
-| **Contributor**            | Wants to help but lacks write access or setup time   | Fork-and-solve flow that needs no repo permissions or local toolchain |
-| **Non-coder / PM**         | Can describe a problem but not implement it          | Issue-in, PR-out workflow driven entirely from GitHub or Telegram     |
-| **Org / platform team**    | Needs scalable, observable, self-hosted automation   | Kubernetes/Helm deployment, multi-account isolation, Sentry tracking  |
+| Персона                     | Их боль                                                      | Что даёт Auto Programmer                                                 |
+| --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| **Разработчик-одиночка**    | Бэклог мелких задач крадёт время у настоящей работы          | Неутомимый напарник, который пишет черновики, пока вы в фокусе или спите |
+| **Тимлид / менеджер**       | Рутинные задачи копятся; ревью упирается в людей             | Рой, расчищающий бэклог за ночь и оставляющий только ревью               |
+| **Мейнтейнер open source**  | Слишком много задач, слишком мало контрибьюторов             | Автофоркающие воркеры, превращающие задачи в готовые для ревью PR        |
+| **Контрибьютор**            | Хочет помочь, но нет прав на запись или времени на настройку | Сценарий «форк-и-решение» без прав на репозиторий и без локального стека |
+| **Не-программист / PM**     | Может описать проблему, но не реализовать                    | Поток «задача на входе — PR на выходе» прямо из GitHub или Telegram      |
+| **Организация / платформа** | Нужна масштабируемая, наблюдаемая, self-hosted автоматизация | Развёртывание в Kubernetes/Helm, изоляция аккаунтов, трекинг в Sentry    |
 
-## User Journeys We Support Today
+## Сценарии, которые мы поддерживаем сегодня
 
-Each journey lists the **persona**, the **pain**, the **steps**, and the
-**outcome**. Commands shown are real; see the [README](../README.md) for full
-syntax.
+Каждый сценарий указывает **персону**, **боль**, **шаги** и **результат**.
+Показанные команды реальны; полный синтаксис см. в [README](../README.md).
 
-### Journey 1 — Clear a single backlog issue
+### Сценарий 1 — Закрыть одну задачу из бэклога
 
-- **Persona:** Solo developer
-- **Pain:** A known bug has sat in the backlog for weeks because it is boring,
-  not hard.
-- **Steps:**
-  1. Write (or pick) a GitHub issue describing the bug.
-  2. Run `solve https://github.com/owner/repo/issues/123 --model opus`.
-  3. The worker spins up an isolated environment, reads the codebase, reproduces
-     the bug, writes a fix and a test, and opens a **draft** pull request.
-  4. Review the PR. Merge it, or comment to request changes.
-- **Outcome:** What might have cost a two-hour context switch becomes a
-  ten-minute review of a finished draft.
+- **Персона:** разработчик-одиночка
+- **Боль:** известный баг неделями висит в бэклоге, потому что он скучный, а не
+  сложный.
+- **Шаги:**
+  1. Написать (или выбрать) GitHub-задачу с описанием бага.
+  2. Запустить `solve https://github.com/owner/repo/issues/123 --model opus`.
+  3. Воркер поднимает изолированное окружение, читает кодовую базу,
+     воспроизводит баг, пишет исправление и тест и открывает **черновой** PR.
+  4. Проверить PR. Влить его или оставить комментарий с просьбой об изменениях.
+- **Результат:** то, что стоило бы двухчасового переключения контекста,
+  превращается в десятиминутное ревью готового черновика.
 
-### Journey 2 — Iterate on a pull request via comments (Continue Mode)
+### Сценарий 2 — Итерировать PR через комментарии (режим продолжения)
 
-- **Persona:** Reviewer / solo developer
-- **Pain:** The first draft is 80% right but misses an edge case.
-- **Steps:**
-  1. Leave a normal PR review comment describing what to change.
-  2. Run `solve https://github.com/owner/repo/pull/456 --verbose` (or let the
-     orchestrator pick the comment up).
-  3. The worker reads the feedback, updates the solution, and pushes to the same
-     branch.
-  4. Repeat until satisfied, then merge — or close the PR to stop work
-     immediately.
-- **Outcome:** Refinement happens through the normal GitHub review workflow, with
-  no new tools to learn. See [flow.md](./flow.md) for the full feedback loop.
+- **Персона:** рецензент / разработчик-одиночка
+- **Боль:** первый черновик верен на 80%, но упускает крайний случай.
+- **Шаги:**
+  1. Оставить обычный комментарий-ревью к PR с описанием правок.
+  2. Запустить `solve https://github.com/owner/repo/pull/456 --verbose` (или
+     дать оркестратору подхватить комментарий).
+  3. Воркер читает обратную связь, обновляет решение и пушит в ту же ветку.
+  4. Повторять до удовлетворения, затем влить — или закрыть PR, чтобы немедленно
+     остановить работу.
+- **Результат:** доработка идёт через обычный процесс ревью в GitHub, без новых
+  инструментов. Полный цикл обратной связи см. в [flow.md](./flow.md).
 
-### Journey 3 — Contribute to a repo you cannot write to
+### Сценарий 3 — Внести вклад в репозиторий без прав на запись
 
-- **Persona:** Open-source contributor
-- **Pain:** You want to fix an issue in someone else's project but have no write
-  access and no local setup for their stack.
-- **Steps:**
-  1. Run `solve https://github.com/owner/repo/issues/123 --fork --model opus`
-     (a fork is also created automatically when write access is missing).
-  2. The worker forks the repository, solves the issue on a branch in the fork,
-     and opens a cross-repository pull request.
-  3. The upstream maintainer reviews and merges.
-- **Outcome:** Contribution without permissions, without cloning, and without
-  installing the project's toolchain locally.
+- **Персона:** контрибьютор open source
+- **Боль:** хочется исправить задачу в чужом проекте, но нет прав на запись и
+  локальной настройки под их стек.
+- **Шаги:**
+  1. Запустить `solve https://github.com/owner/repo/issues/123 --fork --model opus`
+     (форк также создаётся автоматически при отсутствии прав на запись).
+  2. Воркер форкает репозиторий, решает задачу в ветке форка и открывает
+     межрепозиторный pull request.
+  3. Мейнтейнер апстрима проверяет и вливает.
+- **Результат:** вклад без прав, без клонирования и без локальной установки
+  инструментария проекта.
 
-### Journey 4 — Clear an entire backlog overnight (Orchestration)
+### Сценарий 4 — Расчистить весь бэклог за ночь (оркестрация)
 
-- **Persona:** Team lead / maintainer
-- **Pain:** Dozens of issues are open; processing them one by one would take
-  weeks.
-- **Steps:**
-  1. Point the orchestrator at a repo, user, or organization:
+- **Персона:** тимлид / мейнтейнер
+- **Боль:** открыты десятки задач; обработка по одной заняла бы недели.
+- **Шаги:**
+  1. Нацелить оркестратор на репозиторий, пользователя или организацию:
      `hive https://github.com/owner/repo --monitor-tag "bug" --concurrency 4`.
-  2. The orchestrator continuously discovers matching issues and assigns each to
-     a parallel worker (with options like `--all-issues`,
-     `--skip-issues-with-prs`, `--max-issues`, `--interval`).
-  3. Each worker independently drafts a PR for its issue.
-  4. In the morning, a queue of draft PRs is waiting for review.
-- **Outcome:** A swarm that feels like a team of developers, for the cost of a
-  single subscription. _"The code is written while you sleep."_
+  2. Оркестратор непрерывно находит подходящие задачи и назначает каждую
+     параллельному воркеру (опции `--all-issues`, `--skip-issues-with-prs`,
+     `--max-issues`, `--interval`).
+  3. Каждый воркер независимо готовит PR для своей задачи.
+  4. Утром очередь черновых PR ждёт ревью.
+- **Результат:** рой, который ощущается как команда разработчиков, по цене одной
+  подписки. _«Код пишется, пока вы спите.»_
 
-### Journey 5 — Manage the hive from your phone (Telegram)
+### Сценарий 5 — Управлять роем с телефона (Telegram)
 
-- **Persona:** Anyone away from their desk
-- **Pain:** Inspiration (or an incident) strikes while you are on the move, with
-  no laptop.
-- **Steps:**
-  1. Send `/solve <issue-url>` or `/hive <repo-url>` to the Telegram bot.
-  2. Check progress with `/limits`; collaborate in a group chat with your team.
-  3. Review and merge the resulting PR from the GitHub mobile app.
-- **Outcome:** True mobile development — create issues, trigger solvers, and
-  review PRs entirely from a phone. No PC, IDE, or "vibe coding" app required.
+- **Персона:** любой, кто вне рабочего стола
+- **Боль:** вдохновение (или инцидент) застаёт в дороге, без ноутбука.
+- **Шаги:**
+  1. Отправить `/solve <issue-url>` или `/hive <repo-url>` Telegram-боту.
+  2. Проверять прогресс через `/limits`; работать с командой в групповом чате.
+  3. Проверить и влить итоговый PR из мобильного приложения GitHub.
+- **Результат:** настоящая мобильная разработка — создавать задачи, запускать
+  решатели и проверять PR полностью с телефона. Не нужны ни ПК, ни IDE, ни
+  «vibe coding»-приложения.
 
-### Journey 6 — Automate non-code work (Generalist AI)
+### Сценарий 6 — Автоматизировать не-кодовую работу (универсальный ИИ)
 
-- **Persona:** Maintainer / technical writer / PM
-- **Pain:** Documentation drifts, configuration needs updates, data files need
-  regenerating — none of it is "coding," but it all takes time. (This very
-  document was produced through that workflow.)
-- **Steps:**
-  1. Open an issue describing the documentation, config, or data change.
-  2. Run `solve` against it like any other issue.
-  3. The worker edits the relevant files and opens a draft PR.
-- **Outcome:** Almost anything expressible as files in a repository can be
-  automated, not just source code.
+- **Персона:** мейнтейнер / технический писатель / PM
+- **Боль:** документация устаревает, конфигурацию нужно обновлять, файлы данных
+  — перегенерировать; всё это не «программирование», но отнимает время. (Этот
+  самый документ создан именно таким способом.)
+- **Шаги:**
+  1. Открыть задачу с описанием изменения в документации, конфигурации или
+     данных.
+  2. Запустить `solve` по ней как по любой другой задаче.
+  3. Воркер правит нужные файлы и открывает черновой PR.
+- **Результат:** почти всё, что выражается файлами в репозитории, поддаётся
+  автоматизации, а не только исходный код.
 
-### Journey 7 — Run two budgets and tools in parallel (Multi-tool)
+### Сценарий 7 — Два бюджета и инструмента параллельно (мульти-инструмент)
 
-- **Persona:** Power user / small team
-- **Pain:** One subscription's usage limits or one model's style does not fit
-  every task.
-- **Steps:**
-  1. Configure both Claude MAX (`--tool claude`, default) and ChatGPT Pro
+- **Персона:** продвинутый пользователь / небольшая команда
+- **Боль:** лимиты одной подписки или стиль одной модели подходят не для каждой
+  задачи.
+- **Шаги:**
+  1. Настроить и Claude MAX (`--tool claude`, по умолчанию), и ChatGPT Pro
      (`--tool codex`).
-  2. Route creative tasks to Claude and deterministic refactors to Codex —
-     `/codex` or `/solve --tool codex` — or let parallel workers mix tools.
-- **Outcome:** Two independent "almost unlimited" budgets and per-tool/model
-  concurrency, so throughput is not capped by a single account.
+  2. Направлять творческие задачи в Claude, а детерминированные рефакторинги — в
+     Codex (`/codex` или `/solve --tool codex`), либо позволить параллельным
+     воркерам смешивать инструменты.
+- **Результат:** два независимых почти «безлимитных» бюджета и параллелизм по
+  инструментам/моделям, так что пропускная способность не упирается в один
+  аккаунт.
 
-### Journey 8 — Self-host safely at scale
+### Сценарий 8 — Безопасный self-hosting в масштабе
 
-- **Persona:** Organization / platform team
-- **Pain:** You need automation that is isolated, observable, and on your own
-  infrastructure.
-- **Steps:**
-  1. Deploy with Docker, the Ubuntu one-command setup, or Helm/Kubernetes for
-     production scaling.
-  2. Isolate accounts per container; rotate tokens; wire up Sentry for error
-     tracking.
-  3. Run orchestration against your repositories with concurrency tuned to your
-     hardware.
-- **Outcome:** Disposable, restorable, monitored AI workers running where your
-  policies require them. See [DOCKER.md](./DOCKER.md) and [HELM.md](./HELM.md).
+- **Персона:** организация / платформенная команда
+- **Боль:** нужна автоматизация, которая изолирована, наблюдаема и на своей
+  инфраструктуре.
+- **Шаги:**
+  1. Развернуть через Docker, однокомандную установку для Ubuntu или
+     Helm/Kubernetes для продакшен-масштабирования.
+  2. Изолировать аккаунты по контейнерам; ротировать токены; подключить Sentry
+     для трекинга ошибок.
+  3. Запускать оркестрацию по своим репозиториям с конкуренцией под своё железо.
+- **Результат:** одноразовые, восстановимые, наблюдаемые ИИ-воркеры там, где
+  требуют ваши политики. См. [DOCKER.md](./DOCKER.md) и
+  [HELM.md](./HELM.md).
 
-### Journey 9 — Survive rate limits and interruptions
+### Сценарий 9 — Пережить лимиты и прерывания
 
-- **Persona:** Any user on a long-running task
-- **Pain:** A model hits its usage limit halfway through, and naive tools simply
-  fail.
-- **Steps:**
-  1. A worker that hits a limit records a resume command and can auto-continue
-     when the limit resets.
-  2. Resume explicitly with
-     `solve <issue-url> --resume <session-id>` when needed.
-  3. Attach logs and a solution summary to the PR with `--attach-logs` and
-     `--auto-attach-solution-summary` for transparency.
-- **Outcome:** Long tasks complete across interruptions instead of being lost.
+- **Персона:** любой пользователь на долгой задаче
+- **Боль:** модель упирается в лимит на полпути, и наивные инструменты просто
+  падают.
+- **Шаги:**
+  1. Воркер, упёршийся в лимит, записывает команду возобновления и может
+     автопродолжиться, когда лимит сбросится.
+  2. Возобновить явно: `solve <issue-url> --resume <session-id>` при
+     необходимости.
+  3. Приложить логи и сводку решения к PR через `--attach-logs` и
+     `--auto-attach-solution-summary` для прозрачности.
+- **Результат:** долгие задачи завершаются сквозь прерывания, а не теряются.
 
-## User Journeys We Want to Support (Future)
+## Сценарии, которые мы хотим поддерживать (будущее)
 
-These journeys describe the **direction** of the project. They are not all
-implemented yet; they are listed so the documentation captures both what we
-support today and what we can potentially support in the future.
+Эти сценарии описывают **направление** проекта. Не все они уже реализованы; они
+перечислены, чтобы документация отражала и то, что мы поддерживаем сегодня, и
+то, что потенциально можем поддержать в будущем.
 
-### Future Journey A — Architect AI for task decomposition
+### Будущий сценарий A — ИИ-архитектор для декомпозиции задач
 
-- **Persona:** Developer facing a large, multi-step feature
-- **Today's limitation:** Hive Mind excels at small, well-scoped tasks; large
-  features must be broken down by a human first.
-- **The vision:** An "architect" AI decomposes a big issue into a graph of
-  small sub-issues, dispatches them to the swarm, and performs a final
-  integration review — turning one large request into many parallel drafts.
+- **Персона:** разработчик перед большой многошаговой фичей
+- **Сегодняшнее ограничение:** Auto Programmer силён на небольших, чётко
+  очерченных задачах; большие фичи человеку приходится дробить заранее.
+- **Видение:** ИИ-«архитектор» разбивает крупную задачу на граф мелких
+  подзадач, раздаёт их рою и проводит финальное интеграционное ревью —
+  превращая один большой запрос во множество параллельных черновиков.
 
-### Future Journey B — Collective human intelligence in the loop
+### Будущий сценарий B — Коллективный человеческий интеллект в цикле
 
-- **Persona:** Worker that hits a genuine knowledge gap
-- **The vision:** When requirements are ambiguous or domain expertise is
-  required, the system routes a precise question to the right human (or pool of
-  humans) for requirements, expertise, or feedback — and resumes automatically
-  once answered. The "hive" combines AI workers _and_ people.
+- **Персона:** воркер, столкнувшийся с реальным пробелом в знаниях
+- **Видение:** когда требования неоднозначны или нужна доменная экспертиза,
+  система направляет точный вопрос нужному человеку (или пулу людей) за
+  требованиями, экспертизой или обратной связью — и автоматически продолжает
+  работу после ответа. «Рой» объединяет ИИ-воркеров _и_ людей.
 
-### Future Journey C — Autonomous quality and self-review loops
+### Будущий сценарий C — Автономные циклы качества и самопроверки
 
-- **Persona:** Maintainer who wants higher first-pass quality
-- **The vision:** Dedicated reviewer agents critique and harden each draft —
-  adversarially verifying fixes, expanding test coverage, and flagging
-  regressions — before a human ever opens the PR.
+- **Персона:** мейнтейнер, желающий выше качество с первого раза
+- **Видение:** выделенные агенты-рецензенты критикуют и укрепляют каждый
+  черновик — состязательно проверяют исправления, расширяют покрытие тестами и
+  отмечают регрессии — ещё до того, как человек откроет PR.
 
-### Future Journey D — Continuous repository stewardship
+### Будущий сценарий D — Непрерывное попечение о репозитории
 
-- **Persona:** Long-lived project
-- **The vision:** A standing hive that proactively watches a repository for
-  dependency updates, failing or flaky tests, documentation drift, and security
-  advisories, and opens draft PRs to address them without waiting for a human to
-  file an issue.
+- **Персона:** долгоживущий проект
+- **Видение:** постоянный рой проактивно следит за репозиторием на предмет
+  обновлений зависимостей, падающих или нестабильных тестов, устаревания
+  документации и уведомлений безопасности и открывает черновые PR для их
+  устранения, не дожидаясь, пока человек заведёт задачу.
 
-### Future Journey E — Cross-repository and org-wide initiatives
+### Будущий сценарий E — Межрепозиторные и общеорганизационные инициативы
 
-- **Persona:** Platform team rolling out a change everywhere
-- **The vision:** Describe a change once (e.g. "migrate every service off the
-  deprecated API") and have the swarm fan out across many repositories,
-  coordinating consistent draft PRs org-wide.
+- **Персона:** платформенная команда, раскатывающая изменение повсюду
+- **Видение:** описать изменение один раз (например, «перевести все сервисы с
+  устаревшего API») и дать рою развернуться по множеству репозиториев,
+  согласованно создавая черновые PR в масштабах организации.
 
-> Have a journey you need that is not listed here? That gap is itself a great
-> issue to open — Hive Mind is built to grow through exactly this loop.
+> Нужен сценарий, которого здесь нет? Этот пробел сам по себе — отличная задача,
+> чтобы её завести. Auto Programmer создан расти именно через такой цикл.
 
-## How Journeys Map to the Pain
+## Как сценарии соотносятся с болью
 
-| Pain (from [The Pain](#the-pain)) | Journeys that address it |
-| --------------------------------- | ------------------------ |
-| Endless backlog of small work     | 1, 4, Future A, Future D |
-| Babysitting AI tools              | 1, 2, 9                  |
-| Unsafe local execution            | 1, 8                     |
-| Context switching kills flow      | 1, 4, 5                  |
-| Tied to a computer                | 5                        |
-| Work does not scale               | 4, 7, Future A, Future E |
-| Tokens wasted on plumbing         | 1, 2, 9                  |
-| Ambiguous requirements            | 2, Future B              |
-| First-pass quality                | 2, Future C              |
+| Боль (из раздела [Боль](#боль))      | Сценарии, которые её решают |
+| ------------------------------------ | --------------------------- |
+| Бесконечный бэклог мелкой работы     | 1, 4, Будущий A, Будущий D  |
+| Надзор за ИИ-инструментами           | 1, 2, 9                     |
+| Небезопасный локальный запуск        | 1, 8                        |
+| Переключение контекста убивает поток | 1, 4, 5                     |
+| Привязка к компьютеру                | 5                           |
+| Работа не масштабируется             | 4, 7, Будущий A, Будущий E  |
+| Токены тратятся на рутину            | 1, 2, 9                     |
+| Неоднозначные требования             | 2, Будущий B                |
+| Качество с первого раза              | 2, Будущий C                |
 
-## Where to Go Next
+## Куда двигаться дальше
 
-- **What it can do:** [FEATURES.md](./FEATURES.md)
-- **How it compares to hiring, IDEs, and other agents:** [COMPARISON.md](./COMPARISON.md)
-- **How the data and feedback loops work:** [flow.md](./flow.md)
-- **How to get the best results:** [BEST-PRACTICES.md](./BEST-PRACTICES.md)
-- **Install and quick start:** [README](../README.md)
+- **Что он умеет:** [FEATURES.md](./FEATURES.md)
+- **Сравнение с наймом, IDE и другими агентами:** [COMPARISON.md](./COMPARISON.md)
+- **Как устроены потоки данных и обратной связи:** [flow.md](./flow.md)
+- **Как получить лучшие результаты:** [BEST-PRACTICES.md](./BEST-PRACTICES.md)
+- **Установка и быстрый старт:** [README](../README.md)
 
-_Hive Mind is 100% open source under the Unlicense. The fastest way to shape this
-vision is to open an issue — and let the hive help solve it._
+_Auto Programmer на 100% открыт под лицензией Unlicense. Самый быстрый способ повлиять
+на это видение — завести задачу и позволить рою помочь её решить._

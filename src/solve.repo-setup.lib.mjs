@@ -97,7 +97,7 @@ export async function verifyDefaultBranchAndStatus({ tempDir, log, formatAligned
     if (owner && repo) await log(`     3. Verify access to the repository: gh repo view ${owner}/${repo}`);
     await log(`     ${owner && repo ? '4' : '3'}. Check GitHub status if it keeps failing: https://www.githubstatus.com`);
     await log('');
-    await log('  ℹ️  If this is reproducible, ask a Hive Mind administrator to inspect the solver terminal log for the clone error.');
+    await log('  ℹ️  If this is reproducible, ask a Auto Programmer administrator to inspect the solver terminal log for the clone error.');
     await log('');
 
     await log('Error: Failed to get current branch');

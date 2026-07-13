@@ -11,7 +11,7 @@
  *   5. Issue #1612: default behavior must NOT block on unrelated repo-wide runs
  *
  * Run with: node tests/test-repo-actions-consensus-1503.mjs
- * @see https://github.com/link-assistant/hive-mind/issues/1503
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1503
  */
 
 // Test harness — uses inline counter to avoid jscpd cross-file clone detection

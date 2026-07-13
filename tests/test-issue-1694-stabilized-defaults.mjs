@@ -10,7 +10,7 @@
  *   - --auto-attach-solution-summary   (solve / hive defaults to true)
  *   - --isolation                      (hive-telegram-bot defaults to 'docker')
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1694
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1694
  */
 
 import { spawn } from 'child_process';

@@ -7,7 +7,7 @@
  * it can be unit-tested in isolation (mirroring auto-iteration-limits.lib.mjs).
  * The orchestration lives in solve.keep-working.lib.mjs.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1883
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1883
  */
 
 /**

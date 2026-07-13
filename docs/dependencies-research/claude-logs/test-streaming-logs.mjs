@@ -5,7 +5,7 @@ const { $ } = await use('command-stream');
 import { appendFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const claude = process.env.CLAUDE_PATH || '/Users/konard/.claude/local/claude';
+const claude = process.env.CLAUDE_PATH || '/Users/petermotorniy/.claude/local/claude';
 
 console.log('=== Claude Real-Time Streaming Logs Test ===\n');
 

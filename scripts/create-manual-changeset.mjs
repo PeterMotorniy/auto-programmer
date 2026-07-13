@@ -14,7 +14,7 @@ import { ensureUseM } from '../src/use-m-bootstrap.lib.mjs';
 import { writeFileSync } from 'fs';
 import { randomBytes } from 'crypto';
 
-const PACKAGE_NAME = '@link-assistant/hive-mind';
+const PACKAGE_NAME = 'auto-programmer';
 
 // Load use-m dynamically
 const use = await ensureUseM();

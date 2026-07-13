@@ -444,7 +444,7 @@ export const SOLVE_OPTION_DEFINITIONS = {
   // Disable with --no-interactive-image-upload to fall back to a metadata note.
   'interactive-image-upload': {
     type: 'boolean',
-    description: '[EXPERIMENTAL] When --interactive-mode is on, upload images read/written by the AI to hidden custom Git refs (refs/hive-mind-media/...) and embed them inline in PR comments. Enabled by default; use --no-interactive-image-upload to disable.',
+    description: '[EXPERIMENTAL] When --interactive-mode is on, upload images read/written by the AI to hidden custom Git refs (refs/auto-programmer-media/...) and embed them inline in PR comments. Enabled by default; use --no-interactive-image-upload to disable.',
     default: true,
   },
   // Issue #817: Bidirectional interactive options
@@ -575,7 +575,7 @@ export const SOLVE_OPTION_DEFINITIONS = {
   },
   'use-agent-commander': {
     type: 'boolean',
-    description: '[EXPERIMENTAL] Execute the selected AI tool through agent-commander instead of the embedded hive-mind tool adapter. Disabled by default.',
+    description: '[EXPERIMENTAL] Execute the selected AI tool through agent-commander instead of the embedded auto-programmer tool adapter. Disabled by default.',
     default: false,
     hidden: true,
   },

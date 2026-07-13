@@ -721,7 +721,7 @@ console.log('\n📋 Test Group: Issue #1313 exact reproduction\n');
 
 runTest('Issue #1313: the exact gist log data parses non-zero tokens', () => {
   // This is the exact JSON structure from the gist linked in Issue #1313:
-  // https://gist.githubusercontent.com/konard/baae4b8157c98675224c6e575fef7178/raw/.../solution-draft-log-pr-1770982293538.txt
+  // https://gist.githubusercontent.com/petermotorniy/baae4b8157c98675224c6e575fef7178/raw/.../solution-draft-log-pr-1770982293538.txt
   // The log showed tokens: { input: 406, output: 353, reasoning: 281, cache: { read: 33880, write: 0 } }
   // But the comment showed "Token usage: 0 input, 0 output" - this was the bug.
   const logLine = '{"type":"step_finish","timestamp":1770982017418,"sessionID":"ses_3a93f1458ffeK5TKD4XfXXW4A3","part":{"id":"prt_c56c10976001ItHqFbhtFmk8aP","sessionID":"ses_3a93f1458ffeK5TKD4XfXXW4A3","messageID":"msg_c56c0ec62001LvHUlMLyTfvFEl","type":"step-finish","reason":"tool-calls","snapshot":"5d6c73c51a020ef88084e93fe72a793b31b7441f","cost":0,"tokens":{"input":406,"output":353,"reasoning":281,"cache":{"read":33880,"write":0}}}}\n';

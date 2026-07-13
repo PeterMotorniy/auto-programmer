@@ -8,7 +8,7 @@
  * definitions and the config-level normalization/validation of the flags and
  * the initial-model override (start on the range's lower bound).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1885
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1885
  */
 
 import assert from 'node:assert/strict';

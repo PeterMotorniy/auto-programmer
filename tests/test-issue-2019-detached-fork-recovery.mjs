@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #2019 follow-up: when a non-fork replacement repository actually shares
  * history with upstream, it is almost certainly a fork that GitHub detached
  * (commonly after a private/public visibility change). GitHub documents that
  * detachment as permanent, so the only path that keeps the repository is a
- * GitHub Support request. Hive Mind must surface that non-deletion recovery
+ * GitHub Support request. Auto Programmer must surface that non-deletion recovery
  * option instead of only offering deletion.
  */
 
@@ -47,11 +47,11 @@ function makeFakeDollar(handler) {
 
 await test('detached-fork recovery guidance points at the GitHub Support fork workflow without deletion', () => {
   const guidance = buildDetachedForkRecoveryGuidance({
-    existingRepository: 'konard/Payel-git-ol-Octra',
+    existingRepository: 'petermotorniy/Payel-git-ol-Octra',
     expectedUpstream: 'Payel-git-ol/Octra',
   });
 
-  assert.match(guidance, /WITHOUT deleting konard\/Payel-git-ol-Octra/);
+  assert.match(guidance, /WITHOUT deleting petermotorniy\/Payel-git-ol-Octra/);
   assert.match(guidance, /Payel-git-ol\/Octra/);
   assert.equal(GITHUB_FORK_SUPPORT_URL, 'https://support.github.com/request/fork');
   assert.match(guidance, /https:\/\/support\.github\.com\/request\/fork/);
@@ -61,9 +61,9 @@ await test('detached-fork recovery guidance points at the GitHub Support fork wo
 
 await test('blocked reason surfaces the non-deletion recovery option and the detached-fork cause', () => {
   const reason = buildForkReplacementBlockedReason({
-    existingRepository: 'konard/Payel-git-ol-Octra',
+    existingRepository: 'petermotorniy/Payel-git-ol-Octra',
     expectedUpstream: 'Payel-git-ol/Octra',
-    relationshipDescription: 'konard/Payel-git-ol-Octra is not a GitHub fork of Payel-git-ol/Octra.',
+    relationshipDescription: 'petermotorniy/Payel-git-ol-Octra is not a GitHub fork of Payel-git-ol/Octra.',
     safetyCheckDescription: 'Local Git branch reachability found 3 replacement branch tip(s) with commits not reachable from upstream.',
     likelyDetachedFork: true,
   });
@@ -80,10 +80,10 @@ await test('blocked reason surfaces the non-deletion recovery option and the det
 
 await test('blocked reason omits the detached-fork cause line when history is not shared', () => {
   const reason = buildForkReplacementBlockedReason({
-    existingRepository: 'konard/unrelated-repo',
+    existingRepository: 'petermotorniy/unrelated-repo',
     expectedUpstream: 'someone/upstream',
-    relationshipDescription: 'konard/unrelated-repo is not a GitHub fork of someone/upstream.',
-    safetyCheckDescription: 'GitHub compare returned 404 Not Found, so Hive Mind could not prove the repository has no unique commits.',
+    relationshipDescription: 'petermotorniy/unrelated-repo is not a GitHub fork of someone/upstream.',
+    safetyCheckDescription: 'GitHub compare returned 404 Not Found, so Auto Programmer could not prove the repository has no unique commits.',
     likelyDetachedFork: false,
   });
 
@@ -94,9 +94,9 @@ await test('blocked reason omits the detached-fork cause line when history is no
 
 await test('pre-PR failure action section includes the GitHub Support re-attach path', () => {
   const reason = buildForkReplacementBlockedReason({
-    existingRepository: 'konard/Payel-git-ol-Octra',
+    existingRepository: 'petermotorniy/Payel-git-ol-Octra',
     expectedUpstream: 'Payel-git-ol/Octra',
-    relationshipDescription: 'konard/Payel-git-ol-Octra is not a GitHub fork of Payel-git-ol/Octra.',
+    relationshipDescription: 'petermotorniy/Payel-git-ol-Octra is not a GitHub fork of Payel-git-ol/Octra.',
     safetyCheckDescription: 'Local Git branch reachability found 3 replacement branch tip(s).',
     likelyDetachedFork: true,
   });
@@ -126,7 +126,7 @@ await test('branch-safety check flags a likely detached fork when history is sha
     $,
     owner: 'Payel-git-ol',
     repo: 'Octra',
-    existingRepository: 'konard/Payel-git-ol-Octra',
+    existingRepository: 'petermotorniy/Payel-git-ol-Octra',
   });
 
   assert.equal(result.safeToDelete, false);
@@ -150,7 +150,7 @@ await test('branch-safety check does not flag a detached fork when no branch is 
     $,
     owner: 'someone',
     repo: 'upstream',
-    existingRepository: 'konard/unrelated-repo',
+    existingRepository: 'petermotorniy/unrelated-repo',
   });
 
   assert.equal(result.reachableBranchCount, 0);

@@ -29,9 +29,9 @@ const testUrls = [
     expectedType: 'issue',
   },
   {
-    url: 'https://github.com/link-assistant/hive-mind',
-    expectedOwner: 'link-assistant',
-    expectedRepo: 'hive-mind',
+    url: 'https://github.com/PeterMotorniy/auto-programmer',
+    expectedOwner: 'PeterMotorniy',
+    expectedRepo: 'auto-programmer',
     expectedNumber: null,
     expectedType: 'repo',
   },

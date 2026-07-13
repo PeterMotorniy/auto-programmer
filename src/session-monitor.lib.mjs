@@ -15,8 +15,8 @@
  * library dependency.
  *
  * @see https://github.com/link-foundation/start
- * @see https://github.com/link-assistant/hive-mind/issues/380
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/380
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import { exec as execCallback } from 'child_process';
@@ -1047,8 +1047,8 @@ export async function monitorSessions(bot, verbose = false, options = {}) {
  * @param {Function} [options.readFile] - Optional test override for reading session logs
  * @returns {Promise<string|null>} PR URL or null
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1688
- * @see https://github.com/link-assistant/hive-mind/issues/1905
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1688
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1905
  */
 async function resolvePullRequestUrlForSession(sessionInfo, { verbose = false, lookupLinkedPullRequest = null, statusResult = null, readFile = fs.readFile } = {}) {
   const ctx = sessionInfo?.urlContext;
@@ -1407,7 +1407,7 @@ export async function getRunningTrackedIsolationSessions(verbose = false, option
  * @param {Function} [options.statusProvider] - Optional `$ --status` provider
  * @param {Function} [options.screenChecker] - Optional screen-existence checker
  * @returns {Promise<Array<{sessionName: string, url: string|null, tool: string, status: string|null, startTime: (Date|string|number|null), isolationBackend: (string|null)}>>}
- * @see https://github.com/link-assistant/hive-mind/issues/1837
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1837
  */
 export async function getRunningSessionItems(verbose = false, options = {}) {
   const items = [];

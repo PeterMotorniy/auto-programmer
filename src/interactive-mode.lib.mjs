@@ -230,7 +230,7 @@ export const createInteractiveHandler = options => {
     try {
       // Post comment via gh api with stdin to avoid shell quoting issues
       // with complex markdown bodies containing backticks, quotes, etc.
-      // See: https://github.com/link-assistant/hive-mind/issues/1458
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1458
       const apiUrl = `repos/${owner}/${repo}/issues/${prNumber}/comments`;
       const jsonPayload = JSON.stringify({ body: safeBody });
       const { stdout } = await runGhApi('gh', ['api', apiUrl, '-X', 'POST', '--input', '-'], {
@@ -301,7 +301,7 @@ export const createInteractiveHandler = options => {
     try {
       // Edit comment via gh api with stdin to avoid shell quoting issues
       // with complex markdown bodies containing backticks, quotes, etc.
-      // See: https://github.com/link-assistant/hive-mind/issues/1458
+      // See: https://github.com/PeterMotorniy/auto-programmer/issues/1458
       const apiUrl = `repos/${owner}/${repo}/issues/comments/${commentId}`;
       const jsonPayload = JSON.stringify({ body: safeBody });
       await runGhApi('gh', ['api', apiUrl, '-X', 'PATCH', '--input', '-'], {
@@ -368,7 +368,7 @@ export const createInteractiveHandler = options => {
         // If this was a task comment, update the pending task with the comment ID
         // Fix: task comments previously lost their commentId when queued, causing
         // task_notification edits to fail and leaving tasks stuck at "⏳ Running..."
-        // See: https://github.com/link-assistant/hive-mind/issues/1576
+        // See: https://github.com/PeterMotorniy/auto-programmer/issues/1576
         if (taskId && commentId) {
           const pendingTask = state.pendingTasks.get(taskId);
           if (pendingTask) {
@@ -396,7 +396,7 @@ export const createInteractiveHandler = options => {
   const handleSystemInit = async data => {
     // Guard against duplicate init events (e.g., when a late task_notification
     // arrives after the result event and triggers a new conversation turn)
-    // See: https://github.com/link-assistant/hive-mind/issues/1458
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1458
     if (state.sessionId) {
       if (verbose) {
         await log(`⚠️ Interactive mode: Ignoring duplicate system.init event (session already initialized: ${state.sessionId})`, { verbose: true });
@@ -695,7 +695,7 @@ ${createRawJsonSection(data)}`;
         // waiting for rate-limit clearance. Processing it here avoids the 30s
         // timeout that previously caused many comments to stay stuck on
         // "Waiting for result...".
-        // See: https://github.com/link-assistant/hive-mind/issues/1458
+        // See: https://github.com/PeterMotorniy/auto-programmer/issues/1458
         if (state.commentQueue.length > 0) {
           if (verbose) {
             await log(`🔄 Interactive mode: Flushing comment queue (${state.commentQueue.length} items) before waiting for tool use comment`, {
@@ -830,7 +830,7 @@ ${createRedactedRawJsonSection(data)}`;
 
     // Usage breakdown — prefer modelUsage (cumulative per-model totals including sub-agents)
     // over usage (which only contains last-iteration tokens and is misleading).
-    // See: https://github.com/link-assistant/hive-mind/issues/1576
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1576
     let usageSection = '';
     if (data.modelUsage && Object.keys(data.modelUsage).length > 0) {
       usageSection = '\n### 📊 Token Usage (by model)\n\n';

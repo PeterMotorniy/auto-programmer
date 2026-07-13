@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #1946: when the Telegram bot launches a task with `--isolation docker`,
  * the session UUID + isolation backend must be surfaced (and the session

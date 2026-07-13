@@ -19,11 +19,11 @@
  * Tag the test file with the matching marker so the runner classifies it
  * correctly:
  *
- *   // @hive-mind-integration
+ *   // @auto-programmer-integration
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1758
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1758
  *
- * @hive-mind-test-skip
+ * @auto-programmer-test-skip
  */
 
 /**

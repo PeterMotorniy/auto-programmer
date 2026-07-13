@@ -43,8 +43,8 @@ The parser expected an ISO timestamp and treated month/day values as invalid.`;
 
 const appended = ensureIssueLinkInPullRequestBody(codexEditedBodyWithoutIssueLink, {
   issueNumber: 1614,
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
 });
 
 assert(appended.updated === true, 'Missing issue link is detected as an update');
@@ -60,41 +60,41 @@ Fixes #1614`;
 
 const unchanged = ensureIssueLinkInPullRequestBody(alreadyLinked, {
   issueNumber: 1614,
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
 });
 
 assert(unchanged.updated === false, 'Existing issue link is not duplicated');
 assertEquals(unchanged.body, alreadyLinked, 'Already-linked PR body is left unchanged');
 
-const fullSameRepoLink = ensureIssueLinkInPullRequestBody('## Summary\n\nFixes link-assistant/hive-mind#1614', {
+const fullSameRepoLink = ensureIssueLinkInPullRequestBody('## Summary\n\nFixes PeterMotorniy/auto-programmer#1614', {
   issueNumber: 1614,
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
 });
 
 assert(fullSameRepoLink.updated === false, 'Full owner/repo issue link is accepted for same-repo PRs');
 
 const forkResult = ensureIssueLinkInPullRequestBody('## Summary\n\nImplementation details.', {
   issueNumber: 1614,
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
   fork: true,
 });
 
-assertEquals(forkResult.issueRef, 'link-assistant/hive-mind#1614', 'Fork issue reference uses owner/repo form');
-assert(forkResult.body.endsWith('\n\nFixes link-assistant/hive-mind#1614'), 'Fork issue-closing keyword is appended with owner/repo');
+assertEquals(forkResult.issueRef, 'PeterMotorniy/auto-programmer#1614', 'Fork issue reference uses owner/repo form');
+assert(forkResult.body.endsWith('\n\nFixes PeterMotorniy/auto-programmer#1614'), 'Fork issue-closing keyword is appended with owner/repo');
 
 const emptyBodyResult = ensureIssueLinkInPullRequestBody('', {
   issueNumber: 1614,
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
 });
 
 assertEquals(emptyBodyResult.body, 'Fixes #1614', 'Empty PR body does not get leading blank lines');
 
-assertEquals(buildIssueReference({ issueNumber: 1614, owner: 'link-assistant', repo: 'hive-mind' }), '#1614', 'buildIssueReference defaults to short form');
-assertEquals(buildIssueReference({ issueNumber: 1614, owner: 'link-assistant', repo: 'hive-mind', fork: true }), 'link-assistant/hive-mind#1614', 'buildIssueReference supports fork form');
+assertEquals(buildIssueReference({ issueNumber: 1614, owner: 'PeterMotorniy', repo: 'auto-programmer' }), '#1614', 'buildIssueReference defaults to short form');
+assertEquals(buildIssueReference({ issueNumber: 1614, owner: 'PeterMotorniy', repo: 'auto-programmer', fork: true }), 'PeterMotorniy/auto-programmer#1614', 'buildIssueReference supports fork form');
 
 const linkedIssueNumbers = parseClosingIssueNumbers('1614\n123\n');
 assert(linkedIssueNumbers.includes('1614'), 'GraphQL closing issue stdout is parsed');

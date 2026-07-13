@@ -1,0 +1,62 @@
+apiVersion: v2
+name: auto-programmer
+description: A Helm chart for deploying Auto Programmer - the master AI that controls a hive of AI agents
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+version: 1.0.0
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are expected to
+# follow Semantic Versioning (https://semver.org/)
+appVersion: "0.38.9"
+
+keywords:
+  - ai
+  - automation
+  - github
+  - claude
+  - agent
+  - orchestration
+
+home: https://github.com/PeterMotorniy/auto-programmer
+sources:
+  - https://github.com/PeterMotorniy/auto-programmer
+
+maintainers:
+  - name: PeterMotorniy Team
+    url: https://github.com/PeterMotorniy
+
+icon: https://github.com/PeterMotorniy/auto-programmer/raw/main/docs/images/auto-programmer-icon.png
+
+annotations:
+  artifacthub.io/category: integration-delivery
+  artifacthub.io/displayName: Auto Programmer
+  artifacthub.io/license: Unlicense
+  artifacthub.io/links: |
+    - name: Documentation
+      url: https://github.com/PeterMotorniy/auto-programmer/blob/main/README.md
+    - name: Docker Hub
+      url: https://hub.docker.com/r/petermotorniy/auto-programmer
+  artifacthub.io/readme: |
+    # Auto Programmer Helm Chart
+
+    Deploy Auto Programmer on Kubernetes - the master AI that controls a hive of AI agents.
+
+    ## Prerequisites
+
+    - Kubernetes 1.19+
+    - Helm 3.0+
+
+    ## Installation
+
+    ```bash
+    helm repo add PeterMotorniy https://PeterMotorniy.github.io/auto-programmer
+    helm repo update
+    helm install auto-programmer PeterMotorniy/auto-programmer
+    ```
+
+    ## Configuration
+
+    See values.yaml for all configurable options.

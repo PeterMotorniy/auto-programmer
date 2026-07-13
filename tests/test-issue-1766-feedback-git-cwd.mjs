@@ -3,7 +3,7 @@
 /**
  * Regression test for issue #1766.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -31,7 +31,7 @@ function createMockDollar({ repositoryPath, branchName }) {
     calls.push({ command, cwd });
 
     if (command === 'gh api user --jq .login') {
-      return result('konard\n');
+      return result('petermotorniy\n');
     }
 
     if (command === `git log -1 --format="%aI" origin/${branchName}` || command === `git log -1 --format="%aI" ${branchName}`) {

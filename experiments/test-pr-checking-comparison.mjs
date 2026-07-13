@@ -71,8 +71,8 @@ async function compareApproaches() {
   console.log('🔬 Comparing PR Checking Approaches\n');
   console.log('='.repeat(60));
 
-  const owner = 'link-assistant';
-  const repo = 'hive-mind';
+  const owner = 'PeterMotorniy';
+  const repo = 'auto-programmer';
   const issues = [183, 184, 186, 194, 197]; // Mix of issues
 
   console.log(`\nTest Setup:`);

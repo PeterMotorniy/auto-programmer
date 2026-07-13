@@ -13,8 +13,8 @@
  *
  * Run with: node tests/test-execgh-transient-retry-1756.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1756
- * @hive-mind-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1756
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

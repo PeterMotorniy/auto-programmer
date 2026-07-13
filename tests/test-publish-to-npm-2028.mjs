@@ -12,8 +12,8 @@
  *
  * Run with: node tests/test-publish-to-npm-2028.mjs
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/2028
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2028
  */
 
 import assert from 'node:assert/strict';

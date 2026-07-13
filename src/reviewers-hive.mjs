@@ -563,7 +563,7 @@ async function fetchPullRequests() {
 
 // Main monitoring loop
 async function monitor() {
-  await log('\n🚀 Starting Reviewers Hive Mind monitoring system...');
+  await log('\n🚀 Starting Reviewers Auto Programmer monitoring system...');
 
   // Start reviewers
   await log(`\n👀 Starting ${argv.concurrency} reviewers...`);
@@ -631,7 +631,7 @@ async function monitor() {
   prQueue.stop();
   await Promise.all(prQueue.workers);
 
-  await log('\n👋 Reviewers Hive Mind monitoring stopped');
+  await log('\n👋 Reviewers Auto Programmer monitoring stopped');
 }
 
 // Handle graceful shutdown

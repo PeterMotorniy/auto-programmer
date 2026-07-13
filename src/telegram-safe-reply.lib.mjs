@@ -1,6 +1,6 @@
 import { normalizeLocale, t } from './i18n.lib.mjs';
 
-const FORMATTING_FALLBACK_INSTALLED = Symbol.for('hiveMind.telegramFormattingFallbackInstalled');
+const FORMATTING_FALLBACK_INSTALLED = Symbol.for('autoProgrammer.telegramFormattingFallbackInstalled');
 const DEFAULT_FORMATTING_FALLBACK_WARNING = '⚠️ Formatting error detected. Showing plain text fallback.';
 export const TELEGRAM_TEXT_LIMIT = 4096;
 const FORMATTING_FALLBACK_WARNINGS = {

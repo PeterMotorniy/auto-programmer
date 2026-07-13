@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { SOLVE_OPTION_DEFINITIONS } from '../src/solve.config.lib.mjs';
@@ -48,8 +48,8 @@ await run('postTrackedComment sanitizes controlled GitHub comment body', async (
 
   const result = await postTrackedComment({
     $: fakeDollar,
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     targetNumber: 1746,
     body: `tool output ${token}`,
   });

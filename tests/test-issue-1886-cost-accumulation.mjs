@@ -19,7 +19,7 @@
  * full-session scope of the public estimate. The accumulation is model-agnostic
  * (it sums dollar amounts, never inspecting per-token prices).
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { calculateModelCost } from '../src/claude.cost.lib.mjs';

@@ -13,7 +13,7 @@
  * inside each iteration loop. These tests pin that behaviour at the source level
  * so future refactors don't silently drop the call again.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1763
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1763
  */
 
 import { promises as fs } from 'fs';

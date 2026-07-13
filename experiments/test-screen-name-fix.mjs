@@ -104,8 +104,8 @@ const testCases = [
   },
   {
     command: 'solve',
-    url: 'https://github.com/link-assistant/hive-mind/issues/348',
-    expected: 'solve-link-assistant-hive-mind-348',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/348',
+    expected: 'solve-PeterMotorniy-auto-programmer-348',
     description: 'Current issue being fixed',
   },
   {

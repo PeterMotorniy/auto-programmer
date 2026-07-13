@@ -7,7 +7,7 @@
  * applies a success/failure-aware retention policy after the terminal
  * completion message has been handled.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1979
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1979
  */
 
 import { __setIsolationRunnerForTests, buildDockerTaskContainerCompletionAction, getActiveSessionCount, monitorSessions, resetSessionMonitorForTests, resolveDockerTaskContainerKeepPolicy, trackSession } from '../src/session-monitor.lib.mjs';
@@ -38,7 +38,7 @@ async function runCompletedDockerSession({ status, exitCode, env = {} }) {
       chatId: 12345,
       messageId: 67890,
       startTime: new Date('2026-06-24T10:00:00.000Z'),
-      url: 'https://github.com/link-assistant/hive-mind/issues/1979',
+      url: 'https://github.com/PeterMotorniy/auto-programmer/issues/1979',
       command: 'solve',
       isolationBackend: 'docker',
       sessionId: sessionName,

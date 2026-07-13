@@ -11,8 +11,8 @@
  * but the published `start-command` (link-foundation/start v0.25.x) actually
  * uses `options.isolated` in both JSON and links-notation output.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1700
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1700
  * @see https://github.com/link-foundation/start
  */
 

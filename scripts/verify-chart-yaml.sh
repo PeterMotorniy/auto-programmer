@@ -12,22 +12,22 @@
 set -euo pipefail
 
 echo "Verifying Chart.yaml structure..."
-if [ ! -f "helm/hive-mind/Chart.yaml" ]; then
+if [ ! -f "helm/auto-programmer/Chart.yaml" ]; then
   echo "Chart.yaml not found"
   exit 1
 fi
 
-if ! grep -q "^name:" helm/hive-mind/Chart.yaml; then
+if ! grep -q "^name:" helm/auto-programmer/Chart.yaml; then
   echo "Chart name not found"
   exit 1
 fi
 
-if ! grep -q "^version:" helm/hive-mind/Chart.yaml; then
+if ! grep -q "^version:" helm/auto-programmer/Chart.yaml; then
   echo "Chart version not found"
   exit 1
 fi
 
-if ! grep -q "^appVersion:" helm/hive-mind/Chart.yaml; then
+if ! grep -q "^appVersion:" helm/auto-programmer/Chart.yaml; then
   echo "Chart appVersion not found"
   exit 1
 fi

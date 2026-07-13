@@ -8,7 +8,7 @@
  * therefore must collapse to the short form whenever the public and Anthropic
  * costs agree to within display precision (Issue #1703).
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import { displayCostComparison } from '../src/claude.budget-stats.lib.mjs';

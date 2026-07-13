@@ -6,8 +6,8 @@
  * opt-in system cleanup categories and must await async logging so the final
  * footer cannot interleave with system-cleanup lines.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/2005
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2005
  */
 
 import assert from 'node:assert/strict';

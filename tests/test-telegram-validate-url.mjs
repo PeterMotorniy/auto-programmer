@@ -66,7 +66,7 @@ console.log('===========================================\n');
 const solveValidTests = [
   {
     desc: 'Valid issue URL',
-    args: ['https://github.com/link-assistant/hive-mind/issues/630'],
+    args: ['https://github.com/PeterMotorniy/auto-programmer/issues/630'],
     options: undefined, // Use defaults
     shouldPass: true,
   },
@@ -93,7 +93,7 @@ const solveValidTests = [
 const solveInvalidTests = [
   {
     desc: 'Repository URL only (no issue/PR)',
-    args: ['https://github.com/link-assistant/master-plan'],
+    args: ['https://github.com/PeterMotorniy/master-plan'],
     options: undefined,
     shouldPass: false,
     expectedError: 'URL must be a GitHub issue, pull request (not repo)',
@@ -160,7 +160,7 @@ const solveInvalidTests = [
 const hiveValidTests = [
   {
     desc: 'Valid repository URL',
-    args: ['https://github.com/link-assistant/hive-mind'],
+    args: ['https://github.com/PeterMotorniy/auto-programmer'],
     options: {
       allowedTypes: ['repo', 'organization', 'user'],
       commandName: 'hive',
@@ -170,7 +170,7 @@ const hiveValidTests = [
   },
   {
     desc: 'Valid organization URL',
-    args: ['https://github.com/link-assistant'],
+    args: ['https://github.com/PeterMotorniy'],
     options: {
       allowedTypes: ['repo', 'organization', 'user'],
       commandName: 'hive',

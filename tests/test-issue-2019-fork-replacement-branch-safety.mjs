@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -43,7 +43,7 @@ await test('blocks replacement deletion when a side branch has commits not reach
   const $ = makeFakeDollar(command => {
     if (command.startsWith('git init')) return { stdout: '' };
     if (command.includes('git fetch') && command.includes('Payel-git-ol/Octra.git')) return { stdout: '' };
-    if (command.includes('git fetch') && command.includes('konard/Payel-git-ol-Octra.git')) return { stdout: '' };
+    if (command.includes('git fetch') && command.includes('petermotorniy/Payel-git-ol-Octra.git')) return { stdout: '' };
     if (command.startsWith('git for-each-ref')) {
       return {
         stdout: ['replacement/master 5d713671483ac3a26d24826f89c61cecdb6a0da3', 'replacement/issue-9-86efa1403a45 7f860d683f3025b3caa810d4c633b127f9f50fe8'].join('\n'),
@@ -59,7 +59,7 @@ await test('blocks replacement deletion when a side branch has commits not reach
     $,
     owner: 'Payel-git-ol',
     repo: 'Octra',
-    existingRepository: 'konard/Payel-git-ol-Octra',
+    existingRepository: 'petermotorniy/Payel-git-ol-Octra',
   });
 
   assert.equal(result.safeToDelete, false);
@@ -95,7 +95,7 @@ await test('allows replacement deletion only when every replacement branch tip i
     $,
     owner: 'Payel-git-ol',
     repo: 'Octra',
-    existingRepository: 'konard/Payel-git-ol-Octra',
+    existingRepository: 'petermotorniy/Payel-git-ol-Octra',
   });
 
   assert.equal(result.safeToDelete, true);

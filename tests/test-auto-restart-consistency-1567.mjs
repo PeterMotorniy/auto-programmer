@@ -11,7 +11,7 @@
  *
  * Run with: node tests/test-auto-restart-consistency-1567.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1567
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1567
  */
 
 // ANSI color codes for terminal output

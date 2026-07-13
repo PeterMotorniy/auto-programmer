@@ -24,7 +24,7 @@ import { cacheTtl } from './config.lib.mjs';
 
 // Import centralized queue thresholds for progress bar visualization
 // This ensures thresholds are consistent between queue logic and display formatting
-// See: https://github.com/link-assistant/hive-mind/issues/1242
+// See: https://github.com/PeterMotorniy/auto-programmer/issues/1242
 export { DISPLAY_THRESHOLDS } from './queue-config.lib.mjs';
 import { DISPLAY_THRESHOLDS } from './queue-config.lib.mjs';
 
@@ -148,7 +148,7 @@ export async function readCredentials(credentialsPath = DEFAULT_CREDENTIALS_PATH
  *
  * @param {string|null} retryAfter - Value of the retry-after header
  * @returns {string} Formatted message part (e.g., " Resets in 2m 30s (Mar 19, 8:00pm UTC)" or " Try again later.")
- * @see https://github.com/link-assistant/hive-mind/issues/1446
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1446
  */
 export function formatRetryAfterMessage(retryAfter) {
   if (retryAfter === null || retryAfter === undefined) {
@@ -865,7 +865,7 @@ export async function getCodexUsageLimits(verbose = false, authPath = DEFAULT_CO
     const requestHeaders = {
       Accept: 'application/json',
       Authorization: `Bearer ${accessToken}`,
-      'User-Agent': 'hive-mind-codex-limits/1.0',
+      'User-Agent': 'auto-programmer-codex-limits/1.0',
     };
 
     if (verbose) {
@@ -980,7 +980,7 @@ export async function getCodexUsageLimits(verbose = false, authPath = DEFAULT_CO
  * @param {number} percentage - Usage percentage (0-100)
  * @param {number|null} thresholdPercentage - Optional threshold position to show in the bar (0-100)
  * @returns {string} Text-based progress bar
- * @see https://github.com/link-assistant/hive-mind/issues/1242
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1242
  */
 export function getProgressBar(percentage, thresholdPercentage = null) {
   const totalBlocks = 30;
@@ -1049,7 +1049,7 @@ export function calculateTimePassedPercentage(resetsAt, periodHours) {
  * @param {string[]} extraSections - Optional extra sections to append inside the code block (e.g. queue status)
  * @param {Object|string} options - Optional locale options
  * @returns {string} Formatted message wrapped in a single code block
- * @see https://github.com/link-assistant/hive-mind/issues/1242
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1242
  */
 export function formatUsageMessage(usage, diskSpace = null, githubRateLimit = null, cpuLoad = null, memory = null, claudeError = null, extraSections = [], options = {}) {
   if (!Array.isArray(extraSections) && extraSections && typeof extraSections === 'object') {
@@ -1066,7 +1066,7 @@ export function formatUsageMessage(usage, diskSpace = null, githubRateLimit = nu
     let section = `${lt('cpu', {}, { locale })}\n`;
     const usedBar = getProgressBar(cpuLoad.usagePercentage, DISPLAY_THRESHOLDS.CPU);
     // Show 'used' label when below threshold, warning emoji when at/above threshold
-    // See: https://github.com/link-assistant/hive-mind/issues/1267
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1267
     const suffix = cpuLoad.usagePercentage >= DISPLAY_THRESHOLDS.CPU ? ' ⚠️' : ` ${lt('used', {}, { locale })}`;
     section += `${usedBar} ${cpuLoad.usagePercentage}%${suffix}\n`;
     // Linux load average is demand, not bounded CPU time. Keep the cores-used
@@ -1233,8 +1233,8 @@ export function formatCodexLimitsSection(codexLimits, codexError = null, options
  * Calling it too frequently may return null values or a 429 "Resets in Xm Xs" error.
  * Default raised from 10 → 13 minutes in issue #1798 (the previous 10-minute TTL still
  * occasionally tripped a ~3-minute rate-limit window).
- * See: https://github.com/link-assistant/hive-mind/issues/1074
- * See: https://github.com/link-assistant/hive-mind/issues/1798
+ * See: https://github.com/PeterMotorniy/auto-programmer/issues/1074
+ * See: https://github.com/PeterMotorniy/auto-programmer/issues/1798
  *
  * Configurable via environment variables:
  * - HIVE_MIND_API_CACHE_TTL_MS: General API cache TTL (default: 180000 = 3 minutes)
@@ -1309,8 +1309,8 @@ export async function getCachedClaudeLimits(verbose = false) {
   const cache = getLimitCache();
   // Use USAGE_API TTL (13 min by default, see issue #1798) for Claude limits to avoid rate limiting.
   // The Claude Usage API returns null values or 429 errors when called too frequently.
-  // See: https://github.com/link-assistant/hive-mind/issues/1074
-  // See: https://github.com/link-assistant/hive-mind/issues/1798
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1074
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1798
   const cached = cache.get('claude', CACHE_TTL.USAGE_API);
   if (cached) {
     if (verbose) console.log('[VERBOSE] /limits-cache: Using cached Claude limits (TTL: ' + Math.round(CACHE_TTL.USAGE_API / 60000) + ' minutes)');
@@ -1329,8 +1329,8 @@ export async function getCachedClaudeLimits(verbose = false) {
   } else if (result.error && result.error.includes('Rate limited')) {
     // Cache rate-limit errors to prevent hammering the API
     // Use the same USAGE_API TTL (13 min by default) as successful responses
-    // See: https://github.com/link-assistant/hive-mind/issues/1446
-    // See: https://github.com/link-assistant/hive-mind/issues/1798
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1446
+    // See: https://github.com/PeterMotorniy/auto-programmer/issues/1798
     cache.set('claude-rate-limited', result, CACHE_TTL.USAGE_API);
     if (verbose) console.log('[VERBOSE] /limits-cache: Cached rate-limit error for ' + Math.round(CACHE_TTL.USAGE_API / 60000) + ' minutes');
   }

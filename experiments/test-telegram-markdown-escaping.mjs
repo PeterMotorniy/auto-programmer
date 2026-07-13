@@ -93,7 +93,7 @@ console.log(`\n📊 Results: ${passed} passed, ${failed} failed`);
 // Test the actual message construction that was failing
 console.log('\n🔍 Testing actual message construction from the bug report:\n');
 
-const testUsername = 'drakonard';
+const testUsername = 'PeterMotorniy';
 const testUrl = 'https://github.com/andchir/llm_game/issues/1';
 const testOptions = '--auto-fork --auto-continue --attach-logs --verbose --no-tool-check';
 const solveOverrides = ['--auto-fork', '--auto-continue', '--attach-logs', '--verbose', '--no-tool-check'];

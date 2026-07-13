@@ -3,7 +3,7 @@
  * Regression test for issue #1939 (`--isolation docker` is not working).
  *
  * The failed docker-isolation run surfaced three problems. This suite covers the
- * two that are fixable in Hive Mind code:
+ * two that are fixable in Auto Programmer code:
  *
  *  - Problem 3 (root cause, definite): the child container authenticated with gh
  *    but inherited NO git identity, so `solve` aborted with
@@ -17,9 +17,9 @@
  *    cross-check keep such a session "running" until `docker inspect` confirms
  *    the container is actually gone.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1939
- * @see https://github.com/link-assistant/hive-mind/issues/1860
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1939
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1860
  */
 
 import { ensureHostGitIdentityForIsolation, getDockerIsolationAuthMounts, hostHasMountableGitIdentity, isUnknownDockerExitCode } from '../src/isolation-runner.lib.mjs';

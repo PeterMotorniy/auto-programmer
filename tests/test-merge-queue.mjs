@@ -7,7 +7,7 @@
  *
  * Run with: node tests/test-merge-queue.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1143
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1143
  */
 
 import assert from 'node:assert/strict';
@@ -386,8 +386,8 @@ test('MergeQueueProcessor formatProgressMessage shows skipped items with reasons
 
 test('MergeQueueProcessor formatFinalMessage shows skip reasons in results', () => {
   const processor = new MergeQueueProcessor({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
   });
 
   // Simulate completed queue with skipped items
@@ -560,7 +560,7 @@ test('MergeQueueProcessor escapeMarkdown escapes hyphens', () => {
     repo: 'test-repo',
   });
 
-  const input = 'link-assistant/hive-mind';
+  const input = 'PeterMotorniy/auto-programmer';
   const escaped = processor.escapeMarkdown(input);
 
   assert.ok(escaped.includes('\\-'), 'Should escape hyphens');
@@ -595,8 +595,8 @@ test('MergeQueueProcessor escapeMarkdown escapes periods', () => {
 
 test('MergeQueueProcessor formatProgressMessage escapes owner/repo with hyphens (Issue #1292)', () => {
   const processor = new MergeQueueProcessor({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
   });
 
   const message = processor.formatProgressMessage();
@@ -610,8 +610,8 @@ test('MergeQueueProcessor formatProgressMessage escapes owner/repo with hyphens 
 
 test('MergeQueueProcessor formatFinalMessage escapes owner/repo with hyphens (Issue #1292)', () => {
   const processor = new MergeQueueProcessor({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
   });
 
   const message = processor.formatFinalMessage();
@@ -1000,8 +1000,8 @@ test('MergeQueueProcessor formatProgressMessage escapes current PR description',
 
 test('MergeQueueProcessor formatProgressMessage is valid MarkdownV2 (no bare periods or parens outside code blocks)', () => {
   const processor = new MergeQueueProcessor({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
   });
 
   processor.items = [

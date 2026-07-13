@@ -15,7 +15,7 @@
  * `attachLogToGitHub` records `global.logAttachedToGitHub` on every successful upload anywhere in
  * the process, so this helper only attaches when nothing else did.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1952
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1952
  */
 
 /**

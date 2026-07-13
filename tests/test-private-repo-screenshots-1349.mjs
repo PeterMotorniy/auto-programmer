@@ -11,7 +11,7 @@
  *
  * Run with: node tests/test-private-repo-screenshots-1349.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1349
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1349
  */
 
 import assert from 'node:assert/strict';

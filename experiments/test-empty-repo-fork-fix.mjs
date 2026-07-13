@@ -36,7 +36,7 @@ async function testEmptyRepoFork() {
     },
     {
       name: 'Fork already exists error (should not retry)',
-      output: 'konard/test-repo already exists',
+      output: 'petermotorniy/test-repo already exists',
       shouldDetect: false,
     },
   ];

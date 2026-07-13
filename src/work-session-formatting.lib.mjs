@@ -97,7 +97,7 @@ export function formatExecutingWorkSessionMessage({ sessionName = 'unknown', iso
  * @param {string|null} pullRequestUrl - PR URL discovered after the session completed
  * @returns {string} New infoBlock
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1688
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1688
  */
 export function appendPullRequestLine(infoBlock, pullRequestUrl, { locale = null } = {}) {
   if (!pullRequestUrl || !infoBlock) return infoBlock || '';

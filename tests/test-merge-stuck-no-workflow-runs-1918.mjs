@@ -29,9 +29,9 @@
  *
  * Run with: node tests/test-merge-stuck-no-workflow-runs-1918.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1918
- * @see https://github.com/link-assistant/hive-mind/issues/1503 (related: per-SHA counter)
- * @see https://github.com/link-assistant/hive-mind/issues/1480 (related: multi-layer defense)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1918
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1503 (related: per-SHA counter)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1480 (related: multi-layer defense)
  */
 
 import { shouldResetNoRunsCounter } from '../src/solve.auto-merge-helpers.lib.mjs';

@@ -32,16 +32,16 @@ test('resume-on-auto-restart is an experimental boolean solve option disabled by
 
 test('minimal restart context omits the full issue prompt', () => {
   const prompt = buildUserPrompt({
-    issueUrl: 'https://github.com/link-assistant/hive-mind/issues/661',
+    issueUrl: 'https://github.com/PeterMotorniy/auto-programmer/issues/661',
     issueNumber: 661,
     prNumber: 662,
-    prUrl: 'https://github.com/link-assistant/hive-mind/pull/662',
+    prUrl: 'https://github.com/PeterMotorniy/auto-programmer/pull/662',
     branchName: 'issue-661',
     tempDir: '/tmp/work',
     isContinueMode: true,
     feedbackLines: ['Minimal auto-restart prompt'],
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     argv: { minimalRestartContext: true, resume: 'session-123' },
   });
 
@@ -52,8 +52,8 @@ test('minimal restart context omits the full issue prompt', () => {
 
 test('minimal restart context suppresses the full system prompt', () => {
   const systemPrompt = buildSystemPrompt({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     issueNumber: 661,
     prNumber: 662,
     branchName: 'issue-661',

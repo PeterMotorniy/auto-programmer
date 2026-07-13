@@ -164,7 +164,7 @@ export async function executeStartScreen(command, args, options = {}) {
     const whichPath = await findStartScreenCommand();
 
     if (!whichPath) {
-      const warningMsg = '⚠️  WARNING: start-screen command not found in PATH\n' + 'Please ensure @link-assistant/hive-mind is properly installed\n' + 'You may need to run: npm install -g @link-assistant/hive-mind';
+      const warningMsg = '⚠️  WARNING: start-screen command not found in PATH\n' + 'Please ensure auto-programmer is properly installed\n' + 'You may need to run: npm install -g auto-programmer';
       console.warn(warningMsg);
 
       return {

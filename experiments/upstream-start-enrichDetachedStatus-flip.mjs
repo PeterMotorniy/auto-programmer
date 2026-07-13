@@ -9,7 +9,7 @@
  * and a log whose footer says `Exit Code: 137` — while a real `screen` session of
  * the same name still lingers. `enrichDetachedStatus` flips the completed record
  * back to `executing` and NULLS the exit code, which is how a SIGKILLed `/solve`
- * was reported to the Telegram bot as still running (hive-mind issue #1927).
+ * was reported to the Telegram bot as still running (auto-programmer issue #1927).
  *
  * Run: node experiments/upstream-start-enrichDetachedStatus-flip.mjs
  */

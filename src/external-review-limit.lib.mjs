@@ -52,7 +52,7 @@ export const buildReadyForReviewComment = ({ blocker, ciStatus } = {}) => {
 
   return `## 🟡 Ready for review
 
-Hive Mind stopped automatic restart because the remaining failed check is an external review quota/credit limit, not a code failure it can fix.
+Auto Programmer stopped automatic restart because the remaining failed check is an external review quota/credit limit, not a code failure it can fix.
 
 **Checks not executed:**
 ${formatList(skippedList)}${passedSection}
@@ -62,5 +62,5 @@ ${formatList(skippedList)}${passedSection}
 - No new AI session was started for this blocker.
 
 ---
-*Monitored by hive-mind with --auto-restart-until-mergeable flag.*`;
+*Monitored by auto-programmer with --auto-restart-until-mergeable flag.*`;
 };

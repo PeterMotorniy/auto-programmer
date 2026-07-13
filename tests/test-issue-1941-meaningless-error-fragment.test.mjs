@@ -20,7 +20,7 @@
  *
  * Run with: node tests/test-issue-1941-meaningless-error-fragment.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1941
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1941
  */
 
 import assert from 'node:assert/strict';

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -80,14 +80,14 @@ const fakeIssueTypeRunner = async (strings, ...values) => {
   assert.ok(command.includes('gh issue view'), 'fetchIssueType should call gh issue view');
   return { code: 0, stdout: JSON.stringify({ issueType: { name: 'Bug' } }), stderr: '' };
 };
-assert.equal(await fetchIssueType({ owner: 'link-assistant', repo: 'hive-mind', issueNumber: 1596, $: fakeIssueTypeRunner }), 'Bug');
-assert.equal(await fetchIssueType({ owner: 'link-assistant', repo: 'hive-mind', issueNumber: 1596, $: async () => ({ code: 1, stdout: '', stderr: 'boom' }) }), null);
-assert.equal(await fetchIssueType({ owner: 'link-assistant', repo: 'hive-mind', issueNumber: 1596, $: async () => ({ code: 0, stdout: JSON.stringify({ issueType: null }) }) }), null);
-assert.equal(await fetchIssueType({ owner: 'link-assistant', repo: 'hive-mind', issueNumber: 1596 }), null);
+assert.equal(await fetchIssueType({ owner: 'PeterMotorniy', repo: 'auto-programmer', issueNumber: 1596, $: fakeIssueTypeRunner }), 'Bug');
+assert.equal(await fetchIssueType({ owner: 'PeterMotorniy', repo: 'auto-programmer', issueNumber: 1596, $: async () => ({ code: 1, stdout: '', stderr: 'boom' }) }), null);
+assert.equal(await fetchIssueType({ owner: 'PeterMotorniy', repo: 'auto-programmer', issueNumber: 1596, $: async () => ({ code: 0, stdout: JSON.stringify({ issueType: null }) }) }), null);
+assert.equal(await fetchIssueType({ owner: 'PeterMotorniy', repo: 'auto-programmer', issueNumber: 1596 }), null);
 
 const promptParams = {
-  owner: 'link-assistant',
-  repo: 'hive-mind',
+  owner: 'PeterMotorniy',
+  repo: 'auto-programmer',
   issueNumber: 1596,
   prNumber: 1996,
   branchName: 'issue-1596-17953fa6e3af',
@@ -95,8 +95,8 @@ const promptParams = {
   argv: { developmentLog: true },
   modelSupportsVision: false,
   forkedRepo: null,
-  issueUrl: 'https://github.com/link-assistant/hive-mind/issues/1596',
-  tempDir: '/tmp/hive-mind',
+  issueUrl: 'https://github.com/PeterMotorniy/auto-programmer/issues/1596',
+  tempDir: '/tmp/auto-programmer',
   isContinueMode: false,
   feedbackLines: [],
 };
@@ -135,7 +135,7 @@ try {
     tool: 'codex',
     sessionId: 'codex-session-123',
     branchName: 'issue-1596-17953fa6e3af',
-    rawCommand: 'solve https://github.com/link-assistant/hive-mind/issues/1596 --development-log',
+    rawCommand: 'solve https://github.com/PeterMotorniy/auto-programmer/issues/1596 --development-log',
     now: new Date('2026-06-28T12:00:00.000Z'),
   });
 
@@ -221,7 +221,7 @@ try {
     tool: 'codex',
     sessionId: 'codex-session-123',
     branchName: 'issue-1596-17953fa6e3af',
-    rawCommand: 'solve https://github.com/link-assistant/hive-mind/issues/1596 --development-log',
+    rawCommand: 'solve https://github.com/PeterMotorniy/auto-programmer/issues/1596 --development-log',
     $: fakeGit,
     log: async () => {},
   });

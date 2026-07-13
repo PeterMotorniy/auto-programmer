@@ -13,7 +13,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { getVersionInfo } from '../src/version-info.lib.mjs';
 
-const tempDir = await mkdtemp(join(tmpdir(), 'hive-mind-issue-1776-'));
+const tempDir = await mkdtemp(join(tmpdir(), 'auto-programmer-issue-1776-'));
 const originalPath = process.env.PATH || '';
 
 async function writeSlowCommand(name) {

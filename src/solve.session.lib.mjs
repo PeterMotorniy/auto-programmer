@@ -11,7 +11,7 @@ import { AI_WORK_SESSION_STARTED_MARKER, AI_WORK_SESSION_COMPLETED_MARKER, AI_WO
 import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry } from './github-rate-limit.lib.mjs'; // rate-limit marker (#1726): gh API calls flow through $ wrapped by caller
 /**
  * Session type definitions for different work session contexts
- * See: https://github.com/link-assistant/hive-mind/issues/1152
+ * See: https://github.com/PeterMotorniy/auto-programmer/issues/1152
  */
 export const SESSION_TYPES = {
   NEW: 'new', // New work session (first time working on PR)

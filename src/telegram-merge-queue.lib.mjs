@@ -13,7 +13,7 @@
  * - Error handling with verbose logs vs user-friendly messages
  * - Per-repository concurrency control
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1143
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1143
  */
 
 import { getAllReadyPRs, checkPRCIStatus, checkPRMergeable, mergePullRequest, waitForCI, ensureReadyLabel, waitForBranchCI, getDefaultBranch, waitForCommitCI, checkBranchCIHealth, getMergeCommitSha, getPRStatus, syncReadyTags, closeLinkedIssueIfNotAutoClosed } from './github-merge.lib.mjs';
@@ -61,7 +61,7 @@ export const MergeItemStatus = {
  * `mergeStateStatus === 'DIRTY'` (see github-merge.lib.mjs), so matching
  * on it keeps the two modules in sync without sharing extra state.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1805
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1805
  */
 export const MERGE_CONFLICT_SKIP_REASON = 'PR has merge conflicts';
 

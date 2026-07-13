@@ -123,7 +123,7 @@ function cleanupTestEnvironment() {
 
 function createChangeset(filename, type, description) {
   const content = `---
-'@link-assistant/hive-mind': ${type}
+'auto-programmer': ${type}
 ---
 
 ${description}

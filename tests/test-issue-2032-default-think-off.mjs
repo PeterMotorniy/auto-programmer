@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -10,7 +10,7 @@ const { resolveThinkingSettings, setClaudeVersion } = await import('../src/claud
 const { getClaudeEnv } = await import('../src/config.lib.mjs');
 const { resolveCodexReasoningEffort } = await import('../src/codex.options.lib.mjs');
 
-const issueUrl = 'https://github.com/link-assistant/hive-mind/issues/2032';
+const issueUrl = 'https://github.com/PeterMotorniy/auto-programmer/issues/2032';
 
 const parse = async args => {
   const originalArgv = process.argv;

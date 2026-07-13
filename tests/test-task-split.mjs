@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'assert/strict';
@@ -25,8 +25,8 @@ async function test(name, fn) {
 }
 
 await test('parseTaskIssueUrl accepts issues and rejects pull requests', () => {
-  assert.equal(parseTaskIssueUrl('https://github.com/link-assistant/hive-mind/issues/501').valid, true);
-  const pr = parseTaskIssueUrl('https://github.com/link-assistant/hive-mind/pull/553');
+  assert.equal(parseTaskIssueUrl('https://github.com/PeterMotorniy/auto-programmer/issues/501').valid, true);
+  const pr = parseTaskIssueUrl('https://github.com/PeterMotorniy/auto-programmer/pull/553');
   assert.equal(pr.valid, false);
   assert.match(pr.error, /issues, not pull requests/);
 });
@@ -35,10 +35,10 @@ await test('buildTaskSplitPrompt requires exact task count', () => {
   const prompt = buildTaskSplitPrompt({
     splitCount: 2,
     issue: {
-      owner: 'link-assistant',
-      repo: 'hive-mind',
+      owner: 'PeterMotorniy',
+      repo: 'auto-programmer',
       number: 501,
-      url: 'https://github.com/link-assistant/hive-mind/issues/501',
+      url: 'https://github.com/PeterMotorniy/auto-programmer/issues/501',
       title: 'Split task',
       body: 'Body',
     },
@@ -68,12 +68,12 @@ await test('normalizeSplitTasks validates count and fields', () => {
 
 await test('formatChildIssueBody links parent issue and dependencies', () => {
   const body = formatChildIssueBody({
-    parentIssue: { url: 'https://github.com/link-assistant/hive-mind/issues/501', number: 501 },
+    parentIssue: { url: 'https://github.com/PeterMotorniy/auto-programmer/issues/501', number: 501 },
     task: { body: 'Implement part A', dependencies: [1] },
     index: 1,
     splitCount: 2,
   });
-  assert.match(body, /Split from: https:\/\/github.com\/link-assistant\/hive-mind\/issues\/501/);
+  assert.match(body, /Split from: https:\/\/github.com\/PeterMotorniy\/auto-programmer\/issues\/501/);
   assert.match(body, /Parent issue: #501/);
   assert.match(body, /Dependencies: Task 1/);
 });

@@ -5,8 +5,8 @@
  * from AI tools (Claude, Codex, OpenCode).
  *
  * Related issues:
- *   - https://github.com/link-assistant/hive-mind/issues/719 (original)
- *   - https://github.com/link-assistant/hive-mind/issues/1122 (weekly limit date parsing with timezone)
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/719 (original)
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/1122 (weekly limit date parsing with timezone)
  */
 
 import dayjs from 'dayjs';

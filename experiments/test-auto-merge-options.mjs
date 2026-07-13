@@ -7,8 +7,8 @@
  * 3. --auto-restart-until-mergeable (already enabled by default, explicit still works)
  * 4. Options can be used independently
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1190
- * @see https://github.com/link-assistant/hive-mind/issues/1360
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1190
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1360
  */
 
 // Use use-m to load modules

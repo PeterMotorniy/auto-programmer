@@ -1,57 +1,57 @@
-# Helm Chart Documentation (Experimental) (languages: en • [zh](HELM.zh.md) • [hi](HELM.hi.md) • [ru](HELM.ru.md))
+# Документация по Helm Chart (Экспериментально)
 
-> ⚠️ **EXPERIMENTAL:** The Helm/Kubernetes installation method is experimental and may not be fully stable.
+> ⚠️ **ЭКСПЕРИМЕНТАЛЬНО:** Метод установки через Helm/Kubernetes является экспериментальным и может быть нестабильным.
 >
-> For a more reliable installation, we recommend using the [Docker installation method](../README.md#using-docker) instead.
+> Для более надёжной установки рекомендуем использовать [метод установки через Docker](../README.md#using-docker).
 
-This document provides comprehensive guidance for deploying Hive Mind on Kubernetes using Helm.
+Этот документ содержит исчерпывающее руководство по развёртыванию Auto Programmer в Kubernetes с использованием Helm.
 
-## Prerequisites
+## Предварительные требования
 
-- Kubernetes cluster 1.19+
-- Helm 3.0+
-- `kubectl` configured to access your cluster
-- Sufficient cluster resources (see [Resource Requirements](#resource-requirements))
+- Кластер Kubernetes версии 1.19+
+- Helm версии 3.0+
+- `kubectl`, настроенный для доступа к вашему кластеру
+- Достаточные ресурсы кластера (см. [Требования к ресурсам](#требования-к-ресурсам))
 
-## Installation
+## Установка
 
-### Add the Helm Repository
+### Добавление репозитория Helm
 
 ```bash
-helm repo add link-assistant https://link-assistant.github.io/hive-mind
+helm repo add PeterMotorniy https://PeterMotorniy.github.io/auto-programmer
 helm repo update
 ```
 
-### Install the Chart
+### Установка чарта
 
-#### Basic Installation
-
-```bash
-helm install hive-mind link-assistant/hive-mind
-```
-
-#### Installation with Custom Values
+#### Базовая установка
 
 ```bash
-helm install hive-mind link-assistant/hive-mind -f custom-values.yaml
+helm install auto-programmer PeterMotorniy/auto-programmer
 ```
 
-#### Installation in a Specific Namespace
+#### Установка с пользовательскими значениями
 
 ```bash
-kubectl create namespace hive-mind
-helm install hive-mind link-assistant/hive-mind -n hive-mind
+helm install auto-programmer PeterMotorniy/auto-programmer -f custom-values.yaml
 ```
 
-## Configuration
+#### Установка в конкретное пространство имён
 
-### Default Values
+```bash
+kubectl create namespace auto-programmer
+helm install auto-programmer PeterMotorniy/auto-programmer -n auto-programmer
+```
 
-The default `values.yaml` provides sensible defaults for most deployments. Key configuration options:
+## Конфигурация
 
-### Resource Requirements
+### Значения по умолчанию
 
-Default resource allocation:
+Файл `values.yaml` по умолчанию предоставляет разумные настройки для большинства развёртываний. Ключевые параметры конфигурации:
+
+### Требования к ресурсам
+
+Распределение ресурсов по умолчанию:
 
 ```yaml
 resources:
@@ -63,15 +63,15 @@ resources:
     memory: 1Gi
 ```
 
-**Recommended minimum resources per pod:**
+**Рекомендуемые минимальные ресурсы на под:**
 
-- CPU: 500m (0.5 cores)
-- Memory: 1Gi RAM
-- Disk: 50Gi persistent storage
+- CPU: 500m (0.5 ядра)
+- Память: 1 ГиБ RAM
+- Диск: 50 ГиБ постоянного хранилища
 
-### Persistence Configuration
+### Настройка постоянного хранилища
 
-By default, persistent storage is enabled with 50Gi:
+По умолчанию постоянное хранилище включено с объёмом 50 ГиБ:
 
 ```yaml
 persistence:
@@ -80,7 +80,7 @@ persistence:
   size: 50Gi
 ```
 
-**Using a specific storage class:**
+**Использование конкретного класса хранилища:**
 
 ```yaml
 persistence:
@@ -89,7 +89,7 @@ persistence:
   size: 100Gi
 ```
 
-**Using an existing PVC:**
+**Использование существующего PVC:**
 
 ```yaml
 persistence:
@@ -97,25 +97,25 @@ persistence:
   existingClaim: 'my-existing-pvc'
 ```
 
-### Authentication Configuration
+### Настройка аутентификации
 
-Hive Mind requires GitHub and Claude authentication. These should be configured via Kubernetes secrets:
+Auto Programmer требует аутентификации GitHub и Claude. Их следует настраивать через секреты Kubernetes:
 
-#### Create GitHub Token Secret
+#### Создание секрета с токеном GitHub
 
 ```bash
 kubectl create secret generic hive-github-token \
   --from-literal=token='ghp_your_github_token_here'
 ```
 
-#### Create Claude API Key Secret
+#### Создание секрета с API-ключом Claude
 
 ```bash
 kubectl create secret generic hive-claude-api-key \
   --from-literal=apiKey='sk-ant-your_claude_key_here'
 ```
 
-#### Reference Secrets in Values
+#### Ссылки на секреты в values
 
 ```yaml
 secrets:
@@ -123,19 +123,19 @@ secrets:
   claudeApiKey: 'hive-claude-api-key'
 ```
 
-### Running as a Telegram Bot
+### Запуск в качестве Telegram-бота
 
-To run Hive Mind as a Telegram bot in Kubernetes:
+Для запуска Auto Programmer в качестве Telegram-бота в Kubernetes:
 
 ```yaml
 command:
   - /bin/bash
   - -c
   - |
-    # Authenticate with GitHub using token from secret
+    # Аутентификация в GitHub с использованием токена из секрета
     echo "$GITHUB_TOKEN" | gh auth login --with-token
 
-    # Start the telegram bot
+    # Запуск telegram-бота
     hive-telegram-bot --configuration "
       TELEGRAM_BOT_TOKEN: '$TELEGRAM_BOT_TOKEN'
       TELEGRAM_ALLOWED_CHATS:
@@ -152,9 +152,9 @@ env:
   TELEGRAM_BOT_TOKEN: 'your-telegram-bot-token'
 ```
 
-### Autoscaling
+### Автоматическое масштабирование
 
-Enable horizontal pod autoscaling for multiple bot instances:
+Включите горизонтальное автомасштабирование подов для нескольких экземпляров бота:
 
 ```yaml
 autoscaling:
@@ -165,11 +165,11 @@ autoscaling:
   targetMemoryUtilizationPercentage: 80
 ```
 
-### Node Selection and Affinity
+### Выбор узлов и привязка
 
-#### Node Selector
+#### Выбор узлов
 
-Deploy to specific nodes:
+Развёртывание на конкретные узлы:
 
 ```yaml
 nodeSelector:
@@ -179,7 +179,7 @@ nodeSelector:
 
 #### Tolerations
 
-Allow scheduling on tainted nodes:
+Разрешить планирование на узлах с taint:
 
 ```yaml
 tolerations:
@@ -189,9 +189,9 @@ tolerations:
     effect: 'NoSchedule'
 ```
 
-#### Affinity Rules
+#### Правила привязки
 
-Co-locate or spread pods:
+Размещение подов вместе или распределение:
 
 ```yaml
 affinity:
@@ -204,15 +204,15 @@ affinity:
               - key: app.kubernetes.io/name
                 operator: In
                 values:
-                  - hive-mind
+                  - auto-programmer
           topologyKey: kubernetes.io/hostname
 ```
 
-## Common Use Cases
+## Типичные сценарии использования
 
-### Example 1: Single Bot Instance
+### Пример 1: Один экземпляр бота
 
-Simple deployment for testing or small-scale usage:
+Простое развёртывание для тестирования или небольших нагрузок:
 
 ```yaml
 # values-simple.yaml
@@ -232,12 +232,12 @@ resources:
 ```
 
 ```bash
-helm install hive-mind link-assistant/hive-mind -f values-simple.yaml
+helm install auto-programmer PeterMotorniy/auto-programmer -f values-simple.yaml
 ```
 
-### Example 2: Production Telegram Bot
+### Пример 2: Продакшн Telegram-бот
 
-High-availability deployment with autoscaling:
+Высокодоступное развёртывание с автомасштабированием:
 
 ```yaml
 # values-production.yaml
@@ -280,17 +280,17 @@ podAntiAffinity:
           - key: app.kubernetes.io/name
             operator: In
             values:
-              - hive-mind
+              - auto-programmer
       topologyKey: 'kubernetes.io/hostname'
 ```
 
 ```bash
-helm install hive-mind link-assistant/hive-mind -f values-production.yaml
+helm install auto-programmer PeterMotorniy/auto-programmer -f values-production.yaml
 ```
 
-### Example 3: Development Environment
+### Пример 3: Среда разработки
 
-Minimal resources for development/testing:
+Минимальные ресурсы для разработки/тестирования:
 
 ```yaml
 # values-dev.yaml
@@ -309,143 +309,143 @@ resources:
 ```
 
 ```bash
-helm install hive-mind-dev link-assistant/hive-mind -f values-dev.yaml
+helm install auto-programmer-dev PeterMotorniy/auto-programmer -f values-dev.yaml
 ```
 
-## Upgrading
+## Обновление
 
-### Update Repository
+### Обновление репозитория
 
 ```bash
 helm repo update
 ```
 
-### Upgrade Release
+### Обновление релиза
 
 ```bash
-helm upgrade hive-mind link-assistant/hive-mind
+helm upgrade auto-programmer PeterMotorniy/auto-programmer
 ```
 
-### Upgrade with New Values
+### Обновление с новыми значениями
 
 ```bash
-helm upgrade hive-mind link-assistant/hive-mind -f new-values.yaml
+helm upgrade auto-programmer PeterMotorniy/auto-programmer -f new-values.yaml
 ```
 
-### Rollback
+### Откат
 
 ```bash
-# List release history
-helm history hive-mind
+# Просмотр истории релизов
+helm history auto-programmer
 
-# Rollback to previous version
-helm rollback hive-mind
+# Откат к предыдущей версии
+helm rollback auto-programmer
 
-# Rollback to specific revision
-helm rollback hive-mind 2
+# Откат к конкретной ревизии
+helm rollback auto-programmer 2
 ```
 
-## Uninstallation
+## Удаление
 
 ```bash
-helm uninstall hive-mind
+helm uninstall auto-programmer
 ```
 
-**Note:** By default, PersistentVolumeClaims are not deleted automatically. To delete them:
+**Примечание:** По умолчанию PersistentVolumeClaims не удаляются автоматически. Для их удаления:
 
 ```bash
-kubectl delete pvc -l app.kubernetes.io/name=hive-mind
+kubectl delete pvc -l app.kubernetes.io/name=auto-programmer
 ```
 
-## Troubleshooting
+## Устранение неполадок
 
-### Check Pod Status
+### Проверка статуса подов
 
 ```bash
-kubectl get pods -l app.kubernetes.io/name=hive-mind
+kubectl get pods -l app.kubernetes.io/name=auto-programmer
 ```
 
-### View Pod Logs
+### Просмотр журналов подов
 
 ```bash
-kubectl logs -l app.kubernetes.io/name=hive-mind --tail=100 -f
+kubectl logs -l app.kubernetes.io/name=auto-programmer --tail=100 -f
 ```
 
-### Access Pod Shell
+### Доступ к оболочке пода
 
 ```bash
-kubectl exec -it deployment/hive-mind -- /bin/bash
+kubectl exec -it deployment/auto-programmer -- /bin/bash
 ```
 
-### Check PVC Status
+### Проверка статуса PVC
 
 ```bash
 kubectl get pvc
-kubectl describe pvc hive-mind
+kubectl describe pvc auto-programmer
 ```
 
-### Common Issues
+### Распространённые проблемы
 
-#### Pod Not Starting
+#### Под не запускается
 
-**Symptom:** Pod stuck in `Pending` state
+**Симптом:** Под застрял в состоянии `Pending`
 
-**Solutions:**
+**Решения:**
 
-1. Check node resources: `kubectl describe node`
-2. Verify PVC is bound: `kubectl get pvc`
-3. Check storage class exists: `kubectl get storageclass`
+1. Проверьте ресурсы узла: `kubectl describe node`
+2. Убедитесь, что PVC привязан: `kubectl get pvc`
+3. Проверьте наличие класса хранилища: `kubectl get storageclass`
 
-#### Authentication Issues
+#### Проблемы с аутентификацией
 
-**Symptom:** GitHub/Claude commands fail
+**Симптом:** Команды GitHub/Claude завершаются ошибкой
 
-**Solutions:**
+**Решения:**
 
-1. Verify secrets exist: `kubectl get secrets`
-2. Check secret contents: `kubectl describe secret hive-github-token`
-3. Manually authenticate inside pod:
+1. Проверьте наличие секретов: `kubectl get secrets`
+2. Проверьте содержимое секрета: `kubectl describe secret hive-github-token`
+3. Выполните аутентификацию вручную внутри пода:
    ```bash
-   kubectl exec -it deployment/hive-mind -- /bin/bash
+   kubectl exec -it deployment/auto-programmer -- /bin/bash
    gh auth login
    claude
    ```
 
-#### Out of Memory
+#### Нехватка памяти
 
-**Symptom:** Pod crashes with OOMKilled
+**Симптом:** Под аварийно завершается с OOMKilled
 
-**Solutions:**
+**Решения:**
 
-1. Increase memory limits in values.yaml
-2. Monitor actual usage: `kubectl top pods`
-3. Consider using autoscaling
+1. Увеличьте лимиты памяти в values.yaml
+2. Отслеживайте фактическое использование: `kubectl top pods`
+3. Рассмотрите использование автомасштабирования
 
-## Advanced Configuration
+## Расширенная конфигурация
 
-### Multiple Helm Releases
+### Несколько релизов Helm
 
-Run multiple isolated Hive Mind instances:
+Запуск нескольких изолированных экземпляров Auto Programmer:
 
 ```bash
-# Instance 1 - Team A
-helm install hive-team-a link-assistant/hive-mind \
+# Экземпляр 1 — Команда A
+helm install hive-team-a PeterMotorniy/auto-programmer \
   -n team-a --create-namespace \
   -f team-a-values.yaml
 
-# Instance 2 - Team B
-helm install hive-team-b link-assistant/hive-mind \
+# Экземпляр 2 — Команда B
+helm install hive-team-b PeterMotorniy/auto-programmer \
   -n team-b --create-namespace \
   -f team-b-values.yaml
 ```
 
-### Custom Image
+### Кастомный образ
 
-Use a custom Docker image:
+Использование кастомного образа Docker:
 
 ```yaml
 image:
-  repository: myregistry.com/custom-hive-mind
+  repository: myregistry.com/custom-auto-programmer
   tag: '1.0.0'
   pullPolicy: Always
 
@@ -453,9 +453,9 @@ imagePullSecrets:
   - name: myregistrykey
 ```
 
-### Additional Volumes
+### Дополнительные тома
 
-Mount additional volumes:
+Монтирование дополнительных томов:
 
 ```yaml
 volumes:
@@ -469,21 +469,21 @@ volumeMounts:
     readOnly: true
 ```
 
-## Monitoring and Observability
+## Мониторинг и наблюдаемость
 
-### Resource Monitoring
+### Мониторинг ресурсов
 
 ```bash
-# Watch resource usage
-kubectl top pods -l app.kubernetes.io/name=hive-mind
+# Отслеживание использования ресурсов
+kubectl top pods -l app.kubernetes.io/name=auto-programmer
 
-# Watch continuously
-watch kubectl top pods -l app.kubernetes.io/name=hive-mind
+# Непрерывное отслеживание
+watch kubectl top pods -l app.kubernetes.io/name=auto-programmer
 ```
 
-### Logging
+### Журналирование
 
-Integrate with logging systems like ELK, Loki, or CloudWatch:
+Интеграция с системами журналирования, такими как ELK, Loki или CloudWatch:
 
 ```yaml
 podAnnotations:
@@ -491,21 +491,21 @@ podAnnotations:
   prometheus.io/port: '9090'
 ```
 
-## Security Best Practices
+## Рекомендации по безопасности
 
-1. **Use Secrets Management:** Store GitHub tokens and API keys in Kubernetes secrets or external secret managers (HashiCorp Vault, AWS Secrets Manager)
+1. **Используйте управление секретами:** Храните токены GitHub и API-ключи в секретах Kubernetes или внешних менеджерах секретов (HashiCorp Vault, AWS Secrets Manager)
 
-2. **Network Policies:** Restrict network access between pods:
+2. **Сетевые политики:** Ограничьте сетевой доступ между подами:
 
    ```yaml
    apiVersion: networking.k8s.io/v1
    kind: NetworkPolicy
    metadata:
-     name: hive-mind-netpol
+     name: auto-programmer-netpol
    spec:
      podSelector:
        matchLabels:
-         app.kubernetes.io/name: hive-mind
+         app.kubernetes.io/name: auto-programmer
      policyTypes:
        - Ingress
        - Egress
@@ -514,7 +514,7 @@ podAnnotations:
            - namespaceSelector: {}
    ```
 
-3. **Pod Security Standards:** Use restricted pod security standards:
+3. **Стандарты безопасности подов:** Используйте ограниченные стандарты безопасности подов:
 
    ```yaml
    podSecurityContext:
@@ -525,17 +525,17 @@ podAnnotations:
        type: RuntimeDefault
    ```
 
-4. **RBAC:** Create minimal role permissions for the service account
+4. **RBAC:** Создайте минимальные разрешения роли для учётной записи службы
 
-5. **Regular Updates:** Keep the chart and container image updated
+5. **Регулярные обновления:** Поддерживайте чарт и образ контейнера в актуальном состоянии
 
-## Support and Contributing
+## Поддержка и участие в разработке
 
-- **GitHub Issues:** https://github.com/link-assistant/hive-mind/issues
-- **Documentation:** https://github.com/link-assistant/hive-mind
-- **Docker Hub:** https://hub.docker.com/r/konard/hive-mind
-- **ArtifactHub:** https://artifacthub.io/packages/helm/link-assistant/hive-mind
+- **GitHub Issues:** https://github.com/PeterMotorniy/auto-programmer/issues
+- **Документация:** https://github.com/PeterMotorniy/auto-programmer
+- **Docker Hub:** https://hub.docker.com/r/petermotorniy/auto-programmer
+- **ArtifactHub:** https://artifacthub.io/packages/helm/PeterMotorniy/auto-programmer
 
-## License
+## Лицензия
 
-This Helm chart is released under the Unlicense. See the [LICENSE](https://github.com/link-assistant/hive-mind/blob/main/LICENSE) file for details.
+Этот Helm chart выпущен под лицензией Unlicense. Подробности см. в файле [LICENSE](https://github.com/PeterMotorniy/auto-programmer/blob/main/LICENSE).

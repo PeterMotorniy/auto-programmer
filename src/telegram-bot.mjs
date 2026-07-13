@@ -1334,7 +1334,7 @@ bot.catch((error, ctx) => {
 // Track shutdown state to prevent startup messages after shutdown
 let isShuttingDown = false;
 
-console.log('🤖 SwarmMindBot is starting...');
+console.log('🤖 AutoProgrammerBot is starting...');
 console.log('Bot token:', BOT_TOKEN.substring(0, 10) + '...');
 if (allowedChats && allowedChats.length > 0) {
   console.log('Allowed chats (lino):', lino.format(allowedChats));
@@ -1374,7 +1374,7 @@ async function onBotLaunched() {
   if (isShuttingDown || launchAnnouncementShown) return;
   launchAnnouncementShown = true;
 
-  console.log('✅ SwarmMindBot is now running!');
+  console.log('✅ AutoProgrammerBot is now running!');
   console.log('Press Ctrl+C to stop');
   botLogger.event('bot_launched', { pid: process.pid, botStartTime: BOT_START_TIME });
 

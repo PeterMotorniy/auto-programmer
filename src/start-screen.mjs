@@ -27,7 +27,7 @@ const printUsage = (log = console.error) => {
  * process emits the banner only once even if `main()` is invoked multiple
  * times in tests.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1758
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1758
  */
 let deprecationWarned = false;
 const printDeprecationBanner = () => {

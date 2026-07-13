@@ -23,9 +23,9 @@
  *      should: omitted on the default path, omitted on explicit
  *      --auto-accept-invite, and only present on --no-auto-accept-invite.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1714
- * @see https://github.com/link-assistant/hive-mind/issues/1694
- * @see https://github.com/link-assistant/hive-mind/issues/1692
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1714
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1694
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1692
  */
 
 import { createYargsConfig as createSolveYargsConfig } from '../src/solve.config.lib.mjs';
@@ -66,7 +66,7 @@ console.log('===================================================================
 function buildRepoNotAccessibleMessage({ owner, repo, autoAcceptInvite }) {
   const bullets = ['• Repository may be private — ensure the bot has been granted access', '• The repository name is spelled correctly', '• The repository has not been deleted, transferred, or never existed'];
   if (!autoAcceptInvite) {
-    bullets.push('• If Hive Mind bot was recently invited, try using --auto-accept-invite to accept pending invitations');
+    bullets.push('• If Auto Programmer bot was recently invited, try using --auto-accept-invite to accept pending invitations');
   }
   return `Repository '${owner}/${repo}' is not accessible.\n\n💡 Please check:\n${bullets.join('\n')}`;
 }

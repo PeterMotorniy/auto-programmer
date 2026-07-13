@@ -20,7 +20,7 @@ const normalPRData = {
   number: 176,
   mergeStateStatus: 'CLEAN',
   headRepositoryOwner: {
-    login: 'link-assistant', // Same as repo owner
+    login: 'PeterMotorniy', // Same as repo owner
   },
 };
 
@@ -42,7 +42,7 @@ console.log('============================');
 const isFork1 = testForkDetection(forkPRData, 'original-owner');
 
 // Test with normal PR
-const isFork2 = testForkDetection(normalPRData, 'link-assistant');
+const isFork2 = testForkDetection(normalPRData, 'PeterMotorniy');
 
 // Verify results
 console.log('Results:');

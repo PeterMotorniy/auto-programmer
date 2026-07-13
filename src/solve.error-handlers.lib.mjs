@@ -260,7 +260,7 @@ export const handleMainExecutionError = async options => {
     return;
   }
 
-  if (!error?.hiveMindUserFacingLogged) {
+  if (!error?.autoProgrammerUserFacingLogged) {
     await log('Error executing command:', cleanErrorMessage(error));
   }
   await log(`Stack trace: ${error.stack}`, { verbose: true });

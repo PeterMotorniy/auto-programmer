@@ -1,36 +1,36 @@
-# Hive Mind Data Flow Documentation (languages: en • [zh](flow.zh.md) • [hi](flow.hi.md) • [ru](flow.ru.md))
+# Документация потока данных Auto Programmer
 
-This comprehensive document describes the data flow in Hive Mind, explicitly highlighting all points where human feedback is integrated into the system workflow.
+Этот всесторонний документ описывает поток данных в Auto Programmer, явно указывая все точки, где обратная связь от человека интегрируется в рабочий процесс системы.
 
-## Table of Contents
+## Содержание
 
-1. [Overview](#overview)
-2. [Operating Modes](#operating-modes)
-3. [Data Flow Architecture](#data-flow-architecture)
-4. [Mode 1: Default Mode](#mode-1-default-mode-issue--pull-request)
-5. [Mode 2: Continue Mode](#mode-2-continue-mode-pull-request--comments)
-6. [Human Feedback Integration Points](#human-feedback-integration-points)
-7. [Configuration Options](#configuration-options)
-8. [Error Handling & Fallbacks](#error-handling--fallbacks)
-9. [Implementation Details](#implementation-details)
-10. [Summary](#summary)
+1. [Обзор](#обзор)
+2. [Режимы работы](#режимы-работы)
+3. [Архитектура потока данных](#архитектура-потока-данных)
+4. [Режим 1: Режим по умолчанию](#режим-1-режим-по-умолчанию-issue--pull-request)
+5. [Режим 2: Режим продолжения](#режим-2-режим-продолжения-pull-request--комментарии)
+6. [Точки интеграции обратной связи от человека](#точки-интеграции-обратной-связи-от-человека)
+7. [Параметры конфигурации](#параметры-конфигурации)
+8. [Обработка ошибок и резервные варианты](#обработка-ошибок-и-резервные-варианты)
+9. [Детали реализации](#детали-реализации)
+10. [Итог](#итог)
 
-## Overview
+## Обзор
 
-Hive Mind is an AI-powered collaborative development system that operates through GitHub, maintaining human oversight at critical decision points while automating solution development. The system ensures human feedback remains central to the development process through multiple integration points.
+Auto Programmer — это система совместной разработки на основе ИИ, работающая через GitHub, которая обеспечивает контроль человека в критических точках принятия решений, автоматизируя при этом разработку решений. Система гарантирует, что обратная связь от человека остаётся центральной в процессе разработки через несколько точек интеграции.
 
-## Operating Modes
+## Режимы работы
 
-Hive Mind operates in two primary modes based on the entry point and human interaction patterns:
+Auto Programmer работает в двух основных режимах в зависимости от точки входа и паттернов взаимодействия с человеком:
 
-| Mode              | Entry Point  | Primary Human Input              | Secondary Input             | Decision Points             |
-| ----------------- | ------------ | -------------------------------- | --------------------------- | --------------------------- |
-| **Default Mode**  | GitHub Issue | Issue description & requirements | PR comments for refinements | Merge/Request Changes/Close |
-| **Continue Mode** | Existing PR  | PR comments with feedback        | Additional PR comments      | Merge/Request Changes/Close |
+| Режим                  | Точка входа     | Основной ввод от человека          | Дополнительный ввод             | Точки принятия решений            |
+| ---------------------- | --------------- | ---------------------------------- | ------------------------------- | --------------------------------- |
+| **Режим по умолчанию** | GitHub Issue    | Описание задачи и требования       | Комментарии к PR для уточнений  | Слияние/запрос изменений/закрытие |
+| **Режим продолжения**  | Существующий PR | Комментарии к PR с обратной связью | Дополнительные комментарии к PR | Слияние/запрос изменений/закрытие |
 
-## Data Flow Architecture
+## Архитектура потока данных
 
-### High-Level System Architecture
+### Высокоуровневая архитектура системы
 
 ```mermaid
 graph TB
@@ -46,8 +46,8 @@ graph TB
         GA[GitHub Actions/Webhooks]
     end
 
-    subgraph "Hive Mind Core"
-        HM[Hive Mind Controller]
+    subgraph "Auto Programmer Core"
+        HM[Auto Programmer Controller]
         AM[Agent Manager]
         FM[Feedback Monitor]
         SM[State Manager]
@@ -93,7 +93,7 @@ graph TB
     style AI fill:#f3e5f5
 ```
 
-### Detailed Data Flow
+### Детальный поток данных
 
 ```mermaid
 graph TD
@@ -136,22 +136,22 @@ graph TD
     style K fill:#ffcdd2
 ```
 
-## Mode 1: Default Mode (Issue → Pull Request)
+## Режим 1: Режим по умолчанию (Issue → Pull Request)
 
-### Human Feedback Points
+### Точки обратной связи от человека
 
-- **Primary Input**: GitHub Issue description and requirements
-- **Decision Point**: Merge, request changes, or close the PR
-- **Secondary Input**: Comments on the PR for refinements
+- **Основной ввод**: Описание задачи GitHub и требования
+- **Точка принятия решения**: Слияние, запрос изменений или закрытие PR
+- **Дополнительный ввод**: Комментарии к PR для уточнений
 
-### Sequence Diagram
+### Диаграмма последовательности
 
 ```mermaid
 sequenceDiagram
     participant H as Human
     participant GH as GitHub
     participant AI as AI Agent
-    participant HM as Hive Mind
+    participant HM as Auto Programmer
 
     H->>GH: Creates Issue
     Note over H,GH: Primary human input
@@ -181,32 +181,32 @@ sequenceDiagram
     end
 ```
 
-### Data Flow Steps
+### Шаги потока данных
 
-1. **Human creates GitHub issue** (Primary human input)
-2. Hive Mind detects and assigns issue to AI agent
-3. AI agent analyzes issue requirements
-4. AI agent develops solution and creates draft PR
-5. **Human reviews PR** (Human decision point)
-6. **Human decides**: Merge, request changes, or close (Human feedback)
-7. If changes requested, cycle continues with PR comments as input
+1. **Человек создаёт задачу GitHub** (основной ввод от человека)
+2. Auto Programmer обнаруживает задачу и назначает её агенту ИИ
+3. Агент ИИ анализирует требования задачи
+4. Агент ИИ разрабатывает решение и создаёт черновик PR
+5. **Человек проверяет PR** (точка принятия решения человеком)
+6. **Человек принимает решение**: слияние, запрос изменений или закрытие (обратная связь от человека)
+7. При запросе изменений цикл продолжается с комментариями к PR в качестве ввода
 
-## Mode 2: Continue Mode (Pull Request → Comments)
+## Режим 2: Режим продолжения (Pull Request → Комментарии)
 
-### Human Feedback Points
+### Точки обратной связи от человека
 
-- **Primary Input**: Comments on existing PR
-- **Decision Point**: Same as Mode 1 (merge, request changes, or close)
-- **Trigger**: New comments or feedback detection
+- **Основной ввод**: Комментарии к существующему PR
+- **Точка принятия решения**: Та же, что и в режиме 1 (слияние, запрос изменений или закрытие)
+- **Триггер**: Обнаружение новых комментариев или обратной связи
 
-### Sequence Diagram
+### Диаграмма последовательности
 
 ```mermaid
 sequenceDiagram
     participant H as Human
     participant GH as GitHub
     participant AI as AI Agent
-    participant HM as Hive Mind
+    participant HM as Auto Programmer
 
     Note over GH: Existing PR
     H->>GH: Adds Comment
@@ -235,92 +235,92 @@ sequenceDiagram
     end
 ```
 
-### Data Flow Steps
+### Шаги потока данных
 
-1. **Human adds comment to existing PR** (Primary human input)
-2. Hive Mind detects new comment
-3. AI agent processes comment and feedback
-4. AI agent updates solution based on feedback
-5. AI agent pushes changes to PR
-6. **Human reviews updates** (Human decision point)
-7. **Human decides**: Merge, add more comments, or close (Human feedback)
-8. Cycle continues until resolution
+1. **Человек добавляет комментарий к существующему PR** (основной ввод от человека)
+2. Auto Programmer обнаруживает новый комментарий
+3. Агент ИИ обрабатывает комментарий и обратную связь
+4. Агент ИИ обновляет решение на основе обратной связи
+5. Агент ИИ отправляет изменения в PR
+6. **Человек проверяет обновления** (точка принятия решения человеком)
+7. **Человек принимает решение**: слияние, добавление комментариев или закрытие (обратная связь от человека)
+8. Цикл продолжается до разрешения
 
-## Human Feedback Integration Points
+## Точки интеграции обратной связи от человека
 
-### Comprehensive Feedback Points Matrix
+### Комплексная матрица точек обратной связи
 
-| Feedback Point         | Mode    | Timing      | Input Type                | System Response               | Impact Level                |
-| ---------------------- | ------- | ----------- | ------------------------- | ----------------------------- | --------------------------- |
-| **Issue Creation**     | Default | Initial     | Requirements, Description | Triggers solution development | High - Defines entire scope |
-| **Issue Comments**     | Default | Ongoing     | Clarifications, Updates   | Updates requirements          | Medium - Refines scope      |
-| **PR Creation Review** | Both    | After draft | Initial assessment        | Determines continuation       | High - Go/No-go decision    |
-| **PR Comments**        | Both    | Iterative   | Technical feedback        | Triggers code updates         | High - Directs changes      |
-| **Code Review**        | Both    | Per commit  | Line-by-line feedback     | Precise modifications         | Medium - Specific fixes     |
-| **PR Approval**        | Both    | Final       | Acceptance decision       | Enables merge                 | Critical - Final gate       |
-| **PR Rejection**       | Both    | Any time    | Stop signal               | Halts process                 | Critical - Full stop        |
-| **Label Changes**      | Both    | Any time    | Priority/status updates   | Adjusts approach              | Low - Process hints         |
+| Точка обратной связи     | Режим        | Момент          | Тип ввода                     | Реакция системы              | Уровень воздействия              |
+| ------------------------ | ------------ | --------------- | ----------------------------- | ---------------------------- | -------------------------------- |
+| **Создание задачи**      | По умолчанию | Начальный       | Требования, описание          | Запускает разработку решения | Высокий — определяет весь объём  |
+| **Комментарии к задаче** | По умолчанию | Непрерывный     | Уточнения, обновления         | Обновляет требования         | Средний — уточняет объём         |
+| **Проверка создания PR** | Оба          | После черновика | Начальная оценка              | Определяет продолжение       | Высокий — решение о продолжении  |
+| **Комментарии к PR**     | Оба          | Итеративный     | Техническая обратная связь    | Запускает обновления кода    | Высокий — направляет изменения   |
+| **Code Review**          | Оба          | За коммит       | Постострочная обратная связь  | Точные изменения             | Средний — конкретные исправления |
+| **Одобрение PR**         | Оба          | Финальный       | Решение о принятии            | Разрешает слияние            | Критический — финальный шлюз     |
+| **Отклонение PR**        | Оба          | В любое время   | Сигнал остановки              | Останавливает процесс        | Критический — полная остановка   |
+| **Изменения меток**      | Оба          | В любое время   | Обновления приоритета/статуса | Корректирует подход          | Низкий — подсказки процессу      |
 
-### 1. Issue Creation (Mode 1 Entry)
+### 1. Создание задачи (вход в режим 1)
 
-- **Type**: Requirements specification
-- **Format**: GitHub issue description, labels, initial comments
-- **Impact**: Defines scope and requirements for AI solution
-- **Human Actions Available**:
-  - Write detailed requirements
-  - Attach examples or specifications
-  - Set priority labels
-  - Assign to specific agents
-  - Link related issues
+- **Тип**: Спецификация требований
+- **Формат**: Описание задачи GitHub, метки, начальные комментарии
+- **Воздействие**: Определяет объём и требования для решения ИИ
+- **Доступные действия человека**:
+  - Написать подробные требования
+  - Прикрепить примеры или спецификации
+  - Установить метки приоритета
+  - Назначить конкретным агентам
+  - Связать с похожими задачами
 
-### 2. PR Review & Decision (Both Modes)
+### 2. Проверка PR и принятие решения (оба режима)
 
-- **Type**: Approval/rejection decision
-- **Format**: PR merge, close, or comment actions
-- **Impact**: Determines if solution is acceptable or needs refinement
-- **Human Actions Available**:
-  - Approve and merge
-  - Request changes with specific feedback
-  - Close without merging
-  - Convert to draft
-  - Assign additional reviewers
+- **Тип**: Решение об одобрении/отклонении
+- **Формат**: Слияние PR, закрытие или комментарии
+- **Воздействие**: Определяет, приемлемо ли решение или требует уточнений
+- **Доступные действия человека**:
+  - Одобрить и слить
+  - Запросить изменения с конкретной обратной связью
+  - Закрыть без слияния
+  - Перевести в черновик
+  - Назначить дополнительных рецензентов
 
-### 3. PR Comments (Mode 2 Primary, Mode 1 Secondary)
+### 3. Комментарии к PR (основные в режиме 2, дополнительные в режиме 1)
 
-- **Type**: Specific feedback and change requests
-- **Format**: GitHub PR comments with technical details
-- **Impact**: Guides AI agent refinements and iterations
-- **Human Actions Available**:
-  - Line-specific code comments
-  - General PR conversation
-  - Suggest specific changes
-  - Request tests or documentation
-  - Ask for clarification
+- **Тип**: Конкретная обратная связь и запросы изменений
+- **Формат**: Комментарии к PR на GitHub с техническими деталями
+- **Воздействие**: Направляет уточнения и итерации агента ИИ
+- **Доступные действия человека**:
+  - Постострочные комментарии к коду
+  - Общее обсуждение PR
+  - Предложение конкретных изменений
+  - Запрос тестов или документации
+  - Запрос уточнений
 
-### 4. Continuous Monitoring (Both Modes)
+### 4. Непрерывный мониторинг (оба режима)
 
-- **Type**: Ongoing oversight
-- **Format**: PR status changes, additional comments
-- **Impact**: Enables iterative improvement cycles
-- **Human Actions Available**:
-  - Monitor CI/CD results
-  - Review automated test outcomes
-  - Check code quality metrics
-  - Validate against requirements
-  - Provide ongoing guidance
+- **Тип**: Непрерывный контроль
+- **Формат**: Изменения статуса PR, дополнительные комментарии
+- **Воздействие**: Обеспечивает итерационные циклы улучшения
+- **Доступные действия человека**:
+  - Мониторинг результатов CI/CD
+  - Просмотр результатов автоматических тестов
+  - Проверка метрик качества кода
+  - Валидация по требованиям
+  - Предоставление текущих указаний
 
-### 5. Emergency Intervention Points
+### 5. Точки экстренного вмешательства
 
-- **Type**: Critical feedback
-- **Format**: Direct commands in comments
-- **Impact**: Immediate system response
-- **Triggers**:
-  - `STOP` command in comment
-  - PR closure
-  - Branch protection activation
-  - Manual revert
+- **Тип**: Критическая обратная связь
+- **Формат**: Прямые команды в комментариях
+- **Воздействие**: Немедленная реакция системы
+- **Триггеры**:
+  - Команда `STOP` в комментарии
+  - Закрытие PR
+  - Активация защиты ветки
+  - Ручной откат
 
-### Human Feedback Processing Flow
+### Поток обработки обратной связи от человека
 
 ```mermaid
 stateDiagram-v2
@@ -349,39 +349,39 @@ stateDiagram-v2
     Closing --> [*]: End
 ```
 
-## Configuration Options
+## Параметры конфигурации
 
-### Auto-Continue Behavior
+### Поведение автопродолжения
 
-- `--auto-continue`: Automatically continue with existing PRs for issues (enabled by default, use `--no-auto-continue` to disable)
-- `--auto-continue-only-on-new-comments`: Only continue if new comments detected
-- `--continue-only-on-feedback`: Only continue if feedback is present
+- `--auto-continue`: Автоматически продолжать с существующими PR для задач (включено по умолчанию, используйте `--no-auto-continue` для отключения)
+- `--auto-continue-only-on-new-comments`: Продолжать только при обнаружении новых комментариев
+- `--continue-only-on-feedback`: Продолжать только при наличии обратной связи
 
-### Human Interaction Controls
+### Элементы управления взаимодействием с человеком
 
-- `--auto-pull-request-creation`: Create draft PR before human review
-- `--attach-logs`: Include detailed logs for human review
-- Manual merge requirement ensures human oversight
+- `--auto-pull-request-creation`: Создать черновик PR до проверки человеком
+- `--attach-logs`: Включить подробные журналы для проверки человеком
+- Требование ручного слияния обеспечивает контроль человека
 
-## Error Handling & Fallbacks
+## Обработка ошибок и резервные варианты
 
-### When Human Feedback is Absent
+### Когда обратная связь от человека отсутствует
 
-- System waits for input rather than proceeding
-- Draft PRs remain in draft state until human action
-- Auto-continue features respect feedback requirements
+- Система ожидает ввода, а не продолжает работу
+- Черновики PR остаются в состоянии черновика до действий человека
+- Функции автопродолжения соблюдают требования к обратной связи
 
-### When Human Feedback is Ambiguous
+### Когда обратная связь от человека неоднозначна
 
-- AI requests clarification through PR comments
-- Multiple solution proposals for human selection
-- Conservative approach when uncertainty exists
+- ИИ запрашивает уточнения через комментарии к PR
+- Несколько предложений решений для выбора человеком
+- Консервативный подход при наличии неопределённости
 
-## Implementation Details
+## Детали реализации
 
-### Command-Line Interface
+### Интерфейс командной строки
 
-The system provides various command-line options to control human feedback interaction:
+Система предоставляет различные параметры командной строки для управления взаимодействием с человеком:
 
 ```bash
 # Default Mode - Issue to PR
@@ -399,7 +399,7 @@ The system provides various command-line options to control human feedback inter
   --continue-only-on-feedback
 ```
 
-### Feedback Detection Algorithm
+### Алгоритм обнаружения обратной связи
 
 ```mermaid
 flowchart TD
@@ -431,43 +431,43 @@ flowchart TD
     Q --> T[Wait for Human Input]
 ```
 
-### State Management
+### Управление состоянием
 
-The system maintains state across sessions to ensure continuity:
+Система поддерживает состояние между сессиями для обеспечения непрерывности:
 
-| State Element   | Storage     | Purpose                    | Persistence      |
-| --------------- | ----------- | -------------------------- | ---------------- |
-| Session ID      | File System | Track conversation context | Until completion |
-| PR Number       | Memory/Args | Link issue to PR           | Runtime          |
-| Comment History | GitHub API  | Track new vs old feedback  | Permanent        |
-| Commit History  | Git         | Determine feedback timing  | Permanent        |
-| Configuration   | CLI Args    | Control behavior           | Per execution    |
+| Элемент состояния | Хранилище        | Назначение                                 | Сохранность     |
+| ----------------- | ---------------- | ------------------------------------------ | --------------- |
+| Session ID        | Файловая система | Отслеживание контекста разговора           | До завершения   |
+| PR Number         | Память/Args      | Связь задачи с PR                          | Во время работы |
+| Comment History   | GitHub API       | Отслеживание новой и старой обратной связи | Постоянно       |
+| Commit History    | Git              | Определение времени обратной связи         | Постоянно       |
+| Configuration     | CLI Args         | Управление поведением                      | За выполнение   |
 
-## Summary
+## Итог
 
-### Key Design Principles
+### Ключевые принципы проектирования
 
-1. **Human-Centric**: Every automated action is subject to human review and approval
-2. **Feedback-Driven**: System responds dynamically to human input at multiple points
-3. **Transparent**: All AI actions are visible through GitHub's standard interfaces
-4. **Iterative**: Supports multiple rounds of refinement based on human feedback
-5. **Configurable**: Behavior can be adjusted to match team workflows
+1. **Ориентированность на человека**: Каждое автоматизированное действие подлежит проверке и одобрению человеком
+2. **Управляемость обратной связью**: Система динамически реагирует на ввод человека в нескольких точках
+3. **Прозрачность**: Все действия ИИ видны через стандартные интерфейсы GitHub
+4. **Итеративность**: Поддерживает несколько раундов уточнений на основе обратной связи от человека
+5. **Конфигурируемость**: Поведение может быть настроено под рабочие процессы команды
 
-### Data Flow Summary
+### Сводка потока данных
 
-The Hive Mind data flow architecture ensures comprehensive human oversight through:
+Архитектура потока данных Auto Programmer обеспечивает всесторонний контроль человека через:
 
-- **Multiple Entry Points**: Issues (Default Mode) or PRs (Continue Mode)
-- **Continuous Feedback Integration**: Comments processed in real-time
-- **Clear Decision Gates**: Explicit human approval required for merging
-- **Emergency Controls**: Immediate halt capabilities through commands
-- **Flexible Configuration**: Adjustable automation levels
+- **Множество точек входа**: Задачи (режим по умолчанию) или PR (режим продолжения)
+- **Непрерывная интеграция обратной связи**: Комментарии обрабатываются в режиме реального времени
+- **Чёткие шлюзы принятия решений**: Для слияния требуется явное одобрение человека
+- **Элементы экстренного управления**: Возможность немедленной остановки через команды
+- **Гибкая конфигурация**: Настраиваемые уровни автоматизации
 
-### Human Feedback Integration
+### Интеграция обратной связи от человека
 
-| Mode              | Primary Feedback   | Secondary Feedback  | Decision Authority   |
-| ----------------- | ------------------ | ------------------- | -------------------- |
-| **Default Mode**  | Issue requirements | PR comments         | Human merge decision |
-| **Continue Mode** | PR comments        | Additional comments | Human merge decision |
+| Режим                  | Основная обратная связь | Дополнительная обратная связь | Орган принятия решений     |
+| ---------------------- | ----------------------- | ----------------------------- | -------------------------- |
+| **Режим по умолчанию** | Требования задачи       | Комментарии к PR              | Решение человека о слиянии |
+| **Режим продолжения**  | Комментарии к PR        | Дополнительные комментарии    | Решение человека о слиянии |
 
-Both modes maintain human authority over critical decisions while leveraging AI for implementation, ensuring that human feedback remains the cornerstone of the development process.
+Оба режима сохраняют за человеком право принимать критические решения, используя ИИ для реализации, гарантируя, что обратная связь от человека остаётся краеугольным камнем процесса разработки.

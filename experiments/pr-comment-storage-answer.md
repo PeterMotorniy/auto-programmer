@@ -13,18 +13,18 @@ Yes — images can be stored **without any branch** (and without any tag). The c
 
 ### What DOES work (token‑only, renders inline, public + private) — verified
 
-| Approach                                                    | Embed URL                             | Result                      |
-| ----------------------------------------------------------- | ------------------------------------- | --------------------------- |
-| **Git tag** `refs/tags/…`                                   | `…/blob/<tag>/<path>?raw=true`        | **HTTP 200 `image/png`** ✅ |
-| **Custom ref** `refs/hive-mind-media/…` (no branch, no tag) | `…/blob/<commit-sha>/<path>?raw=true` | **HTTP 200 `image/png`** ✅ |
+| Approach                                                          | Embed URL                             | Result                      |
+| ----------------------------------------------------------------- | ------------------------------------- | --------------------------- |
+| **Git tag** `refs/tags/…`                                         | `…/blob/<tag>/<path>?raw=true`        | **HTTP 200 `image/png`** ✅ |
+| **Custom ref** `refs/auto-programmer-media/…` (no branch, no tag) | `…/blob/<commit-sha>/<path>?raw=true` | **HTTP 200 `image/png`** ✅ |
 
 Both reuse the **exact Git Data API flow used by the implementation** (blob → tree → parentless commit → create ref). The only differences from the earlier branch-based draft:
 
-- the ref _kind_ (`refs/tags/*` or a custom `refs/hive-mind-media/*` namespace instead of `refs/heads/*`), and
+- the ref _kind_ (`refs/tags/*` or a custom `refs/auto-programmer-media/*` namespace instead of `refs/heads/*`), and
 - for the custom‑ref option, embedding by **commit SHA** instead of ref name (GitHub's friendly `/blob/<name>/` URLs resolve only `heads/*` and `tags/*`, but a **commit SHA resolves regardless of the namespace** that keeps it alive — which is why a custom ref renders).
 
 ### Recommendation
 
-A **custom ref namespace (`refs/hive-mind-media/*`) embedded via the commit‑SHA `?raw=true` URL** is the cleanest "no branch" answer: it keeps the bytes alive, needs no new credentials or services, renders for public **and** private repos, and is **invisible in every GitHub UI list** (branch dropdown, PR base picker, tags/releases) — so it's never a stray merge target. A **git tag** is the simpler alternative (friendly URL, ~one‑line change) but shows up under Tags/Releases.
+A **custom ref namespace (`refs/auto-programmer-media/*`) embedded via the commit‑SHA `?raw=true` URL** is the cleanest "no branch" answer: it keeps the bytes alive, needs no new credentials or services, renders for public **and** private repos, and is **invisible in every GitHub UI list** (branch dropdown, PR base picker, tags/releases) — so it's never a stray merge target. A **git tag** is the simpler alternative (friendly URL, ~one‑line change) but shows up under Tags/Releases.
 
-Decision applied in this PR: use the **custom ref** path by default. Interactive images now go under `refs/hive-mind-media/pr-<number>` via Git Data API commits and are embedded with commit-SHA `?raw=true` URLs, so no branch or tag is introduced.
+Decision applied in this PR: use the **custom ref** path by default. Interactive images now go under `refs/auto-programmer-media/pr-<number>` via Git Data API commits and are embedded with commit-SHA `?raw=true` URLs, so no branch or tag is introduced.

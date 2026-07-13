@@ -217,7 +217,7 @@ The implementation should:
    - Later commit removes CLAUDE.md
    - Revert should restore to pre-session state
 
-4. **Multiple tasks in sequence** (hive-mind case)
+4. **Multiple tasks in sequence** (auto-programmer case)
    - Task 1: creates CLAUDE.md
    - Task 1: reverts CLAUDE.md
    - Task 2: creates CLAUDE.md again

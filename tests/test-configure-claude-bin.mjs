@@ -6,7 +6,7 @@
  *
  * Covers the maintainer request on PR #1643: ship a reusable, readable,
  * deduplicated bin command that users and system administrators can run
- * manually after installing `@link-assistant/hive-mind`. Docker release builds
+ * manually after installing `auto-programmer`. Docker release builds
  * install that published package and run the same bin for the pre-seeded
  * /home/box/.claude/settings.json.
  */

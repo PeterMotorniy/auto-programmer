@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -11,7 +11,7 @@
  *
  * Run with: node tests/playwright-mcp-prompts.test.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1623
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1623
  */
 
 import assert from 'node:assert/strict';
@@ -401,27 +401,6 @@ github           docker   run        -    -    enabled   Unsupported`;
       modelSupportsVision: false,
     });
     assert.ok(!prompt.includes('Playwright MCP usage'), 'Prompt should not include Playwright MCP section when disabled');
-  });
-
-  // ============================================================================
-  // Case Study Documentation Tests
-  // ============================================================================
-
-  console.log('\n📋 Case Study Documentation Tests\n');
-
-  await asyncTest('case study documentation exists for issue 1623', async () => {
-    const caseStudyPath = path.join(process.cwd(), 'docs/case-studies/issue-1623/README.md');
-    const exists = await fs
-      .stat(caseStudyPath)
-      .then(() => true)
-      .catch(() => false);
-    assert.ok(exists, 'Case study README.md should exist for issue 1623');
-
-    if (exists) {
-      const content = await fs.readFile(caseStudyPath, 'utf-8');
-      assert.ok(content.includes('Playwright MCP'), 'Case study should mention Playwright MCP');
-      assert.ok(content.includes('WebFetch') || content.includes('WebSearch'), 'Case study should mention web tool fallback');
-    }
   });
 
   // ============================================================================

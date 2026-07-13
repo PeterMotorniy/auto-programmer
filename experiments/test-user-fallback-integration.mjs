@@ -14,8 +14,8 @@ async function testUserFallbackIntegration() {
     // Test 1: Verify we can detect user type
     console.log('\nTest 1: Detecting user account type...');
     try {
-      const typeResult = execSync('gh api users/konard --jq .type', { encoding: 'utf8' }).trim();
-      console.log(`✅ Account type for konard: ${typeResult}`);
+      const typeResult = execSync('gh api users/petermotorniy --jq .type', { encoding: 'utf8' }).trim();
+      console.log(`✅ Account type for petermotorniy: ${typeResult}`);
     } catch (error) {
       console.log('⚠️  Could not detect account type (API might be rate limited)');
     }
@@ -23,11 +23,11 @@ async function testUserFallbackIntegration() {
     // Test 2: Verify repository listing works for users (with archived filter)
     console.log('\nTest 2: Listing repositories for user...');
     try {
-      const repoListCmd = 'gh repo list konard --limit 5 --json name,owner,isArchived';
+      const repoListCmd = 'gh repo list petermotorniy --limit 5 --json name,owner,isArchived';
       const repoOutput = execSync(repoListCmd, { encoding: 'utf8' });
       const allRepos = JSON.parse(repoOutput || '[]');
       const repos = allRepos.filter(repo => !repo.isArchived);
-      console.log(`✅ Successfully fetched ${allRepos.length} repositories for user konard`);
+      console.log(`✅ Successfully fetched ${allRepos.length} repositories for user petermotorniy`);
       console.log(`   (${repos.length} non-archived, ${allRepos.length - repos.length} archived)`);
       if (repos.length > 0) {
         console.log(`   First non-archived repo: ${repos[0].owner.login}/${repos[0].name}`);

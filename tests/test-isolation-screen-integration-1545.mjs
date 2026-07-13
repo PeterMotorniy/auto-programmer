@@ -12,9 +12,9 @@
  * Requires: start-command ($ CLI) and screen.
  * Skips gracefully if either tool is unavailable (e.g., in CI without screen).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1545
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1545
  * @see https://github.com/link-foundation/start/pull/102
- * @hive-mind-integration
+ * @auto-programmer-integration
  */
 
 import { execSync } from 'child_process';

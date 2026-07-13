@@ -11,7 +11,7 @@
  * when their "level" field is "error" or "fatal".
  *
  * References:
- * - Issue #1337: https://github.com/link-assistant/hive-mind/issues/1337
+ * - Issue #1337: https://github.com/PeterMotorniy/auto-programmer/issues/1337
  * - Issue #477:  Emoji-prefixed warnings (⚠️) excluded from error detection
  * - Issue #1165: "command not found" (exit 127) error detection
  */

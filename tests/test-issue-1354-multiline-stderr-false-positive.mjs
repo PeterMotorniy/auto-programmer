@@ -13,7 +13,7 @@
  * Fix: Split stderr chunks by newline and check each line individually.
  *
  * References:
- * - Issue #1354: https://github.com/link-assistant/hive-mind/issues/1354
+ * - Issue #1354: https://github.com/PeterMotorniy/auto-programmer/issues/1354
  * - Issue #1337: JSON-structured SDK warnings with non-error level (single-line fix)
  * - Issue #477:  Emoji-prefixed warnings excluded from error detection
  */

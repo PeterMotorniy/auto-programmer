@@ -1,95 +1,95 @@
-# Branch Protection Policy (languages: en • [zh](BRANCH_PROTECTION_POLICY.zh.md) • [hi](BRANCH_PROTECTION_POLICY.hi.md) • [ru](BRANCH_PROTECTION_POLICY.ru.md))
+# Политика защиты веток
 
-## Overview
+## Обзор
 
-This document outlines the branch protection rules and required status checks for the `main` branch of the hive-mind repository. These rules ensure code quality, prevent breaking changes, and maintain a stable main branch.
+Этот документ описывает правила защиты веток и обязательные проверки статуса для ветки `main` репозитория auto-programmer. Эти правила обеспечивают качество кода, предотвращают появление критических изменений и поддерживают стабильность основной ветки.
 
-## Why Branch Protection?
+## Зачем нужна защита веток?
 
-Branch protection rules prevent:
+Правила защиты веток предотвращают:
 
-- Merging pull requests with failing tests
-- Merging code that doesn't meet formatting standards
-- Introducing changes that haven't been validated by CI
-- Accidental force pushes to the main branch
-- Merging pull requests with skipped critical checks
+- Слияние pull request с неудачными тестами
+- Слияние кода, не соответствующего стандартам форматирования
+- Внесение изменений, не проверенных CI
+- Случайные force push в основную ветку
+- Слияние pull request с пропущенными критическими проверками
 
-**See:** [Case Study: Issue #958](./case-studies/issue-958/ANALYSIS.md) for a real-world example of what can happen without proper branch protection.
+**См.:** [Разбор случая: Issue #958](./case-studies/issue-958/ANALYSIS.md) — реальный пример того, что может произойти без надлежащей защиты веток.
 
-## Required Status Checks
+## Обязательные проверки статуса
 
-All pull requests to `main` must have these checks pass before merging:
+Все pull request в `main` должны пройти следующие проверки перед слиянием:
 
-### Critical Checks (Must Pass)
+### Критические проверки (должны пройти)
 
 1. **Check for Changesets** (`changeset-check`)
-   - Ensures every PR includes a changeset for version management
-   - Only runs on PRs, not on main branch pushes
-   - Skipped for automated release PRs
+   - Гарантирует, что каждый PR включает changeset для управления версиями
+   - Выполняется только для PR, не для push в основную ветку
+   - Пропускается для автоматизированных release PR
 
 2. **test-compilation**
-   - Validates JavaScript syntax for all `.mjs` files
-   - Ensures code compiles without syntax errors
-   - Fast fail check (~7-8 seconds)
+   - Проверяет синтаксис JavaScript для всех файлов `.mjs`
+   - Гарантирует компиляцию кода без синтаксических ошибок
+   - Быстрая проверка (~7–8 секунд)
 
 3. **lint**
-   - Runs Prettier format check on all applicable files
-   - Runs ESLint code quality checks
-   - Validates code style consistency
-   - ~20-26 seconds runtime
+   - Запускает проверку форматирования Prettier для всех применимых файлов
+   - Запускает проверку качества кода ESLint
+   - Проверяет согласованность стиля кода
+   - Время выполнения ~20–26 секунд
 
 4. **check-file-line-limits**
-   - Ensures no `.mjs` file exceeds 1500 lines
-   - Encourages code modularity and maintainability
-   - Fast check (~7 seconds)
+   - Гарантирует, что ни один файл `.mjs` не превышает 1500 строк
+   - Поощряет модульность и поддерживаемость кода
+   - Быстрая проверка (~7 секунд)
 
 5. **test-suites**
-   - Runs comprehensive test suite
-   - Validates core functionality
-   - ~3-4 minutes runtime
+   - Запускает комплексный набор тестов
+   - Проверяет основную функциональность
+   - Время выполнения ~3–4 минуты
 
 6. **test-execution**
-   - Tests actual command execution scenarios
-   - Validates real-world usage patterns
-   - ~2 minutes runtime
+   - Тестирует реальные сценарии выполнения команд
+   - Проверяет паттерны реального использования
+   - Время выполнения ~2 минуты
 
 7. **validate-docs**
-   - Ensures documentation files are valid
-   - Checks for broken links or malformed content
-   - ~8-12 seconds runtime
+   - Гарантирует корректность файлов документации
+   - Проверяет наличие битых ссылок или некорректного содержимого
+   - Время выполнения ~8–12 секунд
 
 8. **memory-check-linux**
-   - Tests for memory leaks and excessive usage
-   - Ensures performance standards
-   - ~30 seconds runtime
+   - Тестирует утечки памяти и чрезмерное использование ресурсов
+   - Обеспечивает соответствие стандартам производительности
+   - Время выполнения ~30 секунд
 
-### Optional Checks (May Skip)
+### Необязательные проверки (могут быть пропущены)
 
-These checks run conditionally based on what files changed:
+Эти проверки выполняются условно в зависимости от изменённых файлов:
 
-- **docker-pr-check**: Only runs when Docker-related files change
-- **helm-pr-check**: Validates Helm charts if changed
-- **Release jobs**: Only run on version bump commits
+- **docker-pr-check**: Выполняется только при изменении файлов, связанных с Docker
+- **helm-pr-check**: Проверяет Helm charts при их изменении
+- **Release jobs**: Выполняются только при коммитах с обновлением версии
 
-## Configuration Steps
+## Шаги настройки
 
-### For Repository Administrators
+### Для администраторов репозитория
 
-To configure these rules in GitHub:
+Чтобы настроить эти правила в GitHub:
 
-1. Navigate to **Settings** → **Branches**
-2. Click **Add rule** or edit existing rule for `main`
-3. Configure the following:
+1. Перейдите в **Settings** → **Branches**
+2. Нажмите **Add rule** или отредактируйте существующее правило для `main`
+3. Настройте следующее:
 
-#### Basic Settings
+#### Базовые настройки
 
 - ✅ **Require a pull request before merging**
-  - Required approvals: 0 (or 1 for stricter policy)
+  - Required approvals: 0 (или 1 для более строгой политики)
   - ✅ Dismiss stale pull request approvals when new commits are pushed
-  - ⬜ Require review from Code Owners (optional)
+  - ⬜ Require review from Code Owners (необязательно)
 - ✅ **Require status checks to pass before merging**
   - ✅ **Require branches to be up to date before merging**
-  - Select the following status checks:
+  - Выберите следующие проверки статуса:
     - `Check for Changesets`
     - `test-compilation`
     - `lint`
@@ -98,39 +98,39 @@ To configure these rules in GitHub:
     - `test-execution`
     - `validate-docs`
     - `memory-check-linux`
-- ✅ **Require conversation resolution before merging** (recommended)
-- ✅ **Do not allow bypassing the above settings** (recommended)
+- ✅ **Require conversation resolution before merging** (рекомендуется)
+- ✅ **Do not allow bypassing the above settings** (рекомендуется)
 
-#### Additional Protections
+#### Дополнительные защиты
 
-- ⬜ **Require deployments to succeed before merging** (not applicable)
-- ⬜ **Lock branch** (not recommended - prevents all pushes)
-- ⬜ **Require linear history** (optional - enforces rebase or squash)
+- ⬜ **Require deployments to succeed before merging** (неприменимо)
+- ⬜ **Lock branch** (не рекомендуется — запрещает все push)
+- ⬜ **Require linear history** (необязательно — обязывает использовать rebase или squash)
 
-## Understanding Check Statuses
+## Понимание статусов проверок
 
-GitHub treats these statuses as acceptable for merging:
+GitHub считает следующие статусы приемлемыми для слияния:
 
-- ✅ **Success**: Check passed
-- ⚠️ **Skipped**: Check was conditionally skipped
-- ➖ **Neutral**: Check completed but with neutral result
+- ✅ **Success**: Проверка прошла успешно
+- ⚠️ **Skipped**: Проверка была пропущена условно
+- ➖ **Neutral**: Проверка завершена с нейтральным результатом
 
-⚠️ **Important:** "Skipped" is considered passing! This is why we must explicitly list required checks.
+⚠️ **Важно:** «Skipped» считается успешным! Именно поэтому необходимо явно перечислять обязательные проверки.
 
-## What Happens Without Branch Protection?
+## Что происходит без защиты веток?
 
-Without these rules, the following can occur:
+Без этих правил может произойти следующее:
 
-1. **Silent Failures**: PRs can merge with skipped checks, introducing issues
-2. **Main Branch Failures**: Code that passes PR checks can fail on main
-3. **Quality Degradation**: Formatting, linting, or test issues slip through
-4. **Release Blocking**: Failed main branch CI can block releases
+1. **Скрытые сбои**: PR могут сливаться с пропущенными проверками, что приводит к ошибкам
+2. **Сбои в основной ветке**: Код, прошедший проверки PR, может давать сбой в main
+3. **Ухудшение качества**: Проблемы с форматированием, линтингом или тестами остаются незамеченными
+4. **Блокировка релизов**: Сбой CI в основной ветке может блокировать релизы
 
-**Real Example:** PR #955 merged with `lint` check skipped because it only changed `.md` files. The workflow conditionally skips `lint` for non-code changes. After merge, main branch CI failed because those files had formatting issues.
+**Реальный пример:** PR #955 был слит с пропущенной проверкой `lint`, поскольку изменял только файлы `.md`. Рабочий процесс условно пропускает `lint` для изменений, не касающихся кода. После слияния CI основной ветки завершился с ошибкой, так как в этих файлах были проблемы с форматированием.
 
-## Workflow Conditional Logic
+## Условная логика рабочего процесса
 
-The CI workflow uses change detection to optimize CI time:
+Рабочий процесс CI использует обнаружение изменений для оптимизации времени CI:
 
 ```yaml
 detect-changes:
@@ -143,7 +143,7 @@ detect-changes:
     any-code-changed: # true if any code files changed
 ```
 
-Jobs use these outputs to conditionally run:
+Задания используют эти выходные данные для условного запуска:
 
 ```yaml
 lint:
@@ -153,81 +153,81 @@ lint:
     (needs.detect-changes.outputs.mjs-changed == 'true' || needs.detect-changes.outputs.workflow-changed == 'true')
 ```
 
-**Problem:** On PRs, `lint` only runs if `.mjs` or workflow files change. But on main branch pushes, it runs regardless. This inconsistency created the issue documented in case study #958.
+**Проблема:** В PR проверка `lint` выполняется только при изменении файлов `.mjs` или файлов рабочего процесса. Но при push в основную ветку она выполняется независимо от этого. Эта несогласованность породила проблему, задокументированную в разборе случая #958.
 
-**Branch Protection Solution:** By requiring `lint` to be in "success" state (not "skipped"), we ensure it always runs when needed.
+**Решение с защитой веток:** Требуя, чтобы `lint` находился в состоянии «success» (не «skipped»), мы гарантируем, что он всегда выполняется при необходимости.
 
-## Troubleshooting
+## Устранение неполадок
 
-### Check Shows as "Expected" but Never Runs
+### Проверка отображается как «Expected», но никогда не запускается
 
-**Cause:** The check name in branch protection doesn't match the job name in workflow.
+**Причина:** Имя проверки в настройках защиты ветки не совпадает с именем задания в рабочем процессе.
 
-**Solution:**
+**Решение:**
 
-1. Go to a recent PR
-2. Click "Show all checks"
-3. Copy the exact check name as shown by GitHub
-4. Use that exact name in branch protection settings
+1. Перейдите к недавнему PR
+2. Нажмите «Show all checks»
+3. Скопируйте точное имя проверки, отображаемое в GitHub
+4. Используйте это точное имя в настройках защиты ветки
 
-### Check Keeps Failing on Legitimate Changes
+### Проверка постоянно завершается неудачей при легитимных изменениях
 
-**Cause:** Check may be too strict or have a bug.
+**Причина:** Проверка может быть слишком строгой или содержать ошибку.
 
-**Solution:**
+**Решение:**
 
-1. Review the check's purpose
-2. Fix the code to meet the check's requirements, OR
-3. Update the check's logic if it's incorrectly failing
+1. Проверьте назначение проверки
+2. Исправьте код так, чтобы он соответствовал требованиям проверки, ИЛИ
+3. Обновите логику проверки, если она некорректно завершается с ошибкой
 
-### Can't Merge Because Check is Stuck "Pending"
+### Невозможно выполнить слияние, так как проверка зависла в состоянии «Pending»
 
-**Cause:** GitHub Actions runner issue or workflow syntax error.
+**Причина:** Проблема с runner GitHub Actions или синтаксическая ошибка в рабочем процессе.
 
-**Solution:**
+**Решение:**
 
-1. Check workflow runs in Actions tab
-2. Look for errors in workflow YAML
-3. Re-run failed checks
-4. If persistent, may need to temporarily disable that specific check
+1. Проверьте запуски рабочих процессов на вкладке Actions
+2. Найдите ошибки в YAML рабочего процесса
+3. Перезапустите неудавшиеся проверки
+4. Если проблема не устраняется, возможно, потребуется временно отключить эту конкретную проверку
 
-## Maintenance
+## Обслуживание
 
-### Adding New Required Checks
+### Добавление новых обязательных проверок
 
-When adding a new CI check that should always pass:
+При добавлении новой проверки CI, которая должна всегда проходить:
 
-1. Add the check to the workflow
-2. Test it on a PR
-3. Once confirmed working, add it to branch protection required checks
-4. Update this document
+1. Добавьте проверку в рабочий процесс
+2. Протестируйте её в PR
+3. После подтверждения работоспособности добавьте её в обязательные проверки защиты ветки
+4. Обновите этот документ
 
-### Removing Required Checks
+### Удаление обязательных проверок
 
-Only remove a required check if:
+Удаляйте обязательную проверку только если:
 
-1. The check is obsolete or replaced by another check
-2. The check has persistent false failures
-3. Team consensus agrees it's not critical
+1. Проверка устарела или заменена другой проверкой
+2. Проверка постоянно даёт ложные срабатывания
+3. Команда договорилась, что она не является критической
 
-Document the reason in this file.
+Задокументируйте причину в этом файле.
 
-## References
+## Ссылки
 
 - [GitHub Docs: About protected branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
 - [GitHub Docs: Managing a branch protection rule](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule)
 - [GitHub Docs: Troubleshooting required status checks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/collaborating-on-repositories-with-code-quality-features/troubleshooting-required-status-checks)
-- [Case Study: Issue #958 - Unformatted Files Merged to Main](./case-studies/issue-958/ANALYSIS.md)
+- [Разбор случая: Issue #958 — Неотформатированные файлы слиты в main](./case-studies/issue-958/ANALYSIS.md)
 
-## Questions?
+## Вопросы?
 
-If you have questions about branch protection or need help with a specific scenario, please:
+Если у вас есть вопросы о защите веток или вам нужна помощь в конкретной ситуации, пожалуйста:
 
-1. Check the case studies in `docs/case-studies/`
-2. Review the workflow file: `.github/workflows/release.yml`
-3. Open an issue with the `question` label
+1. Изучите разборы случаев в `docs/case-studies/`
+2. Просмотрите файл рабочего процесса: `.github/workflows/release.yml`
+3. Откройте issue с меткой `question`
 
 ---
 
-**Last Updated:** 2025-12-21
-**Maintained By:** Repository maintainers
+**Последнее обновление:** 2025-12-21
+**Поддерживается:** Мейнтейнерами репозитория

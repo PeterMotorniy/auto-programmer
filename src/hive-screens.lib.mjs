@@ -47,8 +47,8 @@ Examples:
   hive-screens --enter --newest         # attach to the newest finished run
 
 References:
-  https://github.com/link-assistant/hive-mind/issues/1649
-  https://github.com/link-assistant/hive-mind/issues/1654
+  https://github.com/PeterMotorniy/auto-programmer/issues/1649
+  https://github.com/PeterMotorniy/auto-programmer/issues/1654
 `;
 
 const ACTION_FLAGS = new Set(['--enter', '--close', '--list']);

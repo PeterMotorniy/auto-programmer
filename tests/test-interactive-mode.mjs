@@ -39,7 +39,7 @@ function makeHandler({ owner = 'test-owner', repo = 'test-repo', prNumber = 123,
   const edits = [];
   const logs = [];
   // Mock execFile to intercept gh api calls (used by postComment and editComment)
-  // See: https://github.com/link-assistant/hive-mind/issues/1458
+  // See: https://github.com/PeterMotorniy/auto-programmer/issues/1458
   const mockExecFile = async (cmd, args, options) => {
     const argsStr = args.join(' ');
     const inputBody = options?.input ? JSON.parse(options.input).body : '';
@@ -506,7 +506,7 @@ await runTest('safeJsonStringify: normal strings are not corrupted', () => {
 //
 // These tests use real-world patterns extracted from actual Claude execution
 // logs found in merged pull requests. They ensure the sanitization functions
-// correctly handle the same kind of content that hive-mind processes in
+// correctly handle the same kind of content that auto-programmer processes in
 // production without breaking anything that previously worked.
 
 console.log('\n=== Testing Real-World Log Data Patterns (Issue #1324) ===\n');
@@ -514,13 +514,13 @@ console.log('\n=== Testing Real-World Log Data Patterns (Issue #1324) ===\n');
 // --- sanitizeUnicode: real-world patterns ---
 
 await runTest('sanitizeUnicode: preserves emoji-rich GitHub PR comment (real log pattern)', () => {
-  // This is the exact pattern found in PR comments posted by hive-mind
+  // This is the exact pattern found in PR comments posted by auto-programmer
   const realContent = '## 🤖 Solution Draft Log\nThis log file contains the complete execution trace of the AI solution draft process.\n\n💰 **Cost estimation:**\n- Public pricing estimate: $3.003222\n- Calculated by Anthropic: $2.339325 USD\n📎 **Log file uploaded as Gist** (647KB)\n🔗 [View complete solution draft log](https://example.com)';
   const result = utils.sanitizeUnicode(realContent);
   if (result !== realContent) throw new Error('Expected emoji-rich content to pass through unchanged');
 });
 
-await runTest('sanitizeUnicode: preserves real hive-mind status messages with emojis', () => {
+await runTest('sanitizeUnicode: preserves real auto-programmer status messages with emojis', () => {
   const statusMessages = ['🔧 Raw command executed: claude --version', '💾 Disk space check: 66991MB available (2048MB required) ✅', '🧠 Memory check: 11394MB available ✅', '📋 URL validation: https://github.com/owner/repo/issues/1', '✅ Auto-fork: No write access detected, enabling fork mode', '📝 Issue mode: Working with issue #23', '🔗 Setting upstream: owner/repo', '✅ Branch checked out: issue-23-abc123', '## ✅ Ready to merge\n\nThis pull request is now ready:\n- All CI checks passed\n- No merge conflicts'];
   for (const msg of statusMessages) {
     const result = utils.sanitizeUnicode(msg);

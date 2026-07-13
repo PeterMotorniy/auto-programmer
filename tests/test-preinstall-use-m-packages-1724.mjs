@@ -12,8 +12,8 @@
  *
  * Run with: node tests/test-preinstall-use-m-packages-1724.mjs
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1724
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1724
  */
 
 import assert from 'node:assert/strict';

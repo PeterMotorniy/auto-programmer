@@ -2,14 +2,14 @@
 # Issue #1843 — Probe 2: confirm the exact Git Data API calls a custom-ref
 # (no-branch, no-tag) image store will rely on.
 #   - create blob -> tree -> parentless commit
-#   - create custom ref refs/hive-mind-media/probe2
+#   - create custom ref refs/auto-programmer-media/probe2
 #   - GET single ref via git/ref/<ns>/<name>  (must return object.sha)
 #   - re-create same ref (must 422 -> dedup fallback path)
 #   - commit-SHA raw URL serves bytes
 #   - cleanup
 set -uo pipefail
-OWNER=link-assistant
-REPO=hive-mind
+OWNER=PeterMotorniy
+REPO=auto-programmer
 LOG="experiments/storage-probe2.log"
 TS="$(date -u +%Y-%m-%dT%H:%M:%SZ 2>/dev/null || echo unknown)"
 exec > >(tee -a "$LOG") 2>&1
@@ -17,7 +17,7 @@ echo "=========== RUN $TS  repo=$OWNER/$REPO ==========="
 api() { gh api "$@"; }
 PNG_B64="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
 P="media/probe2/onepx.png"
-REF="hive-mind-media/probe2"
+REF="auto-programmer-media/probe2"
 
 BLOB=$(api repos/$OWNER/$REPO/git/blobs -X POST --input - --jq .sha <<<"{\"content\":\"$PNG_B64\",\"encoding\":\"base64\"}")
 echo "blob=$BLOB"

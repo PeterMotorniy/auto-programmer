@@ -4,7 +4,7 @@
  *
  * Run with: node tests/test-cleanup-confirmation-1930.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1930
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1930
  */
 
 import assert from 'node:assert/strict';

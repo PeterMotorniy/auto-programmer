@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Tests for issue #401: --auto-delete-branch-on-merge option in --watch mode.
  *
@@ -58,15 +58,6 @@ await run('option is documented in docs/CONFIGURATION.md (English)', async () =>
   const row = extractOptionRow(md, '--auto-delete-branch-on-merge');
   assert(row, 'CONFIGURATION.md should mention the option');
   assert(row.includes('--auto-merge'), 'CONFIGURATION.md should document auto-merge support');
-});
-
-await run('option is documented in localized CONFIGURATION docs', async () => {
-  for (const file of ['docs/CONFIGURATION.ru.md', 'docs/CONFIGURATION.zh.md', 'docs/CONFIGURATION.hi.md']) {
-    const md = readFileSync(join(repoRoot, file), 'utf8');
-    const row = extractOptionRow(md, '--auto-delete-branch-on-merge');
-    assert(row, `${file} should mention the option`);
-    assert(row.includes('--auto-merge'), `${file} should document auto-merge support`);
-  }
 });
 
 await run('solve.watch.lib.mjs guards branch deletion on watch mode and the option flag', async () => {

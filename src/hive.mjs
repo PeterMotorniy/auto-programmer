@@ -39,7 +39,7 @@ import { isDirectExecution, withTimeout } from './hive.bootstrap.lib.mjs';
 import { createShutdownManager } from './hive.shutdown.lib.mjs';
 const isRunningDirectly = isDirectExecution(process.argv[1], import.meta.url);
 if (isRunningDirectly) {
-  console.log('🐝 Hive Mind - AI-powered issue solver');
+  console.log('🐝 Auto Programmer - AI-powered issue solver');
   console.log('   Initializing...');
   try {
     console.log('   Loading dependencies (this may take a moment)...');
@@ -763,7 +763,7 @@ if (isRunningDirectly) {
             const { spawn } = await import('child_process');
             // Auto-forward all solve-passthrough options from hive argv to solve.
             // New options added to SOLVE_OPTION_DEFINITIONS are automatically forwarded.
-            // See: https://github.com/link-assistant/hive-mind/issues/1209
+            // See: https://github.com/PeterMotorniy/auto-programmer/issues/1209
             const { getSolvePassthroughOptionNames } = await import('./hive.config.lib.mjs');
             const { SOLVE_OPTION_DEFINITIONS } = await import('./solve.config.lib.mjs');
             const kebabToCamel = str => str.replace(/-([a-z])/g, (_, c) => c.toUpperCase());
@@ -1313,7 +1313,7 @@ if (isRunningDirectly) {
 
     // Main monitoring loop
     async function monitor() {
-      await log('\n🚀 Starting Hive Mind monitoring system...');
+      await log('\n🚀 Starting Auto Programmer monitoring system...');
 
       // Start workers
       await log(`\n👷 Starting ${argv.concurrency} workers...`);
@@ -1408,7 +1408,7 @@ if (isRunningDirectly) {
         await cleanupTempDirectories();
       }
 
-      await log('\n👋 Hive Mind monitoring stopped');
+      await log('\n👋 Auto Programmer monitoring stopped');
       await log(`   📁 Full log file: ${absoluteLogPath}`);
     }
 
@@ -1492,7 +1492,7 @@ if (isRunningDirectly) {
       console.error('\nStack trace:');
       console.error(fatalError.stack);
     }
-    console.error('\nPlease report this issue at: https://github.com/link-assistant/hive-mind/issues');
+    console.error('\nPlease report this issue at: https://github.com/PeterMotorniy/auto-programmer/issues');
     process.exit(1);
   }
 }

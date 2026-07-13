@@ -5,7 +5,7 @@
  * This simulates the error message output without actually triggering the error
  */
 
-const forkedRepo = 'konard/andchir-PersonaLive';
+const forkedRepo = 'petermotorniy/andchir-PersonaLive';
 const upstreamDefaultBranch = 'main';
 const argv = {
   url: 'https://github.com/andchir/PersonaLive/issues/24',

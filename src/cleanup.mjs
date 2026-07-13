@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * `hive-cleanup` — free disk space by removing stale hive-mind temporary
+ * `hive-cleanup` — free disk space by removing stale auto-programmer temporary
  * directories/files while preserving folders that belong to currently-running
  * (active) tasks, protected system paths and any work that is not yet pushed.
  *
@@ -17,7 +17,7 @@
  *   --dry-run                     show kept + deleted lists, delete nothing
  *   --keep-active-tasks-folders   keep folders of running tasks (default: on)
  *   --force / -f                  skip the confirmation prompt
- *   --all                         also consider non-hive-mind temp entries
+ *   --all                         also consider non-auto-programmer temp entries
  *   --force-start-command         allow deleting /tmp/start-command
  *   --include-system              also consider system-owned temp entries
  *   --no-keep-dirty               allow deleting clones with unpushed changes
@@ -29,7 +29,7 @@
  *   --sudo                        prefix package-manager commands with sudo
  *   --verbose / -v
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1848
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1848
  */
 
 import path from 'node:path';
@@ -100,7 +100,7 @@ if (hasFlag('--version')) {
 if (hasFlag('--help', '-h')) {
   console.log(`Usage: hive-cleanup [options]
 
-Free disk space by removing stale hive-mind temporary directories/files while
+Free disk space by removing stale auto-programmer temporary directories/files while
 keeping folders that belong to active tasks and protected system paths.
 
 Options:
@@ -109,7 +109,7 @@ Options:
   --no-keep-active-tasks-folders
                               Disable active-task detection (only protected paths kept)
   --force, -f                 Delete without the interactive confirmation prompt
-  --all                       Also consider non-hive-mind temp entries for deletion
+  --all                       Also consider non-auto-programmer temp entries for deletion
   --include-system            Also consider system-owned temp entries (.X11-unix, …)
   --force-start-command       Allow deleting /tmp/start-command (kept by default)
   --no-keep-dirty             Allow deleting clones with uncommitted/unpushed changes
@@ -119,7 +119,7 @@ Options:
 Process diagnostics:
   --processes, --debug-processes
                               Map claude/codex/gemini/qwen/opencode PIDs to
-                              hive-mind task sessions and workspaces
+                              auto-programmer task sessions and workspaces
   --pid <pid[,pid...]>        Include specific non-agent PIDs in the report
   --kill-orphaned-agents      Signal orphaned agent processes whose task
                               session has already reached a terminal status
@@ -213,7 +213,7 @@ async function main() {
   await fsp.writeFile(logFile, `# Cleanup Log - ${new Date().toISOString()}\n\n`).catch(() => {});
 
   const tempRoot = getTempRoot();
-  await log('🧹 hive-mind cleanup');
+  await log('🧹 auto-programmer cleanup');
   await log('====================\n');
   await log(`📂 Temp root: ${tempRoot}`);
   if (options.dryRun) await log('📝 DRY RUN — nothing will be deleted\n');

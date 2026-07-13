@@ -22,7 +22,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
  * we fall back to writing a real second copy so the feature still works.
  *
  * The deployed skill is tool configuration, not project state, so it is:
- *   - re-deployed every session by hive-mind (each session clones fresh), and
+ *   - re-deployed every session by auto-programmer (each session clones fresh), and
  *   - excluded from git via `.git/info/exclude` (a local, never-committed
  *     ignore) so it never pollutes the pull request or the "uncommitted
  *     changes" checks. Only the HANDOFF.md the tool produces is committed.
@@ -128,7 +128,7 @@ const updateGitExclude = async ({ $, tempDir, log }) => {
   const missing = entries.filter(entry => !existingLines.includes(entry));
   if (missing.length === 0) return true;
 
-  const header = '# hive-mind --use-handoff: experimental HANDOFF.md Agent Skill (issue #1877)';
+  const header = '# auto-programmer --use-handoff: experimental HANDOFF.md Agent Skill (issue #1877)';
   const prefix = existing.length > 0 && !existing.endsWith('\n') ? '\n' : '';
   const block = `${prefix}${existing.includes(header) ? '' : header + '\n'}${missing.join('\n')}\n`;
   await fs.writeFile(excludePath, existing + block, 'utf8');

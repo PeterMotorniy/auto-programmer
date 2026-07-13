@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -9,7 +9,7 @@ import fs from 'fs';
  * Test suite for solution summary attachment functionality
  * Tests the --attach-solution-summary and --auto-attach-solution-summary options
  * Related issues:
- *   - https://github.com/link-assistant/hive-mind/issues/1263
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/1263
  */
 
 let testsPassed = 0;
@@ -251,7 +251,7 @@ runTest('attachSolutionSummary posts a "Working session summary" comment (Issue 
 });
 
 // Issue #1813: The visible "Working session summary" header is not enough to
-// prove a comment was posted by hive-mind; Codex can use the same heading in a
+// prove a comment was posted by auto-programmer; Codex can use the same heading in a
 // real AI-authored comment. New automated comments use a hidden marker, and
 // legacy automated comments are still detected by their standard footer.
 runTest('Working session summary detection requires automation evidence (Issues #1728, #1813)', async () => {

@@ -46,7 +46,7 @@ console.log('Issue #886: Trust exit code, only detect explicit JSON errors\n');
 // Test 1: Issue #886 scenario - bash command with shell warnings but successful completion
 // With simplified detection, we don't scan output at all - just trust exit code
 console.log('Test 1: Bash command with shell warnings should NOT trigger error');
-const issue886Output = `{"type":"tool_use","timestamp":1765265945140,"sessionID":"ses_4fdf45a99ffeEgHuqAqwnsYT7b","part":{"type":"tool","callID":"call_40598996","tool":"bash","state":{"status":"completed","input":{"command":"gh pr edit 2 ..."},"output":"/bin/sh: 1: src/main.rs: Permission denied\\n/bin/sh: 1: .github/workflows/test-hello-world.yml: Permission denied\\nhttps://github.com/konard/test-hello-world-019b020a-a43c-7544-aaa1-220021798428/pull/2\\n","metadata":{"exit":0}}}}`;
+const issue886Output = `{"type":"tool_use","timestamp":1765265945140,"sessionID":"ses_4fdf45a99ffeEgHuqAqwnsYT7b","part":{"type":"tool","callID":"call_40598996","tool":"bash","state":{"status":"completed","input":{"command":"gh pr edit 2 ..."},"output":"/bin/sh: 1: src/main.rs: Permission denied\\n/bin/sh: 1: .github/workflows/test-hello-world.yml: Permission denied\\nhttps://github.com/petermotorniy/test-hello-world-019b020a-a43c-7544-aaa1-220021798428/pull/2\\n","metadata":{"exit":0}}}}`;
 const result1 = detectAgentErrors(issue886Output);
 assert.strictEqual(result1.detected, false, 'Should NOT detect error - no JSON error message');
 console.log('  ✅ PASSED: Shell warnings in output ignored (trust exit code)\n');

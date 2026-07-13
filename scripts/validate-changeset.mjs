@@ -13,7 +13,7 @@ import { execSync } from 'child_process';
 import { readFileSync, readdirSync, existsSync } from 'fs';
 import { join } from 'path';
 
-const PACKAGE_NAME = '@link-assistant/hive-mind';
+const PACKAGE_NAME = 'auto-programmer';
 
 /**
  * Get changeset files added in the current PR using git diff

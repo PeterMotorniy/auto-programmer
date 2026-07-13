@@ -7,7 +7,7 @@
  *
  *   Root Cause A — the nested Docker daemon ran on the `vfs` storage driver.
  *     vfs performs NO copy-on-write: it stores a full copy of every image
- *     layer, so the multi-GB Hive Mind images consume many times their real
+ *     layer, so the multi-GB Auto Programmer images consume many times their real
  *     size on disk and the first layer write overflows it. The fix ships a
  *     copy-on-write default (`fuse-overlayfs`) in Dockerfile.dind; this
  *     preflight additionally WARNS at startup whenever the live daemon is still
@@ -21,8 +21,8 @@
  * must NEVER throw and must return null when docker is unavailable, so they add
  * no warnings in environments without a daemon.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1914
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1914
  */
 
 import { preflightDockerIsolation, checkDockerStorageDriver, checkDockerDiskSpace } from '../src/isolation-runner.lib.mjs';

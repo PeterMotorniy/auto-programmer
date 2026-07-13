@@ -1,5 +1,5 @@
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import test from 'node:test';
@@ -27,11 +27,11 @@ test('issue #1902: private default log uploads also avoid explicit repository mo
   const args = buildGhUploadLogArgs({
     logFile: '/tmp/solution-draft-log-pr-large.txt',
     isPublic: false,
-    description: 'Solution draft log for https://github.com/link-assistant/hive-mind/pull/1909',
+    description: 'Solution draft log for https://github.com/PeterMotorniy/auto-programmer/pull/1909',
     verbose: false,
   });
 
-  assert.deepEqual(args, ['/tmp/solution-draft-log-pr-large.txt', '--private', '--description', 'Solution draft log for https://github.com/link-assistant/hive-mind/pull/1909']);
+  assert.deepEqual(args, ['/tmp/solution-draft-log-pr-large.txt', '--private', '--description', 'Solution draft log for https://github.com/PeterMotorniy/auto-programmer/pull/1909']);
   assert.equal(args.includes('--auto'), false);
   assert.equal(args.includes('--shared-repository'), false);
   assert.equal(args.includes('--only-repository'), false);

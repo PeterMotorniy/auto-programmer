@@ -24,8 +24,8 @@ async function $(command) {
 async function debugCommentDetection() {
   try {
     // Test with the current PR #169
-    const owner = 'link-assistant';
-    const repo = 'hive-mind';
+    const owner = 'PeterMotorniy';
+    const repo = 'auto-programmer';
     const prNumber = 169;
 
     console.log(`📊 Testing comment detection for PR #${prNumber}...\n`);

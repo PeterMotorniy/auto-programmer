@@ -10,7 +10,7 @@ async function testArchivedCheck() {
   // Test with the archived repository from issue #542
   const testRepos = [
     {
-      owner: 'konard',
+      owner: 'petermotorniy',
       name: 'test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5',
     },
   ];
@@ -49,7 +49,7 @@ async function testUrlExtraction() {
   console.log('\n🧪 Testing URL extraction logic...\n');
 
   const testIssue = {
-    url: 'https://github.com/konard/test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5/issues/1',
+    url: 'https://github.com/petermotorniy/test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5/issues/1',
     title: 'Test Issue',
   };
 
@@ -64,7 +64,7 @@ async function testUrlExtraction() {
     console.log(`   Owner: ${repoOwner}`);
     console.log(`   Repo: ${repoName}`);
 
-    if (repoOwner === 'konard' && repoName === 'test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5') {
+    if (repoOwner === 'petermotorniy' && repoName === 'test-hello-world-01992020-00f8-7cf2-9bb6-a1c2a7718de5') {
       console.log('\n✅ Test PASSED: URL extraction works correctly!');
       return true;
     }

@@ -13,22 +13,14 @@
  *     current turn to finish, stops the process, and resumes with the new events.
  *   - The issue-specific case study must record how to test both modes.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/2007
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2007
  */
-
-import { readFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
 
 import { SOLVE_OPTION_DEFINITIONS as yargsOptions } from '../src/solve.config.lib.mjs';
 import { createBidirectionalHandler, validateBidirectionalModeConfig } from '../src/bidirectional-interactive.lib.mjs';
 import { ISSUE_2007_REQUIRED_EVENT_IDS, getLiveInputCapability, getLiveInputMode, isLiveInputAvailable, isLiveInputSupported, LIVE_INPUT_MODE_FALLBACK, LIVE_INPUT_MODE_STREAM } from '../src/live-input-capabilities.lib.mjs';
 import { checkForIssueMetadataChanges } from '../src/solve.auto-merge-helpers.lib.mjs';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const repoRoot = join(__dirname, '..');
 
 let passed = 0;
 let failed = 0;
@@ -88,7 +80,7 @@ assert(isLiveInputAvailable('agent') === true, 'isLiveInputAvailable is true for
 assertIncludes(agentCapability.protocol, '--input-format stream-json', 'Agent capability records input stream-json protocol');
 assertIncludes(agentCapability.protocol, '--output-format stream-json', 'Agent capability records output stream-json protocol');
 assertIncludes(agentCapability.currentRunner, 'src/agent.lib.mjs', 'Agent capability records the live runner');
-assertIncludes(agentCapability.agentIssue, 'link-assistant/agent/pull/274', 'Agent capability links the upstream merged live-stream contract PR');
+assertIncludes(agentCapability.agentIssue, 'PeterMotorniy/agent/pull/274', 'Agent capability links the upstream merged live-stream contract PR');
 assertArrayIncludes(agentCapability.events, ISSUE_2007_REQUIRED_EVENT_IDS, 'Agent capability covers all issue #2007 required events');
 
 const unknownCapability = getLiveInputCapability('new-tool');
@@ -296,16 +288,6 @@ assertIncludes(autoInputOption.description, 'claude', '--auto-input-until-mergea
 assertIncludes(autoInputOption.description, 'agent', '--auto-input-until-mergeable help text names Agent as a supported live-input tool');
 assertIncludes(autoInputOption.description, 'restart/resume fallback', '--auto-input-until-mergeable help text describes the universal fallback');
 assertIncludes(autoInputOption.description, 'Codex app-server', '--auto-input-until-mergeable help text points to the Codex follow-up path');
-
-const caseStudy = readFileSync(join(repoRoot, 'docs/case-studies/issue-2007/README.md'), 'utf8');
-assertIncludes(caseStudy, '--auto-input-until-mergeable', 'case study explains the testable option');
-assertIncludes(caseStudy, 'issue title', 'case study covers issue title updates');
-assertIncludes(caseStudy, 'issue description', 'case study covers issue description updates');
-assertIncludes(caseStudy, 'issue comments', 'case study covers issue comments');
-assertIncludes(caseStudy, 'pull request comments', 'case study covers pull request comments');
-assertIncludes(caseStudy, 'codex exec', 'case study records the current Codex runner limitation');
-assertIncludes(caseStudy, 'turn/steer', 'case study records the Codex app-server follow-up protocol');
-assertIncludes(caseStudy, 'Agent live stream-json', 'case study records Agent live stream-json support');
 
 console.log(`\nIssue #2007 test results: ${passed} passed, ${failed} failed`);
 

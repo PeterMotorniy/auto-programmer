@@ -11,7 +11,7 @@
  * `getRunningSessionItems()` exposes the tracked detached sessions (with their
  * GitHub URLs) so the executing tasks can be listed as clickable links.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1837
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1837
  */
 
 import { trackSession, resetSessionMonitorForTests, getRunningSessionItems, NON_ISOLATION_SESSION_TIMEOUT_MS } from '../src/session-monitor.lib.mjs';
@@ -30,7 +30,7 @@ trackSession(
     chatId: 1,
     messageId: 2,
     startTime: new Date('2026-05-30T10:00:00.000Z'),
-    url: 'https://github.com/link-assistant/hive-mind/issues/1837',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/1837',
     command: 'solve',
     isolationBackend: 'screen',
     sessionId: 'issue-1837-iso-running',
@@ -44,7 +44,7 @@ trackSession(
     chatId: 1,
     messageId: 3,
     startTime: new Date('2026-05-30T09:00:00.000Z'),
-    url: 'https://github.com/link-assistant/hive-mind/pull/1840',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/pull/1840',
     command: 'solve',
     isolationBackend: 'screen',
     sessionId: 'issue-1837-iso-done',
@@ -69,7 +69,7 @@ const isoItems = await getRunningSessionItems(false, {
 });
 assert(isoItems.length === 1, 'Only executing isolation sessions are listed');
 assert(isoItems[0].sessionName === 'issue-1837-iso-running', 'Listed item is the executing session');
-assert(isoItems[0].url === 'https://github.com/link-assistant/hive-mind/issues/1837', 'Listed item carries its GitHub URL');
+assert(isoItems[0].url === 'https://github.com/PeterMotorniy/auto-programmer/issues/1837', 'Listed item carries its GitHub URL');
 assert(isoItems[0].tool === 'claude', 'Listed item carries its tool');
 assert(isoItems[0].status === 'executing', 'Listed item carries its status');
 
@@ -80,7 +80,7 @@ trackSession(
   {
     chatId: 1,
     startTime: new Date(),
-    url: 'https://github.com/link-assistant/hive-mind/issues/146',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/146',
     command: 'solve',
     tool: 'claude',
   },
@@ -90,7 +90,7 @@ const screenItems = await getRunningSessionItems(false, {
   screenChecker: async () => true,
 });
 assert(screenItems.length === 1, 'Live non-isolation screen session is listed');
-assert(screenItems[0].url === 'https://github.com/link-assistant/hive-mind/issues/146', 'Non-isolation item carries its URL');
+assert(screenItems[0].url === 'https://github.com/PeterMotorniy/auto-programmer/issues/146', 'Non-isolation item carries its URL');
 assert(screenItems[0].isolationBackend === null, 'Non-isolation item reports no isolation backend');
 
 const goneItems = await getRunningSessionItems(false, {
@@ -105,7 +105,7 @@ trackSession(
   {
     chatId: 1,
     startTime: new Date(Date.now() - NON_ISOLATION_SESSION_TIMEOUT_MS - 1000),
-    url: 'https://github.com/link-assistant/hive-mind/issues/999',
+    url: 'https://github.com/PeterMotorniy/auto-programmer/issues/999',
     command: 'solve',
     tool: 'claude',
   },

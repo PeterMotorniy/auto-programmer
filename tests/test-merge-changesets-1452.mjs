@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-// @hive-mind-test-suite needs-triage
+// @auto-programmer-test-suite needs-triage
 // Pre-existing orphan test that was not in the legacy default suite and fails
 // when discovered automatically. Tracked under issue #1758 follow-up; opt in
 // via `node scripts/run-tests.mjs --suite needs-triage`.
@@ -28,7 +28,7 @@ function setup() {
 }
 
 function createChangeset(name, type, description) {
-  const content = `---\n'@link-assistant/hive-mind': ${type}\n---\n\n${description}\n`;
+  const content = `---\n'auto-programmer': ${type}\n---\n\n${description}\n`;
   writeFileSync(join(CHANGESET_DIR, `${name}.md`), content);
 }
 
@@ -38,7 +38,7 @@ function getChangesetFiles() {
 
 function parseChangeset(filePath) {
   const content = readFileSync(filePath, 'utf-8');
-  const versionMatch = content.match(/'@link-assistant\/hive-mind':\s+(major|minor|patch)/);
+  const versionMatch = content.match(/'@PeterMotorniy\/auto-programmer':\s+(major|minor|patch)/);
   const parts = content.split('---');
   const description = parts.length >= 3 ? parts.slice(2).join('---').trim() : '';
   return { type: versionMatch?.[1], description };

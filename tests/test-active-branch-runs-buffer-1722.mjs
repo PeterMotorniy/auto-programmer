@@ -21,8 +21,8 @@
  *
  * Run with: node tests/test-active-branch-runs-buffer-1722.mjs
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1722
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1722
  */
 
 import assert from 'node:assert/strict';

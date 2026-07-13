@@ -21,8 +21,8 @@ import { exec as execCb } from 'child_process';
 
 const exec = promisify(execCb);
 
-const owner = process.env.OWNER || 'link-assistant';
-const repo = process.env.REPO || 'hive-mind';
+const owner = process.env.OWNER || 'PeterMotorniy';
+const repo = process.env.REPO || 'auto-programmer';
 const branch = process.env.BRANCH || 'main';
 
 console.log(`Target: ${owner}/${repo} branch=${branch}\n`);

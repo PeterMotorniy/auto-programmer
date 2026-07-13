@@ -13,7 +13,7 @@
  * `executing` status is cross-checked and the kill is finally reported, while a
  * just-launched session is never falsely declared dead.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import os from 'node:os';

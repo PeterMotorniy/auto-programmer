@@ -19,7 +19,7 @@
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'fs';
 import { join } from 'path';
 
-const PACKAGE_NAME = '@link-assistant/hive-mind';
+const PACKAGE_NAME = 'auto-programmer';
 const CHANGESET_DIR = '.changeset';
 
 // Version bump type priority (higher number = higher priority)

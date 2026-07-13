@@ -10,8 +10,8 @@
  *
  * Uses --help / no-arg invocations to avoid touching real screen sessions.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1758
- * @hive-mind-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1758
+ * @auto-programmer-test-suite default
  */
 
 import { spawnSync } from 'node:child_process';

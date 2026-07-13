@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Example script for the Hive Mind i18n runtime.
+ * Example script for the Auto Programmer i18n runtime.
  *
  * Run with:
  *   node examples/test-i18n.mjs

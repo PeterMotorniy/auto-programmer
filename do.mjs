@@ -36,7 +36,7 @@ const argv = parseCliArgumentsWithLino({
 
 const prompt = argv.prompt || argv._[0];
 
-const claudePath = process.env.CLAUDE_PATH || '/Users/konard/.claude/local/claude';
+const claudePath = process.env.CLAUDE_PATH || '/Users/petermotorniy/.claude/local/claude';
 
 try {
   const result = await $`${claudePath} -p "${prompt}" --output-format stream-json --verbose --dangerously-skip-permissions --append-system-prompt "Code changes should be tested before finishing the work, preferably with automated tests." --model sonnet | jq`;

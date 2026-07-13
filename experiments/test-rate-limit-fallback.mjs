@@ -19,7 +19,7 @@ async function testRateLimitHandling() {
 
   try {
     // This command would trigger a rate limit in the real scenario
-    const testCommand = 'gh search issues user:konard is:open --json url,title,number,repository';
+    const testCommand = 'gh search issues user:petermotorniy is:open --json url,title,number,repository';
 
     // Note: In a real test environment, we'd mock execSync to simulate the rate limit
     // For now, we'll just verify the function exists and can be called

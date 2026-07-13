@@ -13,14 +13,14 @@ solve https://github.com/netkeep80/jsonRVM/issues/1 --auto-continue --attach-log
 From PR comment:
 
 > You didn't understand the issue, it was the fork of the user that was provided for the tool to solve.
-> So gh tool was setup with konard account, and fork was created in konard's user, so it is our own fork, not someone else's.
+> So gh tool was setup with petermotorniy account, and fork was created in petermotorniy's user, so it is our own fork, not someone else's.
 
 This means:
 
-- The gh CLI is authenticated as konard
-- There's a fork: konard/jsonRVM (forked from netkeep80/jsonRVM)
-- konard previously created a PR from this fork
-- Now konard is running `solve` with `--auto-continue` and `--fork` flags
+- The gh CLI is authenticated as petermotorniy
+- There's a fork: petermotorniy/jsonRVM (forked from netkeep80/jsonRVM)
+- petermotorniy previously created a PR from this fork
+- Now petermotorniy is running `solve` with `--auto-continue` and `--fork` flags
 
 ## Current Code Logic
 
@@ -28,16 +28,16 @@ This means:
 
 1. `determineForkStrategy()` (lines 188-202):
    - Because `--fork` flag is set, it sets:
-     - `repoToClone = konard/jsonRVM`
-     - `forkedRepo = konard/jsonRVM`
+     - `repoToClone = petermotorniy/jsonRVM`
+     - `forkedRepo = petermotorniy/jsonRVM`
      - `upstreamRemote = netkeep80/jsonRVM`
-   - Returns `prForkOwner = konard` (from existing PR)
+   - Returns `prForkOwner = petermotorniy` (from existing PR)
 
 2. `cloneRepository()`:
-   - Clones konard/jsonRVM as origin
+   - Clones petermotorniy/jsonRVM as origin
 
 3. `setupPrForkRemote()` (lines 405-465):
-   - Checks if `prForkOwner === currentUser` (konard === konard)
+   - Checks if `prForkOwner === currentUser` (petermotorniy === petermotorniy)
    - Returns `null` (no pr-fork remote needed)
    - Logic: "If PR is from current user's fork, no need for pr-fork remote"
 
@@ -49,7 +49,7 @@ This means:
 
 ### Issue #1: Branch Not Fetched
 
-When `gh repo clone konard/jsonRVM` is executed, it might only fetch the default branch. When trying to checkout a PR branch, the branch might not exist locally or in the fetched remote branches.
+When `gh repo clone petermotorniy/jsonRVM` is executed, it might only fetch the default branch. When trying to checkout a PR branch, the branch might not exist locally or in the fetched remote branches.
 
 The code tries to handle this at line 477:
 
@@ -59,12 +59,12 @@ const fetchResult = await $({ cwd: tempDir })`git fetch origin`;
 
 But this might fail if:
 
-- The branch was never pushed to konard/jsonRVM
+- The branch was never pushed to petermotorniy/jsonRVM
 - The branch only exists in a different remote
 
 ### Issue #2: Wrong Remote Configuration
 
-After cloning, the `origin` remote points to konard/jsonRVM. But what if:
+After cloning, the `origin` remote points to petermotorniy/jsonRVM. But what if:
 
 - The PR branch was created in a different fork?
 - The branch name exists but points to a different fork's branch?

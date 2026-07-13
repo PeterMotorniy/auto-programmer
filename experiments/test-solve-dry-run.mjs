@@ -21,7 +21,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const solvePath = path.join(__dirname, '..', 'src', 'solve.mjs');
 
 // Test issue URL (public issue from this repo)
-const testIssueUrl = 'https://github.com/link-assistant/hive-mind/issues/1043';
+const testIssueUrl = 'https://github.com/PeterMotorniy/auto-programmer/issues/1043';
 
 async function runTest(testName, args) {
   console.log(`\n${'='.repeat(60)}`);

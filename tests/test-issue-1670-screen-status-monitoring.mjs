@@ -8,7 +8,7 @@
  * - duplicate URL checks refresh isolation status before blocking
  * - queue processing counts use max($ --status executing count, pgrep count)
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1670
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1670
  */
 
 import { parseSessionStatusOutput, shouldFallbackToScreenStatus } from '../src/isolation-runner.lib.mjs';

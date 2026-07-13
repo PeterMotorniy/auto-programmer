@@ -10,7 +10,7 @@
  *   reason the older task is blocked) so long waits can be root-caused.
  * - A strictly-honored FIFO decision records no queue-jump.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/2051
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/2051
  */
 
 import assert from 'node:assert/strict';

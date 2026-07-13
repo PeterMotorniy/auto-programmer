@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  *
  * Issue #1710 — locks the four "strange things" the issue lists to fixtures
  * built from real numbers captured in

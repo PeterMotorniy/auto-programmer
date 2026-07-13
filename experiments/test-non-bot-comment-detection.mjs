@@ -3,7 +3,7 @@
  * Test script for non-bot comment detection
  * Tests the isBot() logic used in solve.auto-merge.lib.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1190
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1190
  */
 
 console.log('Testing non-bot comment detection logic...\n');
@@ -21,14 +21,14 @@ const botPatterns = [
   /^codecov$/i, // Codecov
   /^netlify$/i, // Netlify
   /^vercel$/i, // Vercel
-  /^hive-?mind$/i, // Hive Mind (with or without hyphen)
+  /^hive-?mind$/i, // Auto Programmer (with or without hyphen)
   /^claude$/i, // Claude (exact match only)
   /^copilot$/i, // GitHub Copilot
 ];
 
 const isBot = (login, currentUser = null) => {
   if (!login) return false;
-  // Check if it's the current user (the bot running hive-mind)
+  // Check if it's the current user (the bot running auto-programmer)
   if (currentUser && login === currentUser) return true;
   // Check against known bot patterns
   return botPatterns.some(pattern => pattern.test(login));
@@ -42,7 +42,7 @@ const botTestCases = [
   { login: 'codecov[bot]', expected: true, description: 'Codecov bot' },
   { login: 'netlify[bot]', expected: true, description: 'Netlify bot' },
   { login: 'vercel[bot]', expected: true, description: 'Vercel bot' },
-  { login: 'hive-mind', expected: true, description: 'Hive-mind bot' },
+  { login: 'auto-programmer', expected: true, description: 'Hive-mind bot' },
   { login: 'hivemind', expected: true, description: 'Hivemind bot (no hyphen)' },
   { login: 'claude', expected: true, description: 'Claude bot' },
   { login: 'copilot', expected: true, description: 'GitHub Copilot' },

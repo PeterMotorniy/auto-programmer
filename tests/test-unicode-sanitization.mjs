@@ -8,7 +8,7 @@
  * opencode.lib.mjs, interactive-mode.lib.mjs) to prevent orphaned UTF-16
  * surrogates from causing Anthropic API 400 errors.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1324
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1324
  */
 
 import { fileURLToPath } from 'url';
@@ -195,7 +195,7 @@ await runTest('handles persisted-output truncation that splits emoji', () => {
   assertEqual(sanitizeUnicode(truncated), expected);
 });
 
-await runTest('handles hive-mind status messages with emoji', () => {
+await runTest('handles auto-programmer status messages with emoji', () => {
   const statusMsg = '🤖 Solution Draft Log\n💰 Cost: $3.003222\n📎 Log file uploaded\n🔗 View complete log';
   assertEqual(sanitizeUnicode(statusMsg), statusMsg);
 });

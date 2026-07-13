@@ -11,7 +11,7 @@
  *
  * Run with: node tests/test-fork-screenshot-url-1561.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1561
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1561
  */
 
 import assert from 'node:assert/strict';

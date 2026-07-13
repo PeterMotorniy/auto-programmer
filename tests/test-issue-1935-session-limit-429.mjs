@@ -15,7 +15,7 @@
 //   instead of the usage-limit path that calculates the exact reset time and waits.
 //
 // Reference log (gist):
-//   https://gist.github.com/konard/afbe979c6f349153b1399f54758c2584
+//   https://gist.github.com/petermotorniy/afbe979c6f349153b1399f54758c2584
 //
 // The fix:
 //   1. claude.lib.mjs only sets isRateLimitError for a structured 429 when the

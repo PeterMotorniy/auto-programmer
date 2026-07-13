@@ -1,297 +1,297 @@
-# Hive Mind: Comparison with Alternatives (languages: en • [zh](COMPARISON.zh.md) • [hi](COMPARISON.hi.md) • [ru](COMPARISON.ru.md))
+# Auto Programmer: Сравнение с альтернативами
 
-This document compares Hive Mind with other approaches to software development automation, helping you understand where it fits and why it might be the right choice for your needs.
+Этот документ сравнивает Auto Programmer с другими подходами к автоматизации разработки программного обеспечения, помогая понять, где он подходит и почему может быть правильным выбором для ваших нужд.
 
-## Product Categories Overview
+## Обзор категорий продуктов
 
-When considering AI-assisted development, there are several categories of solutions:
+При рассмотрении AI-assisted разработки существует несколько категорий решений:
 
-| Category                  | Examples                       | Human Time Required | Autonomy Level | Cost Range     |
-| ------------------------- | ------------------------------ | ------------------- | -------------- | -------------- |
-| **Hiring Developers**     | Full-time, contractors         | Management overhead | Full autonomy  | $5K-15K+/month |
-| **Traditional IDEs**      | VS Code, IntelliJ, Vim         | 100% hands-on       | None           | $0-50/month    |
-| **AI-Assisted IDEs**      | Cursor, Windsurf, GitHub Pilot | 80-95% hands-on     | Minimal        | $20-50/month   |
-| **Vibe Coding Websites**  | Bolt, v0, Lovable, Replit      | 60-80% hands-on     | Low            | $20-100/month  |
-| **AI Coding Agents**      | Codex CLI, Devin, Jules        | 20-50% hands-on     | Medium         | $100-500/month |
-| **Autonomous AI Solvers** | Hive Mind                      | 5-15% hands-on      | High           | ~$200/month    |
+| Категория                  | Примеры                          | Требуемое время человека | Уровень автономии | Диапазон цен   |
+| -------------------------- | -------------------------------- | ------------------------ | ----------------- | -------------- |
+| **Наём разработчиков**     | Штатные, подрядчики              | Управленческие накладные | Полная автономия  | $5K-15K+/месяц |
+| **Традиционные IDE**       | VS Code, IntelliJ, Vim           | 100% ручной труд         | Нет               | $0-50/месяц    |
+| **AI-assisted IDE**        | Cursor, Windsurf, GitHub Copilot | 80-95% ручной труд       | Минимальная       | $20-50/месяц   |
+| **Сайты для vibe-кодинга** | Bolt, v0, Lovable, Replit        | 60-80% ручной труд       | Низкая            | $20-100/месяц  |
+| **AI Coding Agents**       | Codex CLI, Devin, Jules          | 20-50% ручной труд       | Средняя           | $100-500/месяц |
+| **Автономные AI-решатели** | Auto Programmer                  | 5-15% ручной труд        | Высокая           | ~$200/месяц    |
 
-## Detailed Category Comparison
+## Детальное сравнение по категориям
 
-### 1. Hiring Developers
+### 1. Наём разработчиков
 
-**What it is**: Traditional approach of hiring full-time employees or contractors.
+**Что это**: Традиционный подход найма штатных сотрудников или подрядчиков.
 
-| Aspect            | Hiring Developers                | Hive Mind                                                                    |
-| ----------------- | -------------------------------- | ---------------------------------------------------------------------------- |
-| **Time to start** | Weeks to months (hiring process) | Minutes (issue creation)                                                     |
-| **Availability**  | Business hours, time zones       | 24/7, instant start                                                          |
-| **Scalability**   | Linear (hire more people)        | Parallel (multiple issues at once)                                           |
-| **Consistency**   | Varies by individual             | Consistent approach every time                                               |
-| **Management**    | Meetings, reviews, 1:1s          | Write issue, review PR                                                       |
-| **Cost**          | $5,000-15,000+/month per person  | ~$200/month for unlimited issues                                             |
-| **Expertise**     | Deep domain knowledge            | Broad knowledge, searches online, compensates lack of experience with speed  |
-| **Creativity**    | High, with experience            | High - indistinguishable from average programmers, asks questions if unclear |
-| **Ramp-up time**  | Weeks to understand codebase     | Analyzes codebase each run                                                   |
-| **Retention**     | Risk of departure                | Always available on demand, instantly                                        |
-| **Best for**      | Strategic, long-term work        | Routine issues, rapid prototyping                                            |
+| Аспект                 | Наём разработчиков                  | Auto Programmer                                                             |
+| ---------------------- | ----------------------------------- | --------------------------------------------------------------------------- |
+| **Время на старт**     | Недели-месяцы (процесс найма)       | Минуты (создание задачи)                                                    |
+| **Доступность**        | Рабочие часы, часовые пояса         | 24/7, мгновенный старт                                                      |
+| **Масштабируемость**   | Линейная (нанять больше людей)      | Параллельная (несколько задач одновременно)                                 |
+| **Последовательность** | Варьируется по исполнителю          | Последовательный подход каждый раз                                          |
+| **Управление**         | Встречи, ревью, 1:1                 | Написать задачу, проверить PR                                               |
+| **Стоимость**          | $5,000-15,000+/месяц на человека    | ~$200/месяц за неограниченные задачи                                        |
+| **Экспертиза**         | Глубокие знания предметной области  | Широкие знания, поиск в интернете, компенсирует недостаток опыта скоростью  |
+| **Креативность**       | Высокая, с опытом                   | Высокая — неотличима от среднего программиста, задаёт вопросы при неясности |
+| **Время на входжение** | Недели на понимание кодовой базы    | Анализирует кодовую базу при каждом запуске                                 |
+| **Удержание**          | Риск ухода                          | Всегда доступен по требованию, мгновенно                                    |
+| **Лучше всего для**    | Стратегическая, долгосрочная работа | Рутинные задачи, быстрое прототипирование                                   |
 
-**When to choose Hive Mind over hiring**:
+**Когда выбрать Auto Programmer вместо найма**:
 
-- You have many small-to-medium issues that don't justify a full hire
-- You need faster turnaround than interviewing and onboarding allows
-- Budget constraints prevent expanding the team
-- You need work done outside business hours
+- У вас много небольших и средних задач, не оправдывающих полноценный найм
+- Вам нужен более быстрый оборот, чем позволяет собеседование и онбординг
+- Бюджетные ограничения не позволяют расширить команду
+- Вам нужна работа вне рабочих часов
 
-**When to hire developers instead**:
+**Когда нанимать разработчиков**:
 
-- Critical systems development (medical, space, high-stakes environments)
-- Projects requiring lowest possible error rate and highest quality
-- Building and maintaining team culture is important
+- Разработка критических систем (медицина, космос, среды с высокими ставками)
+- Проекты, требующие минимально возможного процента ошибок и максимального качества
+- Важно строить и поддерживать командную культуру
 
-**Note**: Hive Mind excels on small tasks. For complex projects, consider using Hive Mind or other AI for task decomposition to get best results. In the future, an "architect" AI will handle task decomposition and final review (not yet implemented).
+**Примечание**: Auto Programmer превосходит на небольших задачах. Для сложных проектов рассмотрите использование Auto Programmer или другого AI для декомпозиции задач для лучших результатов. В будущем AI-«архитектор» будет обрабатывать декомпозицию задач и финальное ревью (ещё не реализовано).
 
-### 2. Traditional IDEs (VS Code, IntelliJ, Vim)
+### 2. Традиционные IDE (VS Code, IntelliJ, Vim)
 
-**What it is**: Code editors with syntax highlighting, debugging, and extensions.
+**Что это**: Редакторы кода с подсветкой синтаксиса, отладкой и расширениями.
 
-| Aspect              | Traditional IDEs          | Hive Mind                      |
-| ------------------- | ------------------------- | ------------------------------ |
-| **Who writes code** | You (100%)                | AI writes, you review          |
-| **Learning curve**  | Varies by IDE             | Write issues, get PRs          |
-| **Automation**      | Snippets, templates       | Full implementation            |
-| **Context needed**  | You provide all context   | AI reads codebase and docs     |
-| **Multi-tasking**   | Sequential (you do one)   | Parallel (multiple AI workers) |
-| **Expertise**       | Requires your knowledge   | Leverages AI knowledge         |
-| **Speed**           | Depends on your typing    | 10-25 min per issue typically  |
-| **Consistency**     | Depends on your attention | Same quality level each time   |
-| **Best for**        | Full control, learning    | Defined tasks, scaling output  |
+| Аспект                   | Традиционные IDE                  | Auto Programmer                             |
+| ------------------------ | --------------------------------- | ------------------------------------------- |
+| **Кто пишет код**        | Вы (100%)                         | AI пишет, вы проверяете                     |
+| **Порог входа**          | Варьируется по IDE                | Пишите задачи, получайте PR                 |
+| **Автоматизация**        | Сниппеты, шаблоны                 | Полная реализация                           |
+| **Необходимый контекст** | Вы предоставляете весь контекст   | AI читает кодовую базу и документы          |
+| **Многозадачность**      | Последовательно (вы делаете одно) | Параллельно (несколько AI-воркеров)         |
+| **Экспертиза**           | Требует ваших знаний              | Использует знания AI                        |
+| **Скорость**             | Зависит от вашей печати           | 10-25 мин на задачу обычно                  |
+| **Последовательность**   | Зависит от вашего внимания        | Одинаковый уровень качества каждый раз      |
+| **Лучше всего для**      | Полный контроль, обучение         | Определённые задачи, масштабирование выхода |
 
-**When to choose Hive Mind over traditional IDEs**:
+**Когда выбрать Auto Programmer вместо традиционных IDE**:
 
-- You want to delegate routine coding tasks
-- You need to work on multiple issues simultaneously
-- Speed matters more than direct control
+- Хотите делегировать рутинные задачи по написанию кода
+- Нужно работать над несколькими задачами одновременно
+- Скорость важнее прямого контроля
 
-**When to use traditional IDEs instead**:
+**Когда использовать традиционные IDE**:
 
-- Learning a new codebase hands-on
-- Debugging complex interactive issues
-- You prefer full control over every line
+- Освоение новой кодовой базы вручную
+- Отладка сложных интерактивных проблем
+- Вы предпочитаете полный контроль над каждой строкой
 
-### 3. AI-Assisted IDEs (Cursor, Windsurf, GitHub Copilot)
+### 3. AI-assisted IDE (Cursor, Windsurf, GitHub Copilot)
 
-**What it is**: IDEs enhanced with AI code completion, chat, and suggestions.
+**Что это**: IDE, усиленные AI-автодополнением кода, чатом и предложениями.
 
-| Aspect                   | AI-Assisted IDEs            | Hive Mind                        |
-| ------------------------ | --------------------------- | -------------------------------- |
-| **Interaction model**    | You prompt, AI assists      | You create issue, AI delivers PR |
-| **Who's in the driver**  | You (with AI co-pilot)      | AI (with you as reviewer)        |
-| **Execution**            | Local machine               | Cloud VM (isolated, safe)        |
-| **Internet access**      | Limited or sandboxed        | Full internet access             |
-| **Package installation** | You install manually        | AI installs what it needs (sudo) |
-| **Session persistence**  | Lost when you close IDE     | Continues until PR is ready      |
-| **Permission prompts**   | Yes, for many actions       | No babysitting required          |
-| **Hands-on time**        | 80-95% of task duration     | 5-15% (issue + review)           |
-| **Multi-tasking**        | One task at a time          | Multiple parallel workers        |
-| **Mobile access**        | No                          | Yes (Telegram)                   |
-| **Cost**                 | $20-50/month + your time    | ~$200/month (Claude MAX)         |
-| **Best for**             | Interactive coding sessions | Autonomous task completion       |
+| Аспект                    | AI-assisted IDE                    | Auto Programmer                         |
+| ------------------------- | ---------------------------------- | --------------------------------------- |
+| **Модель взаимодействия** | Вы задаёте, AI помогает            | Вы создаёте задачу, AI доставляет PR    |
+| **Кто за рулём**          | Вы (с AI-копилотом)                | AI (с вами как проверяющим)             |
+| **Выполнение**            | Локальная машина                   | Облачная ВМ (изолированная, безопасная) |
+| **Доступ к интернету**    | Ограниченный или в песочнице       | Полный доступ к интернету               |
+| **Установка пакетов**     | Вы устанавливаете вручную          | AI устанавливает нужное (sudo)          |
+| **Сохранение сессии**     | Теряется при закрытии IDE          | Продолжается до готовности PR           |
+| **Запросы разрешений**    | Да, для многих действий            | Надзор не требуется                     |
+| **Ручное время**          | 80-95% от продолжительности задачи | 5-15% (задача + ревью)                  |
+| **Многозадачность**       | Одна задача за раз                 | Несколько параллельных воркеров         |
+| **Мобильный доступ**      | Нет                                | Да (Telegram)                           |
+| **Стоимость**             | $20-50/месяц + ваше время          | ~$200/месяц (Claude MAX)                |
+| **Лучше всего для**       | Интерактивные сессии кодирования   | Автономное выполнение задач             |
 
-**Important**: AI-Assisted IDEs pricing doesn't account for human time cost - it's not only the subscription price, your hours matter too.
+**Важно**: Ценообразование AI-assisted IDE не учитывает стоимость времени человека — это не только цена подписки, ваши часы тоже важны.
 
-**When to choose Hive Mind over AI-assisted IDEs**:
+**Когда выбрать Auto Programmer вместо AI-assisted IDE**:
 
-- You don't want to babysit AI actions
-- You need work done while away from computer
-- Multiple issues need parallel processing
-- You want mobile access to AI coding
+- Не хотите надзирать за действиями AI
+- Вам нужна работа, выполняемая в ваше отсутствие у компьютера
+- Несколько задач требуют параллельной обработки
+- Хотите мобильный доступ к AI-кодированию
 
-**When to use AI-assisted IDEs instead**:
+**Когда использовать AI-assisted IDE**:
 
-- Interactive exploration and learning
-- Pair programming style workflows
-- Real-time code understanding during development
+- Интерактивное исследование и обучение
+- Рабочие процессы в стиле парного программирования
+- Понимание кода в реальном времени во время разработки
 
-### 4. Vibe Coding Websites (Bolt, v0, Lovable, Replit Agent)
+### 4. Сайты для vibe-кодинга (Bolt, v0, Lovable, Replit Agent)
 
-**What it is**: Web-based platforms for AI-generated code and prototypes.
+**Что это**: Веб-платформы для AI-генерированного кода и прототипов.
 
-| Aspect                | Vibe Coding Websites      | Hive Mind                                             |
-| --------------------- | ------------------------- | ----------------------------------------------------- |
-| **Primary use case**  | Prototyping, new projects | Any repository, new or existing                       |
-| **Repository access** | Creates new projects      | Works on existing repos or starts from scratch        |
-| **CI/CD integration** | Limited or none           | Full GitHub workflow                                  |
-| **Testing**           | Manual or basic           | Uses your CI pipeline                                 |
-| **Code ownership**    | Platform-dependent        | Your GitHub, full ownership                           |
-| **Tech stack**        | Platform limitations      | Any stack (10+ runtimes preinstalled, more on demand) |
-| **Customization**     | Platform templates        | Full system access                                    |
-| **Collaboration**     | Platform-specific         | Standard GitHub PRs                                   |
-| **Iteration**         | Chat-based refinement     | PR comments, AI iterates                              |
-| **Deployment**        | Platform hosting          | Our or your infrastructure                            |
-| **Best for**          | Quick prototypes, demos   | Production code, team workflows                       |
+| Аспект                   | Сайты для vibe-кодинга          | Auto Programmer                                            |
+| ------------------------ | ------------------------------- | ---------------------------------------------------------- |
+| **Основной сценарий**    | Прототипирование, новые проекты | Любой репозиторий, новый или существующий                  |
+| **Доступ к репозиторию** | Создаёт новые проекты           | Работает с существующими репо или начинает с нуля          |
+| **Интеграция CI/CD**     | Ограниченная или отсутствует    | Полный рабочий процесс GitHub                              |
+| **Тестирование**         | Ручное или базовое              | Использует ваш CI-пайплайн                                 |
+| **Владение кодом**       | Зависит от платформы            | Ваш GitHub, полное владение                                |
+| **Технологический стек** | Ограничения платформы           | Любой стек (10+ предустановленных сред, больше по запросу) |
+| **Кастомизация**         | Шаблоны платформы               | Полный доступ к системе                                    |
+| **Сотрудничество**       | Специфично для платформы        | Стандартные GitHub PR                                      |
+| **Итерация**             | Уточнение через чат             | Комментарии к PR, AI итерирует                             |
+| **Развёртывание**        | Хостинг платформы               | Наша или ваша инфраструктура                               |
+| **Лучше всего для**      | Быстрые прототипы, демо         | Production-код, командные рабочие процессы                 |
 
-**Note**: With vibe coding websites you will still be dependent on GitHub for serious development. Why not only depend on GitHub from the start?
+**Примечание**: При использовании сайтов для vibe-кодинга вы всё равно будете зависеть от GitHub для серьёзной разработки. Почему бы не зависеть только от GitHub с самого начала?
 
-**When to choose Hive Mind over vibe coding websites**:
+**Когда выбрать Auto Programmer вместо сайтов для vibe-кодинга**:
 
-- Working on existing codebases
-- Need full GitHub workflow integration
-- Require your own CI/CD and testing
-- Want to use any programming language/framework
+- Работа с существующими кодовыми базами
+- Нужна полная интеграция с рабочим процессом GitHub
+- Требуется собственный CI/CD и тестирование
+- Хотите использовать любой язык/фреймворк программирования
 
-**When to use vibe coding websites instead**:
+**Когда использовать сайты для vibe-кодинга**:
 
-- Rapid prototyping from scratch
-- Non-developers creating simple apps
-- Quick demos without setup
+- Быстрое прототипирование с нуля
+- Нетехнические специалисты, создающие простые приложения
+- Быстрые демонстрации без настройки
 
 ### 5. AI Coding Agents (Codex CLI, Devin, Jules)
 
-**What it is**: AI agents that can write and execute code autonomously.
+**Что это**: AI-агенты, способные автономно писать и выполнять код.
 
-| Aspect                    | Other AI Agents                           | Hive Mind                                   |
-| ------------------------- | ----------------------------------------- | ------------------------------------------- |
-| **Execution environment** | Varies (local/cloud)                      | Cloud VM with sudo access                   |
-| **Internet access**       | Often restricted                          | Full unrestricted access                    |
-| **Pre-installed tools**   | Restrictive ENVs, can't install anything  | 25GB+ ready, AI installs more if needed     |
-| **GitHub access**         | Often limited (can't create issues, etc.) | Full GitHub access via gh CLI               |
-| **Token efficiency**      | AI handles routine tasks                  | Routine automated in code                   |
-| **Permission model**      | Often requires approvals                  | Full autonomy, no babysitting               |
-| **Orchestration**         | Single agent typically                    | Multi-agent (`hive` command)                |
-| **Session handling**      | Varies                                    | Auto-continue, resume from limits           |
-| **GitHub integration**    | Varies                                    | Native PR workflow                          |
-| **Mobile control**        | Usually not available                     | Telegram bot                                |
-| **Model flexibility**     | Often locked to one model                 | Claude, Grok, Codex, custom agents          |
-| **Isolation**             | Varies, local risks your machine          | VM or Docker, easy to restore if broken     |
-| **Open source**           | Usually closed or restrictive             | 100% open source, Unlicense (public domain) |
-| **Cost**                  | $100-500/month                            | ~$200/month (Claude MAX)                    |
-| **Best for**              | General AI coding                         | GitHub-centric workflows                    |
+| Аспект                            | Другие AI-агенты                                | Auto Programmer                                         |
+| --------------------------------- | ----------------------------------------------- | ------------------------------------------------------- |
+| **Среда выполнения**              | Варьируется (локальная/облачная)                | Облачная ВМ с доступом sudo                             |
+| **Доступ к интернету**            | Часто ограничен                                 | Полный неограниченный доступ                            |
+| **Предустановленные инструменты** | Ограниченные ENV, нельзя ничего установить      | 25+ ГБ готово, AI устанавливает больше по необходимости |
+| **Доступ к GitHub**               | Часто ограничен (нельзя создавать задачи и др.) | Полный доступ к GitHub через gh CLI                     |
+| **Токенная эффективность**        | AI обрабатывает рутинные задачи                 | Рутина автоматизирована в коде                          |
+| **Модель разрешений**             | Часто требует одобрений                         | Полная автономия, надзор не нужен                       |
+| **Оркестрация**                   | Обычно один агент                               | Мульти-агентная (команда `hive`)                        |
+| **Обработка сессий**              | Варьируется                                     | Автоматическое продолжение, возобновление после лимитов |
+| **Интеграция с GitHub**           | Варьируется                                     | Нативный рабочий процесс PR                             |
+| **Мобильное управление**          | Обычно недоступно                               | Telegram-бот                                            |
+| **Гибкость моделей**              | Часто привязан к одной модели                   | Claude, Grok, Codex, пользовательские агенты            |
+| **Изоляция**                      | Варьируется, локальные рискуют машиной          | ВМ или Docker, легко восстановить                       |
+| **Открытый исходный код**         | Обычно закрытый или ограниченный                | 100% открытый, Unlicense (общественное достояние)       |
+| **Стоимость**                     | $100-500/месяц                                  | ~$200/месяц (Claude MAX)                                |
+| **Лучше всего для**               | Общее AI-кодирование                            | Рабочие процессы, ориентированные на GitHub             |
 
-**Important notes about other AI agents**:
+**Важные замечания о других AI-агентах**:
 
-- Cloud-based agentic AI usually don't allow installing anything as their environments are quite restrictive
-- They usually don't have full access to GitHub - for example, you cannot ask AI agents in the cloud to actually create issues on GitHub
-- If agentic AI works locally, you risk your own machine being damaged
-- We recommend using GitHub Actions CI/CD to access production, with no direct access from AI agent (can accidentally delete database or damage production)
+- Облачные агентные AI обычно не позволяют ничего устанавливать, так как их среды довольно ограничены
+- Обычно у них нет полного доступа к GitHub — например, нельзя попросить облачных AI-агентов фактически создавать задачи на GitHub
+- Если агентный AI работает локально, вы рискуете повреждением своей машины
+- Мы рекомендуем использовать GitHub Actions CI/CD для доступа к production, без прямого доступа от AI-агента (может случайно удалить базу данных или повредить production)
 
-**Specific comparison with OpenAI Codex**:
+**Конкретное сравнение с OpenAI Codex**:
 
-> "Compared to Codex for $200, this solution is fire." - User feedback
+> «По сравнению с Codex за $200, это решение — огонь.» — Отзыв пользователя
 
-Key differences:
+Ключевые отличия:
 
-- Hive Mind has sudo access to VM (install anything needed)
-- Hive Mind has full internet access (fetch docs, APIs, packages)
-- No babysitting required (full autonomy)
-- Cloud isolation (nothing on your machine at risk)
-- Pre-installed development environment (25GB+ ready)
-- Token efficiency (routine tasks in code, not AI tokens)
+- Auto Programmer имеет доступ sudo к ВМ (устанавливай всё необходимое)
+- Auto Programmer имеет полный доступ к интернету (получай документацию, API, пакеты)
+- Надзор не требуется (полная автономия)
+- Облачная изоляция (ничто на вашей машине не в опасности)
+- Предустановленная среда разработки (25+ ГБ готово)
+- Токенная эффективность (рутинные задачи в коде, не через токены AI)
 
-## The Hive Mind Advantage: Time Freedom
+## Преимущество Auto Programmer: свобода времени
 
-The most significant difference is **how much of your time is freed**:
+Наиболее значимое различие — **сколько вашего времени освобождается**:
 
-| Solution Type     | Your Active Time | Your Free Time | AI Working Time |
-| ----------------- | ---------------- | -------------- | --------------- |
-| Traditional IDE   | 100%             | 0%             | 0%              |
-| AI-Assisted IDE   | 80-95%           | 5-20%          | Assists only    |
-| Vibe Coding Sites | 60-80%           | 20-40%         | Responds only   |
-| Other AI Agents   | 20-50%           | 50-80%         | 10-30 min       |
-| **Hive Mind**     | **5-15%**        | **85-95%**     | 10-25 min       |
+| Тип решения         | Ваше активное время | Ваше свободное время | Время работы AI |
+| ------------------- | ------------------- | -------------------- | --------------- |
+| Традиционная IDE    | 100%                | 0%                   | 0%              |
+| AI-assisted IDE     | 80-95%              | 5-20%                | Только помогает |
+| Сайты vibe-кодинга  | 60-80%              | 20-40%               | Только отвечает |
+| Другие AI-агенты    | 20-50%              | 50-80%               | 10-30 мин       |
+| **Auto Programmer** | **5-15%**           | **85-95%**           | 10-25 мин       |
 
-### What "Time Freedom" Means in Practice
+### Что означает «свобода времени» на практике
 
-With Hive Mind:
+С Auto Programmer:
 
-1. **Create an issue** (2-5 minutes)
-2. **Do other things** while AI works (10-25 minutes)
-3. **Review the PR** (5-10 minutes)
+1. **Создайте задачу** (2-5 минут)
+2. **Занимайтесь другими делами** пока работает AI (10-25 минут)
+3. **Проверьте PR** (5-10 минут)
 
-During step 2, you can:
+На шаге 2 вы можете:
 
-- Work on other issues in parallel
-- Attend meetings
-- Take a break
-- Review other PRs
-- Do other tasks - or even sleep
+- Работать над другими задачами параллельно
+- Посещать встречи
+- Отдохнуть
+- Проверять другие PR
+- Выполнять другие задачи — или даже спать
 
-> **"The code is written while you sleep."**
+> **«Код пишется пока вы спите.»**
 >
-> It's actually possible to produce drafts for all your tasks/issues backlog while you sleep - hundreds of tasks per night.
+> Это действительно возможно — создавать черновики для всего вашего бэклога задач пока вы спите — сотни задач за ночь.
 
-> "What human developer does in 2-8 hours, can be done in 10-15 minutes. User is free to do other things while AI solver is working."
+> «То, что разработчик-человек делает за 2-8 часов, можно сделать за 10-15 минут. Пользователь свободен заниматься другими делами пока AI-решатель работает.»
 
-### The "Team of Developers" Effect
+### Эффект «команды разработчиков»
 
-With parallel issue execution:
+При параллельном выполнении задач:
 
-- Run multiple AI workers simultaneously
-- Each handles a separate issue
-- Scale up during crunch time
-- No coordination overhead between "workers"
-- Consistent output quality
+- Запускайте несколько AI-воркеров одновременно
+- Каждый обрабатывает отдельную задачу
+- Увеличивайте масштаб в критические периоды
+- Никаких накладных расходов на координацию между «воркерами»
+- Стабильное качество результатов
 
-This creates the effect of having a team of developers, but:
+Это создаёт эффект наличия команды разработчиков, но:
 
-- No hiring process
-- No onboarding
-- No management overhead
-- No vacation scheduling
-- Cost: ~$200/month (Claude MAX, currently 50% off = $400 value)
+- Никакого процесса найма
+- Никакого онбординга
+- Никаких управленческих накладных расходов
+- Никакого планирования отпусков
+- Стоимость: ~$200/месяц (Claude MAX, в настоящее время 50% скидка = ценность $400)
 
-## Cost Comparison
+## Сравнение стоимости
 
-| Solution                   | Monthly Cost  | What You Get                                |
-| -------------------------- | ------------- | ------------------------------------------- |
-| Junior Developer           | $3,000-6,000  | ~160 hours, single person                   |
-| Senior Developer           | $8,000-15,000 | ~160 hours, single person                   |
-| Cursor/Copilot             | $20-50        | AI assistance while you code                |
-| Replit/Bolt Pro            | $25-100       | Web-based AI coding                         |
-| Devin                      | $500          | Autonomous AI agent                         |
-| Claude MAX                 | $200          | Almost unlimited Claude usage for Hive Mind |
-| **Hive Mind + Claude MAX** | **$200**      | Autonomous solver, parallel workers, 24/7   |
+| Решение                          | Ежемесячная стоимость | Что вы получаете                                              |
+| -------------------------------- | --------------------- | ------------------------------------------------------------- |
+| Джуниор-разработчик              | $3,000-6,000          | ~160 часов, один человек                                      |
+| Сеньор-разработчик               | $8,000-15,000         | ~160 часов, один человек                                      |
+| Cursor/Copilot                   | $20-50                | Помощь AI пока вы пишете код                                  |
+| Replit/Bolt Pro                  | $25-100               | AI-кодирование на веб-платформе                               |
+| Devin                            | $500                  | Автономный AI-агент                                           |
+| Claude MAX                       | $200                  | Почти неограниченное использование Claude для Auto Programmer |
+| **Auto Programmer + Claude MAX** | **$200**              | Автономный решатель, параллельные воркеры, 24/7               |
 
-The Claude MAX subscription is currently at 50% discount, providing $400 value for $200.
+Подписка Claude MAX в настоящее время предоставляется со скидкой 50%, обеспечивая ценность $400 за $200.
 
-**Note**: Claude MAX provides "almost unlimited" usage - it takes tens of users to actually use 100% of the subscription limit.
+**Примечание**: Claude MAX предоставляет «почти неограниченное» использование — десятки пользователей нужны, чтобы фактически использовать 100% лимита подписки.
 
-## When Hive Mind Is the Best Choice
+## Когда Auto Programmer является лучшим выбором
 
-Hive Mind excels when:
+Auto Programmer превосходит когда:
 
-1. **Any level of issue definition** - AI asks questions if unclear, you can clarify on the go via PR comments, and sometimes AI does the best thing from the first go
-2. **You value your time** - Want to delegate rather than pair-program
-3. **Multiple issues exist** - Can parallelize with `hive` command
-4. **Mobile access is enough** - Control from any device via Telegram (phone, tablet, etc.)
-5. **Safety is important** - Cloud VM isolation protects your machine
-6. **Budget is limited or workload is large** - $200/month vs hiring costs, handles large task backlogs
-7. **24/7 availability needed** - AI works anytime
-8. **Any codebase** - Works with existing repos, CI/CD, workflows - or starts from scratch like any programmer
+1. **Любой уровень описания задачи** — AI задаёт вопросы при неясности, вы можете уточнять на ходу через комментарии к PR, и иногда AI делает лучшее с первого раза
+2. **Вы цените своё время** — Хотите делегировать, а не работать в парном программировании
+3. **Существует несколько задач** — Можно распараллелить с командой `hive`
+4. **Достаточно мобильного доступа** — Управление с любого устройства через Telegram (телефон, планшет и др.)
+5. **Важна безопасность** — Облачная изоляция ВМ защищает вашу машину
+6. **Ограничен бюджет или велика нагрузка** — $200/месяц против затрат на найм, обрабатывает большие бэклоги задач
+7. **Нужна доступность 24/7** — AI работает в любое время
+8. **Любая кодовая база** — Работает с существующими репозиториями, CI/CD, рабочими процессами — или начинает с нуля как любой программист
 
-## When to Choose Other Solutions
+## Когда выбирать другие решения
 
-- **Hiring**: Critical systems development (medical, space, high-stakes), lowest possible error rate, highest quality requirements
-- **Traditional IDEs**: Learning, debugging, full control
-- **AI-Assisted IDEs**: Interactive coding sessions, real-time exploration
-- **Vibe Coding**: Quick prototypes, non-developers, demos
-- **Other AI Agents**: Different workflow preferences, specific model needs
+- **Наём**: Разработка критических систем (медицина, космос, высокие ставки), минимально возможный процент ошибок, требования к высочайшему качеству
+- **Традиционные IDE**: Обучение, отладка, полный контроль
+- **AI-assisted IDE**: Интерактивные сессии кодирования, исследование в реальном времени
+- **Vibe-кодинг**: Быстрые прототипы, нетехнические специалисты, демо
+- **Другие AI-агенты**: Различные предпочтения рабочих процессов, специфические потребности в моделях
 
-## Summary: Hive Mind's Unique Position
+## Итог: уникальная позиция Auto Programmer
 
-Hive Mind occupies a unique space as a **generalist autonomous AI solver**:
+Auto Programmer занимает уникальное место как **универсальный автономный AI-решатель**:
 
-- **Generalist**: Works on almost any task that can be done with repository files
-- **Autonomous**: Full autonomy with sudo access, no permission prompts
-- **Creative**: High creativity indistinguishable from average programmers, asks questions when needed
-- **Isolated**: Cloud VM or Docker execution, easy to restore if broken, safe for your machine
-- **Efficient**: Token-efficient architecture, parallel execution
-- **Accessible**: Mobile control via Telegram from any device
-- **Integrated**: Native GitHub PR workflow with full gh CLI access
-- **Open Source**: 100% open source with Unlicense (public domain)
-- **Affordable**: ~$200/month for almost unlimited usage
+- **Универсальный**: Работает практически с любой задачей, которую можно решить с файлами репозитория
+- **Автономный**: Полная автономия с доступом sudo, никаких запросов разрешений
+- **Креативный**: Высокая креативность неотличима от среднего программиста, задаёт вопросы при необходимости
+- **Изолированный**: Облачная ВМ или Docker, легко восстановить, безопасно для вашей машины
+- **Эффективный**: Токено-эффективная архитектура, параллельное выполнение
+- **Доступный**: Мобильное управление через Telegram с любого устройства
+- **Интегрированный**: Нативный рабочий процесс GitHub PR с полным доступом через gh CLI
+- **Открытый исходный код**: 100% открытый с Unlicense (общественное достояние)
+- **Доступный по цене**: ~$200/месяц за почти неограниченное использование
 
-We use a customized system message that improves quality of results by guiding AI to avoid common mistakes, compensating for typical areas that are hard for AI.
+Мы используем настроенное системное сообщение, которое улучшает качество результатов, направляя AI на избегание распространённых ошибок, компенсируя типичные области, которые трудны для AI.
 
-It's not just an AI coding tool - it's a mini-AGI capable of working on a wide range of tasks, giving you back your time while maintaining quality through human review at the merge stage.
+Это не просто AI-инструмент для написания кода — это мини-AGI, способный работать с широким спектром задач, возвращая вам время при сохранении качества через проверку человеком на этапе слияния.
 
-> **"The code is written while you sleep."**
+> **«Код пишется пока вы спите.»**

@@ -18,8 +18,8 @@
  *
  * Run with: node tests/test-false-positive-ready-to-merge-1363.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1363
- * @see https://github.com/link-assistant/hive-mind/issues/1345 (related)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1363
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1345 (related)
  */
 
 // ANSI color codes for terminal output
@@ -94,7 +94,7 @@ function simulateFixedNoCiLogic({ ciStatus, mergeStatus, repoWorkflows }) {
 
 test('Scenario B (issue #1363): no_checks + MERGEABLE + has workflows → race condition, NOT "no CI configured"', () => {
   // This is the exact scenario that caused the false positive in issue #1363:
-  // - link-assistant/calculator has 3 active workflows
+  // - PeterMotorniy/calculator has 3 active workflows
   // - main branch has NO required status checks in branch protection
   // - GitHub returns CLEAN/MERGEABLE immediately (no required checks to block it)
   // - CI check-runs are empty because we checked right after the push (race condition)

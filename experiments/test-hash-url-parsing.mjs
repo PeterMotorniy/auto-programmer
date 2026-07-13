@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // Experiment to reproduce and verify the hash tag URL parsing issue
-// Issue: https://github.com/link-assistant/hive-mind/issues/991
+// Issue: https://github.com/PeterMotorniy/auto-programmer/issues/991
 
 // The problematic URL from the issue
 const testUrl = 'https://github.com/tool2agent/tool2agent/pull/9#issuecomment-3691329187';

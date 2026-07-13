@@ -7,7 +7,7 @@ const q = new SolveQueue({ verbose: false, autoStart: false });
 q.getExternalProcessingSnapshot = async () => ({ byTool: {}, total: 0, isolatedTotal: 0 });
 q.getRunningSessionItemsFn = async () => [];
 
-const urls = ['https://github.com/uselessgoddess/ryzr/issues/3', 'https://github.com/link-foundation/box/issues/99', 'https://github.com/link-assistant/hive-mind/issues/1886', 'https://github.com/link-assistant/hive-mind/issues/1885', 'https://github.com/link-assistant/formal-ai/issues/405', 'https://github.com/link-assistant/model-in-browser/issues/15', 'https://github.com/link-foundation/meta-language/issues/49'];
+const urls = ['https://github.com/uselessgoddess/ryzr/issues/3', 'https://github.com/link-foundation/box/issues/99', 'https://github.com/PeterMotorniy/auto-programmer/issues/1886', 'https://github.com/PeterMotorniy/auto-programmer/issues/1885', 'https://github.com/PeterMotorniy/formal-ai/issues/405', 'https://github.com/PeterMotorniy/model-in-browser/issues/15', 'https://github.com/link-foundation/meta-language/issues/49'];
 for (const url of urls) q.enqueue({ url, args: '', requester: 'u', infoBlock: 'x', tool: 'claude' });
 // Make some "executing" via processing map
 const claudeQ = q.getToolQueue('claude');

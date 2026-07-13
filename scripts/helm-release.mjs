@@ -36,7 +36,7 @@ const config = makeConfig({
       })
       .option('helm-repo-url', {
         type: 'string',
-        default: getenv('HELM_REPO_URL', 'https://link-assistant.github.io/hive-mind'),
+        default: getenv('HELM_REPO_URL', 'https://PeterMotorniy.github.io/auto-programmer'),
         describe: 'Helm repository URL',
       })
       .option('github-actor', {
@@ -54,7 +54,7 @@ if (!version) {
   process.exit(1);
 }
 
-const CHART_PATH = 'helm/hive-mind/Chart.yaml';
+const CHART_PATH = 'helm/auto-programmer/Chart.yaml';
 
 try {
   console.log(`Releasing Helm chart version ${version}...`);
@@ -75,13 +75,13 @@ try {
   // Lint the chart
   console.log('');
   console.log('Linting Helm chart...');
-  await $`helm lint helm/hive-mind`;
+  await $`helm lint helm/auto-programmer`;
 
   // Package the chart
   console.log('');
   console.log('Packaging Helm chart...');
   await $`mkdir -p .helm-packages`;
-  await $`helm package helm/hive-mind -d .helm-packages`;
+  await $`helm package helm/auto-programmer -d .helm-packages`;
   await $`ls -la .helm-packages/`;
 
   // Ensure gh-pages branch exists

@@ -1,328 +1,328 @@
-# Free Models Support in Hive-Mind (languages: en • [zh](FREE_MODELS.zh.md) • [hi](FREE_MODELS.hi.md) • [ru](FREE_MODELS.ru.md))
+# Поддержка бесплатных моделей в Auto-Programmer
 
-This document provides comprehensive information about the free models supported by hive-mind when using the `--tool agent` option.
+Этот документ содержит исчерпывающую информацию о бесплатных моделях, поддерживаемых auto-programmer при использовании опции `--tool agent`.
 
-> **Last Updated:** April 10, 2026
-> **Related:**
+> **Последнее обновление:** 10 апреля 2026 г.
+> **Связанные материалы:**
 >
-> - [Agent CLI FREE_MODELS.md](https://github.com/link-assistant/agent/blob/main/FREE_MODELS.md) - Upstream free models list (canonical source)
-> - [Agent PR #243](https://github.com/link-assistant/agent/pull/243) - Upstream: replace deprecated qwen3.6-plus-free with nemotron-3-super-free as default
-> - [Agent PR #234](https://github.com/link-assistant/agent/pull/234) - Upstream: qwen3.6-plus-free as default, add nemotron-3-super-free
-> - [Agent PR #209](https://github.com/link-assistant/agent/pull/209) - Upstream free model updates (minimax-m2.5-free as default)
-> - [Agent Issue #208](https://github.com/link-assistant/agent/issues/208) - kimi-k2.5-free removed from OpenCode Zen
+> - [Agent CLI FREE_MODELS.md](https://github.com/PeterMotorniy/agent/blob/main/FREE_MODELS.md) — Список бесплатных моделей upstream (канонический источник)
+> - [Agent PR #243](https://github.com/PeterMotorniy/agent/pull/243) — Upstream: замена устаревшей qwen3.6-plus-free на nemotron-3-super-free в качестве модели по умолчанию
+> - [Agent PR #234](https://github.com/PeterMotorniy/agent/pull/234) — Upstream: qwen3.6-plus-free как модель по умолчанию, добавлена nemotron-3-super-free
+> - [Agent PR #209](https://github.com/PeterMotorniy/agent/pull/209) — Upstream: обновления бесплатных моделей (minimax-m2.5-free как модель по умолчанию)
+> - [Agent Issue #208](https://github.com/PeterMotorniy/agent/issues/208) — kimi-k2.5-free удалена из OpenCode Zen
 
-## Available Free Models
+## Доступные бесплатные модели
 
-Hive-mind supports free models from two providers:
+Hive-mind поддерживает бесплатные модели от двух провайдеров:
 
-1. **OpenCode Zen** - 4 free models with `opencode/` prefix
-2. **Kilo Gateway** - 6 free models with `kilo/` prefix (Issue #1282)
+1. **OpenCode Zen** — 4 бесплатные модели с префиксом `opencode/`
+2. **Kilo Gateway** — 6 бесплатных моделей с префиксом `kilo/` (Issue #1282)
 
 ---
 
-## OpenCode Zen Free Models
+## Бесплатные модели OpenCode Zen
 
-### 1. opencode/nemotron-3-super-free **Default Model**
+### 1. opencode/nemotron-3-super-free **Модель по умолчанию**
 
-- **Short Alias**: `nemotron-3-super-free`
-- **Provider**: OpenCode Zen
-- **Status**: Fully Supported (Default for `--tool agent` as of Issue #1563)
-- **Features**: Reasoning, tool calling, hybrid Mamba-Transformer architecture
-- **Context Window**: ~262,144 tokens
-- **Output Limit**: 262,144 tokens
-- **Cost**: Free (no input/output charges)
-- **Knowledge Cutoff**: January 2025
-- **Release Date**: March 2026
-- **Open Weights**: Yes
-- **Notes**: NVIDIA hybrid Mamba-Transformer MoE, strong reasoning capabilities
+- **Краткий псевдоним**: `nemotron-3-super-free`
+- **Провайдер**: OpenCode Zen
+- **Статус**: Полностью поддерживается (По умолчанию для `--tool agent` начиная с Issue #1563)
+- **Возможности**: Рассуждение, вызов инструментов, гибридная архитектура Mamba-Transformer
+- **Контекстное окно**: ~262 144 токенов
+- **Лимит вывода**: 262 144 токенов
+- **Стоимость**: Бесплатно (без платы за ввод/вывод)
+- **Дата среза знаний**: Январь 2025
+- **Дата релиза**: Март 2026
+- **Открытые веса**: Да
+- **Примечания**: Гибридная NVIDIA MoE-архитектура Mamba-Transformer, сильные возможности рассуждения
 
 ### 2. opencode/minimax-m2.5-free
 
-- **Short Alias**: `minimax-m2.5-free`
-- **Provider**: OpenCode Zen
-- **Status**: Fully Supported (Former default, Issues #1391, #1543)
-- **Features**: Reasoning, tool calling, temperature control
-- **Context Window**: 204,800 tokens
-- **Output Limit**: 131,072 tokens
-- **Cost**: Free (no input/output charges)
-- **Knowledge Cutoff**: January 2025
-- **Release Date**: February 2026
-- **Open Weights**: Yes
+- **Краткий псевдоним**: `minimax-m2.5-free`
+- **Провайдер**: OpenCode Zen
+- **Статус**: Полностью поддерживается (Бывшая модель по умолчанию, Issues #1391, #1543)
+- **Возможности**: Рассуждение, вызов инструментов, управление температурой
+- **Контекстное окно**: 204 800 токенов
+- **Лимит вывода**: 131 072 токенов
+- **Стоимость**: Бесплатно (без платы за ввод/вывод)
+- **Дата среза знаний**: Январь 2025
+- **Дата релиза**: Февраль 2026
+- **Открытые веса**: Да
 
 ### 3. opencode/gpt-5-nano
 
-- **Short Alias**: `gpt-5-nano`
-- **Provider**: OpenCode Zen
-- **Status**: Fully Supported
-- **Features**: Reasoning, tool calling, structured output, temperature control
-- **Context Window**: ~400,000 tokens
-- **Output Limit**: 128,000 tokens
-- **Cost**: Free (no input/output charges)
-- **Knowledge Cutoff**: January 2025
+- **Краткий псевдоним**: `gpt-5-nano`
+- **Провайдер**: OpenCode Zen
+- **Статус**: Полностью поддерживается
+- **Возможности**: Рассуждение, вызов инструментов, структурированный вывод, управление температурой
+- **Контекстное окно**: ~400 000 токенов
+- **Лимит вывода**: 128 000 токенов
+- **Стоимость**: Бесплатно (без платы за ввод/вывод)
+- **Дата среза знаний**: Январь 2025
 
 ### 4. opencode/big-pickle
 
-- **Short Alias**: `big-pickle`
-- **Provider**: OpenCode Zen
-- **Status**: Fully Supported
-- **Features**: Reasoning, tool calling, temperature control
-- **Context Window**: ~200,000 tokens
-- **Output Limit**: 128,000 tokens
-- **Cost**: Free (no input/output charges)
-- **Knowledge Cutoff**: January 2025
+- **Краткий псевдоним**: `big-pickle`
+- **Провайдер**: OpenCode Zen
+- **Статус**: Полностью поддерживается
+- **Возможности**: Рассуждение, вызов инструментов, управление температурой
+- **Контекстное окно**: ~200 000 токенов
+- **Лимит вывода**: 128 000 токенов
+- **Стоимость**: Бесплатно (без платы за ввод/вывод)
+- **Дата среза знаний**: Январь 2025
 
 ---
 
-## Discontinued OpenCode Zen Free Models
+## Снятые с поддержки бесплатные модели OpenCode Zen
 
-The following models were previously free but are no longer available:
+Следующие модели ранее были бесплатными, но больше недоступны:
 
-| Model              | Former Model ID              | Status                                                                                                                                         |
-| ------------------ | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Qwen 3.6 Plus Free | `opencode/qwen3.6-plus-free` | Free promotion ended (April 2026) — now requires OpenCode Go subscription. See [agent#242](https://github.com/link-assistant/agent/issues/242) |
-| Kimi K2.5 Free     | `opencode/kimi-k2.5-free`    | Removed from OpenCode Zen (March 2026) — see [agent#208](https://github.com/link-assistant/agent/issues/208)                                   |
-| Grok Code Fast 1   | `opencode/grok-code`         | Discontinued January 2026                                                                                                                      |
-| MiniMax M2.1 Free  | `opencode/minimax-m2.1-free` | Replaced by `opencode/minimax-m2.5-free`                                                                                                       |
-| GLM 4.7 Free       | `opencode/glm-4.7-free`      | No longer free on OpenCode Zen                                                                                                                 |
+| Модель             | Бывший идентификатор         | Статус                                                                                                                                                 |
+| ------------------ | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Qwen 3.6 Plus Free | `opencode/qwen3.6-plus-free` | Бесплатная акция завершилась (апрель 2026) — теперь требуется подписка OpenCode Go. См. [agent#242](https://github.com/PeterMotorniy/agent/issues/242) |
+| Kimi K2.5 Free     | `opencode/kimi-k2.5-free`    | Удалена из OpenCode Zen (март 2026) — см. [agent#208](https://github.com/PeterMotorniy/agent/issues/208)                                               |
+| Grok Code Fast 1   | `opencode/grok-code`         | Снята с поддержки в январе 2026                                                                                                                        |
+| MiniMax M2.1 Free  | `opencode/minimax-m2.1-free` | Заменена на `opencode/minimax-m2.5-free`                                                                                                               |
+| GLM 4.7 Free       | `opencode/glm-4.7-free`      | Больше не бесплатна в OpenCode Zen                                                                                                                     |
 
-> **Note:** See [OpenCode Zen Documentation](https://opencode.ai/docs/zen/) and [Agent CLI FREE_MODELS.md](https://github.com/link-assistant/agent/blob/main/FREE_MODELS.md) for the current list of free models.
+> **Примечание:** Актуальный список бесплатных моделей см. в [документации OpenCode Zen](https://opencode.ai/docs/zen/) и [Agent CLI FREE_MODELS.md](https://github.com/PeterMotorniy/agent/blob/main/FREE_MODELS.md).
 
 ---
 
-## Kilo Gateway Free Models
+## Бесплатные модели Kilo Gateway
 
-[Kilo Gateway](https://kilo.ai) provides access to 500+ AI models through an OpenAI-compatible API. The following free models are available without API key configuration.
+[Kilo Gateway](https://kilo.ai) предоставляет доступ к 500+ AI-моделям через API, совместимый с OpenAI. Следующие бесплатные модели доступны без настройки API-ключа.
 
-> **Note:** Kilo-exclusive models (models only available on Kilo Gateway) support short aliases without the `kilo/` prefix. For example, you can use `glm-5-free` instead of `kilo/glm-5-free` since this model is unique to Kilo.
+> **Примечание:** Эксклюзивные модели Kilo (модели, доступные только через Kilo Gateway) поддерживают краткие псевдонимы без префикса `kilo/`. Например, вы можете использовать `glm-5-free` вместо `kilo/glm-5-free`, поскольку эта модель уникальна для Kilo.
 
-### 1. kilo/glm-5-free **Recommended for Kilo**
+### 1. kilo/glm-5-free **Рекомендуется для Kilo**
 
-- **Model ID**: `kilo/glm-5-free`
-- **Short Alias**: `glm-5-free` (Kilo-exclusive model)
-- **Provider**: Kilo Gateway (Z.AI)
-- **Status**: Fully Supported (Free for limited time)
-- **Features**: Deep reasoning, fast inference, bilingual (Chinese/English), tool calling, structured outputs
-- **Context Window**: 202,752 tokens
-- **Output Limit**: 131,072 tokens
-- **Cost**: Free (limited time offer)
-- **Release Date**: February 11, 2026
-- **Special Features**: "Matches Opus 4.5 on many tasks" - [Kilo Blog](https://blog.kilo.ai/p/glm-5-free-limited-time)
+- **Идентификатор модели**: `kilo/glm-5-free`
+- **Краткий псевдоним**: `glm-5-free` (эксклюзивная модель Kilo)
+- **Провайдер**: Kilo Gateway (Z.AI)
+- **Статус**: Полностью поддерживается (Бесплатно на ограниченный срок)
+- **Возможности**: Глубокое рассуждение, быстрый инференс, двуязычность (китайский/английский), вызов инструментов, структурированный вывод
+- **Контекстное окно**: 202 752 токенов
+- **Лимит вывода**: 131 072 токенов
+- **Стоимость**: Бесплатно (предложение ограниченного срока)
+- **Дата релиза**: 11 февраля 2026
+- **Особые возможности**: "Соответствует Opus 4.5 во многих задачах" — [Kilo Blog](https://blog.kilo.ai/p/glm-5-free-limited-time)
 
 ### 2. kilo/glm-4.5-air-free
 
-- **Model ID**: `kilo/glm-4.5-air-free`
-- **Short Alias**: `glm-4.5-air-free` (Kilo-exclusive model)
-- **Provider**: Kilo Gateway (Z.AI)
-- **Status**: Fully Supported
-- **Features**: Agent-centric, lightweight, fast inference
-- **Context Window**: 131,072 tokens
-- **Output Limit**: 65,536 tokens
-- **Cost**: Free
+- **Идентификатор модели**: `kilo/glm-4.5-air-free`
+- **Краткий псевдоним**: `glm-4.5-air-free` (эксклюзивная модель Kilo)
+- **Провайдер**: Kilo Gateway (Z.AI)
+- **Статус**: Полностью поддерживается
+- **Возможности**: Ориентирована на агенты, облегчённая, быстрый инференс
+- **Контекстное окно**: 131 072 токенов
+- **Лимит вывода**: 65 536 токенов
+- **Стоимость**: Бесплатно
 
 ### 3. kilo/minimax-m2.5-free
 
-- **Model ID**: `kilo/minimax-m2.5-free`
-- **Provider**: Kilo Gateway (MiniMax)
-- **Status**: Fully Supported (upgraded from M2.1)
-- **Features**: Strong general-purpose performance
-- **Context Window**: 204,800 tokens
-- **Output Limit**: 131,072 tokens
-- **Cost**: Free
+- **Идентификатор модели**: `kilo/minimax-m2.5-free`
+- **Провайдер**: Kilo Gateway (MiniMax)
+- **Статус**: Полностью поддерживается (обновлена с M2.1)
+- **Возможности**: Высокая производительность общего назначения
+- **Контекстное окно**: 204 800 токенов
+- **Лимит вывода**: 131 072 токенов
+- **Стоимость**: Бесплатно
 
 ### 4. kilo/deepseek-r1-free
 
-- **Model ID**: `kilo/deepseek-r1-free`
-- **Short Alias**: `deepseek-r1-free` (Kilo-exclusive model)
-- **Provider**: Kilo Gateway (DeepSeek)
-- **Status**: Fully Supported
-- **Features**: Advanced reasoning, open-source, fully open reasoning tokens
-- **Context Window**: 163,840 tokens
-- **Output Limit**: 65,536 tokens
-- **Cost**: Free
+- **Идентификатор модели**: `kilo/deepseek-r1-free`
+- **Краткий псевдоним**: `deepseek-r1-free` (эксклюзивная модель Kilo)
+- **Провайдер**: Kilo Gateway (DeepSeek)
+- **Статус**: Полностью поддерживается
+- **Возможности**: Продвинутое рассуждение, открытый исходный код, полностью открытые токены рассуждения
+- **Контекстное окно**: 163 840 токенов
+- **Лимит вывода**: 65 536 токенов
+- **Стоимость**: Бесплатно
 
 ### 5. kilo/giga-potato-free
 
-- **Model ID**: `kilo/giga-potato-free`
-- **Short Alias**: `giga-potato-free` (Kilo-exclusive model)
-- **Provider**: Kilo Gateway
-- **Status**: Fully Supported (Evaluation period)
-- **Features**: General-purpose evaluation model
-- **Context Window**: 256,000 tokens
-- **Output Limit**: 131,072 tokens
-- **Cost**: Free (during evaluation)
+- **Идентификатор модели**: `kilo/giga-potato-free`
+- **Краткий псевдоним**: `giga-potato-free` (эксклюзивная модель Kilo)
+- **Провайдер**: Kilo Gateway
+- **Статус**: Полностью поддерживается (Период оценки)
+- **Возможности**: Оценочная модель общего назначения
+- **Контекстное окно**: 256 000 токенов
+- **Лимит вывода**: 131 072 токенов
+- **Стоимость**: Бесплатно (в период оценки)
 
 ### 6. kilo/trinity-large-preview
 
-- **Model ID**: `kilo/trinity-large-preview`
-- **Short Alias**: `trinity-large-preview` (Kilo-exclusive model)
-- **Provider**: Kilo Gateway (Arcee AI)
-- **Status**: Fully Supported (Preview)
-- **Features**: Strong capabilities, preview model
-- **Context Window**: 131,000 tokens
-- **Output Limit**: 65,536 tokens
-- **Cost**: Free (preview)
+- **Идентификатор модели**: `kilo/trinity-large-preview`
+- **Краткий псевдоним**: `trinity-large-preview` (эксклюзивная модель Kilo)
+- **Провайдер**: Kilo Gateway (Arcee AI)
+- **Статус**: Полностью поддерживается (Предварительный просмотр)
+- **Возможности**: Высокие возможности, предварительная версия модели
+- **Контекстное окно**: 131 000 токенов
+- **Лимит вывода**: 65 536 токенов
+- **Стоимость**: Бесплатно (предварительный просмотр)
 
 ---
 
 ---
 
-## Discontinued Kilo Gateway Free Models
+## Снятые с поддержки бесплатные модели Kilo Gateway
 
-The following Kilo models were previously the recommended free models but have been updated:
+Следующие модели Kilo ранее были рекомендованными бесплатными, но были обновлены:
 
-| Model        | Former Model ID          | Status                               |
-| ------------ | ------------------------ | ------------------------------------ |
-| GLM 4.7      | `kilo/glm-4.7-free`      | Replaced by `kilo/glm-4.5-air-free`  |
-| Kimi K2.5    | `kilo/kimi-k2.5-free`    | Replaced by other Kilo free models   |
-| MiniMax M2.1 | `kilo/minimax-m2.1-free` | Replaced by `kilo/minimax-m2.5-free` |
+| Модель       | Бывший идентификатор     | Статус                                     |
+| ------------ | ------------------------ | ------------------------------------------ |
+| GLM 4.7      | `kilo/glm-4.7-free`      | Заменена на `kilo/glm-4.5-air-free`        |
+| Kimi K2.5    | `kilo/kimi-k2.5-free`    | Заменена другими бесплатными моделями Kilo |
+| MiniMax M2.1 | `kilo/minimax-m2.1-free` | Заменена на `kilo/minimax-m2.5-free`       |
 
-> **Note:** See [Kilo Free Models Documentation](https://kilo.ai/docs/advanced-usage/free-and-budget-models) for current availability.
+> **Примечание:** Актуальную информацию о доступности см. в [документации по бесплатным моделям Kilo](https://kilo.ai/docs/advanced-usage/free-and-budget-models).
 
 ---
 
-## Usage Examples
+## Примеры использования
 
-### Command Line Usage
+### Использование в командной строке
 
 ```bash
-# OpenCode Zen models (short aliases without prefix)
+# Модели OpenCode Zen (краткие псевдонимы без префикса)
 solve https://github.com/owner/repo/issues/123 --tool agent --model nemotron-3-super-free
 hive https://github.com/owner/repo --tool agent --model minimax-m2.5-free
 
-# OpenCode Zen models (full model IDs)
+# Модели OpenCode Zen (полные идентификаторы)
 solve https://github.com/owner/repo/issues/123 --tool agent --model opencode/nemotron-3-super-free
 hive https://github.com/owner/repo --tool agent --model opencode/big-pickle
 
-# Kilo Gateway models (full model IDs)
+# Модели Kilo Gateway (полные идентификаторы)
 solve https://github.com/owner/repo/issues/123 --tool agent --model kilo/glm-5-free
 hive https://github.com/owner/repo --tool agent --model kilo/deepseek-r1-free
 
-# Kilo-exclusive models (short aliases without kilo/ prefix)
+# Эксклюзивные модели Kilo (краткие псевдонимы без префикса kilo/)
 solve https://github.com/owner/repo/issues/123 --tool agent --model glm-5-free
 hive https://github.com/owner/repo --tool agent --model deepseek-r1-free
 ```
 
-### Telegram Bot Usage
+### Использование в Telegram-боте
 
 ```bash
-# OpenCode Zen models (short aliases)
+# Модели OpenCode Zen (краткие псевдонимы)
 /solve https://github.com/owner/repo/issues/123 --tool agent --model nemotron-3-super-free
 /solve https://github.com/owner/repo/issues/123 --tool agent --model minimax-m2.5-free
 /agent https://github.com/owner/repo/issues/123 --model nemotron-3-super-free
 
-# Kilo Gateway models (full model IDs)
+# Модели Kilo Gateway (полные идентификаторы)
 /solve https://github.com/owner/repo/issues/123 --tool agent --model kilo/glm-5-free
 /hive https://github.com/owner/repo --tool agent --model kilo/glm-4.5-air-free
 
-# Kilo-exclusive models (short aliases without kilo/ prefix)
+# Эксклюзивные модели Kilo (краткие псевдонимы без префикса kilo/)
 /solve https://github.com/owner/repo/issues/123 --tool agent --model glm-5-free
 /hive https://github.com/owner/repo --tool agent --model glm-4.5-air-free
 
-# Default model (nemotron-3-super-free via OpenCode Zen):
+# Модель по умолчанию (nemotron-3-super-free через OpenCode Zen):
 /solve https://github.com/owner/repo/issues/123 --tool agent
 /agent https://github.com/owner/repo/issues/123
 ```
 
-### Direct Agent CLI Usage
+### Прямое использование Agent CLI
 
 ```bash
-# OpenCode Zen models
+# Модели OpenCode Zen
 echo "Your prompt here" | agent --model opencode/nemotron-3-super-free
 echo "Your prompt here" | agent --model opencode/minimax-m2.5-free
 
-# Kilo Gateway models
+# Модели Kilo Gateway
 echo "Your prompt here" | agent --model kilo/glm-5-free
 echo "Your prompt here" | agent --model kilo/deepseek-r1-free
 ```
 
 ---
 
-## Model Selection Guide
+## Руководство по выбору модели
 
-### For Different Use Cases
+### Для различных сценариев использования
 
-**Flagship Free Models**:
+**Флагманские бесплатные модели**:
 
-- `opencode/nemotron-3-super-free` - NVIDIA hybrid Mamba-Transformer, strong reasoning (OpenCode, default)
-- `kilo/glm-5-free` - Z.AI flagship, matches Opus 4.5 on many tasks (Kilo)
+- `opencode/nemotron-3-super-free` — гибридная NVIDIA Mamba-Transformer, сильное рассуждение (OpenCode, по умолчанию)
+- `kilo/glm-5-free` — флагман Z.AI, соответствует Opus 4.5 во многих задачах (Kilo)
 
-**General Purpose & Reasoning**:
+**Общего назначения и рассуждение**:
 
-- `opencode/gpt-5-nano` - Strong general reasoning capabilities
-- `opencode/big-pickle` - Well-balanced performance
-- `kilo/minimax-m2.5-free` - Strong general-purpose performance
-- `kilo/deepseek-r1-free` - Advanced reasoning model
+- `opencode/gpt-5-nano` — сильные возможности общего рассуждения
+- `opencode/big-pickle` — хорошо сбалансированная производительность
+- `kilo/minimax-m2.5-free` — высокая производительность общего назначения
+- `kilo/deepseek-r1-free` — модель продвинутого рассуждения
 
-**For Large Context Tasks**:
+**Для задач с большим контекстом**:
 
-- `opencode/gpt-5-nano` - Very large context (~400,000 tokens)
-- `opencode/nemotron-3-super-free` - Large context (~262,144 tokens)
-- `kilo/giga-potato-free` - Large context (256,000 tokens)
-- `opencode/minimax-m2.5-free` - Large context (204,800 tokens)
+- `opencode/gpt-5-nano` — очень большой контекст (~400 000 токенов)
+- `opencode/nemotron-3-super-free` — большой контекст (~262 144 токенов)
+- `kilo/giga-potato-free` — большой контекст (256 000 токенов)
+- `opencode/minimax-m2.5-free` — большой контекст (204 800 токенов)
 
-**Agent-Centric / Coding**:
+**Ориентированные на агентов / программирование**:
 
-- `kilo/glm-4.5-air-free` - Purpose-built for agent-centric applications
-- `kilo/deepseek-r1-free` - Optimized for reasoning and code synthesis
-- `opencode/minimax-m2.5-free` - Strong coding performance
-
----
-
-## Provider Comparison
-
-| Feature       | OpenCode Zen                          | Kilo Gateway             |
-| ------------- | ------------------------------------- | ------------------------ |
-| Free Models   | 4 models                              | 6 models                 |
-| Default Model | nemotron-3-super-free (~262K context) | glm-5-free (recommended) |
-| API Format    | OpenAI-compatible                     | OpenAI-compatible        |
-| Free API Key  | `public`                              | `public`                 |
-| Total Models  | 50+                                   | 500+                     |
-| Flagship Free | Nemotron 3 Super (~262K context)      | GLM-5 (limited time)     |
-| BYOK Support  | Yes                                   | Yes                      |
-| New Models    | Nemotron 3 Super (Issue #1543, #1563) | DeepSeek R1, GLM 4.5 Air |
+- `kilo/glm-4.5-air-free` — создана специально для приложений на основе агентов
+- `kilo/deepseek-r1-free` — оптимизирована для рассуждений и синтеза кода
+- `opencode/minimax-m2.5-free` — высокая производительность в программировании
 
 ---
 
-## Testing and Validation
+## Сравнение провайдеров
 
-All free models have been tested and validated for:
-
-1. **Model Configuration**: All models are properly configured in `src/models/index.mjs`
-2. **CLI Integration**: All models are accepted by both hive-mind and agent CLI
-3. **Tool Compatibility**: All models are compatible with the `--tool agent` option
-4. **Case Insensitive Usage**: Models can be specified in any case (e.g., `KILO/GLM-5-FREE`)
-5. **Alias Support**: Short aliases work for all models
-
----
-
-## Error Handling
-
-If you encounter issues with any of these models:
-
-1. **Check Model Spelling**: Ensure exact model name or alias is used
-2. **Update Dependencies**: Run `npm install` to ensure latest agent CLI
-3. **Check Network**: Some models may require internet access for first-time setup
-4. **Verify Provider**: Ensure correct provider prefix (`opencode/` or `kilo/`)
+| Характеристика      | OpenCode Zen                           | Kilo Gateway               |
+| ------------------- | -------------------------------------- | -------------------------- |
+| Бесплатных моделей  | 4 модели                               | 6 моделей                  |
+| Модель по умолчанию | nemotron-3-super-free (~262K контекст) | glm-5-free (рекомендуется) |
+| Формат API          | Совместимый с OpenAI                   | Совместимый с OpenAI       |
+| Бесплатный API-ключ | `public`                               | `public`                   |
+| Всего моделей       | 50+                                    | 500+                       |
+| Флагман (бесплатно) | Nemotron 3 Super (~262K контекст)      | GLM-5 (ограниченный срок)  |
+| Поддержка BYOK      | Да                                     | Да                         |
+| Новые модели        | Nemotron 3 Super (Issue #1543, #1563)  | DeepSeek R1, GLM 4.5 Air   |
 
 ---
 
-## Related Documentation
+## Тестирование и валидация
 
-- [Agent CLI FREE_MODELS.md](https://github.com/link-assistant/agent/blob/main/FREE_MODELS.md) - Canonical upstream free models list
-- [Models Module](../src/models/index.mjs) - Unified model data, validation, mapping, and info
-- [Agent CLI Documentation](https://github.com/link-assistant/agent) - Direct agent CLI usage
-- [Agent Kilo Documentation](https://github.com/link-assistant/agent/blob/main/docs/kilo.md) - Kilo Gateway details
-- [Case Study: Issue #1282](./case-studies/issue-1282/README.md) - Kilo models integration analysis
-- [Case Study: Issue #1300](./case-studies/issue-1300/README.md) - Free models update (MiniMax M2.5, DeepSeek R1)
-- [Case Study: Issue #1391](./case-studies/issue-1391/README.md) - Free models update (minimax-m2.5-free as default, kimi-k2.5-free deprecated)
-- [Case Study: Issue #1473](./case-studies/issue-1473/README.md) - Model recognition fix and free models sync
-- [Case Study: Issue #1543](./case-studies/issue-1543/README.md) - Free models update (qwen3.6-plus-free as default, nemotron-3-super-free added)
-- [Case Study: Issue #1563](./case-studies/issue-1563/README.md) - Free models update (qwen3.6-plus-free deprecated, nemotron-3-super-free as default)
-- [OpenCode Zen Documentation](https://opencode.ai/docs/zen/) - OpenCode Zen provider details
-- [Kilo Gateway Documentation](https://kilo.ai/docs/gateway) - Kilo Gateway provider details
+Все бесплатные модели были протестированы и проверены на:
+
+1. **Конфигурацию модели**: Все модели корректно настроены в `src/models/index.mjs`
+2. **Интеграцию с CLI**: Все модели принимаются как auto-programmer, так и agent CLI
+3. **Совместимость с инструментами**: Все модели совместимы с опцией `--tool agent`
+4. **Нечувствительность к регистру**: Модели можно указывать в любом регистре (например, `KILO/GLM-5-FREE`)
+5. **Поддержку псевдонимов**: Краткие псевдонимы работают для всех моделей
 
 ---
 
-**Last Updated**: April 10, 2026
-**Hive-Mind Version**: 1.48.2
-**Agent CLI Version**: Latest (with free model updates from PR #243)
+## Обработка ошибок
+
+При возникновении проблем с любой из этих моделей:
+
+1. **Проверьте написание модели**: Убедитесь в использовании точного имени модели или псевдонима
+2. **Обновите зависимости**: Запустите `npm install` для получения последней версии agent CLI
+3. **Проверьте сеть**: Некоторые модели могут требовать подключения к интернету при первоначальной настройке
+4. **Проверьте провайдера**: Убедитесь в корректности префикса провайдера (`opencode/` или `kilo/`)
+
+---
+
+## Связанная документация
+
+- [Agent CLI FREE_MODELS.md](https://github.com/PeterMotorniy/agent/blob/main/FREE_MODELS.md) — Канонический список бесплатных моделей upstream
+- [Models Module](../src/models/index.mjs) — Единые данные модели, валидация, маппинг и информация
+- [Agent CLI Documentation](https://github.com/PeterMotorniy/agent) — Прямое использование agent CLI
+- [Agent Kilo Documentation](https://github.com/PeterMotorniy/agent/blob/main/docs/kilo.md) — Детали Kilo Gateway
+- [Case Study: Issue #1282](./case-studies/issue-1282/README.md) — Анализ интеграции моделей Kilo
+- [Case Study: Issue #1300](./case-studies/issue-1300/README.md) — Обновление бесплатных моделей (MiniMax M2.5, DeepSeek R1)
+- [Case Study: Issue #1391](./case-studies/issue-1391/README.md) — Обновление бесплатных моделей (minimax-m2.5-free как по умолчанию, kimi-k2.5-free устарела)
+- [Case Study: Issue #1473](./case-studies/issue-1473/README.md) — Исправление распознавания моделей и синхронизация бесплатных моделей
+- [Case Study: Issue #1543](./case-studies/issue-1543/README.md) — Обновление бесплатных моделей (qwen3.6-plus-free как по умолчанию, добавлена nemotron-3-super-free)
+- [Case Study: Issue #1563](./case-studies/issue-1563/README.md) — Обновление бесплатных моделей (qwen3.6-plus-free устарела, nemotron-3-super-free как по умолчанию)
+- [OpenCode Zen Documentation](https://opencode.ai/docs/zen/) — Детали провайдера OpenCode Zen
+- [Kilo Gateway Documentation](https://kilo.ai/docs/gateway) — Детали провайдера Kilo Gateway
+
+---
+
+**Последнее обновление**: 10 апреля 2026 г.
+**Версия Auto-Programmer**: 1.48.2
+**Версия Agent CLI**: Последняя (с обновлениями бесплатных моделей из PR #243)

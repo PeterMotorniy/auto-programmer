@@ -13,7 +13,7 @@
  * be a leftover and is skipped. A completed session was removed from the store and
  * is never resumed.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import os from 'node:os';

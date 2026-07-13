@@ -455,7 +455,7 @@ export const executeOpenCodeCommand = async params => {
         await log('   Install: bun install -g @link-assistant/agent', { level: 'error' });
         await log('   Run with: --tool agent', { level: 'error' });
         await log('', { level: 'error' });
-        await log('   More info: https://github.com/link-assistant/agent', { level: 'error' });
+        await log('   More info: https://github.com/PeterMotorniy/agent', { level: 'error' });
         await log('', { level: 'error' });
 
         const resourcesAfter = await getResourceSnapshot();

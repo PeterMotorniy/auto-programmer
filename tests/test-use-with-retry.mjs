@@ -9,7 +9,7 @@
  *   3. ERR_INVALID_PACKAGE_CONFIG when the installed package.json itself
  *      is corrupt (issue #1712).
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';

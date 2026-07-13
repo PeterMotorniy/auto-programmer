@@ -4,7 +4,7 @@
  * Test suite for Telegram message edit error handling
  * Tests that editMessageText failures are properly caught and don't leave messages stuck
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1062
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1062
  */
 
 // Temporarily unset CI to avoid command-stream trace logs in tests

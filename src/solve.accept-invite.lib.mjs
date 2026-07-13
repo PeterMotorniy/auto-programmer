@@ -10,8 +10,8 @@
  *
  * @see https://docs.github.com/en/rest/collaborators/invitations
  * @see https://docs.github.com/en/rest/orgs/members
- * @see https://github.com/link-assistant/hive-mind/issues/1373
- * @see https://github.com/link-assistant/hive-mind/issues/1536
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1373
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1536
  */
 
 import { promisify } from 'util';

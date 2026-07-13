@@ -8,7 +8,7 @@ const { $ } = await use('command-stream');
 // Import uuid for UUIDv7 generation
 const { v7: uuidv7 } = await use('uuid');
 
-const claude = process.env.CLAUDE_PATH || '/Users/konard/.claude/local/claude';
+const claude = process.env.CLAUDE_PATH || '/Users/petermotorniy/.claude/local/claude';
 
 console.log('=== Claude Session Management Test ===\n');
 console.log(`Runtime: ${typeof Bun !== 'undefined' ? 'Bun' : 'Node.js'}\n`);

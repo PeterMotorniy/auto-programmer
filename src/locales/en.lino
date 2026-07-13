@@ -507,7 +507,7 @@ en
         options
           label "🔒 Locked options"
     help
-      title "🤖 *SwarmMindBot Help*"
+      title "🤖 *AutoProgrammerBot Help*"
       status
         stopped "🛑 *Bot Status: STOPPED*"
       reason "Reason: {{reason}}"

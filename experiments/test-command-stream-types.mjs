@@ -31,7 +31,7 @@ async function testCommandStreamTypes() {
     // Test gh pr comment (this will fail but shows the structure)
     console.log('Test 2: gh pr comment (to test repo)');
     const testBody = `🧪 Type test - ${Date.now()}`;
-    const result2 = await $`gh pr comment 846 --repo link-assistant/hive-mind --body ${testBody}`;
+    const result2 = await $`gh pr comment 846 --repo PeterMotorniy/auto-programmer --body ${testBody}`;
 
     console.log('result2 type:', typeof result2);
     console.log('result2 keys:', Object.keys(result2));

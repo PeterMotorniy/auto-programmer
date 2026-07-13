@@ -16,9 +16,9 @@
  *
  * Run with: node tests/test-github-pages-workflow-filter-1399.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1399
- * @see https://github.com/link-assistant/hive-mind/issues/1363 (related)
- * @see https://github.com/link-assistant/hive-mind/issues/1345 (related)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1399
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1363 (related)
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1345 (related)
  */
 
 // ANSI color codes for terminal output
@@ -96,7 +96,7 @@ function simulateNoCiLogic({ ciStatus, mergeStatus, repoWorkflows }) {
   return { blockers, noCiConfigured, earlyReturn: false };
 }
 
-// Common test fixture: the exact pages-build-deployment workflow from konard/links-visuals
+// Common test fixture: the exact pages-build-deployment workflow from petermotorniy/links-visuals
 const pagesWorkflow = { id: 144453964, name: 'pages-build-deployment', path: 'dynamic/pages/pages-build-deployment', state: 'active' };
 // Common CI status for the no_checks scenario
 const noChecksCiStatus = { status: 'no_checks', checks: [] };
@@ -140,7 +140,7 @@ test('Repo with BOTH pages-build-deployment AND user CI workflows: only CI workf
 });
 
 test('Repo with ONLY pages-build-deployment: hasWorkflows=false after filtering', () => {
-  // This is the exact scenario from issue #1399: konard/links-visuals
+  // This is the exact scenario from issue #1399: petermotorniy/links-visuals
   const result = simulateFilteredWorkflows([pagesWorkflow]);
 
   assert(result.hasWorkflows === false, 'hasWorkflows must be false for repos with only GitHub Pages deployment');
@@ -168,7 +168,7 @@ console.log('\n📋 Full No-CI Logic: Repository with Only GitHub Pages Deployme
 
 test('Issue #1399 scenario: no_checks + MERGEABLE + only pages workflow → noCiConfigured=true (fixes infinite loop)', () => {
   // This is the exact scenario that caused the bug:
-  // - konard/links-visuals has ONLY pages-build-deployment
+  // - petermotorniy/links-visuals has ONLY pages-build-deployment
   // - PR is MERGEABLE (mergeStateStatus=CLEAN)
   // - check-runs are empty (pages-build-deployment never runs on PR branches)
   const result = simulateNoCiLogic({
@@ -293,7 +293,7 @@ test('Workflow path exactly equal to "dynamic/pages/" prefix is filtered', () =>
 });
 
 test('Real-world scenario: links-visuals repo (issue #1399) is now treated as no CI configured', () => {
-  // Exact reproduction of the konard/links-visuals scenario:
+  // Exact reproduction of the petermotorniy/links-visuals scenario:
   // - Only workflow: pages-build-deployment at dynamic/pages/pages-build-deployment
   // - PR #5: mergeStateStatus=CLEAN, check-runs=[], check-suites=[queued, no runs]
   const result = simulateNoCiLogic({

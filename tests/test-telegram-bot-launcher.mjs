@@ -6,7 +6,7 @@
  *
  * Run with: node tests/test-telegram-bot-launcher.mjs
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1240
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1240
  */
 
 import { isRetryableError, calculateRetryDelay, formatDelay, launchBotWithRetry, LAUNCHER_DEFAULTS } from '../src/telegram-bot-launcher.lib.mjs';

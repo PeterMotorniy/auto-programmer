@@ -9,7 +9,7 @@
  * append-only `sessions-events.jsonl` audit log that is NEVER truncated (req #4:
  * "no data should be destroyed").
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1927
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1927
  */
 
 import os from 'node:os';
@@ -23,8 +23,8 @@ console.log('='.repeat(60));
 
 // --- resolveBotStateDir -------------------------------------------------------
 assert(resolveBotStateDir({ HIVE_MIND_STATE_DIR: '/custom/state' }) === '/custom/state', 'resolveBotStateDir honors HIVE_MIND_STATE_DIR');
-assert(resolveBotStateDir({}, () => '/home/bob') === path.join('/home/bob', '.hive-mind', 'state'), 'resolveBotStateDir falls back to <home>/.hive-mind/state');
-assert(resolveBotStateDir({ HIVE_MIND_STATE_DIR: '  ' }, () => '/home/bob').endsWith(path.join('.hive-mind', 'state')), 'resolveBotStateDir ignores a blank HIVE_MIND_STATE_DIR');
+assert(resolveBotStateDir({}, () => '/home/bob') === path.join('/home/bob', '.auto-programmer', 'state'), 'resolveBotStateDir falls back to <home>/.auto-programmer/state');
+assert(resolveBotStateDir({ HIVE_MIND_STATE_DIR: '  ' }, () => '/home/bob').endsWith(path.join('.auto-programmer', 'state')), 'resolveBotStateDir ignores a blank HIVE_MIND_STATE_DIR');
 
 // --- serialize / deserialize --------------------------------------------------
 const startTime = new Date('2026-06-14T19:00:00.000Z');

@@ -3,7 +3,7 @@
 /**
  * Gemini direct tool support tests.
  *
- * @hive-mind-test-suite default
+ * @auto-programmer-test-suite default
  */
 
 import assert from 'node:assert/strict';
@@ -65,16 +65,16 @@ test('Gemini model defaults and aliases are centralized', () => {
 
 test('Gemini prompts include workspace context and case-study guidance', () => {
   const userPrompt = buildUserPrompt({
-    issueUrl: 'https://github.com/link-assistant/hive-mind/issues/516',
+    issueUrl: 'https://github.com/PeterMotorniy/auto-programmer/issues/516',
     issueNumber: 516,
     prNumber: 559,
-    prUrl: 'https://github.com/link-assistant/hive-mind/pull/559',
+    prUrl: 'https://github.com/PeterMotorniy/auto-programmer/pull/559',
     branchName: 'issue-516-54126055',
     tempDir: '/tmp/work',
     workspaceTmpDir: '/tmp/work-tmp',
     isContinueMode: false,
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     argv: {},
   });
 
@@ -82,8 +82,8 @@ test('Gemini prompts include workspace context and case-study guidance', () => {
   assert.ok(userPrompt.endsWith('\n'));
 
   const systemPrompt = buildSystemPrompt({
-    owner: 'link-assistant',
-    repo: 'hive-mind',
+    owner: 'PeterMotorniy',
+    repo: 'auto-programmer',
     issueNumber: 516,
     prNumber: 559,
     branchName: 'issue-516-54126055',

@@ -23,9 +23,9 @@
  * `resolveHostDockerSock` is the single source of truth for the socket path and
  * must honor box's own DIND_HOST_DOCKER_SOCK override.
  *
- * @hive-mind-test-suite default
- * @see https://github.com/link-assistant/hive-mind/issues/1914
- * @see https://github.com/link-assistant/hive-mind/issues/1879
+ * @auto-programmer-test-suite default
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1914
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1879
  */
 
 import { preflightDockerIsolation, resolveHostDockerSock, checkDockerImagePresent } from '../src/isolation-runner.lib.mjs';
@@ -91,7 +91,7 @@ console.log('\n--- checkDockerImagePresent is exported and never throws ---');
 
 assertEqual(typeof checkDockerImagePresent, 'function', 'checkDockerImagePresent is exported');
 // With no docker binary (or no such image) it must resolve to a boolean, not throw.
-const probe = await checkDockerImagePresent('hive-mind-nonexistent-image-1914:does-not-exist', false);
+const probe = await checkDockerImagePresent('auto-programmer-nonexistent-image-1914:does-not-exist', false);
 assertEqual(typeof probe, 'boolean', 'checkDockerImagePresent resolves to a boolean even when docker/image is absent');
 
 console.log('\n--- Scenario A: image already present → reuse, no warning ---');

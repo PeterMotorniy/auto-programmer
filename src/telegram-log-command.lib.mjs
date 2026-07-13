@@ -17,7 +17,7 @@
  *   (`screen`, `tmux`, `docker`) are supported. Direct (non-isolation) sessions
  *   are rejected with a clear message.
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1686
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1686
  */
 
 import path from 'path';

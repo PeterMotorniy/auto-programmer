@@ -85,9 +85,9 @@ console.log('  This is the fork mode Compare API issue.');
 console.log('  The Compare API is being called with wrong format:');
 console.log('    repos/xlabtg/anti-corruption/compare/main...issue-6-01d3f376c347');
 console.log('');
-console.log('  But branch only exists in fork: konard/anti-corruption');
+console.log('  But branch only exists in fork: petermotorniy/anti-corruption');
 console.log('  Should be:');
-console.log('    repos/xlabtg/anti-corruption/compare/main...konard:issue-6-01d3f376c347\n');
+console.log('    repos/xlabtg/anti-corruption/compare/main...petermotorniy:issue-6-01d3f376c347\n');
 
 console.log('=== Summary ===\n');
 console.log('Problem 1 (v0.29.5): Identical CLAUDE.md content when reusing branches');

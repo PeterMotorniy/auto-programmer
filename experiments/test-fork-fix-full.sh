@@ -3,7 +3,7 @@
 # Test the fork fix with the real scenario from issue #314
 #
 # This simulates what happens when:
-# 1. A fork exists with a modified name (konard/netkeep80-jsonRVM)
+# 1. A fork exists with a modified name (petermotorniy/netkeep80-jsonRVM)
 # 2. The code tries to detect it
 
 echo "================================================================================"

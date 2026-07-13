@@ -40,11 +40,11 @@ assert.equal(parseHiveScreensArgs(['--help']).help, true, '--help sets help');
 assert.equal(parseHiveScreensArgs(['-h']).help, true, '-h sets help');
 
 // --- sessionMatches (shared predicate) ---
-const POSITIVE_TEXT = ['some earlier output', 'Process completed.', 'Full log file: /tmp/solve-123.log', 'Issue: https://github.com/link-assistant/hive-mind/issues/42', 'PR is mergeable! enabling auto-merge'].join('\n');
+const POSITIVE_TEXT = ['some earlier output', 'Process completed.', 'Full log file: /tmp/solve-123.log', 'Issue: https://github.com/PeterMotorniy/auto-programmer/issues/42', 'PR is mergeable! enabling auto-merge'].join('\n');
 const positive = sessionMatches(POSITIVE_TEXT);
 assert.equal(positive.matched, true, 'completed+mergeable scrollback matches');
 assert.equal(positive.logPath, '/tmp/solve-123.log', 'last Full log file: path is extracted');
-assert.equal(positive.issueUrl, 'https://github.com/link-assistant/hive-mind/issues/42', 'Issue URL is extracted');
+assert.equal(positive.issueUrl, 'https://github.com/PeterMotorniy/auto-programmer/issues/42', 'Issue URL is extracted');
 
 const MERGED_TEXT = 'process completed\nPR merged!\nIssue: https://github.com/example/repo/issues/1\nFull log file: /tmp/a.log';
 assert.equal(sessionMatches(MERGED_TEXT).matched, true, '"PR merged!" also qualifies');

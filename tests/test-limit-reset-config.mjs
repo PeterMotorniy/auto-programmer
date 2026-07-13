@@ -5,8 +5,8 @@
  * Tests the increased buffer time and random jitter to avoid thundering herd
  *
  * Related issues:
- *   - https://github.com/link-assistant/hive-mind/issues/1236
- *   - https://github.com/link-assistant/hive-mind/issues/1152
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/1236
+ *   - https://github.com/PeterMotorniy/auto-programmer/issues/1152
  *
  * Run with: node tests/test-limit-reset-config.mjs
  */

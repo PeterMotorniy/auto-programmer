@@ -6,9 +6,9 @@
  * the auto-merge loop. Split from github-merge.lib.mjs to keep that file under
  * the 1500-line CI limit (issue #1690 push).
  *
- * @see https://github.com/link-assistant/hive-mind/issues/1480
- * @see https://github.com/link-assistant/hive-mind/issues/1503
- * @see https://github.com/link-assistant/hive-mind/issues/1690
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1480
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1503
+ * @see https://github.com/PeterMotorniy/auto-programmer/issues/1690
  */
 
 import { promisify } from 'util';
