@@ -564,7 +564,7 @@ test('MergeQueueProcessor escapeMarkdown escapes hyphens', () => {
   const escaped = processor.escapeMarkdown(input);
 
   assert.ok(escaped.includes('\\-'), 'Should escape hyphens');
-  assert.equal(escaped, 'link\\-assistant/hive\\-mind', 'Should properly escape all hyphens');
+  assert.equal(escaped, 'PeterMotorniy/auto\\-programmer', 'Should properly escape all hyphens');
 });
 
 test('MergeQueueProcessor escapeMarkdown escapes underscores', () => {
@@ -602,8 +602,8 @@ test('MergeQueueProcessor formatProgressMessage escapes owner/repo with hyphens 
   const message = processor.formatProgressMessage();
 
   // The message should contain escaped hyphens in owner/repo
-  assert.ok(message.includes('link\\-assistant'), 'Should include escaped owner');
-  assert.ok(message.includes('hive\\-mind'), 'Should include escaped repo');
+  assert.ok(message.includes('PeterMotorniy'), 'Should include escaped owner');
+  assert.ok(message.includes('auto\\-programmer'), 'Should include escaped repo');
   // Should NOT contain unescaped versions outside of code blocks
   // (We check the raw message, which should have escaped special chars)
 });
@@ -617,8 +617,8 @@ test('MergeQueueProcessor formatFinalMessage escapes owner/repo with hyphens (Is
   const message = processor.formatFinalMessage();
 
   // The message should contain escaped hyphens in owner/repo
-  assert.ok(message.includes('link\\-assistant'), 'Should include escaped owner');
-  assert.ok(message.includes('hive\\-mind'), 'Should include escaped repo');
+  assert.ok(message.includes('PeterMotorniy'), 'Should include escaped owner');
+  assert.ok(message.includes('auto\\-programmer'), 'Should include escaped repo');
 });
 
 test('MergeQueueProcessor formatProgressMessage escapes special chars in owner/repo', () => {
