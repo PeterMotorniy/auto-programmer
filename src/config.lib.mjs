@@ -761,14 +761,8 @@ export const display = {
   labelWidth: parseIntWithDefault('HIVE_MIND_LABEL_WIDTH', 25),
 };
 
-// Sentry configurations
-export const sentry = {
-  dsn: getenv('HIVE_MIND_SENTRY_DSN', 'https://77b711f23c84cbf74366df82090dc389@o4510072519983104.ingest.us.sentry.io/4510072523325440'),
-  tracesSampleRateDev: parseFloatWithDefault('HIVE_MIND_SENTRY_TRACES_SAMPLE_RATE_DEV', 1.0),
-  tracesSampleRateProd: parseFloatWithDefault('HIVE_MIND_SENTRY_TRACES_SAMPLE_RATE_PROD', 0.1),
-  profileSessionSampleRateDev: parseFloatWithDefault('HIVE_MIND_SENTRY_PROFILE_SESSION_SAMPLE_RATE_DEV', 1.0),
-  profileSessionSampleRateProd: parseFloatWithDefault('HIVE_MIND_SENTRY_PROFILE_SESSION_SAMPLE_RATE_PROD', 0.1),
-};
+// Sentry configurations (removed — kept as empty stub for compatibility)
+export const sentry = { dsn: '', tracesSampleRateDev: 0, tracesSampleRateProd: 0, profileSessionSampleRateDev: 0, profileSessionSampleRateProd: 0 };
 
 // External URLs
 export const externalUrls = {
@@ -881,15 +875,6 @@ export function validateConfig() {
   for (const value of numericConfigs) {
     if (isNaN(value) || value < 0) {
       throw new Error(`Invalid numeric configuration value: ${value}`);
-    }
-  }
-
-  // Ensure sample rates are between 0 and 1
-  const sampleRates = [sentry.tracesSampleRateDev, sentry.tracesSampleRateProd, sentry.profileSessionSampleRateDev, sentry.profileSessionSampleRateProd];
-
-  for (const rate of sampleRates) {
-    if (isNaN(rate) || rate < 0 || rate > 1) {
-      throw new Error(`Invalid sample rate configuration: ${rate}. Must be between 0 and 1.`);
     }
   }
 

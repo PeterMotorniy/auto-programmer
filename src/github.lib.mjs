@@ -4,7 +4,7 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 if (typeof globalThis.use === 'undefined') await ensureUseM();
 const { $ } = await use('command-stream'); // Use command-stream for consistent $ behavior
 import { log, maskToken, cleanErrorMessage, isENOSPC, ghCmdRetry } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 import { describeRequestedThinking, githubLimits, timeouts } from './config.lib.mjs';
 import { batchCheckPullRequestsForIssues as batchCheckPRs, batchCheckArchivedRepositories as batchCheckArchived } from './github.batch.lib.mjs';
 import { isSafeToken, isHexInSafeContext, getGitHubTokensFromFiles, getGitHubTokensFromCommand, sanitizeOutput, sanitizeLogContent } from './token-sanitization.lib.mjs';

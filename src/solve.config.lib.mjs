@@ -367,11 +367,6 @@ export const SOLVE_OPTION_DEFINITIONS = {
     description: 'Target branch for the pull request (defaults to repository default branch)',
     alias: 'b',
   },
-  sentry: {
-    type: 'boolean',
-    description: 'Enable Sentry error tracking and monitoring (disabled by default for privacy; use --sentry to enable)',
-    default: false,
-  },
   'auto-cleanup': {
     type: 'boolean',
     description: 'Automatically delete temporary working directory on completion (error, success, or CTRL+C). Default: true for private repos, false for public repos. Use explicit flag to override.',

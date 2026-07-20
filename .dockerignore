@@ -1,11 +1,9 @@
 # Git and version control
-.git
 .gitignore
 
 # Docker files themselves (to avoid recursive copies)
-Dockerfile
+# Dockerfile  # Included for test builds on Windows
 experiments/solve-dockerize/
-docker-compose.yml
 .dockerignore
 
 # Output and temporary files

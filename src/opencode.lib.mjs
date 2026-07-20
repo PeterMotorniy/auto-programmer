@@ -15,7 +15,8 @@ const os = (await use('os')).default;
 
 // Import log from general lib
 import { log, isMeaningfulErrorText, buildToolErrorMessage } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 import { timeouts, retryLimits } from './config.lib.mjs';
 import { detectUsageLimit, formatUsageLimitMessage } from './usage-limit.lib.mjs';
 import { sanitizeObjectStrings } from './unicode-sanitization.lib.mjs';

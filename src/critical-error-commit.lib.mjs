@@ -10,7 +10,7 @@
 // It is intentionally dependency-light (receives `$` and `log`) and NEVER throws: a failure to
 // commit must not mask the original critical error or break the recovery flow.
 
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 
 /**
  * Commit (and optionally push) any uncommitted changes in a working tree before critical-error

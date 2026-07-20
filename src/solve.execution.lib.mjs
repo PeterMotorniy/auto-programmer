@@ -30,9 +30,8 @@ const { log, getLogFile, cleanErrorMessage, formatAligned } = lib;
 
 // Import GitHub-related functions
 const githubLib = await import('./github.lib.mjs');
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 const { sanitizeLogContent, attachLogToGitHub } = githubLib;
 

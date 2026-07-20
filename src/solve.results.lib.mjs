@@ -57,9 +57,8 @@ export { buildSolveResumeCommand };
 
 // Import error handling functions
 // const errorHandlers = await import('./solve.error-handlers.lib.mjs'); // Not currently used
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Import pull request issue-link preservation helpers
 const prIssueLinking = await import('./pr-issue-linking.lib.mjs');

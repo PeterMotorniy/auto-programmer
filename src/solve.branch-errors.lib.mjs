@@ -6,8 +6,8 @@
  * Provides improved error messages for branch checkout/creation failures
  */
 
-// Import Sentry integration
-import { reportError } from './sentry.lib.mjs';
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry } from './github-rate-limit.lib.mjs'; // rate-limit marker (#1726): gh API calls flow through $ wrapped by caller
 export async function handleBranchCheckoutError({ branchName, prNumber, errorOutput, issueUrl, owner, repo, tempDir, argv, formatAligned, log, $ }) {

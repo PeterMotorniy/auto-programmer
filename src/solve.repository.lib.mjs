@@ -21,9 +21,8 @@ const fs = (await use('fs')).promises;
 
 // Import shared library functions
 const lib = await import('./lib.mjs');
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 const { log, formatAligned } = lib;
 

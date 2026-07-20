@@ -3,7 +3,7 @@
 // Extracted from claude.lib.mjs to maintain file line limits
 
 import { formatNumber, calculateSessionTokens } from './claude.lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 import Decimal from 'decimal.js-light';
 import { getCacheReadTokenCount, getCacheWriteTokenCount, getCumulativeContextInputTokens, getDisplayContextInputTokens, getExplicitContextFillInputTokens, getInputTokenCount, getOutputTokenCount, getRestoredContextInputTokens } from './context-fill.lib.mjs';
 

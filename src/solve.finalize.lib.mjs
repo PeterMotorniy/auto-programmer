@@ -1,4 +1,4 @@
-export async function finalizeSolveProcess({ tempDir, argv, limitReached, path, getLogFile, log, closeSentry, logActiveHandles, cleanupTempDirectory, safeExit }) {
+export async function finalizeSolveProcess({ tempDir, argv, limitReached, path, getLogFile, log, logActiveHandles, cleanupTempDirectory, safeExit }) {
   await cleanupTempDirectory(tempDir, argv, limitReached);
 
   // Show final log file reference so users always know where to find the complete log
@@ -6,10 +6,6 @@ export async function finalizeSolveProcess({ tempDir, argv, limitReached, path, 
     const finalLogPath = path.resolve(getLogFile());
     await log(`\n📁 Complete log file: ${finalLogPath}`);
   }
-
-  // Issue #1346: Flush Sentry events before exit.
-  // closeSentry() uses a hard Promise.race deadline so it cannot block indefinitely.
-  await closeSentry();
 
   // Issue #1431: Log active handles before draining.
   // Always logged to file and console so future hangs are immediately visible in logs.

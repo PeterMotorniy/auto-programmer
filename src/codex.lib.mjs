@@ -19,7 +19,7 @@ import { log } from './lib.mjs';
 // file under the max-lines budget. Re-exported below for backward compatibility.
 import { getCodexErrorEventSummary, getCodexCompletionHealth } from './codex-health.lib.mjs';
 export { getCodexErrorEventSummary, getCodexCompletionHealth };
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 import { timeouts, retryLimits } from './config.lib.mjs';
 import { detectUsageLimit, formatUsageLimitMessage } from './usage-limit.lib.mjs';
 import { buildSolveResumeCommand } from './solve.resume-command.lib.mjs'; // Issue #942
@@ -1358,7 +1358,7 @@ export const executeCodexCommand = async params => {
         resultSummary: lastTextContent || null, // Issue #1263: Use last text content from JSON output stream
       };
     } catch (error) {
-      // Don't report auth errors to Sentry as they are user configuration issues
+      // Don't report auth errors as they are user configuration issues
       if (!error.isAuthError) {
         reportError(error, {
           context: 'execute_codex',

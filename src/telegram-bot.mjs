@@ -314,7 +314,9 @@ if (config.dryRun) {
 // These imports are after dry-run check to speed up config validation. Telegraf can take 3-8s to load on cold start (issue #801).
 
 const { buildUserMention } = await import('./buildUserMention.lib.mjs');
-const { reportError, initializeSentry, addBreadcrumb } = await import('./sentry.lib.mjs');
+// Sentry integration removed — no-op stubs
+const reportError = () => {};
+const addBreadcrumb = () => {};
 const { parseGitHubUrl, validateGitHubEntityExistence } = await import('./github.lib.mjs');
 const { validateClaudeSubAgentModelName, validateModelName, buildModelOptionDescription } = await import('./models/index.mjs');
 const { resolveIsolation, createIsolationAwareQueueCallback } = await import('./telegram-isolation.lib.mjs');
@@ -337,12 +339,6 @@ const { createSessionStore } = await import('./session-store.lib.mjs');
 const { createHeartbeat, resumeSessionsOnLaunch, createShutdownHandler } = await import('./bot-lifecycle.lib.mjs');
 const { formatExecutingWorkSessionMessage, formatStartingWorkSessionMessage } = await import('./work-session-formatting.lib.mjs');
 const { buildTelegramHelpMessage, buildTelegramInfoBlock, buildSolveQueuedMessage } = await import('./telegram-ui-messages.lib.mjs');
-
-// Initialize Sentry for error tracking
-await initializeSentry({
-  debug: VERBOSE,
-  environment: process.env.NODE_ENV || 'production',
-});
 
 // Initialize i18n: pre-load every supported locale so per-user translations
 // can resolve synchronously from the cache when handling Telegram updates.
@@ -1264,18 +1260,6 @@ bot.catch((error, ctx) => {
       updateId: ctx.update.update_id,
     });
   }
-
-  // Report error to Sentry with context
-  reportError(error, {
-    telegramContext: {
-      chatId: ctx.chat?.id,
-      chatType: ctx.chat?.type,
-      updateId: ctx.update.update_id,
-      command: ctx.message?.text?.split(' ')[0],
-      userId: ctx.from?.id,
-      username: ctx.from?.username,
-    },
-  });
 
   // Try to notify the user about the error with more details
   if (ctx?.reply) {

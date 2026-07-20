@@ -6,8 +6,7 @@ if (typeof globalThis.use === 'undefined') {
 const { $ } = await use('command-stream');
 const fs = (await use('fs')).promises;
 const path = (await use('path')).default;
-import { log, isENOSPC, buildToolErrorMessage } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+import { log, isENOSPC, buildToolErrorMessage, reportError } from './lib.mjs';
 import { timeouts, retryLimits, claudeCode, getClaudeEnv, getThinkingLevelToTokens, getTokensToThinkingLevel, supportsThinkingBudget, DEFAULT_MAX_THINKING_BUDGET, getMaxOutputTokensForModel } from './config.lib.mjs';
 import { detectUsageLimit, formatUsageLimitMessage, isUsageLimitError } from './usage-limit.lib.mjs';
 import { createInteractiveHandler } from './interactive-mode.lib.mjs';

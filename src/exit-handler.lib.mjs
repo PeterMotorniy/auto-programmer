@@ -10,20 +10,6 @@
 // Static import is safe: working-session.lib.mjs has no heavy deps and does NOT import this module.
 import { isFlagEnabled as isWorkingSessionFlagEnabled, isWorkingSessionActive, requestShutdown as requestWorkingSessionShutdown, forceKillActiveChildren as forceKillWorkingSessionChildren } from './working-session.lib.mjs';
 
-// Lazy-load Sentry to avoid keeping the event loop alive when not needed
-let Sentry = null;
-const getSentry = async () => {
-  if (Sentry === null) {
-    try {
-      Sentry = await import('@sentry/node');
-    } catch {
-      // If Sentry is not available, just return null
-      Sentry = { close: async () => {} };
-    }
-  }
-  return Sentry;
-};
-
 // Keep track of whether we've already shown the exit message
 let exitMessageShown = false;
 let getLogPathFunction = null;
@@ -260,22 +246,6 @@ export const safeExit = async (code = 0, reason = 'Process completed', { skipPre
   // ChildProcess (command-stream), and WriteStream (stdout/stderr) handles.
   await drainHandles();
 
-  // Close Sentry to flush any pending events and allow the process to exit cleanly.
-  // Use Promise.race with a hard timeout to guarantee sentry.close() never hangs
-  // indefinitely — the 2000ms hint passed to sentry.close() is forwarded to internal
-  // flush logic, but the outer Promise itself has no built-in deadline, so we enforce one.
-  try {
-    const sentry = await getSentry();
-    if (sentry && sentry.close) {
-      await Promise.race([
-        sentry.close(2000),
-        new Promise(resolve => setTimeout(resolve, 3000)), // hard 3s deadline
-      ]);
-    }
-  } catch {
-    // Ignore Sentry.close() errors - exit anyway
-  }
-
   process.exit(code);
 };
 
@@ -352,14 +322,6 @@ export const installGlobalExitHandlers = () => {
       }
     }
     await showExitMessage('Interrupted (CTRL+C)', 130);
-    try {
-      const sentry = await getSentry();
-      if (sentry && sentry.close) {
-        await Promise.race([sentry.close(2000), new Promise(resolve => setTimeout(resolve, 3000))]);
-      }
-    } catch {
-      // Ignore Sentry.close() errors
-    }
     process.exit(130);
   });
 
@@ -407,14 +369,6 @@ export const installGlobalExitHandlers = () => {
       }
     }
     await showExitMessage('Terminated', 143);
-    try {
-      const sentry = await getSentry();
-      if (sentry && sentry.close) {
-        await Promise.race([sentry.close(2000), new Promise(resolve => setTimeout(resolve, 3000))]);
-      }
-    } catch {
-      // Ignore Sentry.close() errors
-    }
     process.exit(143);
   });
 
@@ -431,14 +385,6 @@ export const installGlobalExitHandlers = () => {
       await logFunction(`\n❌ Uncaught Exception: ${error.message}`, { level: 'error' });
     }
     await showExitMessage('Uncaught exception occurred', 1);
-    try {
-      const sentry = await getSentry();
-      if (sentry && sentry.close) {
-        await Promise.race([sentry.close(2000), new Promise(resolve => setTimeout(resolve, 3000))]);
-      }
-    } catch {
-      // Ignore Sentry.close() errors
-    }
     process.exit(1);
   });
 
@@ -455,14 +401,6 @@ export const installGlobalExitHandlers = () => {
       await logFunction(`\n❌ Unhandled Rejection: ${reason}`, { level: 'error' });
     }
     await showExitMessage('Unhandled rejection occurred', 1);
-    try {
-      const sentry = await getSentry();
-      if (sentry && sentry.close) {
-        await Promise.race([sentry.close(2000), new Promise(resolve => setTimeout(resolve, 3000))]);
-      }
-    } catch {
-      // Ignore Sentry.close() errors
-    }
     process.exit(1);
   });
 };

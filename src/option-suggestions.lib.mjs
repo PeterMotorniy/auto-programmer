@@ -182,7 +182,6 @@ const KNOWN_OPTION_NAMES = [
   'thinking-budget-claude-minimum-version',
   'max-thinking-budget',
   'watch',
-  'sentry',
   'attach-logs',
   'auto-continue',
   'auto-fork',

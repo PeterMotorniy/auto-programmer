@@ -11,7 +11,7 @@ if (typeof globalThis.use === 'undefined') {
 const { $ } = await use('command-stream');
 const fs = (await use('fs')).promises;
 import { log, cleanErrorMessage } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 
 // Function to handle Claude runtime switching between Node.js and Bun
 export const handleClaudeRuntimeSwitch = async argv => {

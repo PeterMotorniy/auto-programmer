@@ -43,8 +43,8 @@ const { log, cleanErrorMessage } = lib;
 const restartShared = await import('./solve.restart-shared.lib.mjs');
 const { executeToolIteration, isApiError, isUsageLimitReached } = restartShared;
 
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Pure detection + normalization helpers live in a separate, network-free
 // module so they can be unit-tested in isolation (issue #1883).

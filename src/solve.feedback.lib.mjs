@@ -3,8 +3,8 @@
  * Handles comment counting and feedback detection for continue mode
  */
 
-// Import Sentry integration
-import { reportError } from './sentry.lib.mjs';
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry } from './github-rate-limit.lib.mjs'; // rate-limit marker (#1726): gh API calls flow through $ wrapped by caller
 // Issue #1827: tool-generated comments (markers + in-memory tracked IDs) must

@@ -17,7 +17,8 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 
 // Import shared utility from lib.mjs
 import { maskToken, log, isENOSPC } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry } from './github-rate-limit.lib.mjs'; // rate-limit marker (#1726): gh API calls flow through $ wrapped by caller
 // Dynamic imports for runtime dependencies

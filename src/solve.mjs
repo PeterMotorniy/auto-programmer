@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// Import Sentry instrumentation first (must be before other imports)
-import './instrument.mjs';
 import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 const earlyArgs = process.argv.slice(2);
 const { handleSolveEarlyExit } = await import('./solve.bootstrap.lib.mjs');
@@ -12,9 +10,8 @@ const { configureGitHubRateLimitLogging, wrapDollarWithGhRetry } = await import(
 const $ = wrapDollarWithGhRetry(__rawDollar$);
 const config = await import('./solve.config.lib.mjs');
 const { initializeConfig, parseArguments } = config;
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { initializeSentry, addBreadcrumb, reportError, closeSentry } = sentryLib;
+// Sentry integration removed — no-op stub for API compatibility
+const reportError = () => {};
 const { yargs, hideBin } = await initializeConfig(use);
 const path = (await use('path')).default;
 const fs = (await use('fs')).promises;
@@ -134,24 +131,6 @@ if (argv.useAgentCommander) {
 const shouldAttachLogs = argv.attachLogs || argv['attach-logs'];
 await showAttachLogsWarning(shouldAttachLogs);
 const absoluteLogPath = path.resolve(logFile);
-// Initialize Sentry integration (unless disabled)
-if (argv.sentry) {
-  await initializeSentry({
-    noSentry: !argv.sentry,
-    debug: argv.verbose,
-    version: process.env.npm_package_version || '0.12.0',
-  });
-  // Add breadcrumb for solve operation
-  addBreadcrumb({
-    category: 'solve',
-    message: 'Started solving issue',
-    level: 'info',
-    data: {
-      model: argv.model,
-      issueUrl: argv['issue-url'] || argv._?.[0] || 'not-set-yet',
-    },
-  });
-}
 // Create cleanup/interrupt wrappers populated with context as solve progresses
 let cleanupContext = { tempDir: null, argv: null, limitReached: false, branchName: null, prNumber: null, owner: null, repo: null };
 const cleanupWrapper = async () => {
@@ -1472,7 +1451,7 @@ try {
   await endWorkSession({ isContinueMode, prNumber, argv, log, formatAligned, $, logsAttached });
 } catch (error) {
   await finalizeDevelopmentLog(); // Preserve failed/interrupted sessions too.
-  // Don't report authentication errors to Sentry as they are user configuration issues
+  // Don't report authentication errors as they are user configuration issues
   if (!error.isAuthError) {
     reportError(error, {
       context: 'solve_main',
@@ -1496,5 +1475,5 @@ try {
     $,
   });
 } finally {
-  await finalizeSolveProcess({ tempDir, argv, limitReached, path, getLogFile, log, closeSentry, logActiveHandles, cleanupTempDirectory, safeExit });
+  await finalizeSolveProcess({ tempDir, argv, limitReached, path, getLogFile, log, logActiveHandles, cleanupTempDirectory, safeExit });
 }

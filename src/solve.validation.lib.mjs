@@ -40,9 +40,8 @@ const { checkGitIdentity, repairGitIdentity } = gitLib;
 
 // Import Claude-related functions
 const claudeLib = await import('./claude.lib.mjs');
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Import the robust usage-limit reset-time parser.
 // This returns a full dayjs date (honoring an explicit year and timezone) so the

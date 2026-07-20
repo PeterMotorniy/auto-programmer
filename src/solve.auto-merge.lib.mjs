@@ -29,9 +29,8 @@ const { log, cleanErrorMessage, formatAligned, formatToolExecutionFailure, extra
 // because we have our own non-bot comment detection logic that's more
 // appropriate for auto-restart-until-mergeable mode
 
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Import GitHub merge functions
 const githubMergeLib = await import('./github-merge.lib.mjs');

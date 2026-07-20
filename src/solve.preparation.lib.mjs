@@ -89,8 +89,7 @@ export async function prepareFeedbackAndTimestamps({ tempDir = null, prNumber, b
 
     await log(`\n${formatAligned('✅', 'Reference time:', referenceTime.toISOString())}`);
   } catch (timestampError) {
-    const sentryLib = await import('./sentry.lib.mjs');
-    const { reportError } = sentryLib;
+    const reportError = () => {};
     reportError(timestampError, {
       context: 'get_reference_timestamp',
       prNumber,
@@ -142,8 +141,7 @@ export async function checkUncommittedChanges({ tempDir, argv, log, $ }) {
         }
       }
     } catch (gitError) {
-      const sentryLib = await import('./sentry.lib.mjs');
-      const { reportError } = sentryLib;
+      const reportError = () => {};
       reportError(gitError, {
         context: 'check_uncommitted_changes',
         tempDir,

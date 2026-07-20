@@ -1,5 +1,5 @@
 // CLI configuration module for hive command
-// Extracted from hive.mjs to avoid loading heavy dependencies (instrument.mjs, etc.)
+// Extracted from hive.mjs to avoid loading heavy dependencies
 // when only the yargs configuration is needed (e.g., in telegram-bot.mjs)
 // This module has no heavy dependencies to allow fast loading for --help
 

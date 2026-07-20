@@ -7,7 +7,8 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 
 import { createInterface } from 'readline';
 import { log, cleanErrorMessage, getAbsoluteLogPath } from './lib.mjs';
-import { reportError, isSentryEnabled } from './sentry.lib.mjs';
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 if (typeof globalThis.use === 'undefined') {
   await ensureUseM();
@@ -34,10 +35,6 @@ export const promptUserForIssueCreation = async errorMessage => {
 
     console.log('\n❌ An error occurred:');
     console.log(`   ${errorMessage}`);
-
-    if (isSentryEnabled()) {
-      console.log('\n✅ Error reported to Sentry successfully');
-    }
 
     rl.question('\n❓ Would you like to create a GitHub issue for this error? (y/n): ', answer => {
       rl.close();
@@ -167,9 +164,6 @@ export const createIssueForError = async options => {
       // Auto-report mode: skip prompt, automatically create issue
       console.log('\n❌ An error occurred:');
       console.log(`   ${errorMessage}`);
-      if (isSentryEnabled()) {
-        console.log('\n✅ Error reported to Sentry successfully');
-      }
       console.log('\nℹ️  --auto-report-issue enabled: automatically creating GitHub issue...');
       shouldCreateIssue = true;
     } else {

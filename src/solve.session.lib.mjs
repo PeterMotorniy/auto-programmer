@@ -93,8 +93,7 @@ export async function startWorkSession({ isContinueMode, prNumber, argv, log, fo
         }
       }
     } catch (error) {
-      const sentryLib = await import('./sentry.lib.mjs');
-      const { reportError } = sentryLib;
+      const reportError = () => {};
       reportError(error, {
         context: 'convert_pr_to_draft',
         prNumber,
@@ -116,8 +115,7 @@ export async function startWorkSession({ isContinueMode, prNumber, argv, log, fo
         await log(`Warning: Could not post work start comment: ${stderr || 'unknown error'}`, { level: 'warning' });
       }
     } catch (error) {
-      const sentryLib = await import('./sentry.lib.mjs');
-      const { reportError } = sentryLib;
+      const reportError = () => {};
       reportError(error, {
         context: 'post_start_comment',
         prNumber,
@@ -150,8 +148,7 @@ export async function endWorkSession({ isContinueMode, prNumber, argv, log, form
           await log(`Warning: Could not post work end comment: ${stderr || 'unknown error'}`, { level: 'warning' });
         }
       } catch (error) {
-        const sentryLib = await import('./sentry.lib.mjs');
-        const { reportError } = sentryLib;
+        const reportError = () => {};
         reportError(error, {
           context: 'post_end_comment',
           prNumber,
@@ -181,8 +178,7 @@ export async function endWorkSession({ isContinueMode, prNumber, argv, log, form
         }
       }
     } catch (error) {
-      const sentryLib = await import('./sentry.lib.mjs');
-      const { reportError } = sentryLib;
+      const reportError = () => {};
       reportError(error, {
         context: 'convert_pr_to_ready',
         prNumber,

@@ -11,7 +11,7 @@ if (typeof globalThis.use === 'undefined') {
 const { $ } = await use('command-stream');
 
 import { log, buildToolErrorMessage } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 import { timeouts, retryLimits } from './config.lib.mjs';
 import { detectUsageLimit, formatUsageLimitMessage } from './usage-limit.lib.mjs';
 import { buildSolveResumeCommand } from './solve.resume-command.lib.mjs'; // Issue #942

@@ -36,8 +36,8 @@ const { executeToolIteration } = restartShared;
 const resultsLib = await import('./solve.results.lib.mjs');
 const { ensurePullRequestIssueLink } = resultsLib;
 
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 /**
  * Runs finalize requirements-check iterations after the main solve.

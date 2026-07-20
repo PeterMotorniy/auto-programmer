@@ -3,7 +3,7 @@
 
 import { log, cleanErrorMessage } from './lib.mjs';
 import { batchCheckPullRequestsForIssues, batchCheckArchivedRepositories } from './github.lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 
 import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry } from './github-rate-limit.lib.mjs'; // rate-limit marker (#1726): gh API calls flow through $ wrapped by caller
 /**

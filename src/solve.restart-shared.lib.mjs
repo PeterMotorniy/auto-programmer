@@ -34,9 +34,8 @@ const { log, formatAligned, extractToolErrorCore } = lib;
 const { ensurePullRequestBaseBranch } = await import('./solve.pr-base-guard.lib.mjs');
 const { RESOURCE_PHASE_RESTART_AFTER, RESOURCE_PHASE_RESTART_BEFORE, recordResourceSnapshot } = await import('./solve.resource-diagnostics.lib.mjs');
 
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 /**
  * Check if PR has been merged

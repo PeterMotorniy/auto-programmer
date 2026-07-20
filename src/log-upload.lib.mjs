@@ -18,9 +18,8 @@ const $silent = $({ mirror: false, capture: true });
 const lib = await import('./lib.mjs');
 const { log } = lib;
 
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 const summarizeCommandOutput = value => {
   const text = value?.toString()?.trim() || '';

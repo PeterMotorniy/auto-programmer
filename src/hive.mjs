@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// Import Sentry instrumentation first (must be before other imports)
-import './instrument.mjs';
 import { ensureUseM, fetchUseMCodeFromCdn } from './use-m-bootstrap.lib.mjs';
 import { wrapDollarWithGhRetry as _wrapDollarWithGhRetry, execGhWithRetry } from './github-rate-limit.lib.mjs'; // rate-limit marker (#1726): gh API calls flow through $ wrapped by caller. execGhWithRetry adds transient-network retry (#1756).
 const earlyArgs = process.argv.slice(2);
@@ -86,8 +84,8 @@ if (isRunningDirectly) {
     const { checkSystem } = memCheck;
     const exitHandler = await import('./exit-handler.lib.mjs');
     const { initializeExitHandler, installGlobalExitHandlers, safeExit, delegateSignalHandling } = exitHandler;
-    const sentryLib = await import('./sentry.lib.mjs');
-    const { initializeSentry, withSentry, addBreadcrumb, reportError } = sentryLib;
+    // Sentry integration removed — no-op stub
+    const reportError = () => {};
     const graphqlLib = await import('./github.graphql.lib.mjs');
     const { tryFetchIssuesWithGraphQL } = graphqlLib;
     const solutionDraftsLib = await import('./list-solution-drafts.lib.mjs');
@@ -392,28 +390,7 @@ if (isRunningDirectly) {
     await log(`📁 Log file: ${absoluteLogPath}`);
     await log('   (All output will be logged here)');
 
-    // Initialize Sentry integration (unless disabled)
-    if (argv.sentry) {
-      await initializeSentry({
-        noSentry: !argv.sentry,
-        debug: argv.verbose,
-        version: process.env.npm_package_version || '0.12.0',
-      });
-
-      // Add breadcrumb for monitoring configuration
-      addBreadcrumb({
-        category: 'hive',
-        message: 'Started monitoring',
-        level: 'info',
-        data: {
-          mode: argv.projectMode ? 'project' : argv.allIssues ? 'all' : 'label',
-          concurrency: argv.concurrency,
-          model: argv.model,
-        },
-      });
-    }
-
-    // Initialize the exit handler with getAbsoluteLogPath function and Sentry cleanup
+    // Initialize the exit handler with getAbsoluteLogPath function
     initializeExitHandler(getAbsoluteLogPath, log);
     installGlobalExitHandlers();
 
@@ -1466,17 +1443,10 @@ if (isRunningDirectly) {
       }
     }
 
-    // Wrap monitor function with Sentry error tracking
-    const monitorWithSentry = !argv.sentry ? monitor : withSentry(monitor, 'hive.monitor', 'command');
-
     // Start monitoring
     try {
-      await monitorWithSentry();
+      await monitor();
     } catch (error) {
-      reportError(error, {
-        context: 'hive_main',
-        operation: 'monitor_with_sentry',
-      });
       await log(`\n❌ Fatal error: ${cleanErrorMessage(error)}`, { level: 'error' });
       await log(`   📁 Full log file: ${absoluteLogPath}`, { level: 'error' });
       await safeExit(1, 'Error occurred');

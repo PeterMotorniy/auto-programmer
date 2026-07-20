@@ -29,9 +29,8 @@ const $ = wrapDollarWithGhRetry(__rawDollar$);
 const lib = await import('./lib.mjs');
 const { log, formatAligned } = lib;
 
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Import GitHub merge functions
 const githubMergeLib = await import('./github-merge.lib.mjs');

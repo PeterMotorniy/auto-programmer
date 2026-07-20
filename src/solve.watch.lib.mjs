@@ -25,9 +25,8 @@ const { log, cleanErrorMessage, formatAligned, formatToolExecutionFailure, extra
 
 // Import feedback detection functions
 const feedbackLib = await import('./solve.feedback.lib.mjs');
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Import GitHub functions for log attachment
 const githubLib = await import('./github.lib.mjs');

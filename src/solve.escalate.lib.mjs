@@ -343,8 +343,8 @@ export const runEscalation = async ({ issueUrl, owner, repo, issueNumber, prNumb
 
   const { resolveDefaultFallbackModel } = await import('./models/index.mjs');
 
-  const sentryLib = await import('./sentry.lib.mjs');
-  const { reportError } = sentryLib;
+  // Sentry integration removed — no-op stub
+  const reportError = () => {};
 
   const { plan } = config;
 

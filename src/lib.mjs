@@ -3,32 +3,9 @@ import { ensureUseM } from './use-m-bootstrap.lib.mjs';
 
 // Shared library functions for auto-programmer project
 
-// Try to import reportError and reportWarning from sentry.lib.mjs, but make it optional
-// This allows the module to work even when @sentry/node is not installed
-let reportError = null;
-let reportWarning = null;
-try {
-  const sentryModule = await import('./sentry.lib.mjs');
-  reportError = sentryModule.reportError;
-  reportWarning = sentryModule.reportWarning;
-} catch (_error) {
-  // Sentry module not available, create no-op functions
-  if (global.verboseMode) {
-    console.debug('Sentry module not available:', _error?.message || 'Import failed');
-  }
-  reportError = err => {
-    // Silent no-op when Sentry is not available
-    if (global.verboseMode) {
-      console.debug('Sentry not available for error reporting:', err?.message);
-    }
-  };
-  reportWarning = () => {
-    // Silent no-op when Sentry is not available
-    if (global.verboseMode) {
-      console.debug('Sentry not available for warning reporting');
-    }
-  };
-}
+// Sentry integration removed — no-op stubs
+const reportError = () => {};
+const reportWarning = () => {};
 
 // Check if use is already defined (when imported from solve.mjs)
 // If not, fetch it (when running standalone)
@@ -93,7 +70,7 @@ export const log = async (message, options = {}) => {
     const logMessage = lines.map(line => `${prefix} ${line}`).join('\n');
     await fs.appendFile(logFile, logMessage + '\n').catch(error => {
       // Silent fail for file append errors to avoid infinite loop
-      // but report to Sentry in verbose mode
+      // but report in verbose mode
       if (global.verboseMode) {
         reportError(error, {
           context: 'log_file_append',
@@ -442,7 +419,7 @@ export const retry = async (fn, options = {}) => {
     try {
       return await fn();
     } catch (error) {
-      // Report error to Sentry with retry context
+      // Report error with retry context
       reportError(error, {
         context: 'retry_operation',
         attempt,

@@ -46,7 +46,8 @@ const fs = (await use('fs')).promises;
 // Import shared functions from lib.mjs to follow DRY principle
 import { log, setLogFile, getLogFile, formatAligned, extractToolErrorCore } from './lib.mjs';
 import { parseCliArgumentsWithLino } from './cli-arguments.lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 import * as memoryCheck from './memory-check.mjs';
 
 // Import Claude execution functions

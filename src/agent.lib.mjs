@@ -15,7 +15,7 @@ const os = (await use('os')).default;
 
 // Import log from general lib
 import { log } from './lib.mjs';
-import { reportError } from './sentry.lib.mjs';
+const reportError = () => {};
 import { timeouts, retryLimits } from './config.lib.mjs';
 import { detectUsageLimit, formatUsageLimitMessage } from './usage-limit.lib.mjs';
 import { sanitizeObjectStrings } from './unicode-sanitization.lib.mjs';

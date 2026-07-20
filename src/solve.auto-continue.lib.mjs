@@ -40,9 +40,8 @@ const validation = await import('./solve.validation.lib.mjs');
 const usageLimitLib = await import('./usage-limit.lib.mjs');
 const { formatResetTimeWithRelative } = usageLimitLib;
 
-// Import Sentry integration
-const sentryLib = await import('./sentry.lib.mjs');
-const { reportError } = sentryLib;
+// Sentry integration removed — no-op stub
+const reportError = () => {};
 
 // Import GitHub linking detection library
 const githubLinking = await import('./github-linking.lib.mjs');
