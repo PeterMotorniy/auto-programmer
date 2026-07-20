@@ -314,8 +314,7 @@ if (config.dryRun) {
 // These imports are after dry-run check to speed up config validation. Telegraf can take 3-8s to load on cold start (issue #801).
 
 const { buildUserMention } = await import('./buildUserMention.lib.mjs');
-// Sentry integration removed — no-op stubs
-const reportError = () => {};
+// Sentry integration removed — no-op stub
 const addBreadcrumb = () => {};
 const { parseGitHubUrl, validateGitHubEntityExistence } = await import('./github.lib.mjs');
 const { validateClaudeSubAgentModelName, validateModelName, buildModelOptionDescription } = await import('./models/index.mjs');
